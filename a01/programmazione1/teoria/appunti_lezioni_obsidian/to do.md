@@ -1,0 +1,4 @@
+- [ ] Aritmetica modulare
+- [ ] Numeri Pseudocasuali
+- [ ] Mappe in Golang
+- [ ] Ricorsività
