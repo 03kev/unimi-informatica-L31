@@ -5,7 +5,7 @@ date: a.a 2024-2025
 lang: it-IT
 geometry: margin=2.5cm
 toc: true
-toc-depth: 3
+toc-depth: 2
 numbersections: true
 secnumdepth: 3
 
@@ -20,6 +20,7 @@ header-includes:
     - \usepackage{pgfplots}
     - \pgfplotsset{compat=1.17}
     - \usepgfplotslibrary{statistics}
+    - \usepgfplotslibrary{groupplots}
 
     - \newcommand{\shortunderscore}{\kern0.1em\raisebox{-0.2ex}{\rule[0pt]{0.5em}{0.7pt}}\kern0.1em}
 
@@ -229,6 +230,10 @@ Per facilitare ulteriori analisi, si riportano spesso nelle ultime colonne e nel
 
 ### Simmetria
 
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Simmetria}
+```
+
 Simmetria
 : Un insieme di dati si dice simmetrico attorno a un valore $x_0$ se, per ogni scostamento $c$ da $x_0$, la frequenza dei valori $(x_0 - c)$ è uguale a quella dei valori $(x_0 + c)$. In tal caso, il valore $x_0$ si definisce "centro di simmetria" della distribuzione. 
 
@@ -249,7 +254,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 ```{=latex}
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{\detokenize{/Users/kevinmuka/Library/Application Support/typora-user-images/image-20250308094948802.png}}
+    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/diagramma-bastoncini.png}}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.65\textwidth}
@@ -265,7 +270,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{\detokenize{/Users/kevinmuka/Library/Application Support/typora-user-images/image-20250308095022807.png}}
+    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/diagramma-barre.png}}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.65\textwidth}
@@ -280,7 +285,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 
 \begin{minipage}[c]{0.30\textwidth}
 	\centering
- 	\includegraphics[width=\linewidth]{\detokenize{/Users/kevinmuka/Library/Application Support/typora-user-images/image-20250308095048983.png}}
+ 	\includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/diagramma-poligonale.png}}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.65\textwidth}
@@ -378,6 +383,10 @@ Esistono tre indici di posizione: media, mediana e moda. In tutti i tre i casi s
 
 ### Media campionaria
 
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Media campionaria}
+```
+
 Si supponga di avere un campione di $n$ dati i cui valori sono $x_1, x_2, \cdots, x_n$. Una statistica per indicare il centro di questo insieme di dati è la media campionaria, definita come la media aritmetica dei valori dati:
 $$
 \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i = \frac{x_1 + x_2 + \cdots + x_n}{n}
@@ -458,6 +467,10 @@ Questa uguaglianza afferma che la somma degli scarti positivi della media campio
 
 ### Mediana campionaria
 
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Mediana campionaria}
+```
+
 La media campionaria presenta un forte punto debole come indicatore del centro di un insieme di dati: il suo valore è infatti ampliamente influenzato da eventuali valori estremi (valori fuori scala).
 
 Si dispongano i valori dei dati in ordine crescente. Se il numero di valori è dispari, allora la mediana campionaria è il valore intermedio della lista ordinata; se è pari, allora la mediana campionaria è la media dei due valori intermedi.
@@ -478,6 +491,10 @@ La media campionaria e la mediana campionaria sono due statistiche utili per des
 Per gli insiemi di dati che sono approssimativamente simmetrici rispetto ai valori centrali, la media campionaria e la mediana campionaria sono vicine. Entrambe le statistiche sono informative, e il loro utilizzo dipende dal contesto.
 
 ### Percentili campionari
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Percentili campionari}
+```
 
 La mediana campionaria è un caso particolare di una statistica nota come $100p$-esimo percentile campionario, dove $p$ indica un qualunque numero $\mathbb{R}$ nell'intervallo $\left[ 0,1 \right]$.
 
@@ -522,6 +539,10 @@ I quartili suddividono i dati in quattro parti in modo tale che il $25\%$ dei da
 ```
 
 ### Moda campionaria
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Moda campionaria}
+```
 
 Un altro indicatore della tendenza centrale è la moda campionaria, che è il valore che si verifica con maggiore frequenza nell'insieme di dati.
 
@@ -586,6 +607,10 @@ Questo avviene proprio perché gli scarti positivi e negativi si cancellano tra 
 
 ### Varianza campionaria
 
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Varianza campionaria}
+```
+
 La varianza campionaria è una misura della media degli scarti quadratici rispetto alla media campionaria. Tuttavia, per ragioni tecniche questa "media" divide la somma di $n$ scarti quadratici per $n-1$, piuttosto che per l'usuale valore $n$.
 
 ```{=latex}
@@ -635,6 +660,10 @@ $$
 
 ### Deviazione standard campionaria
 
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Deviazione standard campionaria}
+```
+
 La radice quadrata positiva della varianza campionaria si dice deviazione standard campionaria, e si indica con $s$. Questa è definita come
 $$
 s = \sqrt{\dfrac{\displaystyle \sum^n_{i=1} \left( x_i - \bar{x} \right)^2 }{n-1}}
@@ -675,13 +704,27 @@ Due altri indicatori della dispersione di un insieme di dati frequentemente util
 
 ### Scarto interquartile
 
-Lo squarto interquartile è un indice di dispersione che deriva dalla mediana campionaria, e rappresenta la lunghezza dell'intervallo in cui si trova la metà centrale dei dati. Richiamando i quartili, possiamo dire che si tratta della lunghezza dell'intervallo compreso tra il primo quartile $Q1$ e il terzo quartile $Q3$. 
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Scarto interquartile}
+```
+
+Lo squarto interquartile è un indice di dispersione che deriva dalla mediana campionaria, e rappresenta la lunghezza dell'intervallo in cui si trova la metà centrale dei dati. Richiamando i quartili, possiamo dire che si tratta della lunghezza dell'intervallo compreso tra il primo quartile $Q1$ e il terzo quartile $Q3$.
+
+Un $\text{IQR}$ piccolo indica che la metà centrale dei dati è relativamente concentrato attorno alla mediana, mentre un $\text{IQR}$ ampio suggerisce una maggiore dispersione nella parte centrale della distribuzione.
+
+Come la mediana campionaria, l'$\text{IQR}$ è un indice robusto perché non è influenzato da valori fuori scala. Questo lo rende particolarmente utile quando la distribuzione dei dati è asimmetrica o contiene anomalie.
+
+Questo indice è fondamentale per la costruzione dei boxplot perché viene proprio utilizzato per definire quali valori siano fuori scala e quali no. Generalmente, i valori inferiori a $Q1 - 1.5 \cdot \text{IQR}$ o superiori a $Q3 + 1.5 \cdot \text{IQR}$ sono considerati outlier.
 
 
+
+## Altri grafici
 
 ### Box Plot
 
-Per visualizzare alcune statistiche riassuntive di un insieme di dati si una un *box plot*. Per realizzarlo tracciamo un segmento orizzontale dal minore al maggiore dei dati. Al segmento sovrapponiamo un rettangolo che si estende dal primo al terzo quartile. Il rettangolo è diviso in due parti da un segmento verticale in corrispondenza della mediana campionaria.
+Per visualizzare alcune statistiche riassuntive di un insieme di dati si una un *box plot* (diagramma a scatola). Per realizzarlo tracciamo un segmento orizzontale dal minore al maggiore dei dati. Al segmento sovrapponiamo un rettangolo che si estende dal primo al terzo quartile. Il rettangolo è diviso in due parti da un segmento verticale in corrispondenza della mediana campionaria.
+
+La lunghezza della base del rettangolo corrisponde allo scarto interquartile.
 
 ```{=latex}
 \begin{tikzpicture}
@@ -741,11 +784,50 @@ Per visualizzare alcune statistiche riassuntive di un insieme di dati si una un 
 \end{tikzpicture}
 ```
 
-In un box plot ciascuno dei quattro segmenti contiene il $25\%$ delle osservazioni, ossia un quarto dei dati, però la lunghezza di ciascun segmento sulla scala orizzontale dipende dalla distribuzione dei valori. Se i dati sono più concentrati in un certo intervallo, quel tratto sarà più corto.
+In un box plot ciascuno dei quattro segmenti contiene il $25\%$ delle osservazioni, ossia un quarto dei dati, però la lunghezza di ciascun segmento sulla scala orizzontale dipende dalla distribuzione dei valori. Se i dati sono più concentrati in un certo intervallo, quel tratto sarà più corto. I quartili quindi dividono le osservazioni in parti uguali sul numero dei dati, non sulla distanza numerica.
 
-I quartili dividono le osservazioni in parti uguali sul numero dei dati, non sulla distanza numerica.
+I pallini a destra del box plot rappresentano dei valori fuori scala, determinati tramite l'utilizzo dell'$\text{IQR}$.
 
-I pallini a destra del box plot rappresentano dei valori fuori scala. Si scelga una percentuale arbitraria $p$ (di solito $p=50\%$), i valori che si trovano al di fuori di un valore di $\text{IQR}(1+p/100)$ sono considerati fuori scala.
+### Q-Q Plot
 
+```{=latex}
+\begin{minipage}[c]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/qq-plot.png}}
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[c]{0.65\textwidth}
+    \vspace{-7mm}
+Un diagramma Q-Q (o diagramma quantile-quantile) è una rappresentazione grafica qualitativa che permette di verificare le similarità tra le distribuzioni di due campioni diversi (utile per vedere quindi se seguono una stessa distribuzione). \\\\ 
+Questi diagrammi si basano sul fatto che i quantili campionari rappresentino l'approssimazione di quantili teorici che, se considerati tutti insiemi, individuano la distribuzione dei dati.
+\end{minipage}
+```
 
+Ogni asse cartesiano di questo diagramma contiene i quantili dei due campioni presi in considerazione.
 
+Se due campioni hanno una distribuzione uguale, allora estraendo da entrambi il quantile di un livello fissato si dovranno ottenere due numeri vicini. In questo caso i punti del diagramma Q-Q tenderanno ad allinearsi alla bisettrice del I° e III° quadrante.
+
+## Distribuzioni normali
+
+Dati normali
+: Un insieme di dati si dice *normale* se il rispettivo istogramma ha le proprietà seguenti:
+
+- L'istogramma è simmetrico rispetto all'intervallo centrale
+- Ha il punto massimo in corrispondenza dell'intervallo centrale
+- Spostandoci dal centro verso destra o verso sinistra, l’altezza diminuisce in modo tale che l’intero istogramma è a forma di campana.
+
+Se l'istogramma di un insieme di dati è vicino a essere un istogramma normale, allora diciamo che l'insieme di dati è approssimativamente normale. Inoltre l'insieme di dati si dice assimmetrico a destra o a sinistra a seconda di quale sia la coda più lunga.
+
+A causa della simmetria dell'istogramma normale, la media e la mediana di un insieme di dati approssimativamente normale sono uguali o molto prossime.
+
+Regola empirica
+: Siano $\bar{x}$ e $s$ rispettivamente la media e la deviazione standard campionarie di un insieme di dati approssimativamente normale. La *regola empirica* specifica le proporzioni approssimate delle osservazioni che si trovano a una distanza di $s$, $2s$ e $3s$ da $\bar{x}$:
+
+- Circa il $68\%$ delle osservazioni rientrano nell'intervallo $\bar{x} \pm s$
+- Circa il $95\%$ delle osservazioni ritentrano nell'intervallo $\bar{x} \pm 2s$
+- Circa il $99.7\%$ delle osservazioni ritentrano nell'intervallo $\bar{x} \pm 3s$
+
+Insiemi di dati bimodali
+: Un insieme di dati ottenuto campionando una popolazione costituita da sottogruppi eterogenei non è di solito normale. Piuttosto, l’istogramma di un insieme di dati di questo tipo spesso rassomiglia a una sovrapposizione di istogrammi normali e quindi spesso ha due o più massimi locali. Questi massimi locali si comportano come mode. Un insieme di dati il cui istogramma ha due massimi locali si dice quindi *bimodale*.
+
+In questi casi, quando nei dati si hanno due popolazioni ben distinte per quanto riguarda un certo attributo, ha senso dividere i dati in base a queste popolazioni e ottenere un insieme normale.
