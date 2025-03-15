@@ -10,12 +10,16 @@ numbersections: true
 secnumdepth: 3
 
 header-includes:
+    - \usepackage{titling}
+    - \setlength{\droptitle}{-1.5cm}
+
     - \usepackage{graphicx}
     - \usepackage{tikz}
     - \usepackage{tcolorbox}
     - \usetikzlibrary{positioning}
     - \usepackage{bm}
     - \usepackage{caption}
+    - \usepackage{cancel}
 
     - \usepackage{pgfplots}
     - \pgfplotsset{compat=1.17}
@@ -95,8 +99,17 @@ Suggerimenti e tecniche per la generazione dei grafici con l’uso di librerie c
 ## L05 - 11/03/2025 {-}
 
 ```{=latex}
-\textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze - Capitolo 3 RS}
+\textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze}: diagrammi a stelo \\
+\textbf{Dispense L04-Indici\shortunderscore di\shortunderscore dispersione - Capitolo 3 RS}
 ```
+
+## L06 - 13/03/2025 {-}
+
+```{=latex}
+\textbf{Dispense L05-Indici\shortunderscore di\shortunderscore eterogeneita}
+```
+
+Indici di eterogeneità: indice di Gini, indice di entropia. Alberi di decisione e "machine learning" tramite questi indici.
 
 
 
@@ -121,7 +134,7 @@ Una volta che i dati sono stati raccolti e descritti, si vogliono trarre delle c
 Statistica inferenziale
 : La statistica inferenziale è la parte della statistica che trae conclusioni sui dati.
 
-La statistica inferenziale si basa sul modello probabilistico che consiste nel fare un insieme di assunzioni sulle probabilità di ottenere un certo valore. La statistica inferenziale, quindi, richiede la conoscenza della teoria della probabilità. L’inferenza statistica si basa sull’assunzione che importanti aspetti del fenomeno in analisi si possano rappresentare in termini di probabilità e giugne a conclusioni usando i dati per fare inferenza su queste probabilità.
+La statistica inferenziale si basa sul modello probabilistico che consiste nel fare un insieme di assunzioni sulle probabilità di ottenere un certo valore. La statistica inferenziale, quindi, richiede la conoscenza della teoria della probabilità. L’inferenza statistica si basa sull’assunzione che importanti aspetti del fenomeno in analisi si possano rappresentare in termini di probabilità e giunge a conclusioni usando i dati per fare inferenza su queste probabilità.
 
 ## Popolazioni e campioni
 
@@ -133,7 +146,7 @@ Popolazione
 Campione
 : Si definisce campione un sottoinsieme della popolazione, utile quando questa è troppo numerosa.
 
-Affinché il campione ci dia informazioni su tutta la popolazione, questi deve essere rappresentativo di tutta la popolazione. Con rappresentativo si intende che il campione deve essere scelto in modo che tutte le parti della popolazione abbiano uguale probabilità di fare parte del campione. *Il campione deve quindi riflettere la variabilità reale della popolazione.*
+Affinché il campione ci dia informazioni su tutta la popolazione, esso deve essere rappresentativo di tutta la popolazione. Con rappresentativo si intende che il campione deve essere scelto in modo che tutte le parti della popolazione abbiano uguale probabilità di fare parte del campione. *Il campione deve quindi riflettere la variabilità reale della popolazione.*
 
 Campione casuale
 : Un campione di $k$ membri di una popolazione si dice **campione casuale**, o talvolta campione casuale semplice, se i membri sono scelti in modo che tutte le possibili scelte dei $k$ membri siano ugualmente probabili.
@@ -142,7 +155,7 @@ Una volta che si sceglie un campione casuale, è possibile usare l'inferenza sta
 
 ### Campionamento casuale stratificato
 
-Un metodo più sofisticato del campionamento casuale semplice è il campionamento casuale stratificato. Inizialmente si stratifica la popolazione in sottopopolazioni, ognuno dei quali contiene unità simili secondo determinati criteri. In seguito, da ogni strato si estrae un casualmente un numero di unità proporzionale alla sua consistenza nella popolazione totale. In questo modo, le proporzioni di ciascuno strato presenti nel campione rispecchiano esattamente quelle dell’intera popolazione.
+Un metodo più sofisticato del campionamento casuale semplice è il campionamento casuale stratificato. Inizialmente si stratifica la popolazione in sottopopolazioni, ognuna delle quali contiene unità simili secondo determinati criteri. In seguito, da ogni strato si estrae casualmente un numero di unità proporzionale alla sua consistenza nella popolazione totale. In questo modo, le proporzioni di ciascuno strato presenti nel campione rispecchiano esattamente quelle dell’intera popolazione.
 
 La stratificazione è particolarmente efficace per conoscere il membro *medio* della popolazione totale quando ci sono differenze tra le sottopopolazioni rispetto alla questione studiata.
 
@@ -193,8 +206,9 @@ Le frequenze cumulate si ottengono quando i valori di una variabile possono esse
 
 È importante notare che l’ultima frequenza cumulata rappresenta il totale dei casi osservati.  Inoltre, il concetto di frequenza cumulata si applica sia alle frequenze assolute che a quelle relative: nel caso delle frequenze relative, i valori cumulati variano da 0 a 1.
 
-Quando i dati sono numerici o comunque ordinabili, un concetto affine alle frequenze relative cumulate è quello della *funzione cumulativa empirica*, nota anche come funzione di ripartizione empirica. Data una serie di osservazioni ${ x_1, \dots, x_n }$, la funzione cumulativa empirica $\hat F: \mathbb R \to [0, 1]$ è definita in modo che per ogni $x \in \mathbb R$ essa assuma il valore pari alla frequenza relativa delle osservazioni minori o uguali a $x$. In altre parole:
+Quando i dati sono numerici o comunque ordinabili, un concetto affine alle frequenze relative cumulate è quello della *funzione cumulativa empirica*, nota anche come funzione di ripartizione empirica. 
 
+Data una serie di osservazioni ${ x_1, \dots, x_n }$, la funzione cumulativa empirica $\hat F: \mathbb R \to [0, 1]$ è definita in modo che per ogni $x \in \mathbb R$ essa assuma il valore pari alla frequenza relativa delle osservazioni minori o uguali a $x$. In altre parole:
 $$
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i)
@@ -244,10 +258,10 @@ Un modo semplice per rendersi conto se una distribuzione è (quasi) simmetrica �
 
 ### Grafici per la frequenza
 
-Se l'insieme di dati contiene un numero ridotto di valori distinti, si può rappresentrare con una *tabella delle frequenze*. Questa tabella associa a ciascun valore distinto osservato la sua frequenza assoluta. La somma di tutte le frequenze deve corrispondere al numero totale di osservazioni.  
+Se l'insieme di dati contiene un numero ridotto di valori distinti, lo si può rappresentrare con una *tabella delle frequenze*. Questa tabella associa a ciascun valore distinto osservato la sua frequenza assoluta. La somma di tutte le frequenze deve corrispondere al numero totale di osservazioni.  
 Data una variabile statistica $X$ che può assumere vari valori, si elencano i valori distinti di $X$ in una colonna e, a fianco di ognuno, la relativa frequenza di occorrenza nel campione.
 
-Per costruire una tabella delle frequenze relative da un insieme di dati, bisogna innanzitutto disporre i valori dei dati in ordine crescente. Si determinano i valori distinti e quante volte ciascuno di essi compaia. Si elencano questi valori distinti affiacati dalla loro frequenza $f$ e dalla loro frequenza relativa $f/n$, dove $n$ è il numero totale di osservazioni nell'insieme di dati.
+Per costruire una tabella delle frequenze relative da un insieme di dati, bisogna innanzitutto disporre i valori dei dati in ordine crescente. Si determinano i valori distinti e quante volte ciascuno di essi compaia. Si elencano questi valori distinti affiancati dalla loro frequenza $f$ e dalla loro frequenza relativa $f/n$, dove $n$ è il numero totale di osservazioni nell'insieme di dati.
 
 ### Grafici a bastoncini, a barre e poligonali
 
@@ -274,7 +288,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.65\textwidth}
-    \vspace{-2mm}
+    \vspace{-2.5mm}
     Un secondo tipo di rappresentazione, molto simile concettualmente, 
     è il \textit{grafico a barre}: anche in questo caso i valori si trovano 
     sull’asse orizzontale e le frequenze su quello verticale, ma invece dei 
@@ -299,70 +313,79 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 \end{minipage}
 ```
 
-### Diagramma a torta
-
-Se i dati non sono numerici si utilizza un diagramma a torta. Si costruisce usando un cerchio suddiviso in settori, uno per ogni valore distinto dei dati. Dato un valore con frequenza relativa $f/n$, allora l’area del settore corrisponde all'area del cerchio moltiplicata per $f/n$, ovvero un arco con un angolo di $360 \cdot(f /n)$ gradi.
-
 ### Diagramma ramo-foglia
 
 ```{=latex}
 \hfill
 
-\begin{minipage}[c]{0.35\textwidth}
+\begin{minipage}[c]{0.30\textwidth}
     \centering
-    \begin{tabular}{r|l}
-        22 & 372 \\
-        23 & 512, 688, 941 \\
-        24 & 706 \\
-        25 & 020, 057, 128, 400, 446, 575\\
-        26 & 183, 894, 982 \\
-        27 & 671, 711, 744 \\
-        28 & 345, 764, 913, 967 \\
-    \end{tabular}
-    \captionof{table}{Diagramma a stelo}
+    \fbox{%
+        \begin{minipage}{0.91\textwidth}
+            \hspace*{-1.5mm}
+            \begin{tabular}{r|l}
+                22 & 372 \\
+                23 & 512, 688, 941 \\
+                24 & 706 \\
+                25 & 020, 057, 128, 400, 557\\
+                26 & 183, 894, 982 \\
+                27 & 671, 711, 744 \\
+                28 & 345, 764, 913, 967 \\
+            \end{tabular}
+        \end{minipage}%
+    }
+    \vspace{-2mm}
+    \captionof*{table}{Diagramma a stelo}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.6\textwidth}
-    \vspace{-2mm}
-    Un modo efficiente di rappresentare un insieme di dati di dimensioni medie consiste nell'utizzare il \textit{diagramma ramo-foglia} (o a stelo). Tale grafico si ottiene dividendo ciascun valore dei dati in due parti, chiamati appunto rami e foglie. \\ \\
+    \vspace{-3mm}
+    Un modo efficiente di rappresentare un insieme di dati di dimensioni medie consiste nell'utilizzare il \textit{diagramma ramo-foglia} (o a stelo). Tale grafico si ottiene dividendo ciascun valore dei dati in due parti, chiamati appunto rami e foglie. \\ \\
     La scelta dei rami dovrebbe essere fatta in modo che il \mbox{diagramma} ramo-foglia che ne risulta sia informativo sui dati. Questi diagrammi sono particolarmente adatti a descrivere insiemi di dati dimensioni ridotte.
 \end{minipage}
-
-\hfill
+\vspace{1mm}
 ```
 
-Fisicamente, questo grafico ha l'aspetto di un istogramma ruotato su un lato, con il vantaggio di contenere tutti i valori dei dati originali in ogni classe. Quando il grafico presentra troppe foglie per ogni riga, si può raddoppiare il numero di rami utilizzando due righe per ogni valore del ramo.
+Fisicamente, questo grafico ha l'aspetto di un istogramma ruotato su un lato, con il vantaggio di contenere tutti i valori dei dati originali in ogni classe. Quando il grafico presenta troppe foglie per ogni riga, si può raddoppiare il numero di rami utilizzando due righe per ogni valore del ramo.
+
+### Diagramma a torta
+
+Se i dati non sono numerici si utilizza un diagramma a torta. Si costruisce usando un cerchio suddiviso in settori, uno per ogni valore distinto dei dati. Dato un valore con frequenza relativa $f/n$, allora l’area del settore corrisponde all'area del cerchio moltiplicata per $f/n$, ovvero un arco con un angolo di $360 \cdot(f /n)$ gradi.
 
 ### Diagrammi di Pareto
 
 I diagrammi di Pareto sono grafici a barre ordinati in ordine decrescente di frequenza, ai quali è spesso affiancata una linea che rappresenta la frequenza cumulata. In questo modo, oltre a mostrare il numero di casi per ciascuna categoria, permettono di evidenziare quali categorie contribuiscono maggiormente al totale, facilitando l’individuazione delle cause o delle categorie più rilevanti.
 
-### Istogrammi e raggruppamento dei dati
+### Istogrammi
 
 Utilizzare i grafici presentati precedentemente è un metodo efficace per descrivere un insieme di dati. Tuttavia alcuni di questi insiemi hanno troppi valori distinti per poter usare questo metodo. 
 
-Quello che bisogna fare in questi casi è suddividere i valori in gruppi, o classi, e poi si rappresenta con un grafico il numero di valori deti dati che cadono in ciascuna classe. Il numero di classi scelte è un compromesso tra:
+Raggruppamento dei dati
+: In questi casi si suddividono i valori in gruppi, o classi, e poi si rappresenta con un grafico il numero di valori dei dati che cadono in ciascuna classe. Il numero di classi scelte è un compromesso tra:
 
-1. scegliere poche classi al costo di perdere molte informazioni sui valori effettivi in una classe
-2. scegliere troppe classi, ottendendo frequenze troppo basse all'interno di ciascuna di esse
+    1. scegliere poche classi al costo di perdere molte informazioni sui valori effettivi in una classe
+    2. scegliere troppe classi, ottendendo frequenze troppo basse all'interno di ciascuna di esse
 
 I valori al bordo di una classe si chiamano *estremi* della classe. Si adotta la convenzione di inclusione a sinistra, che richiede che una classe includa il suo estremo sinistro ma non quello destro.
 
 Una volta suddivisi i dati in classi, si costruisce la tabella delle frequenze (e delle frequenze relative), e da questa si ottiene l’istogramma, un grafico a barre adiacenti che mostra la distribuzione dei dati in ciascuna classe. L’istogramma offre una visione immediata di come i valori si distribuiscono: per esempio, se sono concentrati in un certo intervallo, se ci sono "vuoti" senza osservazioni o se alcuni valori si distaccano notevolmente dagli altri. Pur non contenendo tutte le informazioni dell’insieme di dati originale, la tabella delle frequenze di classe e l’istogramma illustrano le caratteristiche fondamentali della distribuzione, come la simmetria, la dispersione e i possibili estremi isolati.
 
-### Diagramma di dispersione e insieme di dati a coppie
+### Diagramma di dispersione
 
-Un insieme di dati può consistere in coppie di valori che hanno una relazione di qualche tipo tra di loro. Ne viene che ogni elemento dell'insieme di dati sia costituito da un valore $x$ e da uno $y$.  Si indica con $(x_i, y_i), \; i=1 \cdots n\,$ la $i$-esima coppia.
+Insieme di dati a coppie
+: Un insieme di dati può consistere in coppie di valori che hanno una relazione di qualche tipo tra di loro. Ne viene che ogni elemento dell'insieme di dati sia costituito da un valore $x$ e da uno $y$.  Si indica con $(x_i, y_i), \; i=1 \cdots n\,$ la $i$-esima coppia.
 
 Un metodo per rappresentare un insieme di dati di questo tipo consiste nel considerare ogni elemento della coppia separatamente, producendo istogrammi (o diagrammi ramo-foglia) separati per ciascuno. Così facendo però, nonostante i due grafici ci diano molte informazioni sulle singole variabili (attributi), non si ha nessun tipo di informazione riguardo al rapporto tra queste due variabili.
 
 Per capirne la relazione è necessario considerare i valori accoppiati di ciascun dato simultaneamente. Si possono allora rappresentare questi dati accoppiati in un diagramma rettangolare e bidimensionale, in cui l'asse $x$ rappresenta il valore $x$ dei dati, e l'asse $y$ il valore $y$. Così facendo si ottiene un *diagramma di dispersione*.
 
-Una delle ragioni per cui questo tipo di diagramma è utile consiste nella possibilità di fare previsioni sul valore $y$ di una futura osservazione, noto il valore $x$. Per stimare il valore $y$ a partire da $x$ si cerca, in modo intuitivo, di tracciare una "retta media" che approssimi l’andamento dei punti sul diagramma, ovvero una retta che passi "il più vicino possibile" a tutti i dati. 
+Una delle ragioni per cui *questo* tipo di diagramma è utile consiste nella possibilità di fare previsioni sul valore $y$ di una futura osservazione, noto il valore $x$. Per stimare il valore $y$ a partire da $x$ si cerca, in modo intuitivo, di tracciare una "retta media" che approssimi l’andamento dei punti sul diagramma, ovvero una retta che passi "il più vicino possibile" a tutti i dati.
 
-- In pratica, si ricorre a metodi di regressione lineare, come il *metodo dei minimi quadrati*, che permette di trovare l’equazione della retta (del tipo $y = a + bx$) minimizzando la somma delle distanze (al quadrato) tra i valori osservati $(x_i, y_i)$ e i valori $\hat{y}_i$ previsti dalla retta. Una volta trovata questa retta di "miglior adattamento", per un qualunque valore $x$ che possa presentarsi in futuro, si ottiene la stima di $y$ semplicemente sostituendo $x$ nell’equazione $y = a + bx$.
+```{=latex}
+\newpage
+```
 
-Il diagramma di dispersione, oltre a mostrare il comportamento relativo di due variabili e ad aiutarci nelle previsoni, è utile per riconoscere i *valori anomali* (outlier) che sono i punti che non sembrano seguire il comportamento degli altri. Una volta identificati questi valori, si può decidere quali di essi siano appropriati e quali siano invece causati da errori nella racolta dei dati.
+Il diagramma di dispersione, oltre a mostrare il comportamento relativo di due variabili e ad aiutarci nelle previsioni, è utile per riconoscere i *valori anomali* (outlier) che sono i punti che non sembrano seguire il comportamento degli altri. Una volta identificati questi valori, si può decidere quali di essi siano appropriati e quali siano invece causati da errori nella raccolta dei dati.
 
 
 
@@ -406,11 +429,11 @@ y_i = x_i + b \; \text{ per } i=1, \cdots, n \quad \Rightarrow \quad \bar{y} = \
 $$
 dove $\bar{y}$ e $\bar{x}$ sono le medie campionarie risettivamente degli $y_i$ e degli $x_i$. 
 
-Dimostrazione: $\quad \displaystyle\bar{y} = \dfrac{1}{n} \sum_{i=1}^n y_i = \dfrac{1}{n} \sum_{i=1}^n (x_i + h) =
-	\underbrace{\dfrac{1}{n} \sum_{i=1}^nx_i}_{\large \bar{x}} ~+~ \underbrace{\dfrac{1}{n} \sum_{i=1}^n h}_{\large \tfrac{1}{n} \cdot\, nh} = \bar{x} + h$
+Dimostrazione: $\quad \displaystyle\bar{y} = \dfrac{1}{n} \sum_{i=1}^n y_i = \dfrac{1}{n} \sum_{i=1}^n (x_i + b) =
+	\underbrace{\dfrac{1}{n} \sum_{i=1}^nx_i}_{\large \bar{x}} ~+~ \underbrace{\dfrac{1}{n} \sum_{i=1}^n b}_{\large \tfrac{1}{n} \cdot\, nb} = \bar{x} + b$
 
 **Scalatura**
-Se invece ciascun calore dei dati viene moltiplicato per $a$, lo è anche la media campionaria:
+Se invece ciascun valore dei dati viene moltiplicato per $a$, lo è anche la media campionaria:
 $$
 y_i = ax_i \; \text{ per } i=1, \cdots, n \quad \Rightarrow \quad \bar{y} = a\bar{x}
 $$
@@ -434,7 +457,7 @@ Queste tre proprietà derivano dal fatto che tutte queste trasformazioni siano l
 
 Quando i dati sono disposti in una tabella delle frequenze, la media campionaria può essere espressa come la somma del prodotto dei valori distinti per le loro frequenze, divisi per la dimensione dell'insieme dei dati.
 
-Per verificarlo, si supponga di disporre di una tabella delle frequenze che elenca $k$ valori distinti $x_1, x_2, \cdots, x_k$ con le rispettive frequenze $f_1, f_2, \cdots f_k$. Ne segue che questo insieme di dati è costituito da $n$ osservazioni, dove $n = \sum^k_{i=1} f_i$ e dove il valore $x_i$ comprare $f_i$ volte per $i=1,2,\cdots,k$. La media campionaria per questo insieme di dati è:
+Per verificarlo, si supponga di disporre di una tabella delle frequenze che elenca $k$ valori distinti $x_1, x_2, \cdots, x_k$ con le rispettive frequenze $f_1, f_2, \cdots f_k$. Ne segue che questo insieme di dati è costituito da $n$ osservazioni, dove $n = \sum^k_{i=1} f_i$ e dove il valore $x_i$ compare $f_i$ volte per $i=1,2,\cdots,k$. La media campionaria per questo insieme di dati è:
 $$
 \bar{x} = \dfrac{x_1 + \cdots + x_1 + x_2 + \cdots + x_2 + \cdots + x_k + \cdots + x_k}{n} 	= \dfrac{f_1 x_1 + f_2 x_2 + \cdots + f_k x_k}{n} \tag{3.1}
 $$
@@ -548,7 +571,7 @@ Un altro indicatore della tendenza centrale è la moda campionaria, che è il va
 
 Se non esiste un singolo valore che si verifica con più frequenza rispetto agli altri, allora tutti i valori con la frequenza più alta sono detti *valori modali*. In questo caso si dice che non c'è un valore unico della moda campionaria.
 
-Questi valori si vedono facilmente in una tabella delle frequenza; sono infatti i valori con la frequenza più alta.
+Questi valori si vedono facilmente in una tabella delle frequenze; sono infatti i valori con la frequenza più alta.
 
 
 
@@ -588,6 +611,10 @@ Si considerino le varie classificazioni degli attributi:
 La media si può fare solo per gli attributi quantitativi; la mediana e i percentili si possono svolgere anche sugli attributi qualitativi ordinali con cardinalità del campione dispari; la moda si può fare per qualsiasi tipo di attributo.
 
 
+
+```{=latex}
+\hfill
+```
 
 ## Dispersione
 
@@ -708,7 +735,7 @@ Due altri indicatori della dispersione di un insieme di dati frequentemente util
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Scarto interquartile}
 ```
 
-Lo squarto interquartile è un indice di dispersione che deriva dalla mediana campionaria, e rappresenta la lunghezza dell'intervallo in cui si trova la metà centrale dei dati. Richiamando i quartili, possiamo dire che si tratta della lunghezza dell'intervallo compreso tra il primo quartile $Q1$ e il terzo quartile $Q3$.
+Lo scarto interquartile è un indice di dispersione che deriva dalla mediana campionaria, e rappresenta la lunghezza dell'intervallo in cui si trova la metà centrale dei dati. Richiamando i quartili, possiamo dire che si tratta della lunghezza dell'intervallo compreso tra il primo quartile $Q1$ e il terzo quartile $Q3$.
 
 Un $\text{IQR}$ piccolo indica che la metà centrale dei dati è relativamente concentrato attorno alla mediana, mentre un $\text{IQR}$ ampio suggerisce una maggiore dispersione nella parte centrale della distribuzione.
 
@@ -722,7 +749,7 @@ Questo indice è fondamentale per la costruzione dei boxplot perché viene propr
 
 ### Box Plot
 
-Per visualizzare alcune statistiche riassuntive di un insieme di dati si una un *box plot* (diagramma a scatola). Per realizzarlo tracciamo un segmento orizzontale dal minore al maggiore dei dati. Al segmento sovrapponiamo un rettangolo che si estende dal primo al terzo quartile. Il rettangolo è diviso in due parti da un segmento verticale in corrispondenza della mediana campionaria.
+Per visualizzare alcune statistiche riassuntive di un insieme di dati si usa un *box plot* (diagramma a scatola). Per realizzarlo tracciamo un segmento orizzontale dal minore al maggiore dei dati. Al segmento sovrapponiamo un rettangolo che si estende dal primo al terzo quartile. Il rettangolo è diviso in due parti da un segmento verticale in corrispondenza della mediana campionaria.
 
 La lunghezza della base del rettangolo corrisponde allo scarto interquartile.
 
@@ -756,8 +783,8 @@ La lunghezza della base del rettangolo corrisponde allo scarto interquartile.
   \addplot+[
     only marks,
     mark=o,
-    mark options={draw=black},
-  ] coordinates {(8.5,1) (9.6,1)};
+    mark options={draw=black, line width=0.8pt},
+  ] coordinates {(9.3,1) (11,1)};
 
   % etichette
   \node[above, yshift=0.6cm] at (axis cs:1,1) {Min};
@@ -803,7 +830,7 @@ Questi diagrammi si basano sul fatto che i quantili campionari rappresentino l'a
 \end{minipage}
 ```
 
-Ogni asse cartesiano di questo diagramma contiene i quantili dei due campioni presi in considerazione.
+Ogni asse cartesiano di questo diagramma contiene i quantili dei due campioni presi in considerazione. Poiché i quantili sono ordinati in modo crescente, anche il grafico risultante sarà crescente, o perlomeno non decrescente.
 
 Se due campioni hanno una distribuzione uguale, allora estraendo da entrambi il quantile di un livello fissato si dovranno ottenere due numeri vicini. In questo caso i punti del diagramma Q-Q tenderanno ad allinearsi alla bisettrice del I° e III° quadrante.
 
@@ -823,11 +850,371 @@ A causa della simmetria dell'istogramma normale, la media e la mediana di un ins
 Regola empirica
 : Siano $\bar{x}$ e $s$ rispettivamente la media e la deviazione standard campionarie di un insieme di dati approssimativamente normale. La *regola empirica* specifica le proporzioni approssimate delle osservazioni che si trovano a una distanza di $s$, $2s$ e $3s$ da $\bar{x}$:
 
-- Circa il $68\%$ delle osservazioni rientrano nell'intervallo $\bar{x} \pm s$
-- Circa il $95\%$ delle osservazioni ritentrano nell'intervallo $\bar{x} \pm 2s$
-- Circa il $99.7\%$ delle osservazioni ritentrano nell'intervallo $\bar{x} \pm 3s$
+- circa il $68\%$ delle osservazioni rientrano nell'intervallo $\bar{x} \pm s$
+- circa il $95\%$ delle osservazioni ritentrano nell'intervallo $\bar{x} \pm 2s$
+- circa il $99.7\%$ delle osservazioni ritentrano nell'intervallo $\bar{x} \pm 3s$
 
 Insiemi di dati bimodali
 : Un insieme di dati ottenuto campionando una popolazione costituita da sottogruppi eterogenei non è di solito normale. Piuttosto, l’istogramma di un insieme di dati di questo tipo spesso rassomiglia a una sovrapposizione di istogrammi normali e quindi spesso ha due o più massimi locali. Questi massimi locali si comportano come mode. Un insieme di dati il cui istogramma ha due massimi locali si dice quindi *bimodale*.
 
 In questi casi, quando nei dati si hanno due popolazioni ben distinte per quanto riguarda un certo attributo, ha senso dividere i dati in base a queste popolazioni e ottenere un insieme normale.
+
+```{=latex}
+\newpage
+```
+
+
+
+## Indici di dipendenza
+
+Si consideri un insieme composto da dati accoppiati $(x_1,y_1),(x_2, y_2), \cdots, (x_n, y_n)$. Per vedere la relazione relativa di queste due variabili è possibile rappresentarle in un diagramma di dispersione. Questo approccio è però qualitativo, e quindi soggetto a interpretazione.  
+Si vuole trovare un indice quantitativo in grado di rappresentare questa relazione oggettivamente. Questi indici sono detti di dipendenza o associazione e misurano la forza della relazione, ossia forniscono un valore numerico che indica quanto intensamente le variabili siano collegate.
+
+### Covarianza campionaria
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Covarianza campionaria}
+```
+
+Si introduce una statistica, detta *covarianza campionaria*, che quantifica in che misura grandi valori di $x$ corrispondano a grandi valori di $y$ e piccoli valori di $x$ a piccoli valori di $y$. Questo indice quindi misura la tendenza con cui due variabili si muovono insieme ed è definita come la media dei prodotti degli scostamenti delle variabili dalle loro medie.
+
+```{=latex}
+\vspace{-2mm}
+```
+
+##### Relazione tendenziale
+
+Si procede considerando una relazione di tipo tendenziale e non deterministico. Ciò significa che le affermazioni che seguiranno varranno tendenzialmente sempre: ci saranno quindi delle eccezioni, ma per lo più saranno valide.
+
+Si supponga che un insieme sia costituito dalle coppie di valori $(x_i, y_i) \text{ con } i =1, \cdots, n$. Si calcolino le rispettive medie campionarie $\bar{x}$ e $\bar{y}$. Per la $i$-esima coppia di dati, si considerino $(x_i - \bar{x})$ lo scarto del valore $x$ rispetto alla sua media campionaria e $(y - \bar{y})$ lo scarto del valore $y$ rispetto alla sua media campionaria.
+
+Quando grandi valori di $x$ tendono a essere associati con grandi valori di $y$, e piccoli valori di $x$ tendono a essere associati a piccoli valori di $y$, allora i segni (positivi o negativi) di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ tenderanno a essere gli stessi. A questo punto, se gli scarti hanno segno concorde, il loro prodotto $(x_i - \bar{x})(y_i - \bar{y})$ sarà positivo. Si ottiene che la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà a essere un grande numero positivo.  
+
+```{=latex}
+\vspace{2.5mm}
+\begin{minipage}[c]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/rel-diretta}}
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[c]{0.325\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "grande" & e & y "grande" \\
+    $x \ge \bar{x}$ &  & $y \ge \bar{y}$ \\
+    $(x_i - \bar{x}) \ge 0$ &  & $(y_i - \bar{y}) \ge 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) \ge 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) > 0$}
+    \end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.01\textwidth}
+    \centering
+    \vrule width 0.5pt height 2.85cm
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[c]{0.325\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "piccolo" & e & y "piccolo" \\
+    $x < \bar{x}$ &  & $y < \bar{y}$ \\
+    $(x_i - \bar{x}) < 0$ &  & $(y_i - \bar{y}) < 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) \ge 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) > 0$}
+    \end{tabular}
+\end{minipage}
+
+\vspace{1mm}
+\begin{center}
+	\begin{minipage}[c]{0.9\textwidth}
+		Si individua quindi una correlazione positiva tra le due variabili poiché tendenzialmente presentano segno concorde. In questo caso si parla di relazione tra le due variabili di tipo diretta.
+	\end{minipage}
+\end{center}
+\vspace{3mm}
+```
+
+
+
+Per lo stesso motivo, quando grandi valori di una variabile tendono a verificarsi in corrispondenza a piccoli valori dell'altra, allora i segni di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ saranno discordi e quindi la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà ad essere un grande numero negativo.  
+
+```{=latex}
+\vspace{2.5mm}
+\begin{minipage}[c]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/rel-indiretta}}
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[c]{0.325\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "grande" & e & y "piccola" \\
+    $x \ge \bar{x}$ &  & $y < \bar{y}$ \\
+    $(x_i - \bar{x}) \ge 0$ &  & $(y_i - \bar{y}) < 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) < 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) < 0$}
+    \end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.01\textwidth}
+    \centering
+    \vrule width 0.5pt height 2.85cm
+\end{minipage}
+\hspace{2mm}
+\begin{minipage}[c]{0.325\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "piccolo" & e & y "grande" \\
+    $x < \bar{x}$ &  & $y \ge \bar{y}$ \\
+    $(x_i - \bar{x}) < 0$ &  & $(y_i - \bar{y}) \ge 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) < 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) < 0$}
+    \end{tabular}
+\end{minipage}
+
+\vspace{1mm}
+\begin{center}
+	\begin{minipage}[c]{0.9\textwidth}
+		Si individua quindi una correlazione negativa tra le due variabili poiché tendenzialmente presentano segno discorde. In questo caso si parla di relazione tra le due variabili di tipo indiretta.
+	\end{minipage}
+\end{center}
+\vspace{3mm}
+```
+
+
+
+Si procede poi standardizzando la sommatoria dividendo per $n-1$, al fine di evitare che questo indice assuma valori troppo elevati. Si osserva che la formula della covarianza campionaria è riconducibile a quello della varianza campionaria, motivo per il quale si possa intuire perché si vada a dividere per $n-1$ e non direttamente per il numero totale di osservazioni.
+
+Ricapitolando, si definisce la covarianza campionaria come:
+$$
+\dfrac{\displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})}{n-1} = 
+\begin{cases}
+> 0 & \text{relazione diretta} \\
+\approx 0 & \text{assenza di relazione / indipendenza} \\
+< 0 & \text{relazione indiretta / inversa}
+\end{cases}
+$$
+
+
+### Coefficiente di correlazione di Pearson
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Coefficiente di correlazione di Pearson}
+```
+
+La covarianza campionaria non può essere posizionata all'interno di una scala assoluta in quanto non è normalizzata e il suo valore dipende dalle osservazioni coinvolte. Si ricava perciò da questo indice il *coefficiente di correlazione lineare campionaria* (anche detto indice di correlazione di Pearson), che si indica con $\rho$.
+
+Presa la covarianza campionaria, si standardizza il suo valore dividendolo per il prodotto delle due deviazioni standard campionarie delle due variabili:
+$$
+\rho =\dfrac{\displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})}{(n-1)s_x s_y}
+$$
+Il coefficiente di correlazione di Pearson è quindi un numero puro e, proprio come la covarianza campionaria, quando $\rho > 0$ i dati sono correlati positivamente; invece quando $\rho < 0$ sono correlati negativamente.  
+Non dipendendo dalle unità di misura, questo indice può essere usato per comparare dataset diversi.
+
+Una proprietà importante, che non verrà dimostrata, è che $-1 \le \rho \le 1$
+
+#### Relazione deterministica
+
+```{=latex}
+\vspace{-3mm}
+```
+
+##### Primo caso
+
+Si passi da una relazione tendenziale a una deterministica, in cui la variabile $y$ è una trasformazione lineare della variabile $x$; tutti i vari indici statistici variano di conseguenza:
+$$
+\forall i \;\; y_i = a + b x_i \quad \Rightarrow \quad \bar{y} = a + b \bar{x} \quad \Rightarrow \quad s_y^2 = b^2 s_x^2 \quad \Rightarrow \quad s_y = |\, b\, | s_x
+$$
+Nella relazione deterministica $y = a + bx$, la costante $b$ rappresenta la pendenza (ossia il coefficiente angolare) della retta che lega le due variabili e indica di quanto varia $y$ all'aumentare di $x$. Ci si aspetta che: 
+
+- se $b$ è positivo, all’aumento di $x$ corrisponde un incremento di $y \Rightarrow$ relazione diretta
+- se $b$ è negativo, all’aumento di $x$ corrisponde una diminuzione di $y \Rightarrow$ relazione inversa 
+
+Si calcoli ora il coefficiente di correlazione di Pearson:
+$$
+\rho = \dfrac{b \sum_{i=1}^n (x_i - \bar{x})^2}{(n-1)\,|\, b \,|\, s_x^2} =
+	\dfrac{b}{|\, b \,|} \cdot \dfrac{1}{s_x^2} \dfrac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \dfrac{b}{|\, b \,|} \cdot \dfrac{1}{\cancel{s_x^2}} \cancel{s_x^2}
+	= \dfrac{b}{|\, b \,|} \;\;= \;\;
+    \begin{cases}
+		+1 & \text{se } b>0 \\
+		-1 & \text{se } b < 0
+    \end{cases}
+$$
+Questo significa che:
+
+- l'indice $\rho$ è uguale a $+1$ se $b$ è una costante positiva, e se quindi le due variabili esibiscono una relazione di tipo deterministica diretta.
+- l'indice $\rho$ è uguale a $-1$ se $b$ è una costante negativa, e se quindi le due variabili esibiscono una relazione di tipo deterministica indiretta.
+
+Le conclusioni che abbiamo ottenuto con i calcoli rispecchiano le attese iniziali.
+
+```{=latex}
+\newpage
+```
+
+##### Secondo caso
+
+Si consideri ora una relazione in cui entrambe le variabili $x$ e $y$ sono soggette a una trasformazione lineare; i vari indici statistici variano nel seguente modo:
+$$
+\forall i \quad
+\begin{aligned}
+x'_i &= a + bx_i \quad \Rightarrow \quad \bar{x}' = a + b\bar{x} \quad \Rightarrow \quad s_{x'} = |\, b\,|\, s_x \quad \Rightarrow \quad x'_i - \bar{x}' = b(x_i - \bar{x}) \\
+y'_i &= c + dy_i \,\quad \Rightarrow \quad \bar{y}' = c + d\bar{x} \quad \Rightarrow \quad s_{y'} = |\, d\,|\, s_y \quad \Rightarrow \quad y'_i - \bar{y}' = d(y_i - \bar{y})
+\end{aligned}
+$$
+Si procede calcolando il coefficiente di correlazione di Pearson:
+$$
+\rho' = \dfrac{\sum_{i=1}^n (x'_i - \bar{x}')(y'_i - \bar{y}')}{(n-1) s_x' s_y'} =
+	\dfrac{b\, d\, \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{(n-1)\, |\,b\,|\, |\,d\,|\, s_x s_y} = 
+	\dfrac{b\, d}{|\, b\, |\, |\, d\,|} \rho \;\;=\;\;
+    \begin{cases}
+		+\rho & \text{se } b \text{ concorda con }d \\
+		-\rho & \text{se } b \text{ discorda con }d
+    \end{cases}
+$$
+Ciò significa che la correlazione tra $x'$ e $y'$ rimane numericamente invariata rispetto a quella tra $x$ e $y$ e può eventualmente cambiare solo di segno:
+
+- se i coefficienti di trasformazione $b$ e $d$ hanno lo stesso segno allora $\rho' = \rho$
+- se i coefficienti di trasformazione $b$ e $d$ hanno segni opposti allora $\rho' = -\rho$
+
+```{=latex}
+\vspace{1mm}
+```
+
+#### Conclusioni
+
+Il coefficiente di correlazione di Pearson è un indicatore fondamentale per valutare la forza e la direzione di una relazione (o associazione) di tipo lineare tra due variabili, con valori che spaziano fra $-1$ e $+1$.
+
+Relazione deterministica
+: Quando due variabili presentano una relazione lineare deterministica $y = a + bx$, il coefficiente di correlazione assume valore estremo: $\rho = +1$ se $b>0$ e $\rho = -1$ se $b<0$. In altre parole, se tutti i punti giacciono esattamente su una retta crescente (o decrescente), la correlazione è massima (o minima).
+
+Relazione tendenziale
+:   Nella maggior parte dei casi reali, le due variabili seguono una relazione lineare tendenziale. In questo contesto, il valore assoluto del coefficiente  di correlazione, $|\rho|$, fornisce una misura di quanto le osservazioni si dispongano in prossimità di una retta:
+
+    - $|\rho|=1$ evidenzia una perfetta relazione lineare: in altre parole, è 
+      possibile collegare tutti i valori $(x_i, y_i)$ con $i=1,\cdots,n$ con 
+      una retta.
+    - Più $|\rho|$ si avvicina a $1$, e più i dati esibiscono una relazione lineare forte, anche se non perfetta: ciò significa che se anche non esiste una retta che attraversa tutti i valori dei dati, ce n'è una che passa vicino a tutti.
+    - Se $|\rho|$ è prossimo allo $0$, non c'è evidenza di un legame lineare tra le variabili. 
+      
+    Il segno di $\rho$ indica invece la direzione della relazione. Il segno è positivo quando l'approssimazione lineare è crescente (diretta), ed è invece negativo quando l'approssimazione lineare è decrescente (inversa).
+
+È importante tenere a mente che un valore di $\rho = 0$ non implica automaticamente l’assenza di qualsiasi relazione, poiché potrebbero esistere legami non lineari che questo indice non è in grado di cogliere.
+
+Vale inoltre la pena sottolineare che il coefficiente di correlazione di Pearson non implica in alcun modo un rapporto di causa-effetto tra le due variabili prese in considerazione. In altre parole, due variabili possono presentare un valore di correlazione elevato senza che una determini o causi l’altra. Spesso, infatti, può intervenire un terzo fattore (o più fattori) a influenzare entrambe le variabili, generando un legame che in realtà non corrisponde a un meccanismo causale diretto.
+
+
+
+```{=latex}
+\newpage
+```
+
+## Indici di eterogeneità
+
+Per le variabili qualitative nominali non è possibile calcolare la varianza né gli indici che ne derivano, perché non esistono una media, una mediana o altri valori numerici di riferimento su cui misurare distanze. Risulta comunque necessario avere un indice che misuri la dispersione della distribuzione delle frequenze, detta *eterogeneità*. In particolare si dice che una variabile è distribuita in modo eterogeneo quando ogni suo valore compare con la stessa frequenza.
+
+### Indice di Gini
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indice di Gini}
+```
+
+Si consideri un campione $\{ x_1, \cdots, x_n\}$ in cui occorrono i valori distinti $v_1, \cdots, v_m$, e si indichi con $f_j$ la frequenza relativa dell'elemento $v_j$ per $j=1, \cdots, m$. Si definisce l'*indice di eterogeneità di Gini* come:
+$$
+I = 1 - \sum_{j=1}^m f_j^2
+$$
+Una proprietà importante di questo indice è che $0 \le I < 1$. Inoltre l'omogeneità massima dell'insieme di dati si presenta quando $I = 0$, mentre l'eterogeneità massima la si ha quando $I \to 1$. Di conseguenza, più aumenta il valore dell'indice di Gini e più aumenta il grado di eterogeneità.
+
+Per dimostrare le limitazioni inferiori e superiori si ricordi innanzitutto che, trattandosi di frequenze relative, $0 \le f_j \le 1 \;\; \forall j \in [1,m]$. Inoltre $\sum_{j=1}^m f_j = 1$. Di conseguenza si avrà:
+
+- per almeno un $j$ si ha $\displaystyle f_j > 0 \Rightarrow f_j^2 > 0 \Rightarrow \sum_{j=1}^m f_j^2 > 0 \quad \Rightarrow \quad I < 1$
+- per ogni $j$, dato che $0 \le f_j \le 1$, si ha che $\displaystyle f_j^2 \le f_j \Rightarrow \sum_{j=1}^m f_j^2 \le \sum_{j=1}^m f_j = 1 \quad \Rightarrow \quad I \ge 0$
+
+Si noti, come accennato precedentemente, che l'estremo inferiore si presenta quando l'insieme è massimamente omogeneo e l'estremo superiore quando è massimamente eterogeneo:
+
+- l'eterogeneità minima la si ha quando tutti gli elementi hanno lo stesso valore, e quindi  
+    $\displaystyle \exists\, k \in \left[ 1, m\right]\; |\; f_k = 1, \; \forall j \not = k \;\; f_j = 0 \quad \Rightarrow \quad I = 1 - \sum_{j=1}^m f_j^2 = 1 - f_k^2 = 1 - 1 = 0$
+- l'eterogeneità massima la si ha quando tutti gli elementi hanno la stessa frequenza, e quindi  
+    $\displaystyle \forall j \in \left[ 1,m \right] \;\; f_j = \frac{1}{m} \quad \Rightarrow \quad I = 1 - \sum_{j=1}^m f_j^2 = 1 - \sum_{j-1}^m \frac{1}{m^2} = 1 - \frac{1}{m} = \frac{m-1}{m} \;\; \to 1 \text{ al crescere di }m$
+
+##### Indice di Gini normalizzato
+
+Si ricordi che $m$ è la cardinalità dell'insieme dei valori distinti. Questo indice presenta due problematiche:
+
+1. il valore massimo che può assumere, ossia quando l'insieme di dati è massimamente eterogeneo, è $(m-1)/m$. Di conseguenza, specialmente nel caso in cui non si conosca il valore $m$, non si può sapere quanto questo indice debba tendere a $1$ affinché si abbia la massima eterogeneità nell'insieme dei dati.
+2. il suo valore dipende fortemente dal valore di $m$. Non è quindi possibile confrontare 2 attributi qualitativi che presentano intervalli di valori diversi, ossia $m$ diverso.
+
+Per ovviare a questi problemi si introduce l'*indice di Gini normalizzato*, che si ottiene dividendo l'indice di Gini per il valore massimo $(m-1)/m$ che può assumere:
+$$
+I' = \dfrac{m \cdot I}{m-1}
+$$
+Questo indice può assumere anche 1 come valore: $0 \le I' \le 1$. Si consideri infatti il caso in cui l'eterogeneità di un insieme di dati è massima:
+$$
+I = \dfrac{m-1}{m} \quad \Rightarrow \quad I' = \dfrac{m \cdot I}{m-1} = \dfrac{m \cdot (m-1)}{(m-1) \cdot m} = 1
+$$
+
+
+
+### Indice di entropia
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indice di entropia}
+```
+
+Si consideri un campione $\{ x_1, \cdots, x_n\}$ in cui occorrono i valori distinti $v_1, \cdots, v_m$, e si indichi con $f_j$ la frequenza relativa dell'elemento $v_j$ per $j=1, \cdots, m$. Si definisce l'*indice di entropia* del campione come:
+$$
+H = \sum_{j=1}^m f_j \log \dfrac{1}{f_j} = - \sum_{j=1}^m f_j \log f_j
+$$
+
+La funzione $I(p) = \log 1/p = - \log p$ è detta *autoinformazione* e misura la quantità di informazione ottenuta dal verificarsi di un evento con probabilità $p$. In altre parole, misura quanto viene ridotta l’incertezza una volta che sappiamo che l’evento si è effettivamente realizzato. Questa funzione è descrescente monotona, vale $0$ quando $p=1$ e tende a infinito per $p$ che tende a 0.
+
+Nel calcolo dell'entropia compare $-f_j \log f_j$. Se $f_j = 0$ questa espressione assume la forma indeterminata $0 \cdot \infty$. È però possibile estendere la definizione dell'entropia anche nei casi in cui alcune frequenze relative siano nulle. Valutando il limite $\displaystyle \lim_{f_j \to 0^+} -f_j \log f_j = 0$ si definisce per convenzione $- 0 \log 0 = 0$. 
+
+Si effettuano le seguenti osservazioni:
+
+- $\forall j$ vale $-f_j \log f_j \ge 0 \;\; \Rightarrow \;\; H \ge 0$
+
+- $\forall j$ si ha che $-f_j \log f_j = 0 \;\; \Leftrightarrow \;\; f_j = 0 \lor  \log f_j = 0 \text{ e quindi } f_j =1$. Pertanto $H=0$ se e solo se ci si trova in condizione di massima omogeneità, e quindi tutti i dati del campione assumono lo stesso valore.
+
+- in caso di invece massima eterogeneità si avrà $f_j = 1/m$ e quindi 
+    $$
+    H = \sum_{j=1}^m \dfrac{1}{m} \log m = m \left(\dfrac{1}{m} \log m \right) =  \log m
+    $$
+    Si può dimostrare che in questo caso l'entropia assume il valore massimo.
+
+```{=latex}
+\vspace{2mm}
+```
+
+Una proprietà importante di questo indice è quindi che $0 \le H \le \log m$. Più questo indice cresce, e più aumenta il grado di eterogeneità dell'insieme, viceversa più descresce e più aumenta il grado di omogeneità.
+
+##### Indice di entropia normalizzato
+
+Si definisce l'*indice di entropia normalizzato* come
+$$
+H' = \dfrac{H}{\log m}
+$$
+I valori di questo indice  sono compresi tra $0$ e $1$, infatti nel caso di massima eterogeneità si ha che:
+$$
+H = \log m \quad \Rightarrow \quad H' = \dfrac{\log m}{\log m} = 1
+$$
+Se il logaritmo è in base $2$ allora l'entropia si misura in bit: ciò risulta utile quando bisogna svolgere i calcoli in un computer; è comunque possibile usare altre basi, come per sempio il logaritmo naturale e quello in base 10.
+
+
+
+### Alberi di decisione
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Alberi di decisione}
+```
+
+Gli indici di eterogeneità non servono solo per misurare la dispersione delle frequenze nelle variabili qualitative, ma trovano anche un’applicazione fondamentale nella costruzione degli alberi di decisione. In un albero di decisione, ogni oggetto da classificare è descritto da un vettore di attributi, e la classificazione avviene valutando, a partire dalla radice dell’albero, condizioni sui valori di tali attributi.
+
+In pratica, ad ogni nodo dell’albero viene associata una condizione (o test) che suddivide il campione in sottoinsiemi: si percorre la freccia corrispondente in base al risultato del test, fino a raggiungere una foglia, la quale indica la classe assegnata. La scelta del test in ciascun nodo è guidata proprio dagli indici di eterogeneità: l’obiettivo è quello di ridurre l’eterogeneità dei dati nei nodi figli rispetto a quella del nodo padre. 
+
+Si cerca quindi di porre nei vari nodi domande che permettono di ottenere sottogruppi il più omogenei possibile. Così facendo si riduce il numero di domande da fare.
+
+Ad esempio, utilizzando l’indice di Gini si seleziona la condizione che minimizza l’indice nei gruppi risultanti, cioè quella che porta a sottoinsiemi in cui la distribuzione delle classi è il più possibile concentrata in una sola categoria. Analogamente, se si impiega l’indice di entropia, si cerca la divisione che riduce al minimo l’incertezza (ovvero l’entropia) nei nodi successivi. In entrambi i casi, il criterio adottato assicura che, procedendo lungo l’albero, si raggiungano foglie contenenti gruppi di oggetti omogenei rispetto alla classe di appartenenza.
+
+Così, l’impiego degli indici di eterogeneità consente di valutare quantitativamente la bontà delle suddivisioni, contribuendo a costruire alberi di decisione efficaci per il compito di classificazione.
+
