@@ -8,36 +8,48 @@ toc: true
 toc-depth: 2
 numbersections: true
 secnumdepth: 3
+header-includes: |
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
 
-header-includes:
-    - \usepackage{titling}
-    - \setlength{\droptitle}{-1.5cm}
+    \usepackage{titling}
+    \setlength{\droptitle}{-1.5cm}
 
-    - \usepackage{graphicx}
-    - \usepackage{tikz}
-    - \usepackage{tcolorbox}
-    - \usetikzlibrary{positioning}
-    - \usepackage{bm}
-    - \usepackage{caption}
-    - \usepackage{cancel}
+    \usepackage{graphicx}
+    \usepackage{tikz}
+    \usepackage{tcolorbox}
+    \usetikzlibrary{positioning}
+    \usepackage{caption}
+    \usepackage{cancel}
 
-    - \usepackage{pgfplots}
-    - \pgfplotsset{compat=1.17}
-    - \usepgfplotslibrary{statistics}
-    - \usepgfplotslibrary{groupplots}
+    \usepackage{pgfplots}
+    \pgfplotsset{compat=1.17}
+    \usepgfplotslibrary{statistics}
+    \usepgfplotslibrary{groupplots}
 
-    - \newcommand{\shortunderscore}{\kern0.1em\raisebox{-0.2ex}{\rule[0pt]{0.5em}{0.7pt}}\kern0.1em}
-
-    - \usepackage{mdframed}
-    - \usepackage{xcolor}
-    - \definecolor{mygray}{HTML}{F7F7F7}
-    - \newenvironment{myquote}{\begin{mdframed}[backgroundcolor=mygray, leftmargin=0.5cm, rightmargin=0.5cm, skipabove=\baselineskip, linewidth=0pt, innertopmargin=0.5cm, innerbottommargin=0.5cm, innerleftmargin=0.58cm, innerrightmargin=0.58cm]}{\end{mdframed}}
-    - \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
-
-    - |
-        \let\originAlParaGraph\paragraph
-        \renewcommand{\paragraph}[1]{\originAlParaGraph{#1} \hfill}
+    \usepackage{mdframed}
+    \usepackage{xcolor}
 ---
+
+```{=latex}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \lceil}
+\newcommand{\roundp}[1]{\left( #1 \right)}
+\newcommand{\squarep}[1]{\left[ #1 \right]}
+\newcommand{\bracketp}[1]{\left\{ #1 \right\}}
+
+\newcommand{\shortunderscore}{\kern0.1em\raisebox{-0.2ex}{\rule[0pt]{0.5em}{0.7pt}}\kern0.1em}
+
+\graphicspath{ {./stat_appunti_img} } % directory immagini
+\counterwithin{figure}{section} % numerazione figure reinizializzata a ogni sezione
+
+\let\originAlParaGraph\paragraph % a capo con titoli h4
+\renewcommand{\paragraph}[1]{\originAlParaGraph{#1} \hfill}
+
+\definecolor{mygray}{HTML}{F7F7F7}
+\newenvironment{myquote}{\begin{mdframed}[backgroundcolor=mygray, leftmargin=0.5cm, rightmargin=0.5cm, skipabove=\baselineskip, linewidth=0pt, innertopmargin=0.5cm, innerbottommargin=0.5cm, innerleftmargin=0.58cm, innerrightmargin=0.58cm]}{\end{mdframed}}
+\renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
+```
 
 ```{=latex}
 \vspace{2em}
@@ -109,7 +121,14 @@ Suggerimenti e tecniche per la generazione dei grafici con l’uso di librerie c
 \textbf{Dispense L05-Indici\shortunderscore di\shortunderscore eterogeneita}
 ```
 
-Indici di eterogeneità: indice di Gini, indice di entropia. Alberi di decisione e "machine learning" tramite questi indici.
+Indici di dipendenza. Indici di eterogeneità: indice di Gini, indice di entropia. Alberi di decisione e "machine learning" tramite questi indici.
+
+## L07 - 18/03/2025 {-}
+
+```{=latex}
+\textbf{Dispense L05-Indici\shortunderscore di\shortunderscore eterogeneita}: indici di concentrazione \\
+\textbf{Dispense L06-Trasformazione\shortunderscore dei\shortunderscore dati}
+```
 
 
 
@@ -268,10 +287,10 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 ```{=latex}
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/diagramma-bastoncini.png}}
+    \includegraphics[width=\linewidth]{diagramma-bastoncini.png}
 \end{minipage}
 \hspace{2mm}
-\begin{minipage}[c]{0.65\textwidth}
+\begin{minipage}[c]{0.66\textwidth}
     \vspace{-2mm}
     I dati di una tabella di frequenza possono essere rappresentati 
     graficamente in diversi modi. Uno dei più intuitivi è il \textit{grafico 
@@ -284,10 +303,10 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/diagramma-barre.png}}
+    \includegraphics[width=\linewidth]{diagramma-barre.png}
 \end{minipage}
 \hspace{2mm}
-\begin{minipage}[c]{0.65\textwidth}
+\begin{minipage}[c]{0.66\textwidth}
     \vspace{-2.5mm}
     Un secondo tipo di rappresentazione, molto simile concettualmente, 
     è il \textit{grafico a barre}: anche in questo caso i valori si trovano 
@@ -299,10 +318,10 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 
 \begin{minipage}[c]{0.30\textwidth}
 	\centering
- 	\includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/diagramma-poligonale.png}}
+ 	\includegraphics[width=\linewidth]{diagramma-poligonale.png}
 \end{minipage}
 \hspace{2mm}
-\begin{minipage}[c]{0.65\textwidth}
+\begin{minipage}[c]{0.66\textwidth}
  	\vspace{-6mm}
     Infine, esiste il \textit{grafico poligonale}, in cui i valori (sempre disposti
     sull’asse orizzontale) vengono rappresentati da punti, collocati a un’altezza
@@ -335,10 +354,10 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
         \end{minipage}%
     }
     \vspace{-2mm}
-    \captionof*{table}{Diagramma a stelo}
+    \captionof*{table}{\small Diagramma a stelo}
 \end{minipage}
 \hspace{2mm}
-\begin{minipage}[c]{0.6\textwidth}
+\begin{minipage}[c]{0.66\textwidth}
     \vspace{-3mm}
     Un modo efficiente di rappresentare un insieme di dati di dimensioni medie consiste nell'utilizzare il \textit{diagramma ramo-foglia} (o a stelo). Tale grafico si ottiene dividendo ciascun valore dei dati in due parti, chiamati appunto rami e foglie. \\ \\
     La scelta dei rami dovrebbe essere fatta in modo che il \mbox{diagramma} ramo-foglia che ne risulta sia informativo sui dati. Questi diagrammi sono particolarmente adatti a descrivere insiemi di dati dimensioni ridotte.
@@ -388,8 +407,6 @@ Una delle ragioni per cui *questo* tipo di diagramma è utile consiste nella pos
 Il diagramma di dispersione, oltre a mostrare il comportamento relativo di due variabili e ad aiutarci nelle previsioni, è utile per riconoscere i *valori anomali* (outlier) che sono i punti che non sembrano seguire il comportamento degli altri. Una volta identificati questi valori, si può decidere quali di essi siano appropriati e quali siano invece causati da errori nella raccolta dei dati.
 
 
-
-****
 
 # Statistiche
 
@@ -523,7 +540,7 @@ La mediana campionaria è un caso particolare di una statistica nota come $100p$
 
 Per poter calcolare il percentile si deve poter definire un ordinamento sulle osservazioni.
 
-$\mathbf{100p}$-esimo percentile campionario
+100$\textbf{\textit{p}}$-esimo percentile campionario
 
 : È un valore maggiore o uguale di almeno $100p$ percento dei valori dati, e minore o uguale di almeno $100(1-p)$ percento dei valori dati. Se due valori dei dati soddisfano questa condizione, allora il $100p$-esimo percentile campionario è la media aritmetica di essi.
 
@@ -538,7 +555,7 @@ $100p$-esimo percentile campionario bisogna determinare quale valore sia:
 Se $np$ non è un intero, il solo valore dei dati che soddisfa questi requisiti è quello la cui posizione è il più piccolo intero maggiore di $np$.  
 Se invece $np$ è un intero, allora sia il valore in posizione $np$ che il valore in posizione $np+1$ soddisfano i due requisti, e quindi il $100p$-esimo percentile campionario è la media dei due valori.
 
-> **Calcolo del 100$\bm{p}$-esimo percentile campionario di un insieme di dati di $\bm{n}$ elementi:**
+> **Calcolo del 100$\textbf{\textit{p}}$-esimo percentile campionario di un insieme di dati di $\textbf{\textit{n}}$ elementi:**
 >
 > 1. Si dispongono i dati in ordine crescente
 > 2. Se $np$ non è un intero, si determina il più piccolo intero maggiore di $np$. Il valore dei dati in questa posizione è il $100p$-esimo percentile campionario.
@@ -820,7 +837,7 @@ I pallini a destra del box plot rappresentano dei valori fuori scala, determinat
 ```{=latex}
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/qq-plot.png}}
+    \includegraphics[width=\linewidth]{qq-plot.png}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.65\textwidth}
@@ -891,13 +908,14 @@ Si supponga che un insieme sia costituito dalle coppie di valori $(x_i, y_i) \te
 Quando grandi valori di $x$ tendono a essere associati con grandi valori di $y$, e piccoli valori di $x$ tendono a essere associati a piccoli valori di $y$, allora i segni (positivi o negativi) di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ tenderanno a essere gli stessi. A questo punto, se gli scarti hanno segno concorde, il loro prodotto $(x_i - \bar{x})(y_i - \bar{y})$ sarà positivo. Si ottiene che la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà a essere un grande numero positivo.  
 
 ```{=latex}
-\vspace{2.5mm}
-\begin{minipage}[c]{0.3\textwidth}
+\begin{small}
+\vspace{2mm}
+\begin{minipage}[c]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/rel-diretta}}
+    \includegraphics[width=\linewidth]{rel-diretta.png}
 \end{minipage}
-\hspace{2mm}
-\begin{minipage}[c]{0.325\textwidth}
+\hspace{1.5mm}
+\begin{minipage}[c]{0.3\textwidth}
     \vspace{0mm}
     \begin{tabular}{ccc}
     x "grande" & e & y "grande" \\
@@ -910,10 +928,10 @@ Quando grandi valori di $x$ tendono a essere associati con grandi valori di $y$,
 \end{minipage}
 \begin{minipage}[c]{0.01\textwidth}
     \centering
-    \vrule width 0.5pt height 2.85cm
+    \vrule width 0.35pt height 2.85cm
 \end{minipage}
-\hspace{2mm}
-\begin{minipage}[c]{0.325\textwidth}
+\hspace{1mm}
+\begin{minipage}[c]{0.3\textwidth}
     \vspace{0mm}
     \begin{tabular}{ccc}
     x "piccolo" & e & y "piccolo" \\
@@ -931,21 +949,21 @@ Quando grandi valori di $x$ tendono a essere associati con grandi valori di $y$,
 		Si individua quindi una correlazione positiva tra le due variabili poiché tendenzialmente presentano segno concorde. In questo caso si parla di relazione tra le due variabili di tipo diretta.
 	\end{minipage}
 \end{center}
-\vspace{3mm}
+\vspace{2mm}
+\end{small}
 ```
-
-
 
 Per lo stesso motivo, quando grandi valori di una variabile tendono a verificarsi in corrispondenza a piccoli valori dell'altra, allora i segni di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ saranno discordi e quindi la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà ad essere un grande numero negativo.  
 
 ```{=latex}
+\begin{small}
 \vspace{2.5mm}
-\begin{minipage}[c]{0.3\textwidth}
+\begin{minipage}[c]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{\detokenize{./stat_appunti_img/rel-indiretta}}
+    \includegraphics[width=\linewidth]{rel-indiretta.png}
 \end{minipage}
-\hspace{2mm}
-\begin{minipage}[c]{0.325\textwidth}
+\hspace{1.5mm}
+\begin{minipage}[c]{0.3\textwidth}
     \vspace{0mm}
     \begin{tabular}{ccc}
     x "grande" & e & y "piccola" \\
@@ -958,10 +976,10 @@ Per lo stesso motivo, quando grandi valori di una variabile tendono a verificars
 \end{minipage}
 \begin{minipage}[c]{0.01\textwidth}
     \centering
-    \vrule width 0.5pt height 2.85cm
+    \vrule width 0.35pt height 2.85cm
 \end{minipage}
-\hspace{2mm}
-\begin{minipage}[c]{0.325\textwidth}
+\hspace{1mm}
+\begin{minipage}[c]{0.3\textwidth}
     \vspace{0mm}
     \begin{tabular}{ccc}
     x "piccolo" & e & y "grande" \\
@@ -979,16 +997,15 @@ Per lo stesso motivo, quando grandi valori di una variabile tendono a verificars
 		Si individua quindi una correlazione negativa tra le due variabili poiché tendenzialmente presentano segno discorde. In questo caso si parla di relazione tra le due variabili di tipo indiretta.
 	\end{minipage}
 \end{center}
-\vspace{3mm}
+\vspace{2mm}
+\end{small}
 ```
-
-
 
 Si procede poi standardizzando la sommatoria dividendo per $n-1$, al fine di evitare che questo indice assuma valori troppo elevati. Si osserva che la formula della covarianza campionaria è riconducibile a quello della varianza campionaria, motivo per il quale si possa intuire perché si vada a dividere per $n-1$ e non direttamente per il numero totale di osservazioni.
 
 Ricapitolando, si definisce la covarianza campionaria come:
 $$
-\dfrac{\displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})}{n-1} = 
+s_{x,y} = \dfrac{1}{n-1} \displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y}) = 
 \begin{cases}
 > 0 & \text{relazione diretta} \\
 \approx 0 & \text{assenza di relazione / indipendenza} \\
@@ -1109,7 +1126,7 @@ Vale inoltre la pena sottolineare che il coefficiente di correlazione di Pearson
 \newpage
 ```
 
-## Indici di eterogeneità
+## Eterogeneità
 
 Per le variabili qualitative nominali non è possibile calcolare la varianza né gli indici che ne derivano, perché non esistono una media, una mediana o altri valori numerici di riferimento su cui misurare distanze. Risulta comunque necessario avere un indice che misuri la dispersione della distribuzione delle frequenze, detta *eterogeneità*. In particolare si dice che una variabile è distribuita in modo eterogeneo quando ogni suo valore compare con la stessa frequenza.
 
@@ -1176,7 +1193,7 @@ Si effettuano le seguenti osservazioni:
 
 - $\forall j$ si ha che $-f_j \log f_j = 0 \;\; \Leftrightarrow \;\; f_j = 0 \lor  \log f_j = 0 \text{ e quindi } f_j =1$. Pertanto $H=0$ se e solo se ci si trova in condizione di massima omogeneità, e quindi tutti i dati del campione assumono lo stesso valore.
 
-- in caso di invece massima eterogeneità si avrà $f_j = 1/m$ e quindi 
+- In caso di invece massima eterogeneità si avrà $f_j = 1/m$ e quindi 
     $$
     H = \sum_{j=1}^m \dfrac{1}{m} \log m = m \left(\dfrac{1}{m} \log m \right) =  \log m
     $$
@@ -1217,4 +1234,223 @@ Si cerca quindi di porre nei vari nodi domande che permettono di ottenere sottog
 Ad esempio, utilizzando l’indice di Gini si seleziona la condizione che minimizza l’indice nei gruppi risultanti, cioè quella che porta a sottoinsiemi in cui la distribuzione delle classi è il più possibile concentrata in una sola categoria. Analogamente, se si impiega l’indice di entropia, si cerca la divisione che riduce al minimo l’incertezza (ovvero l’entropia) nei nodi successivi. In entrambi i casi, il criterio adottato assicura che, procedendo lungo l’albero, si raggiungano foglie contenenti gruppi di oggetti omogenei rispetto alla classe di appartenenza.
 
 Così, l’impiego degli indici di eterogeneità consente di valutare quantitativamente la bontà delle suddivisioni, contribuendo a costruire alberi di decisione efficaci per il compito di classificazione.
+
+
+
+## Concentrazione
+
+Le misure di concentrazione sono strumenti statistici che consentono di comprendere come una determinata risorsa o bene – ad esempio la ricchezza – sia distribuita all’interno di una popolazione. In questo modo, è possibile valutare se tale risorsa sia distribuita in maniera equa tra tutti gli individui oppure se risulti concentrata in un numero ristretto di soggetti.
+
+Mentre la varianza quantifica la dispersione dei singoli valori rispetto alla media, gli indici di concentrazione mettono in evidenza se una piccola parte della popolazione detiene una quota sproporzionata del bene considerato.
+
+Si consideri un campione di $n$ osservazioni, ciascuno dei quali possiede una certa quantità di risorse. Si indichi con $a_i$ la quantità posseduta dall'$i$-esimo individuo dopo aver ordinato le osservazioni in ordine crescente, ossia $a_1 \le a_2 \le \cdots \le a_n$. Il valore medio della risorsa è definito come $\bar{a} = 1/n \sum_{i=1}^n a_i$, dove la sommatoria rappresenta la somma di tutte le dotazioni individuali. Moltiplicando il valore medio $\bar{a}$ per il numero totale degli individui $n$ otteniamo il totale aggregato della risorsa:
+$$
+TOT = n\, \bar{a} = \sum_{i=1}^n a_i
+$$
+Qui la somma viene effettuata su tutte le osservazioni $a_1, a_2, \ldots, a_n$, cioè su tutte le dotazioni della risorsa in esame. L'ordinamento in ordine crescente serve per facilitare l'analisi della distribuzione della risorsa fra gli individui (come vedremo dopo per la curva di Lorenz).
+
+Si possono presentare due situazioni estreme:
+
+- caso di concentrazione minima: tutti gli elementi del campione assumono lo stesso valore:  
+    $a_1 = a_2 = \cdots = a_n = \bar{a}$
+- caso di concentrazione massima: tutti gli elementi del campione assumono valore pari a $0$, tranne uno:  
+    $a_1 = a_2 = \cdots = a_{n-1} = 0\,$ e $\,a_n = n\, \bar{a}$
+
+```{=latex}
+\hfill
+```
+
+È necessario avere un indice di concentrazione che valga $0$ e $1$ nei casi rispettivamente di concentrazione minima e massima, e che sia negli altri casi un valore crescente in funzione della concentrazione. Si considerino:
+
+- la frequenza relativa cumulata degli individui fino alla $i$-esima osservazione:  
+    $$
+    F_i = \dfrac{i}{n} \;\; \text{ per } i=1,\cdots,n \qquad \small \text{\% degli inidividui}
+    $$
+
+- la quantità relativa cumulata fino all'$i$-esima osservazione:  
+    $$
+    Q_i = \dfrac{1}{TOT} \sum_{k=1}^i a_k \qquad \text{\small \% della ricchezza}
+    $$
+
+```{=latex}
+\newpage
+```
+
+Queste due quantità possiedono le seguenti proprietà:
+
+- $0 \le F_i,\, Q_i \le 1$
+- $Q_i = F_i\,$ nel caso di concentrazione minima
+- $Q_n = F_n = 1$
+- $Q_i \le F_i\,$ siccome le osservazioni sono state ordinate in modo crescente.
+
+#### Dimostrazione
+
+Vogliamo provare che $Q_i \le F_i$. Pertanto si divide l'insieme ordinato in due sottogruppi, $\{a_1, \cdots, a_i\}$ e $\{a_{i+1}, \cdots, a_n\}$, e definiamo le rispettive somme $S_i$ e $T_i$:
+
+$\displaystyle S_i = \sum_{k=1}^i a_k \qquad T_i = \sum_{k=i+1}^n a_k \qquad TOT = S_i + T_i = S_n$
+
+Si cominci riscrivendo la disuguaglianza $Q_i \le F_i$ in termini di $S_i$ e $T_i$. In particolare, si osserva che
+
+$\displaystyle Q_i = \dfrac{S_i}{TOT} \le \dfrac{i}{n} \;\; \Longleftrightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n}$
+
+Da quest'ultima forma, vogliamo isolare da un lato della disequazione $\tfrac{i\, T_i}{S_i}$:
+
+$\dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; \dfrac{1}{1+\tfrac{T_i}{S_i}} \le \dfrac{i}{n} \;\; \Rightarrow \;\; 1+\dfrac{T_i}{S_i} \ge \dfrac{n}{i} \;\; \Rightarrow \;\; i \roundp{\dfrac{T_i}{S_i}} \ge i \roundp{\dfrac{n}{i} - 1} \;\; \Rightarrow \;\; \dfrac{i\, T_i}{S_i} \ge n - 1$
+
+Si scompone ora il termine $\tfrac{i\, T_i}{S_i}$ come somma sugli elementi $a_k$ con $k > i$:
+
+$\displaystyle \dfrac{i\, T_i}{S_i} = \dfrac{i}{S_i} \sum_{k=i+1}^n a_k = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i}$
+
+Questa rielaborazione ci permette di sfruttare l'ordinamento $a_k \ge a_i \;\; \forall i < k$. Infatti, se $a_k \ge a_i$, allora:
+
+$\dfrac{i\, a_k}{S_i} = \dfrac{\overbrace{a_k + a_k + \cdots + a_k\,\rule[0.8ex]{0pt}{1ex}}^{\raisebox{0.5ex}{\mbox{i volte}}}}{a_1 + a_2 + \cdots + a_k} \;\; \ge 1$
+
+```{=latex}
+\vspace{2mm}
+```
+
+Ne consegue che
+
+$\displaystyle \dfrac{i\, T_i}{S_i} = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i} \ge \sum_{k=i+1}^n 1 = n - (i+1) + 1 = n - i$
+
+In tal modo si conclude che $\tfrac{i\, T_i}{S_i} \ge n - i$. Poiché $n-i \ge n-1$ quando $i \ge 1$, abbiamo dunque dimostrato
+
+$\dfrac{i\, T_i}{S_i} \ge n-1 \;\; \Rightarrow \;\; Q_i \le F_i$
+
+```{=latex}
+\hfill
+\newpage
+```
+
+Per $i = 1, \cdots, n$ le coppie $(F_i, Q_i)$ indicano che il $100F_i\%$ della popolazione detiene il $100Q_i\%$ della quantità considerata. Si considerino ora i punti sul piano che sono identificati da queste coppie.
+
+```{=latex}
+\vspace{1mm}
+\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=0, xmax=1,
+        ymin=0, ymax=1,
+        width=6.75cm, height=5.75cm,
+        xlabel={$F_i$},
+        ylabel={$Q_i\;\;\;$},
+        xlabel style={
+            at={(axis description cs:0.5,-0.135)},
+            anchor=north,
+        },
+        y label style={
+            rotate=-90,
+            anchor=center,
+        },
+        grid=major,
+        grid style={dashed,gray!30},
+        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        yticklabel style={anchor=center, xshift=-1.1em},
+    ]
+    \addplot [
+        color=black,
+        thick,
+        mark=*,
+        mark options={color=gray!100!black, fill=gray!100!black}
+    ] coordinates {
+        (0,0) (0.125,0.125) (0.25,0.25) (0.375,0.375) (0.5,0.5) (0.625,0.625) (0.75,0.75) (0.875,0.875) (1,1)
+    };
+    \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[l]{0.56\textwidth}
+\vspace{-3em}
+\textbf{Concentrazione minima}\quad Nel caso di concentrazione minima tutti i punti $(F_i, Q_i)$ giacciono sulla retta $F=Q$: si può dunque dire che in questo caso $F_i - Q_i = 0$ per ogni $i$.
+\\[0.7em]
+
+\raggedright
+\makebox[0pt][l]{%
+\hspace{-1mm}$\displaystyle
+\begin{array}{l@{\ =\ }c@{,\,}c@{,\,}c@{,\,}l@{\;\;\;}l}
+a_i 
+  & \bar{a} 
+  & \cdots 
+  & \bar{a} 
+  & \bar{a} 
+  & \quad a_i = \bar{a} \quad \forall i = 1,\dots,n 
+\\[1mm]
+Q_i 
+  & \tfrac{\bar{a}}{TOT}
+  & \cdots
+  & \tfrac{(n-1)\bar{a}}{TOT}
+  & \tfrac{n\,\bar{a}}{TOT}
+  & \quad Q_i = \dfrac{i\,\bar{a}}{TOT} = \dfrac{i\,\bar{a}}{n\,\bar{a}} = \dfrac{i}{n} = F_i
+\end{array}
+$%
+}
+\end{minipage}
+
+
+\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=0, xmax=1,
+        ymin=0, ymax=1,
+        width=6.75cm, height=5.75cm,
+        xlabel={$F_i$},
+        ylabel={$Q_i\;\;\;$},
+        xlabel style={
+            at={(axis description cs:0.5,-0.135)},
+            anchor=north,
+        },
+        y label style={
+            rotate=-90,
+            anchor=center,
+        },
+        grid=major,
+        grid style={dashed,gray!30},
+        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        yticklabel style={anchor=center, xshift=-1.1em},
+    ]
+    \addplot [
+        color=black,
+        thick,
+        mark=*,
+        mark options={color=gray!100!black, fill=gray!100!black}
+    ] coordinates {
+        (0,0) (0.125,0) (0.25,0) (0.375,0) (0.5,0) (0.625,0) (0.75,0) (0.875,0) (1,1)
+    };
+    \addplot [
+        domain=0:1,
+        dashed,
+        black,
+        thin,
+    ] {x};
+    \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[l]{0.56\textwidth}
+\vspace{-2.2em}
+\textbf{Concentrazione massima}\quad Nel caso di concentrazione \mbox{massima} tutti i punti \((F_i, Q_i)\) giacciono sulla retta \(Q=0\), tranne per l'ultimo in cui $F_n = Q_n$: dunque in questo caso \(F_i - Q_i = F_i\) per \(i=1, \cdots, n-1\) e $F_n - Q_n = 0$.
+\\[0.7em]
+
+\makebox[0pt][l]{%
+\hspace{-1mm}$\displaystyle
+\begin{array}{l@{\ =\ }c@{,\,}c@{,\quad}c@{,\quad}c@{,\,}l@{}l}
+a_i & 0 & 0 & \cdots & 0 & TOT \\[1mm]
+Q_i & 0 & 0 & \cdots & 0 & 1 \\[1mm]
+F_i & \dfrac{1}{n} & \dfrac{2}{n} & \cdots & \dfrac{n-1}{n} & 1
+\end{array}
+$%
+}
+\end{minipage}
+\vspace{1mm}
+```
+
+Nei casi intermedi si avrà dunque che i punti staranno su una curva sotto la bisettrice del I° e III° quadrante $F = Q$, dato che $Q_i \le F_i$ per qualsiasi $i=1,\cdots,n$. Più la curva si avvicina alla bisettrice, e più la concentrazione è bassa, mentre più si allontana e più la concentrazione è alta.
+
+
 
