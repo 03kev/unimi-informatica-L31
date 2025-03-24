@@ -74,15 +74,19 @@ Si accede ai nodi tramite **riferimenti** (che vengono poi implementati mediante
 
 **Notazione**: 
 
-- `x` è il riferimento al nodo
-- `x.chiave` è il valore della chiave
-- `x.chiave <- x.chiave + 1` per aggiornare il valore della chiave
-- `x.pos` è il riferimento al nodo sucessivo
+- `p` è il riferimento al nodo
+- `p.chiave` è il valore della chiave
+- `p.chiave <- p.chiave + 1` per aggiornare il valore della chiave
+- `p.pros` è il riferimento al nodo sucessivo
 - `null` è il riferimento nullo
 
 ##### Operazioni
 
-**Ricerca elemento in base alla posizione**
+Tutte le operazioni sottostanti richiedono un tempo di esecuzione nel caso peggiore pari a $\mathcal{O}(n)$, dove $n$ è il numero di elementi presenti all'interno della lista lineare.
+
+###### Ricerca elemento in base alla posizione
+
+Si percorre la lista partendo dalla testa fino a raggiungere la posizione desiderata. Il costo è $\Theta(n)$.
 
 ```
 FUNZIONE elemento(Lista L, intero i) -> Nodo
@@ -93,9 +97,11 @@ FUNZIONE elemento(Lista L, intero i) -> Nodo
 	RETURN p
 ```
 
-Sia la `Lista L` che il `Nodo` sono dei riferimenti, e quindi in realtà sono la stessa cosa.
+Sia la `Lista` che il `Nodo` sono dei riferimenti, e quindi in realtà sono la stessa cosa. La differenza sta nel fatto che `Lista` sia un riferimento al primo nodo (testa), mentre `Nodo` è un riferimento a un nodo generico.
 
-**Ricera elemento in base alla chiave**
+###### Ricerca elemento in base alla chiave
+
+Si scorre la lista confrontando la chiave in ogni nodo fino a trovare quella cercata. Nel caso peggiore, se la chiave è presente nell'ultimo nodo o non è affatto presente, si eseguono $\Theta(n)$ passi.
 
 ```
 FUNZIONE trova(Lista L, tipoChiave k) -> Nodo
@@ -105,7 +111,11 @@ FUNZIONE trova(Lista L, tipoChiave k) -> Nodo
 	RETURN p
 ```
 
-**Ricerca elemento in base alla chiave in una lista ordinata**
+****
+
+###### Ricerca elemento in base alla chiave in una lista ordinata
+
+Anche qui si scorre la lista, ma si può interrompere il ciclo non appena si incontra un nodo con chiave maggiore di quella cercata. Il caso peggiore non è migliorato, rimane nell'ordine di $\Theta(n)$. Il caso medio corrisponde a circa $\frac{1}{2}n \,$.
 
 ```
 FUNZIONE trova(ListaOrdinata L, tipoChiave K) -> Nodo
@@ -118,11 +128,9 @@ FUNZIONE trova(ListaOrdinata L, tipoChiave K) -> Nodo
 	│	RETURN p
 ```
 
-Il caso peggiore non è migliorato, rimane nell'ordine di $\Theta(n)$. Il caso medio corrisponde a circa $\frac{1}{2}n \,$.
+###### Inserimento in una lista ordinata
 
-<div alt="page-break" class="page-break"></div>
-
-**Inserimento in una lista ordinata**
+Si ricerca la posizione corretta proprio come nella ricerca per chiave in lista ordinata, che costa quindi $\Theta(n)$ nel caso peggiore. Una volta trovata la posizione, l'inserimento vero e proprio avviene in tempo $\mathcal{O}(1)$ in quanto si aggiornano solo dei puntatori.
 
 ```
 FUNZIONE inserisci(ListaOrdinata L, elemento d) -> ListaOrdinata
@@ -138,16 +146,24 @@ FUNZIONE inserisci(ListaOrdinata L, elemento d) -> ListaOrdinata
     r.altri_campi <- d.altri_campi
     r.pros <- p
     │
-    IF prec = null THEN
+    IF prec = null THEN		// inserimento in testa
     │	L <- r
     ELSE prec.pros <- r
     RETURN L
 ```
 
 <div>
-    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130210607719.png" alt="image-20250130210607719" style="zoom:33%;" />
+    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130210607719.png" alt="image-20250130210607719" style="zoom:33%; margin-bottom:-0px; margin-bottom:-10px"/>
 </div>
-**Cancellazione da lista ordinata** *(to check)*
+
+**Inserimento in testa**: è un caso limite che si verifica quando il nuovo nodo va inserito all'inizio della lista. Questo capita quando la lista è vuota o quando la chiave del nuovo nodo è più piccola di qualsiasi altro nodo già presente.
+**Inserimento in coda**: si verifica quando il nuovo nodo va inserito alla fine della lista. Questo capita quando la lista è vuota (e quindi testa e coda coincidono) oppure quando la chiave del nuovo nodo è più grande di qualsiasi altro nodo già presente.
+
+****
+
+###### Cancellazione da lista ordinata
+
+Si cerca il nodo da eliminare similmente alla ricerca per chiave, con un costo di $\Theta(n)$ nel peggiore dei casi. La rimozione vera e propria, che consiste nel modificare dei puntatori, è un'operazione a tempo costante.
 
 ```
 FUNZIONE cancella(ListaOrdinata L, elemento d) -> ListaOrdinata
@@ -159,7 +175,7 @@ FUNZIONE cancella(ListaOrdinata L, elemento d) -> ListaOrdinata
     │   p <- p.pros
     IF p = null OR p.chiave > k THEN
     │   RETURN L
-    IF prec = null THEN		// cancellazione all'inizio
+    IF prec = null THEN		// cancellazione in testa (all'inizio)
     │   L <- p.pros
     ELSE					// cancellazione interna
     │   prec.pros <- p.pros
@@ -167,26 +183,36 @@ FUNZIONE cancella(ListaOrdinata L, elemento d) -> ListaOrdinata
 ```
 
 <div>
-    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130143545229.png" alt="image-20250130143545229" style="zoom:22%;" />
+    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130143545229.png" alt="image-20250130143545229" style=" zoom:22%;" />
 </div>
-Cancellazione interna: `prec.pros <- p.pros`
-Cancellazione all'inizio: `L <- L.pros`
+
+
+**Cancellazione in testa**: se il nodo da cancellare è proprio il primo della lista, non esiste un nodo precedente. In quel caso basta far puntare la testa `L` (il riferimento al primo nodo) al secondo nodo, cioè a `p.pros`. Così il vecchio primo nodo non è più raggiungibile (viene di fatto rimosso).
+**Cancellazione interna**: se il nodo da eliminare è in mezzo (o alla fine) della lista, la testa rimane invariata. Bisogna però aggiornare il puntatore del **nodo precedente** `prec` in modo che salti il nodo `p` e punti direttamente al successivo di `p`, ossia `p.pros`.
 
 A seconda del linguaggio di programmazione utilizzato ci potrebbe essere bisogno di rilasciare la memoria se questa non è gestita da un garbage collector.
 
-<div alt="page-break" class="page-break"></div>
+
 
 ##### Implementazione
 
 ###### Tramite array
 
-<img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130150301910.png" alt="image-20250130150301910 L" style="zoom:50%; margin-bottom:-25px; margin-top:-10px" />
+Si usa un array: ogni cella rappresenta un nodo, che contiene i suoi dati e l’indice (ossia l’indirizzo logico) del nodo successivo. Se l’indice è $-1$ significa che non ci sono nodi successivi (fine della lista). La lista è identificata dall’indice del primo nodo: per attraversarla si parte da quel valore e, leggendo di volta in volta l’indice memorizzato nel nodo, ci si sposta al successivo finché non si incontra $-1$.
+
+Questa soluzione ha il vantaggio di concentrare tutti i dati in un’unica area di memoria. D’altro canto, la dimensione dell’array deve essere fissata o aggiornata dinamicamente.
+
+<div>
+    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130150301910.png" alt="image-20250130150301910" style="zoom:48%; margin-bottom:-25px; margin-top:-10px" />
+</div>
+****
 
 ###### Tramite puntatori
 
-Per esempio in C
+Nell’implementazione tramite puntatori, invece, ogni nodo è un’unità autonoma in memoria, dotata di un puntatore che rimanda fisicamente al nodo successivo; la lista è identificata dal puntatore che indica la testa (il primo nodo), e l’ultimo nodo ha `null` come successore. Questo approccio è più flessibile, ma in linguaggi come `C` serve gestire manualmente l’allocazione e deallocazione della memoria.
 
 ```c
+// esempio in C
 struct node {
     int chiave;
     // altri campi
@@ -195,6 +221,8 @@ struct node {
 
 struct node *l;
 ```
+
+$\\ $
 
 
 
@@ -223,7 +251,11 @@ Si ha un array `dati`grande in cui si memorizzano gli elementi della pila e un i
 
 Se gli indici dell'array vanno da $0$ ad $n$, l'elemento di posto $0$ rappresenta l'elemento più in basso della pila, e l'indice `top` indica l'ultima posizione occupata della pila, ed è quindi minore di $n$. Se la pila è vuota, questo indice `top` vale $-1$.
 
+<div alt="page-break" class="page-break"></div>
+
 ##### Operazioni
+
+Tutte le operazioni sottostanti richiedono un tempo di esecuzione costante, ossia pari a $\mathcal{O}(1)$.
 
 ```
 FUNZIONE isEmpty() -> boolean
@@ -252,7 +284,7 @@ FUNZIONE pop() -> elemento
 	RETURN dati[top--] // incremento post-fisso
 ```
 
-- Nella `pop` l'elemento può anche essere lasciato lì, l'importante è rimuoverlo logicamente decrementando `top`
+Nella `pop` l'elemento può anche essere lasciato lì, l'importante è rimuoverlo logicamente decrementando `top`
 
 **Problematiche**
 
@@ -273,6 +305,8 @@ Siccome nella pila ci interessa accedere sempre all'elemento che sta sopra, si r
 
 La pila vuota si rappresenta assegnando al riferimento `top` il valore `null`
 
+<div alt="page-break" class="page-break"></div>
+
 ##### Operazioni
 
 **isEmpty**
@@ -282,8 +316,6 @@ FUNZIONE isEmpty() -> boolean
 	IF top = null THEN RETURN true
 				  ELSE RETURN false
 ```
-
-<div alt="page-break" class="page-break"></div>
 
 **push**
 
@@ -296,12 +328,11 @@ PROCEDURA push(elemento x)
 ```
 
 <div style="margin-bottom:15px">
-    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130212355495.png" alt="image-20250130212359528" style="zoom:33%;" />
+    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130212355495.png" alt="image-20250130212359528" style="zoom:31%;" />
 </div>
 
-Con questa `push` la struttura evolve dinamicamente: si occupa lo spazio nel momento in cui si aggiunge un elemento. Perciò, a differenza dell'implementazione precedente, non c'è nessun limite al numero di elementi che si possono inserire nella pila.
 
-Tempo della push: $\mathcal{O}(1)$
+Con questa `push` la struttura evolve dinamicamente: si occupa lo spazio nel momento in cui si aggiunge un elemento. Perciò, a differenza dell'implementazione precedente, non c'è nessun limite al numero di elementi che si possono inserire nella pila.
 
 **top**
 
@@ -320,20 +351,17 @@ FUNZIONE pop() -> elemento
 ```
 
 <div style="margin-top:15px; margin-bottom:15px">
-    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130213833802.png" alt="image-20250130213833802" style="zoom:33%;" />
+    <img src="/Users/kevinmuka/Library/Application%20Support/typora-user-images/image-20250130213833802.png" alt="image-20250130213833802" style="zoom:30%;" />
 </div>
 
-Se la `pop` viene implementata in linguaggi senza un garbage collector come il C, occore anche rilasciare la memoria.
 
-Tempo della pop: $\mathcal{O}(1)$
+Se la `pop` viene implementata in linguaggi senza un garbage collector come il C, occore anche rilasciare la memoria.
 
 **Problematica**
 
 Se `top` punta a `null`, e di conseguenza la pila è vuota, sia le funzioni `top` che `pop` generano un errore. Sono però degli errori corretti che sono intrinsechi al tipo pila.
 
 *Può convenire utilizzare l'implementazione array in due casi: per risparmiare memoria in quanto non bisogna salvarsi oltre al dato anche un puntatore, e quando si conosce la grandezza massima della pila.*
-
-
 
 ****
 
@@ -376,6 +404,8 @@ La coda vuota viene rappresentata con entrambi i puntatori a `null`.
 
 ##### Operazioni
 
+Tutte le operazioni sottostanti richiedono un tempo di esecuzione costante, ossia pari a $\mathcal{O}(1)$.
+
 **isEmpty**
 
 ```
@@ -410,8 +440,6 @@ FUNZIONE dequeue() -> elemento
 
 Facendo `dequeue()` potrebbe capitare che la coda si svuoti. Ciò avviene quando la coda contiene un elemento solo ed entrambi i puntatori contengono lo stesso riferimento allo stesso nodo. Con `dequeue()` entrambi questi puntatori conterranno poi `null`.
 
-Tempo della dequeue: $\mathcal{O}(1)$
-
 **enqueue**
 
 ```
@@ -432,8 +460,6 @@ PROCEDURA enqueue(elemento x)
 </div>
 
 Se la coda è vuota, allora entrambi i puntatori contengono `null`. Facendo la `enqueue` di un elemento, a entrambi i puntatori verrà assegnato il riferimento del nuovo elemento.
-
-Tempo della enqueue: $\mathcal{O}(1)$
 
 **Problematica**
 
@@ -689,10 +715,6 @@ Si consideri il seguento albero generico. Sono possibili due diverse implementaz
 		</div>
     </div>
 </div>
-
-
-
-
 ##### Puntatori ai figli
 
 Una rappresentazione con puntatori ai figli per un albero generico costituisce un’estensione diretta della struttura usata per gli alberi binari: invece di avere due soli puntatori (sinistro e destro), ogni nodo avrà un numero di puntatori pari al grado massimo dell’albero. In altre parole, se il nodo può avere fino a $k$ figli, nel suo record saranno presenti:
@@ -1034,9 +1056,143 @@ Ogni algoritmo di ordinamento basato su confronti richiede perciò, nel caso peg
 
 
 
-**[ ordinamenti senza confronti: radix sort e bucket sort ]**
+****
+
+## Ordinamento senza confronti
+
+Ogni algoritmo di ordinamento basato su confronti tra chiavi deve fare almeno $n \log n$ confronti: se ogni confronto impiega tempo costante, il tempo di esecuzione dell'algoritmo deve essere almeno $\Omega(n \log n)$. Esistono però algoritmi di ordinamento che sono più veloci per certi tipi di chiave perché non fanno confronti.
+
+##### IntegerSort
+
+Si supponga di dover ordinare $n$ interi in un intervallo $[\,0..k-1 \,]$. Si utilizza un array ausiliario $Y$ di dimensione $k$ per contare quante copie ci siano per ogni numero. Si osserva che `integerSort` non effettua alcun confronto fra elementi, e quindi per analizzarlo bisogna considerare il tempo di esecuzione nell'accezione più generale.
+
+```
+ALGORITMO integerSort(Array A[0..n-1], intero k)
+	Sia Y[0..k-1] un array
+	FOR i <- 0 TO k-1 DO
+	│	Y[i] <- 0
+		
+	FOR i <- 0 TO n-1 DO
+	│	x <- A[i]
+	│	Y[x] <- Y[x] + 1
+		
+    j <- 0
+    FOR i <- 0 TO k-1 DO
+    │	WHILE Y[i] > 0 DO
+    │	│	A[j] <- i
+    │	│	j <- j + 1
+    │	│	Y[i] <- Y[i] - 1
+```
+
+Così facendo si possono indicizzare $k$ valori diversi, e il tempo di esecuzione risulta parti a $\mathcal{O}(n + k)$. Ogni elemento di $Y$ deve infatti essere inizializzato e poi letto almeno una volta durante la ricostruzione dell'array di partenza.
+
+*Si osserva che il tempo $\mathcal{O}(n+k)$ è lineare nella dimensione dell'istanza se $k$ è $\mathcal{O}(n)$.* 
+
+Questo ordinamento tiene traccia solo dei numeri interi. Nel caso in cui questi numeri siano delle chiavi per dei record, questo algoritmo perde i dati associati.
+
+##### BucketSort
+
+Si supponga di dover ordinare $n$ record con chiavi intere nell'intervallo $[\,0..k-1 \,]$.
+
+Si generalizza quindi il problema assumendo che gli elementi da ordinare non siano necessariamente numeri interi.  Questo genera un problema in quando non è più possibile utilizzare dei contatori come nell'algoritmo di `integerSort` in quanto potrebbero esistere elementi diversi ma con la stessa chiave.
+
+Si ovvia a questo problema utilizzando sempre un array ausiliario $Y$ di dimensione $k$, ma i cui elementi sono delle liste anziché dei contatori. L'algoritmo, durante la lettura della sequenza, copia ogni record nella lista appropriata in base al valore della corrispondente chiave.
+Alla fine è sufficiente concatenare tutte le liste ordinatamente, e quindi per valori di $k$ crescenti.
+
+```
+ALGORITMO bucketSort(Array A[0..n-1], intero k)
+	Sia Y[0..k-1] un array
+	FOR i <- 0 TO k-1 DO		// [1] predisposizione bucket
+	│	Y[i] <- coda vuota
+		
+    FOR i <- 0 TO n-1 DO		// [2] riempimento bucket
+    │	x <- A[i].chiave
+    │	Y[x].enqueue(A[i])
+
+	j <- 0
+    FOR i <- 0 TO k-1 DO		// [3] riempimento array A ordinato
+    │	WHILE NOT Y[i].isEmpty() DO
+    │	│	A[j] <- Y[i].dequeue()
+    │	│	j <- j + 1
+```
+
+<div alt="page-break" class="page-break"></div>
+
+Si procede facendo l'analisi dell'algoritmo:
+
+- `[1]` si svolgono $k$ iterazioni di un'operazione a tempo costante $\; \rightarrow \; \Theta(k)$
+
+- `[2]` si svolgono $n$ iterazioni di due operazioni a tempo costante $\; \rightarrow \; \Theta(n)$
+
+- `[3]` si svolgono $k$ iterazioni, però l'operazione di `dequeue` sulla coda è eseguita $n$ volte durante tutta l'esecuzione dell'algoritmo proprio perché la coda contiene esattamente $n$ chiavi $\; \rightarrow \; \Theta(n + k)$
+
+Il tempo di esecuzione totale di `bucketSort` è quindi anch'esso pari a $\mathcal{O}(n+k)$. Si nota che:
+
+- se $k = \mathcal{O}(n) \; \rightarrow \; \text{tempo }\, \Theta(n)$ 
+- se $k = \Theta(n^2) \; \rightarrow \; \text{tempo }\, \Theta(n^2)$. Conviene perciò usare un algoritmo come l'heapSort.
+
+In conclusione, l'algoritmo di `bucketSort` non è in loco, è **stabile** in quanto utilizza le code ed è necessario conoscere il valore di $k$ in anticipo.
+
+L'algoritmo di bucket sort può essere utilizzato per ordinare le liste manipolando direttamente i puntatori: si colloca ciascuno nodo di $A$ nella coda corrispondente alla chiave, e poi si concatenano le code in $A$ una dopo l'altra. La complessità temporale dell'algoritmo rimane la stessa.
+
+> Si supponga di ordinare un insieme di persone rispetto alla data del compleanno, si procedere come segue:
+>
+> 1. si ordina la lista tramite bucket sort rispetto al giorno
+> 2. si ordina la lista tramite bucket sort rispetto al mese
+>
+> La stabilità di bucket sort ci garantisce che l'elenco finale sia ordinato correttamente, proprio perché viene mantenuto l'ordine relativo.
+>
+> Ordinare prima i giorni e poi i mesi ci permette di fare un unico bucket sort su tutti i dati rispetto al giorno ($31$ bucket) e poi di fare un altro bucket sort su tutti i dati rispetto al mese. Così facendo non c'è bisogno di utilizzare delle liste separate.
+>
+> Facendo invece il contrario, dopo aver ordinato rispetto al mese bisogna crearsi $12$ elenchi separati in cui bisogna fare $12$ bucket sort diversi.
+
+##### RadixSort [not finished]
+
+```
+PROCEDURA bucketSort(Array A[0..n-1], intero b, intero t)
+	Sia Y[0..b-1] un array
+	FOR i <- 0 TO b-1 DO		// [1] predisposizione bucket
+	│	Y[i] <- coda vuota
+    
+    FOR i <- 0 TO n-1 DO		// [2] riempimento bucket
+    │	x <- t-esima cifra nella rappresentazione in base b di A[i].chiave
+    │	Y[x].enqueue(A[i])
+    	
+	j <- 0
+	FOR i <- 0 TO b-1 DO		// [3] riempimento array A ordinato
+	│	WHILE NOT Y[i].isEmpty() DO
+	│	│	A[j] <- Y[i].dequeue()
+	│	│	j <- j + 1
+	
+ALGORITMO radixSort(Array A[0..n-1])
+	t <- 0
+	Sia b la base da utilizzare
+	WHILE (esiste chiave K in A tale che ⌊k/b^t⌋ != 0) DO	[a]
+	│	bucketSort(A, b, t)
+	│	t <- t+1
+```
+
+<div alt="page-break" class="page-break"></div>
+
+`[a]` Questa condizione controlla che $A$ contenga una chiave composta da almeno $t+1$ cifre.
+
+- in pratica ci si chiede se bisogna andare avanti ancora oppure no in base alla grandezza dei numeri
+
+$b$ è il numero di bucket, ma è anche la base che si prende in considerazione. $t$ è la cifra rispetto alla quale si ordina, con $t=0$ la cifra meno significativa.
+
+`[1]` Si predisponde l'array dei bucket
+
+`[2]` Si mettono gli elementi nei bucket. Per piazzarli si estrae dalla chiave considerata la cifra di posto $t$ in base $b$, e poi la si aggiunge alla coda corrispondente.
+
+`[3]` Si travasa dai bucket nell'array o nella lista
+
+La procedura `bucketSort` lavora in tempo $\mathcal{O}(n + b)$ dove però $b$ è un numero fissato a priori.
+
+L'algoritmo `radixSort` non fa altro che chiamare la procedura bucket sort. Il numero di chiamate che deve fare dipende dalla grandezza dei numeri: finché la condizione `[a]` è verificata bisogna applicare il bucket sort.
 
 
+
+Si supponga di scegliere come base utilizzata $b=10$. Se bisogna ordinare $n$ chiavi tra $0$ e $10^{10}-1$, si fanno $9$ iterazioni di bucket sort, con dei bucket molto piccoli. Scegliendo invece $b=10^3$ è possibile riordinare queste chiavi con solo $3$ iterazioni di bucket sort soltano utilizzando un array di supporto di grandezza $1000$. Inoltre il tempo di ...
 
 
 
@@ -1203,15 +1359,24 @@ Il tempo della `union` rimane costante, ma sarà più alta di quella di prima pe
 
 Dal corollario consegue che la `find` utilizzi un tempo $\mathcal{O}(\log n)$
 
+****
+
 #### quickUnion bilanciata in altezza con compressione di cammino
 
-Per migliorare i tempi di esecuzione bisogna diminuire l'altezza degli alberi. Si applica un'euristica di compressione di cammino. **[... videolezione 22 tempo 1:11:00, + analisi ammortizzata alla fine]**
+Per migliorare i tempi di esecuzione bisogna diminuire l'altezza degli alberi. Si introduce quindi un'euristica che ha proprio lo scopo di comprimere il cammino visitato durante un'operazione `find`.
+
+Per $l \ge 3$, siano $u_0, u_1, \cdots, u_{l-1}$ i nodi incontrati nel cammino esaminato da una `find(x)`, dove $u_0 = x$ ed $u_{l-1}$ è la radice dell'albero contenente $x$. L'euristica di compressione del cammino rende tutti i nodi $u_i$ per $0 \le i \le l-3$ figli della radice $u_{l-1}$. 
+*Si nota che $u_{l-2}$ è già figlio della radice $u_{l-1}$, motivo per il quale i casi con $l \le 2$ non sono presi in considerazione*
+
+<img src="/Users/kevinmuka/Library/Application%2520Support/typora-user-images/image-20250305215016513.png" alt="image-20250305215016513" style="zoom:60%; margin-bottom:-20px; margin-top:-20px" />
+
+Le `find` successive quindi sono avvantaggiate da questa ristrutturazione che viene fatta. Più `find` vengono fatte e più gli alberi tengono ad appiattirsi.
+
+Su può dimostrare che effettuando una sequenza di $n$ `makeset` ed $\mathcal{O}(n)$ `union` e `find` il tempo totale è $\mathcal{O}(n \log^* n)$. Da questo si ricava che il costo ammortizzato della `find` sia $\mathcal{O}(\log^* n)$. Nella pratica questo costo può essere considerato costante per valori di $n$ che possono essere rappresentati nei computer.
 
 
 
-<div alt="page-break" class="page-break"></div>
-
-**Riepilogo Union-Find**
+#### Riepilogo Union-Find
 
 |                                                          | makeSet |      union       |        find        |
 | :------------------------------------------------------: | :-----: | :--------------: | :----------------: |
@@ -1220,23 +1385,6 @@ Per migliorare i tempi di esecuzione bisogna diminuire l'altezza degli alberi. S
 |                      **QuickUnion**                      | $O(1)$  |      $O(1)$      |       $O(n)$       |
 |                **QuickUnion bilanciata**                 | $O(1)$  |      $O(1)$      |    $O(\log n)$     |
 | **QuickUnion bilanciata <br />con compressione cammino** | $O(1)$  |      $O(1)$      | $O(\log^* n)$ amm. |
-
-
-
-
-
-
-
-\------------------------------------
-
-#### Alberi binari di ricerca (vl 16?)
-
-Un albero binario di ricerca è un albero binario in cui per ogni nodo $n$:
-
-- il valore di ogni chiave contenuta nel sottoalbero sinistro di $n$ è minore della chiave contenuta in $n$
-- il valore di ogni chiave contenuta nel sottoalbero destro di $n$ è maggiore o uguale della chiave contenuta in $n$
-
-*algoritmi videolezione 16*
 
 
 
