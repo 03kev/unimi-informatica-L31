@@ -291,7 +291,7 @@ $$
 \hat F(x) = \frac{\# \{ x_i \leq x \}}{n}
 = \frac{1}{n} \sum_{i=1}^n \mathrm I_{(-\infty, x]}(x_i)
 $$
-dove $\mathrm I_A: \mathbb R \to {0, 1}$ è la funzione indicatrice dell’insieme $A$, che restituisce $1$ se l’argomento appartiene ad $A$ e $0$ altrimenti: di conseguenza l’intervallo $(-\infty, x]$ include tutti i valori minori o uguali a $x$. Pertanto, per ogni $x$, $\hat F(x)$ rappresenta la frequenza relativa cumulata del massimo valore osservato che non supera $x$, e il grafico di questa funzione sarà a tratti costanti.
+dove $\mathrm I_A: \mathbb R \to \{0, 1\}$ è la funzione indicatrice dell’insieme $A$, che restituisce $1$ se l’argomento appartiene ad $A$ e $0$ altrimenti: di conseguenza l’intervallo $(-\infty, x]$ include tutti i valori minori o uguali a $x$. Pertanto, per ogni $x$, $\hat F(x)$ rappresenta la frequenza relativa cumulata del massimo valore osservato che non supera $x$, e il grafico di questa funzione sarà a tratti costanti.
 $$
 I_A(x) = \begin{cases}
 	1 & \text{se } x \in A \\[0.1em]
@@ -1686,6 +1686,10 @@ Ogni asse cartesiano di questo diagramma contiene i quantili dei due campioni pr
 
 Se due campioni hanno una distribuzione uguale, allora estraendo da entrambi il quantile di un livello fissato si dovranno ottenere due numeri vicini. In questo caso i punti del diagramma Q-Q tenderanno ad allinearsi alla bisettrice del I° e III° quadrante.
 
+```{=latex}
+\hfill
+```
+
 ## Distribuzioni normali
 
 Dati normali
@@ -1713,13 +1717,103 @@ In questi casi, quando nei dati si hanno due popolazioni ben distinte per quanto
 
 
 
+```{=latex}
+\hfill
+```
+
 ## Trasformazione dei dati
 
 Può risultare utile una rielaborazione dei dati iniziali per diversi motivi: per poterli confrontare con altri dati riportandoli ad un intervallo predefinito, per poter confrontare la loro distribuzione di frequenza con quella di altri dati oppure per renderli più facilmente leggibili.
 
-## Analisi della varianza
+Si consideri un insieme di valori distinti $V = \{v_1, v_2, \cdots, v_m\}$, ognuno con la propria frequenza relativa $f_1, f_2, \cdots, f_m$. Si consideri anche una funzione $f$ che trasformi i valori di $V$ in valori appartenenti all'insieme $V' = \{v_1', v_2', \cdots, v_m' \}$: si ha perciò che $\forall j \in [1,m] \;\; f(v_j) = v_j'$.
+
+Si prenderanno in esame solo funzioni *iniettive*: per questo tipo di trasformazioni i valori delle frequenze relative per l'insieme $V'$ rimangono i medesimi di quelli per l'insieme $V$, ossia $f_1, f_2, \cdots, f_m$. 
+
+Si analizzera come variano gli indici statistici, e di conseguenza il grafico della distribuzione, a seconda delle trasformazioni che verranno effettuate. Verranno analizzate solo le trasformazioni che prevedono di applicare ai dati una funzione *lineari*. Fissate perciò due costanti $a, b \in \mathbb{R}$ si avrà che $v' = f(v) = a\, v + b$.
+
+### Traslazione
+
+Se si vogliono traslare i dati di una quantità costante $k \in \mathbb{R}$, si applica la trasformazione $f(x) = x + k$. Per $k > 0$ si trasla verso destra e per $k < 0$ si trasla verso sinistra.
+
+Questa trasformazione è utile quando i valori osservati sono molto grandi e sono poco dispersi attorno ad un valore centrale. Si osserva che:
+
+- gli indici di centralità, quali media, quantili e mediana, vengono traslati della stessa quantità $k$.
+- gli indici di dispersione, quali range (dei dati), IQR, varianza e devizazione standard, dell'insieme traslato $V'$ rimangono invece gli stessi dell'insieme di partenza $V$.
+
+La traslazione è una trasformazione iniettiva, e quindi i dati osservati varieranno nei loro valori ma le relative frequenze rimarranno uguali. Qualora si rappresentasse graficamente la distribuzione dei dati originali e quella dei dati trasformati, si osserverebbe che la forma dei due grafici non subirebbe alterazioni: ciò che cambia sono solo i valori dei dati l'ungo l'asse delle ascisse.
+
+Si conclude che la traslazione comporta uno spostamento dell'*origine* del sistema di riferimento, ovvero il punto in cui si trova lo zero sull'asse delle ascisse. Le relazioni interne, e di conseguenza le proprietà della distribuzione come la forma, la simmetria e gli indici di dispersione, rimangono invariate.
+
+### Scalatura
+
+Se si vogliono dilatare o contrarre i dati di un fattore costante $h \in \mathbb{R}^+$ si applica la trasformazione $f(x) = h x$. Se $h > 1$ il range dei valori risulta aumentato, ed è stata quindi applicata una dilatazione, mentre per $0 < h < 1$ si applica una contrazione del range dei valori.
+
+Si noti che non viene considerato il caso in cui $h<0$ in quanto, oltre alla dilatazione o contrazione, i dati vengono specchiati rispetto all'asse delle ordinate.
+
+Si consideri $h$ come un valore fratto $1/k$. Se $k$ è minore del valore minimo nel campione, allora tutti i valori trasformati saranno maggiori di 1, mentre se $k$ è maggiore del valore massimo, allora tutti i valori trasformati saranno minori di 1[^1].
+
+Si osserva che:
+
+- gli indici di centralità vengono scalati della stessa quantità $h$.
+- il range di variazione e l'IQR vengono scalati della stessa quantità $h$.
+- la varianze viene scalata di una quantità $h^2$ mentre la deviazione standard viene sacalata di $|h|$.
+
+Anche in questo caso si verifica che i dati osservati varieranno nei loro valori ma le relative frequenze rimarranno uguali. I grafici che rappresentano la distribuzione dei dati originali e quella dei dati trasformati hanno quindi la medesima forma ma valori diversi sull'asse delle ascisse.
 
 
+
+[^1]: Questo vale solo per campioni in cui tutti i dati hanno segno positivo. Non vale per insiemi di dati che hanno come dominio dei valori $\mathbb{R}$ (esempio: le temperature rilevate in una città).
+
+
+
+### Cambiamento di origine e scala
+
+Si abbia un insieme di valori nell'intervallo $(a,b)$ e vogliamo adattarli in modo che appartengano all'intervallo $(c,d)$, la trasformazione da applicare sarà:
+$$
+f(x) = c + \dfrac{d-c}{b-a} \cdot (x - a)
+$$
+
+##### Dimostrazione
+
+La funzione che trasforma i valori nell'intervallo $(a,b)$ all'interno dell'intervallo $(c,d)$ è una retta, la cui equazione si ricava tramite la formula della retta passante per due punti:
+$$
+\dfrac{y-y_0}{y_1 - y_0} = \dfrac{y-y_0}{y_1 - y_0}  \;\;\Rightarrow\;\; \dfrac{x'-x'_0}{x_1'-x_0'} = \dfrac{y-y_0}{y_1 - y_0} \;\;\Rightarrow\;\; \dfrac{x'-c}{d-c}=\dfrac{x-a}{b-a} \;\;\Rightarrow\;\; f(x) = x' = c + \dfrac{d-c}{b-a} (x-a)
+$$
+
+
+
+Scegliendo un apposito intervallo $(c,d)$, è possibile trasformare un campione di dati affinché le osservazioni siano compresi tra due valori significativi. Utilizzando l'equazione ottenuta:
+
+- nel caso in cui si vogliano mappare i valori in $(0,1)$ si applica una funzione $f(x) = \dfrac{x-a}{b-a}$
+\vspace{1mm}
+- nel caso in cui si vogliano mappare i valori in $(-1,1)$ si applica una funzione $f(x) = 2 \dfrac{x-a}{b-a} - 1$
+
+#### Standardizzazione
+
+La standardizzazione è un caso particolare di cambiamento di origine e scala, e consiste nello traslare verso sinistra rispetto alla media dei valori delle osservazioni, per poi applicare una scala il cui fattore è il reciproco della deviazione standard dei valori:
+$$
+f(x) = \dfrac{x - \bar{x}}{s_x}
+$$
+La standardizzazione è quindi un'operazione di trasformazione lineare che prevede una centratura, ossia la sottrazione della media, e una uniformazione, ossia la divisione per la deviazione standard. Tramite la centratura si ottiene un nuovo campione la cui media sia zero, e tramite l'uniformazione si rimuove l'unità di misura alle osservazioni, rendendoli numeri adimensionali, e si ha come deviazione standard per il campione 1. Infatti:
+$$
+\bar{x}' = \dfrac{\bar{x}-\bar{x}}{s_x} = 0 \qquad s_{x'}^2 = \dfrac{1}{s_x^2} = 1 \;\;\Rightarrow\;\; s_{x'}=1
+$$
+
+
+### Trasformazioni logaritmiche
+
+A volte i valori di una variabile osservata sono molto grandi oppure molto distanziati. In questi casi può essere utile considerare non tanto il valore originale ma, pensando a tale valore come potenza di una data base, ragionare in termini del relativo esponente. Ciò corrisponde ad applicare una trasformazione logaritmica del seguente tipo:
+$$
+f(x) = \log x
+$$
+Nel caso i valori siano molto distanziati tra loro e caratterizzati da una distribuzione di frequenza unimodale fortemente asimmetrica, la trasformazione logaritmica permette di ottenere una distribuzione di frequenza più simmetrica.
+
+
+
+
+```{=latex}
+\hfill
+```
 
 ## Alberi di decisione
 
@@ -1734,6 +1828,8 @@ Ad esempio, utilizzando l’indice di Gini si seleziona la condizione che minimi
 Così, l’impiego degli indici di eterogeneità consente di valutare quantitativamente la bontà delle suddivisioni, contribuendo a costruire alberi di decisione efficaci per il compito di classificazione.
 
 ## Analisi di classificatori
+
+To do (lezione 08)
 
 ### Classificatori costanti
 
@@ -1758,3 +1854,39 @@ Così, l’impiego degli indici di eterogeneità consente di valutare quantitati
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Classificatori a soglia}
 ```
+
+
+
+
+
+```{=latex}
+\newpage
+\part{Calcolo delle probabilità}
+```
+
+# Calcolo combinatorio
+
+## Permutazioni
+
+## Disposizioni
+
+## Combinazioni
+
+
+
+# Probabilità
+
+## Definizioni
+
+
+
+
+
+```{=latex}
+\newpage
+\part{Statistica inferenziale}
+```
+
+# Analisi della varianza
+
+To do (lezione 08)
