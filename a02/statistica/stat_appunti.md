@@ -17,8 +17,10 @@ header-includes: |
 
     \usepackage{graphicx}
     \usepackage{tikz}
-    \usepackage{tcolorbox}
     \usetikzlibrary{positioning}
+    \usetikzlibrary{intersections}
+
+    \usepackage{tcolorbox}
     \usepackage{caption}
     \usepackage{cancel}
 
@@ -26,6 +28,7 @@ header-includes: |
     \pgfplotsset{compat=1.17}
     \usepgfplotslibrary{statistics}
     \usepgfplotslibrary{groupplots}
+    \usepgfplotslibrary{fillbetween}
 
     \usepackage{mdframed}
     \usepackage{xcolor}
@@ -58,7 +61,9 @@ header-includes: |
 
 # Lezioni {-}
 
-## L01 - 25/02/2025 {-}
+```{=latex}
+\subsection*{L01 - 25/02/2025}
+```
 
 ```{=latex}
 \textbf{Dispense L01-Introduzione\shortunderscore a\shortunderscore python}
@@ -74,7 +79,11 @@ Tipi di dati e operatori:
 Operazioni sulle liste: creazione e manipolazione delle liste; uso di metodi e operatori specifici per le liste (*list comprehension*); esempi pratici e funzioni integrate.  
 Import e utilizzo di librerie per specifiche funzionalità: `numpy` per operazioni numeriche; `pandas` per la gestione di dati strutturati; `matplotlib.pyplot` per la visualizzazione grafica; `csv` e `collections` per la manipolazione dei dati.
 
-## L02 - 27/02/2025 {-}
+
+
+```{=latex}
+\subsection*{L02 - 27/02/2025}
+```
 
 **Dispense L02-Pandas**
 
@@ -86,7 +95,11 @@ Introduzione alla libreria `Pandas` e ai dataset: caricamento del file `heroes.c
 
 Librerie utilizzate: `pandas`, `matplotlib.pyplot`, `numpy`, `csv`.
 
-## L03 - 04/03/2025 {-}
+
+
+```{=latex}
+\subsection*{L03 - 04/03/2025}
+```
 
 ```{=latex}
 \textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze - Capitolo 2 RS}
@@ -102,20 +115,32 @@ Frequenze: calcolo e visualizzazione delle frequenze assolute e relative. Freque
 
 Suggerimenti e tecniche per la generazione dei grafici con l’uso di librerie come `matplotlib` e `pandas`.
 
-## L04 - 06/03/2025 {-}
+
+
+```{=latex}
+\subsection*{L04 - 06/03/2025}
+```
 
 ```{=latex}
 \textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze - Capitolo 3 RS}
 ```
 
-## L05 - 11/03/2025 {-}
+
+
+```{=latex}
+\subsection*{L05 - 11/03/2025}
+```
 
 ```{=latex}
 \textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze}: diagrammi a stelo \\
 \textbf{Dispense L04-Indici\shortunderscore di\shortunderscore dispersione - Capitolo 3 RS}
 ```
 
-## L06 - 13/03/2025 {-}
+
+
+```{=latex}
+\subsection*{L06 - 13/03/2025}
+```
 
 ```{=latex}
 \textbf{Dispense L05-Indici\shortunderscore di\shortunderscore eterogeneita}
@@ -123,12 +148,46 @@ Suggerimenti e tecniche per la generazione dei grafici con l’uso di librerie c
 
 Indici di dipendenza. Indici di eterogeneità: indice di Gini, indice di entropia. Alberi di decisione e "machine learning" tramite questi indici.
 
-## L07 - 18/03/2025 {-}
+
+
+```{=latex}
+\subsection*{L07 - 18/03/2025}
+```
 
 ```{=latex}
 \textbf{Dispense L05-Indici\shortunderscore di\shortunderscore eterogeneita}: indici di concentrazione \\
 \textbf{Dispense L06-Trasformazione\shortunderscore dei\shortunderscore dati}
 ```
+
+
+
+```{=latex}
+\subsection*{L08 - 25/04/2025}
+```
+
+```{=latex}
+\textbf{Dispense L07-Analisi\shortunderscore della\shortunderscore varianza}: anova \\
+\textbf{Dispense L08-Analisi\shortunderscore di\shortunderscore classificatori}: classificatori
+```
+
+
+
+```{=latex}
+\subsection*{L09 - 27/04/2025}
+```
+
+```{=latex}
+\textbf{Dispense L08-Calcolo\shortunderscore combinatorio}: calcolo combinatorio \\
+Introduzione ai concetti basilari della probabilità.
+```
+
+
+
+```{=latex}
+\subsection*{L10 - 01/04/2025}
+```
+
+Calcolo delle probabilità: assiomi e teoremi elementari. Spazi equiprobabili.
 
 
 
@@ -762,6 +821,782 @@ Questo indice è fondamentale per la costruzione dei boxplot perché viene propr
 
 
 
+```{=latex}
+\hfill
+```
+
+## Indici di correlazione
+
+Si consideri un insieme composto da dati accoppiati $(x_1,y_1),(x_2, y_2), \cdots, (x_n, y_n)$. Per vedere la relazione relativa di queste due variabili è possibile rappresentarle in un diagramma di dispersione. Questo approccio è però qualitativo, e quindi soggetto a interpretazione.  
+Si vuole trovare un indice quantitativo in grado di rappresentare questa relazione oggettivamente. Questi indici sono detti di dipendenza o associazione e misurano la forza della relazione, ossia forniscono un valore numerico che indica quanto intensamente le variabili siano collegate.
+
+### Covarianza campionaria
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Covarianza campionaria}
+```
+
+Si introduce una statistica, detta *covarianza campionaria*, che quantifica in che misura grandi valori di $x$ corrispondano a grandi valori di $y$ e piccoli valori di $x$ a piccoli valori di $y$. Questo indice quindi misura la tendenza con cui due variabili si muovono insieme ed è definita come la media dei prodotti degli scostamenti delle variabili dalle loro medie.
+
+```{=latex}
+\vspace{-2mm}
+```
+
+##### Relazione tendenziale
+
+Si procede considerando una relazione di tipo tendenziale e non deterministico. Ciò significa che le affermazioni che seguiranno varranno tendenzialmente sempre: ci saranno quindi delle eccezioni, ma per lo più saranno valide.
+
+Si supponga che un insieme sia costituito dalle coppie di valori $(x_i, y_i) \text{ con } i =1, \cdots, n$. Si calcolino le rispettive medie campionarie $\bar{x}$ e $\bar{y}$. Per la $i$-esima coppia di dati, si considerino $(x_i - \bar{x})$ lo scarto del valore $x$ rispetto alla sua media campionaria e $(y - \bar{y})$ lo scarto del valore $y$ rispetto alla sua media campionaria. Si procede ora analizzando due casi, ossia quello in cui si presenta una relazione diretta e quello con una relazione inversa.
+
+Quando grandi valori di $x$ tendono a essere associati con grandi valori di $y$, e piccoli valori di $x$ tendono a essere associati a piccoli valori di $y$, allora i segni (positivi o negativi) di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ tenderanno a essere gli stessi. A questo punto, se gli scarti hanno segno concorde, il loro prodotto $(x_i - \bar{x})(y_i - \bar{y})$ sarà positivo. Si ottiene che la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà a essere un grande numero positivo.  
+
+```{=latex}
+\begin{small}
+\vspace{2mm}
+\begin{minipage}[c]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{rel-diretta.png}
+\end{minipage}
+\hspace{1.5mm}
+\begin{minipage}[c]{0.3\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "grande" & e & y "grande" \\
+    $x \ge \bar{x}$ &  & $y \ge \bar{y}$ \\
+    $(x_i - \bar{x}) \ge 0$ &  & $(y_i - \bar{y}) \ge 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) \ge 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) > 0$}
+    \end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.01\textwidth}
+    \centering
+    \vrule width 0.35pt height 2.85cm
+\end{minipage}
+\hspace{1mm}
+\begin{minipage}[c]{0.3\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "piccolo" & e & y "piccolo" \\
+    $x < \bar{x}$ &  & $y < \bar{y}$ \\
+    $(x_i - \bar{x}) < 0$ &  & $(y_i - \bar{y}) < 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) \ge 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) > 0$}
+    \end{tabular}
+\end{minipage}
+
+\vspace{1mm}
+\begin{center}
+	\begin{minipage}[c]{0.9\textwidth}
+		Si individua quindi una correlazione positiva tra le due variabili poiché tendenzialmente presentano segno concorde. In questo caso si parla di relazione tra le due variabili di tipo diretta.
+	\end{minipage}
+\end{center}
+\vspace{3mm}
+\end{small}
+```
+
+Per lo stesso motivo, quando grandi valori di una variabile tendono a verificarsi in corrispondenza a piccoli valori dell'altra, allora i segni di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ saranno discordi e quindi la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà ad essere un grande numero negativo.  
+
+```{=latex}
+\begin{small}
+\vspace{2.5mm}
+\begin{minipage}[c]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{rel-indiretta.png}
+\end{minipage}
+\hspace{1.5mm}
+\begin{minipage}[c]{0.3\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "grande" & e & y "piccola" \\
+    $x \ge \bar{x}$ &  & $y < \bar{y}$ \\
+    $(x_i - \bar{x}) \ge 0$ &  & $(y_i - \bar{y}) < 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) < 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) < 0$}
+    \end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.01\textwidth}
+    \centering
+    \vrule width 0.35pt height 2.85cm
+\end{minipage}
+\hspace{1mm}
+\begin{minipage}[c]{0.3\textwidth}
+    \vspace{0mm}
+    \begin{tabular}{ccc}
+    x "piccolo" & e & y "grande" \\
+    $x < \bar{x}$ &  & $y \ge \bar{y}$ \\
+    $(x_i - \bar{x}) < 0$ &  & $(y_i - \bar{y}) \ge 0$ \\[2ex]
+    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
+    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) < 0$} \\[1mm]
+    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) < 0$}
+    \end{tabular}
+\end{minipage}
+
+\vspace{1mm}
+\begin{center}
+	\begin{minipage}[c]{0.9\textwidth}
+		Si individua quindi una correlazione negativa tra le due variabili poiché tendenzialmente presentano segno discorde. In questo caso si parla di relazione tra le due variabili di tipo indiretta.
+	\end{minipage}
+\end{center}
+\vspace{3mm}
+\end{small}
+```
+
+Si procede poi standardizzando la sommatoria dividendo per $n-1$, al fine di evitare che questo indice assuma valori troppo elevati. Si osserva che la formula della covarianza campionaria è riconducibile a quello della varianza campionaria, motivo per il quale si possa intuire perché si vada a dividere per $n-1$ e non direttamente per il numero totale di osservazioni.
+
+Ricapitolando, si definisce la covarianza campionaria come:
+$$
+s_{x,y} = \dfrac{1}{n-1} \displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y}) = 
+\begin{cases}
+> 0 & \text{relazione diretta} \\
+\approx 0 & \text{assenza di relazione / indipendenza} \\
+< 0 & \text{relazione indiretta / inversa}
+\end{cases}
+$$
+
+
+### Coefficiente di correlazione di Pearson
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Coefficiente di correlazione di Pearson}
+```
+
+La covarianza campionaria non può essere posizionata all'interno di una scala assoluta in quanto non è normalizzata e il suo valore dipende dalle osservazioni coinvolte. Si ricava perciò da questo indice il *coefficiente di correlazione lineare campionaria* (anche detto indice di correlazione di Pearson), che si indica con $\rho$.
+
+Presa la covarianza campionaria, si standardizza il suo valore dividendolo per il prodotto delle due deviazioni standard campionarie delle due variabili:
+$$
+\rho =\dfrac{\displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})}{(n-1)s_x s_y}
+$$
+Il coefficiente di correlazione di Pearson è quindi un numero puro e, proprio come la covarianza campionaria, quando $\rho > 0$ i dati sono correlati positivamente; invece quando $\rho < 0$ sono correlati negativamente.  
+Non dipendendo dalle unità di misura, questo indice può essere usato per comparare dataset diversi.
+
+Una proprietà importante, che non verrà dimostrata, è che $-1 \le \rho \le 1$
+
+#### Relazione deterministica
+
+```{=latex}
+\vspace{-3mm}
+```
+
+##### Primo caso
+
+Si passi da una relazione tendenziale a una deterministica, in cui la variabile $y$ è una trasformazione lineare della variabile $x$; tutti i vari indici statistici variano di conseguenza:
+$$
+\forall i \;\; y_i = a + b x_i \quad \Rightarrow \quad \bar{y} = a + b \bar{x} \quad \Rightarrow \quad s_y^2 = b^2 s_x^2 \quad \Rightarrow \quad s_y = |\, b\, | s_x
+$$
+Nella relazione deterministica $y = a + bx$, la costante $b$ rappresenta la pendenza (ossia il coefficiente angolare) della retta che lega le due variabili e indica di quanto varia $y$ all'aumentare di $x$. Ci si aspetta che: 
+
+- se $b$ è positivo, all’aumento di $x$ corrisponde un incremento di $y \Rightarrow$ relazione diretta
+- se $b$ è negativo, all’aumento di $x$ corrisponde una diminuzione di $y \Rightarrow$ relazione inversa 
+
+Si calcoli ora il coefficiente di correlazione di Pearson:
+$$
+\rho = \dfrac{b \sum_{i=1}^n (x_i - \bar{x})^2}{(n-1)\,|\, b \,|\, s_x^2} =
+	\dfrac{b}{|\, b \,|} \cdot \dfrac{1}{s_x^2} \dfrac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \dfrac{b}{|\, b \,|} \cdot \dfrac{1}{\cancel{s_x^2}} \cancel{s_x^2}
+	= \dfrac{b}{|\, b \,|} \;\;= \;\;
+    \begin{cases}
+		+1 & \text{se } b>0 \\
+		-1 & \text{se } b < 0
+    \end{cases}
+$$
+Questo significa che:
+
+- l'indice $\rho$ è uguale a $+1$ se $b$ è una costante positiva, e se quindi le due variabili esibiscono una relazione di tipo deterministica diretta.
+- l'indice $\rho$ è uguale a $-1$ se $b$ è una costante negativa, e se quindi le due variabili esibiscono una relazione di tipo deterministica indiretta.
+
+Le conclusioni che abbiamo ottenuto con i calcoli rispecchiano le attese iniziali.
+
+##### Secondo caso
+
+Si consideri ora una relazione in cui entrambe le variabili $x$ e $y$ sono soggette a una trasformazione lineare; i vari indici statistici variano nel seguente modo:
+$$
+\forall i \quad
+\begin{aligned}
+x'_i &= a + bx_i \quad \Rightarrow \quad \bar{x}' = a + b\bar{x} \quad \Rightarrow \quad s_{x'} = |\, b\,|\, s_x \quad \Rightarrow \quad x'_i - \bar{x}' = b(x_i - \bar{x}) \\
+y'_i &= c + dy_i \,\quad \Rightarrow \quad \bar{y}' = c + d\bar{y} \quad \Rightarrow \quad s_{y'} = |\, d\,|\, s_y \quad \Rightarrow \quad y'_i - \bar{y}' = d(y_i - \bar{y})
+\end{aligned}
+$$
+Si procede calcolando il coefficiente di correlazione di Pearson:
+$$
+\rho' = \dfrac{\sum_{i=1}^n (x'_i - \bar{x}')(y'_i - \bar{y}')}{(n-1) s_x' s_y'} =
+	\dfrac{b\, d\, \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{(n-1)\, |\,b\,|\, |\,d\,|\, s_x s_y} = 
+	\dfrac{b\, d}{|\, b\, |\, |\, d\,|} \rho \;\;=\;\;
+    \begin{cases}
+		+\rho & \text{se } b \text{ concorda con }d \\
+		-\rho & \text{se } b \text{ discorda con }d
+    \end{cases}
+$$
+Ciò significa che la correlazione tra $x'$ e $y'$ rimane numericamente invariata rispetto a quella tra $x$ e $y$ e può eventualmente cambiare solo di segno:
+
+- se i coefficienti di trasformazione $b$ e $d$ hanno lo stesso segno allora $\rho' = \rho$
+- se i coefficienti di trasformazione $b$ e $d$ hanno segni opposti allora $\rho' = -\rho$
+
+```{=latex}
+\vspace{1mm}
+```
+
+#### Conclusioni
+
+Il coefficiente di correlazione di Pearson è un indicatore fondamentale per valutare la forza e la direzione di una relazione (o associazione) di tipo lineare tra due variabili, con valori che spaziano fra $-1$ e $+1$.
+
+Relazione deterministica
+: Quando due variabili presentano una relazione lineare deterministica $y = a + bx$, il coefficiente di correlazione assume valore estremo: $\rho = +1$ se $b>0$ e $\rho = -1$ se $b<0$. In altre parole, se tutti i punti giacciono esattamente su una retta crescente (o decrescente), la correlazione è massima (o minima).
+
+Relazione tendenziale
+:   Nella maggior parte dei casi reali, le due variabili seguono una relazione lineare tendenziale. In questo contesto, il valore assoluto del coefficiente  di correlazione, $|\rho|$, fornisce una misura di quanto le osservazioni si dispongano in prossimità di una retta:
+
+    - $|\rho|=1$ evidenzia una perfetta relazione lineare: in altre parole, è 
+      possibile collegare tutti i valori $(x_i, y_i)$ con $i=1,\cdots,n$ con 
+      una retta.
+    - Più $|\rho|$ si avvicina a $1$, e più i dati esibiscono una relazione lineare forte, anche se non perfetta: ciò significa che se anche non esiste una retta che attraversa tutti i valori dei dati, ce n'è una che passa vicino a tutti.
+    - Se $|\rho|$ è prossimo allo $0$, non c'è evidenza di un legame lineare tra le variabili. 
+      
+    Il segno di $\rho$ indica invece la direzione della relazione. Il segno è positivo quando l'approssimazione lineare è crescente (diretta), ed è invece negativo quando l'approssimazione lineare è decrescente (inversa).
+
+È importante tenere a mente che un valore di $\rho = 0$ non implica automaticamente l’assenza di qualsiasi relazione, poiché potrebbero esistere legami non lineari che questo indice non è in grado di cogliere.
+
+Vale inoltre la pena sottolineare che il coefficiente di correlazione di Pearson non implica in alcun modo un rapporto di causa-effetto tra le due variabili prese in considerazione. In altre parole, due variabili possono presentare un valore di correlazione elevato senza che una determini o causi l’altra. Spesso, infatti, può intervenire un terzo fattore (o più fattori) a influenzare entrambe le variabili, generando un legame che in realtà non corrisponde a un meccanismo causale diretto.
+
+
+
+```{=latex}
+\hfill
+```
+
+## Eterogeneità
+
+Per le variabili qualitative nominali non è possibile calcolare la varianza né gli indici che ne derivano, perché non esistono una media, una mediana o altri valori numerici di riferimento su cui misurare distanze. Risulta comunque necessario avere un indice che misuri la dispersione della distribuzione delle frequenze, detta *eterogeneità*. In particolare si dice che una variabile è distribuita in modo eterogeneo quando ogni suo valore compare con la stessa frequenza.
+
+### Indice di Gini
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indice di Gini}
+```
+
+Si consideri un campione $\{ x_1, \cdots, x_n\}$ in cui occorrono i valori distinti $v_1, \cdots, v_m$, e si indichi con $f_j$ la frequenza relativa dell'elemento $v_j$ per $j=1, \cdots, m$. Si definisce l'*indice di eterogeneità di Gini* come:
+$$
+I = 1 - \sum_{j=1}^m f_j^2
+$$
+Una proprietà importante di questo indice è che $0 \le I < 1$. Inoltre l'omogeneità massima dell'insieme di dati si presenta quando $I = 0$, mentre l'eterogeneità massima la si ha quando $I \to 1$. Di conseguenza, più aumenta il valore dell'indice di Gini e più aumenta il grado di eterogeneità.
+
+```{=latex}
+\newpage
+```
+
+Per dimostrare le limitazioni inferiori e superiori si ricordi innanzitutto che, trattandosi di frequenze relative, $0 \le f_j \le 1 \;\; \forall j \in [1,m]$. Inoltre $\sum_{j=1}^m f_j = 1$. Di conseguenza si avrà:
+
+- per almeno un $j$ si ha $\displaystyle f_j > 0 \Rightarrow f_j^2 > 0 \Rightarrow \sum_{j=1}^m f_j^2 > 0 \quad \Rightarrow \quad I < 1$
+- per ogni $j$, dato che $0 \le f_j \le 1$, si ha che $\displaystyle f_j^2 \le f_j \Rightarrow \sum_{j=1}^m f_j^2 \le \sum_{j=1}^m f_j = 1 \quad \Rightarrow \quad I \ge 0$
+
+Si noti, come accennato precedentemente, che l'estremo inferiore si presenta quando l'insieme è massimamente omogeneo e l'estremo superiore quando è massimamente eterogeneo:
+
+- l'eterogeneità minima la si ha quando tutti gli elementi hanno lo stesso valore, e quindi  
+    $\displaystyle \exists\, k \in \left[ 1, m\right]\; |\; f_k = 1, \; \forall j \not = k \;\; f_j = 0 \quad \Rightarrow \quad I = 1 - \sum_{j=1}^m f_j^2 = 1 - f_k^2 = 1 - 1 = 0$
+- l'eterogeneità massima la si ha quando tutti gli elementi hanno la stessa frequenza, e quindi  
+    $\displaystyle \forall j \in \left[ 1,m \right] \;\; f_j = \frac{1}{m} \quad \Rightarrow \quad I = 1 - \sum_{j=1}^m f_j^2 = 1 - \sum_{j-1}^m \frac{1}{m^2} = 1 - \frac{1}{m} = \frac{m-1}{m} \;\; \to 1 \text{ al crescere di }m$
+
+##### Indice di Gini normalizzato
+
+Si ricordi che $m$ è la cardinalità dell'insieme dei valori distinti. Questo indice presenta due problematiche:
+
+1. il valore massimo che può assumere, ossia quando l'insieme di dati è massimamente eterogeneo, è $(m-1)/m$. Di conseguenza, specialmente nel caso in cui non si conosca il valore $m$, non si può sapere quanto questo indice debba tendere a $1$ affinché si abbia la massima eterogeneità nell'insieme dei dati.
+2. il suo valore dipende fortemente dal valore di $m$. Non è quindi possibile confrontare 2 attributi qualitativi che presentano intervalli di valori diversi, ossia $m$ diverso.
+
+Per ovviare a questi problemi si introduce l'*indice di Gini normalizzato*, che si ottiene dividendo l'indice di Gini per il valore massimo $(m-1)/m$ che può assumere:
+$$
+I' = \dfrac{m \cdot I}{m-1}
+$$
+Questo indice può assumere anche 1 come valore: $0 \le I' \le 1$. Si consideri infatti il caso in cui l'eterogeneità di un insieme di dati è massima:
+$$
+I = \dfrac{m-1}{m} \quad \Rightarrow \quad I' = \dfrac{m \cdot I}{m-1} = \dfrac{m \cdot (m-1)}{(m-1) \cdot m} = 1
+$$
+
+
+
+### Indice di entropia
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indice di entropia}
+```
+
+Si consideri un campione $\{ x_1, \cdots, x_n\}$ in cui occorrono i valori distinti $v_1, \cdots, v_m$, e si indichi con $f_j$ la frequenza relativa dell'elemento $v_j$ per $j=1, \cdots, m$. Si definisce l'*indice di entropia* del campione come:
+$$
+H = \sum_{j=1}^m f_j \log \dfrac{1}{f_j} = - \sum_{j=1}^m f_j \log f_j
+$$
+
+La funzione $I(p) = \log 1/p = - \log p$ è detta *autoinformazione* e misura la quantità di informazione ottenuta dal verificarsi di un evento con probabilità $p$. In altre parole, misura quanto viene ridotta l’incertezza una volta che sappiamo che l’evento si è effettivamente realizzato. Questa funzione è descrescente monotona, vale $0$ quando $p=1$ e tende a infinito per $p$ che tende a 0.
+
+Nel calcolo dell'entropia compare $-f_j \log f_j$. Se $f_j = 0$ questa espressione assume la forma indeterminata $0 \cdot \infty$. È però possibile estendere la definizione dell'entropia anche nei casi in cui alcune frequenze relative siano nulle. Valutando il limite $\displaystyle \lim_{f_j \to 0^+} -f_j \log f_j = 0$ si definisce per convenzione $- 0 \log 0 = 0$. 
+
+```{=latex}
+\newpage
+```
+
+Si effettuano le seguenti osservazioni:
+
+- $\forall j$ vale $-f_j \log f_j \ge 0 \;\; \Rightarrow \;\; H \ge 0$
+
+- $\forall j$ si ha che $-f_j \log f_j = 0 \;\; \Leftrightarrow \;\; f_j = 0 \lor  \log f_j = 0 \text{ e quindi } f_j =1$. Pertanto $H=0$ se e solo se ci si trova in condizione di massima omogeneità, e quindi tutti i dati del campione assumono lo stesso valore.
+
+- In caso di invece massima eterogeneità si avrà $f_j = 1/m$ e quindi 
+    $$
+    H = \sum_{j=1}^m \dfrac{1}{m} \log m = m \left(\dfrac{1}{m} \log m \right) =  \log m
+    $$
+    Si può dimostrare che in questo caso l'entropia assume il valore massimo.
+
+```{=latex}
+\vspace{2mm}
+```
+
+Una proprietà importante di questo indice è quindi che $0 \le H \le \log m$. Più questo indice cresce, e più aumenta il grado di eterogeneità dell'insieme, viceversa più descresce e più aumenta il grado di omogeneità.
+
+##### Indice di entropia normalizzato
+
+Si definisce l'*indice di entropia normalizzato* come
+\vspace{-1mm}
+$$
+H' = \dfrac{H}{\log m}
+$$
+I valori di questo indice sono compresi tra $0$ e $1$, infatti nel caso di massima eterogeneità si ha che:
+\vspace{-1mm}
+$$
+H = \log m \quad \Rightarrow \quad H' = \dfrac{\log m}{\log m} = 1
+$$
+Se il logaritmo è in base $2$ allora l'entropia si misura in bit: ciò risulta utile quando bisogna svolgere i calcoli in un computer; è comunque possibile usare altre basi, come per sempio il logaritmo naturale e quello in base 10.
+
+
+
+```{=latex}
+\hfill
+```
+
+## Concentrazione
+
+Le misure di concentrazione sono strumenti statistici che consentono di comprendere come una determinata risorsa o bene – ad esempio la ricchezza – sia distribuita all’interno di una popolazione. In questo modo, è possibile valutare se tale risorsa sia distribuita in maniera equa tra tutti gli individui oppure se risulti concentrata in un numero ristretto di soggetti.
+
+Mentre la varianza quantifica la dispersione dei singoli valori rispetto alla media, la concentrazione mette in evidenza se una piccola parte della popolazione detiene una quota sproporzionata del bene considerato.
+
+Si consideri un campione di $n$ osservazioni, ciascuno dei quali possiede una certa quantità di risorse. Si indichi con $a_i$ la quantità posseduta dall'$i$-esimo individuo dopo aver ordinato le osservazioni in ordine crescente, ossia $a_1 \le a_2 \le \cdots \le a_n$. Il valore medio della risorsa è definito come $\bar{a} = 1/n \sum_{i=1}^n a_i$, dove la sommatoria rappresenta la somma di tutte le dotazioni individuali. Moltiplicando il valore medio $\bar{a}$ per il numero totale degli individui $n$ otteniamo il totale aggregato della risorsa:
+
+```{=latex}
+\vspace{-3.7mm}
+```
+
+$$
+TOT = n\, \bar{a} = \sum_{i=1}^n a_i
+$$
+```{=latex}
+\vspace{-2.1mm}
+```
+
+Qui la somma viene effettuata su tutte le osservazioni $a_1, a_2, \ldots, a_n$, cioè su tutte le dotazioni della risorsa in esame. L'ordinamento in ordine crescente serve per facilitare l'analisi della distribuzione della risorsa fra gli individui (come vedremo dopo per la curva di Lorenz).
+
+Si possono presentare due situazioni estreme:
+
+- caso di concentrazione minima: tutti gli elementi del campione assumono lo stesso valore:  
+    $a_1 = a_2 = \cdots = a_n = \bar{a}$
+- caso di concentrazione massima: tutti gli elementi del campione assumono valore pari a $0$, tranne uno:  
+    $a_1 = a_2 = \cdots = a_{n-1} = 0\,$ e $\,a_n = n\, \bar{a}$
+
+È necessario avere un indice di concentrazione che valga $0$ e $1$ nei casi rispettivamente di concentrazione minima e massima, e che sia negli altri casi un valore crescente in funzione della concentrazione. Si considerino:
+
+- la frequenza relativa cumulata degli individui fino alla $i$-esima osservazione:  
+    \vspace{-1mm}
+    $$
+    F_i = \dfrac{i}{n} \;\; \text{ per } i=1,\cdots,n \qquad \small \text{\% degli inidividui}
+    $$
+
+- la quantità relativa cumulata fino all'$i$-esima osservazione:  
+    \vspace{-2mm}
+    $$
+    Q_i = \dfrac{1}{TOT} \sum_{k=1}^i a_k \qquad \text{\small \% della ricchezza}
+    $$
+
+Queste due quantità possiedono le seguenti proprietà:
+
+- $0 \le F_i,\, Q_i \le 1$
+- $Q_i = F_i\,$ nel caso di concentrazione minima
+- $Q_n = F_n = 1$
+- $Q_i \le F_i\,$ siccome le osservazioni sono state ordinate in modo crescente.
+
+#### Dimostrazione
+
+Si vuole provare che $Q_i \le F_i$. Pertanto si divide l'insieme ordinato in due sottogruppi, $\{a_1, \cdots, a_i\}$ e $\{a_{i+1}, \cdots, a_n\}$, e si definiscono le rispettive somme $S_i$ e $T_i$:
+
+$\displaystyle S_i = \sum_{k=1}^i a_k \qquad T_i = \sum_{k=i+1}^n a_k \qquad TOT = S_i + T_i = S_n$
+
+Si cominci riscrivendo la disuguaglianza $Q_i \le F_i$ in termini di $S_i$ e $T_i$. In particolare, si osserva che
+
+$\displaystyle Q_i = \dfrac{S_i}{TOT} \le \dfrac{i}{n} \;\; \Longleftrightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n}$
+
+Da quest'ultima forma, si vuole isolare da un lato della disequazione $\tfrac{i\, T_i}{S_i}$:
+
+$\dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; \dfrac{1}{1+\tfrac{T_i}{S_i}} \le \dfrac{i}{n} \;\; \Rightarrow \;\; 1+\dfrac{T_i}{S_i} \ge \dfrac{n}{i} \;\; \Rightarrow \;\; i \roundp{\dfrac{T_i}{S_i}} \ge i \roundp{\dfrac{n}{i} - 1} \;\; \Rightarrow \;\; \dfrac{i\, T_i}{S_i} \ge n - i$
+
+Si scompone ora il termine $\tfrac{i\, T_i}{S_i}$ come somma sugli elementi $a_k$ con $k > i$:
+
+$\displaystyle \dfrac{i\, T_i}{S_i} = \dfrac{i}{S_i} \sum_{k=i+1}^n a_k = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i}$
+
+Questa rielaborazione permette di sfruttare l'ordinamento $a_k \ge a_i \;\; \forall i < k$. Infatti, se $a_k \ge a_i$, allora:
+
+$\dfrac{i\, a_k}{S_i} = \dfrac{\overbrace{a_k + a_k + \cdots + a_k\,\rule[0.8ex]{0pt}{1ex}}^{\raisebox{0.5ex}{\mbox{i volte}}}}{a_1 + a_2 + \cdots + a_k} \;\; \ge 1$
+
+```{=latex}
+\vspace{2mm}
+```
+
+Ne consegue che
+
+$\displaystyle \dfrac{i\, T_i}{S_i} = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i} \ge \sum_{k=i+1}^n 1 = n - (i+1) + 1 = n - i$
+
+In tal modo si conclude che $\tfrac{i\, T_i}{S_i} \ge n - i$, che equivale, tramite le equivalenze iniziali, a
+
+$\dfrac{i\, T_i}{S_i} \ge n-i \;\; \Rightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; Q_i \le F_i$
+
+```{=latex}
+\vspace{5mm}
+```
+
+In conclusione si è dimostrato che, ordinando i dati in modo crescente, la quantità cumulata $Q_i$ risulta sempre minore o uguale alla frequenza cumulata $F_i$. 
+
+```{=latex}
+\hfill
+```
+
+Per $i = 1, \cdots, n$ le coppie $(F_i, Q_i)$ indicano che il $100F_i\%$ della popolazione detiene il $100Q_i\%$ della quantità considerata. Si considerino ora i punti sul piano che sono identificati da queste coppie.
+
+```{=latex}
+\vspace{1mm}
+\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=0, xmax=1,
+        ymin=0, ymax=1,
+        width=6.75cm, height=5.75cm,
+        xlabel={$F_i$},
+        ylabel={$Q_i\;\;\;$},
+        xlabel style={
+            at={(axis description cs:0.5,-0.135)},
+            anchor=north,
+        },
+        y label style={
+            rotate=-90,
+            anchor=center,
+        },
+        grid=major,
+        grid style={dashed,gray!30},
+        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        yticklabel style={anchor=center, xshift=-1.1em},
+    ]
+    \addplot [
+        color=black,
+        thick,
+        mark=*,
+        mark options={color=gray!100!black, fill=gray!100!black}
+    ] coordinates {
+        (0,0) (0.125,0.125) (0.25,0.25) (0.375,0.375) (0.5,0.5) (0.625,0.625) (0.75,0.75) (0.875,0.875) (1,1)
+    };
+    \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[l]{0.56\textwidth}
+\vspace{-3em}
+\textbf{Concentrazione minima}\quad Nel caso di concentrazione minima tutti i punti $(F_i, Q_i)$ giacciono sulla retta $F=Q$: si può dunque dire che in questo caso $F_i - Q_i = 0$ per ogni $i$.
+\\[0.6em]
+
+\raggedright
+\makebox[0pt][l]{%
+\hspace{-1mm}$\displaystyle
+\begin{array}{l@{\ =\ }c@{,\,}c@{,\,}c@{,\,}l@{\;\;\;}l}
+a_i 
+  & \bar{a} 
+  & \cdots 
+  & \bar{a} 
+  & \bar{a} 
+  & \quad a_i = \bar{a} \quad \forall i = 1,\dots,n 
+\\[1mm]
+Q_i 
+  & \tfrac{\bar{a}}{TOT}
+  & \cdots
+  & \tfrac{(n-1)\bar{a}}{TOT}
+  & \tfrac{n\,\bar{a}}{TOT}
+  & \quad Q_i = \dfrac{i\,\bar{a}}{TOT} = \dfrac{i\,\bar{a}}{n\,\bar{a}} = \dfrac{i}{n} = F_i
+\end{array}
+$%
+}
+\end{minipage}
+
+
+\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=0, xmax=1,
+        ymin=0, ymax=1,
+        width=6.75cm, height=5.75cm,
+        xlabel={$F_i$},
+        ylabel={$Q_i\;\;\;$},
+        xlabel style={
+            at={(axis description cs:0.5,-0.135)},
+            anchor=north,
+        },
+        y label style={
+            rotate=-90,
+            anchor=center,
+        },
+        grid=major,
+        grid style={dashed,gray!30},
+        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        yticklabel style={anchor=center, xshift=-1.1em},
+    ]
+    \addplot [
+        color=black,
+        thick,
+        mark=*,
+        mark options={color=gray!100!black, fill=gray!100!black}
+    ] coordinates {
+        (0,0) (0.125,0) (0.25,0) (0.375,0) (0.5,0) (0.625,0) (0.75,0) (0.875,0) (1,1)
+    };
+    \addplot [
+        domain=0:1,
+        dashed,
+        black,
+        thin,
+    ] {x};
+    \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[l]{0.56\textwidth}
+\vspace{-2.2em}
+\textbf{Concentrazione massima}\quad Nel caso di concentrazione \mbox{massima} tutti i punti \((F_i, Q_i)\) giacciono sulla retta \(Q=0\), tranne per l'ultimo in cui $F_n = Q_n$: dunque in questo caso \(F_i - Q_i = F_i\) per \(i=1, \cdots, n-1\) e $F_n - Q_n = 0$.
+\\[0.6em]
+
+\hspace{20mm}\makebox[0pt][l]{%
+\hspace{-1mm}$\displaystyle
+\begin{array}{l@{\ =\ }c@{,\,}c@{,\quad}c@{,\quad}c@{,\,}l@{}l}
+a_i & 0 & 0 & \cdots & 0 & TOT \\[1mm]
+Q_i & 0 & 0 & \cdots & 0 & 1 \\[1mm]
+F_i & \dfrac{1}{n} & \dfrac{2}{n} & \cdots & \dfrac{n-1}{n} & 1
+\end{array}
+$%
+}
+\end{minipage}
+\vspace{1mm}
+```
+
+
+
+```{=latex}
+\vspace{1mm}
+\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=0, xmax=1,
+        ymin=0, ymax=1,
+        width=6.75cm, height=5.75cm,
+        xlabel={$F_i$},
+        ylabel={$Q_i\;\;\;$},
+        xlabel style={
+            at={(axis description cs:0.5,-0.135)},
+            anchor=north,
+        },
+        y label style={
+            rotate=-90,
+            anchor=center,
+        },
+        grid=major,
+        grid style={dashed,gray!30},
+        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        yticklabel style={anchor=center, xshift=-1.1em},
+    ]
+
+    % 1) Definiamo la bisettrice (senza disegnarla)
+    \addplot [
+        name path=diag,
+        domain=0:1,
+        draw=none
+    ] {x};
+
+    % 2) Definiamo la curva di Lorenz (sotto la bisettrice): y = x^2
+    \addplot [
+        name path=lorenz,
+        domain=0:1,
+        draw=none
+    ] {x^2};
+
+    % 3) Riempiamo l'area fra le due curve in grigio
+    \addplot [gray!30] fill between[of=lorenz and diag];
+
+    % 4) Disegniamo la bisettrice in nero tratteggiato
+    \addplot [
+        domain=0:1,
+        dashed,
+        black,
+        thin
+    ] {x};
+
+    % 5) Disegniamo la curva di Lorenz in nero
+    \addplot [
+        domain=0:1,
+        color=black,
+        semithick
+    ] {x^2};
+
+    \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[l]{0.56\textwidth}
+\vspace{-8mm}
+\textbf{Concentrazione intermedia}\quad Nei casi intermedi si avrà che i punti staranno su una curva sotto la bisettrice del I° e III° quadrante $F = Q$, dato che $Q_i \le F_i$ per qualsiasi $i=1,\cdots,n$. Più la curva si avvicina alla bisettrice, e più la concentrazione è bassa, mentre più si allontana e più la concentrazione è alta.
+\end{minipage}
+```
+
+La curva dei punti $(F_i, Q_i)$ è detta *curva di Lorenz*. L'area compresa tra la curva di Lorenz e la retta di equidistribuzione (la bisettrice) è detta area di concentrazione e può essere utilizzata come base per la definizione di appositi indici di concentrazione: maggiore infatti è la concentrazione osservata e maggiore sarà quell'area.
+
+```{=latex}
+\newpage
+```
+
+### Indice di concentrazione di Gini
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indice di concentrazione di Gini}
+```
+
+I diagrammi illustrati precedentemente sono però degli strumenti qualitativi. Si vuole perciò introdurre un indice numerico calcolato a partire dai dati, il cui valore possa facilemnte essere confrontato con due estremi minimo e massimo. Si definisce quindi l'*indice di concentrazione di Gini*:
+$$
+G = \sum^{n-1}_{i=1} (F_i - Q_i)
+$$
+Si osserva che non viene considerato il caso in cui $i=n$ in quanto $F_n - Q_n = 0$ sempre.
+
+Per interpretare questo indice come l'area nel diagramma $(F,Q)$, occorre introdurre una somma di Riemann. Ogni differenza $(F_i - Q_i)$ va infatti molitplicata per l'ampiezza in ascissa $\Delta F_i$: trovandoci in un contesto discreto con dati equispaziati, ciò si traduce in $\Delta F_i = 1/n$. Di conseguenza, la somma $\sum (F_i - Q_i)$ diventa $n$ volte l'area effettiva. Dividendo quindi questa sommatoria per $n$, si ottiene un indice $G_{area}$ che riflette la superficie compresa tra la retta di equidistribuzione e la curva di Lorenz:
+$$
+G_{area} = \sum_{i=1}^{n-1} \squarep{(F_i - Q_i) \Delta F_i} = \dfrac{1}{n} \sum_{i=1}^{n-1} (F_i - Q_i)
+$$
+
+```{=latex}
+\vspace{-1mm}
+\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=0, xmax=1,
+        ymin=0, ymax=1,
+        width=6.75cm, height=5.75cm,
+        xlabel={$F_i$},
+        ylabel={$Q_i\;\;\;$},
+        xlabel style={
+            at={(axis description cs:0.5,-0.135)},
+            anchor=north,
+        },
+        y label style={
+            rotate=-90,
+            anchor=center,
+        },
+        grid=major,
+        grid style={dashed,gray!30},
+        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
+        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
+        yticklabel style={anchor=center, xshift=-1.1em},
+    ]
+
+    % 1) Bisettrice
+    \addplot [
+        name path=diag,
+        domain=0:1,
+        draw=none
+    ] {x};
+
+    % 2) Curva di Lorenz
+    \addplot [
+        name path=lorenz,
+        domain=0:1,
+        draw=none
+    ] {x^2};
+
+    % 3) Asse x
+    \addplot [
+        name path=axis,
+        domain=0:1,
+        draw=none
+    ] {0};
+
+    % 4) Area sotto la curva - grigio chiaro
+    \addplot [gray!10] fill between[of=lorenz and axis];
+
+    % 5) Area tra curva e bisettrice - grigio medio
+    \addplot [gray!30] fill between[of=lorenz and diag];
+
+    % 6) Bisettrice
+    \addplot [
+        domain=0:1,
+        black,
+        semithick
+    ] {x};
+
+    % 7) Curva di Lorenz
+    \addplot [
+        domain=0:1,
+        color=black,
+        semithick
+    ] {x^2};
+
+    \node at (axis cs:0.5,0.38) {\textbf{A}};
+    \node at (axis cs:0.75,0.25) {\textbf{B}};
+
+    \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[l]{0.56\textwidth}
+\vspace{-9.4mm}
+Questo indice misura l'area compresa tra la bisettrice $F=Q$ e la curva di Lorenz. Nel grafico è rappresentata da $A$. \\[2mm]
+Nel caso di concentrazione minima la curva di Lorenz si \mbox{appiattisce} e coincide con la bisettrice: di conseguenza \mbox{l'indice} avrà valore minimo 0. \\[2mm]
+Nel caso di concentrazione massima la curva di Lorenz \mbox{coincide} con l'asse orizzontale, e quindi l'area è \mbox{rappresentata} da $A + B$. L'indice avrà valore massimo $1/2$, ossia l'area della porzione di piano compreso tra la bisettrice e l'asse orizzontale.
+\end{minipage}
+```
+
+Calcolando algebricamente il valore massimo di $G_{area}$ si trova che in realtà questo non assume mai valore pari a $1/2$. Ricordando che nel caso di concentrazione massima $F_i - Q_i = F_i$ per $i, \cdots, n-1$:
+$$
+G_{area}\text{(max)} = \dfrac{1}{n} \sum_{i=1}^{n-1} F_i = \dfrac{1}{n} \sum_{i=1}^{n-1} \dfrac{i}{n} = \dfrac{1}{n^2} \sum_{i=1}^{n-1} i = \dfrac{1}{n^2} \dfrac{(n-1)(n-\cancel 1 + \cancel 1)}{2} = \dfrac{n-1}{2n}
+$$
+Di conseguenza si trova che per $n$ grande, nel caso di concentrazione massima, il valore di $G_{area}$ tende a $1/2$. Si è dimostrato che $0 \le G_{area} < 1/2$.
+
+##### Indice di concentrazione di Gini normalizzato
+
+Si consideri $G_{area}$, lo si normalizza dividendolo per il suo valore massimo $\sum F_i$ che si presenta nel caso di concentrazione massima:
+$$
+G' = \dfrac{2n}{n-1} \sum_{i=1}^{n-1} \squarep{(F_i - Q_i) \Delta F_i} = \dfrac{2n}{n-1}  \dfrac{1}{n} \sum_{i=1}^{n-1} (F_i - Q_i) = \dfrac{2}{n-1} \sum_{i=1}^{n-1} (F_i - Q_i)
+$$
+
+Si osserva che $0 \le G' \le 1$. Si noti che si è arrivati a tale conclusione partendo da $G_{area}$, ma è possibile arrivare al medesimo risultato dividendo $G$ per il suo valore massimo $(n-1)/2$.
+
+Considerando il grafico, questo indice indica il rapporto $A / (A+B)$, dove $(A+B)$ rappresenta proprio l'area dell'indice non normalizzato nel caso di concentrazione massima.
+
+
+
+```{=latex}
+\newpage
+```
+
+
+
+# Altro
+
 ## Altri grafici
 
 ### Box Plot
@@ -876,354 +1711,17 @@ Insiemi di dati bimodali
 
 In questi casi, quando nei dati si hanno due popolazioni ben distinte per quanto riguarda un certo attributo, ha senso dividere i dati in base a queste popolazioni e ottenere un insieme normale.
 
-```{=latex}
-\newpage
-```
 
 
+## Trasformazione dei dati
 
-## Indici di dipendenza
+Può risultare utile una rielaborazione dei dati iniziali per diversi motivi: per poterli confrontare con altri dati riportandoli ad un intervallo predefinito, per poter confrontare la loro distribuzione di frequenza con quella di altri dati oppure per renderli più facilmente leggibili.
 
-Si consideri un insieme composto da dati accoppiati $(x_1,y_1),(x_2, y_2), \cdots, (x_n, y_n)$. Per vedere la relazione relativa di queste due variabili è possibile rappresentarle in un diagramma di dispersione. Questo approccio è però qualitativo, e quindi soggetto a interpretazione.  
-Si vuole trovare un indice quantitativo in grado di rappresentare questa relazione oggettivamente. Questi indici sono detti di dipendenza o associazione e misurano la forza della relazione, ossia forniscono un valore numerico che indica quanto intensamente le variabili siano collegate.
+## Analisi della varianza
 
-### Covarianza campionaria
 
-```{=latex}
-\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Covarianza campionaria}
-```
 
-Si introduce una statistica, detta *covarianza campionaria*, che quantifica in che misura grandi valori di $x$ corrispondano a grandi valori di $y$ e piccoli valori di $x$ a piccoli valori di $y$. Questo indice quindi misura la tendenza con cui due variabili si muovono insieme ed è definita come la media dei prodotti degli scostamenti delle variabili dalle loro medie.
-
-```{=latex}
-\vspace{-2mm}
-```
-
-##### Relazione tendenziale
-
-Si procede considerando una relazione di tipo tendenziale e non deterministico. Ciò significa che le affermazioni che seguiranno varranno tendenzialmente sempre: ci saranno quindi delle eccezioni, ma per lo più saranno valide.
-
-Si supponga che un insieme sia costituito dalle coppie di valori $(x_i, y_i) \text{ con } i =1, \cdots, n$. Si calcolino le rispettive medie campionarie $\bar{x}$ e $\bar{y}$. Per la $i$-esima coppia di dati, si considerino $(x_i - \bar{x})$ lo scarto del valore $x$ rispetto alla sua media campionaria e $(y - \bar{y})$ lo scarto del valore $y$ rispetto alla sua media campionaria.
-
-Quando grandi valori di $x$ tendono a essere associati con grandi valori di $y$, e piccoli valori di $x$ tendono a essere associati a piccoli valori di $y$, allora i segni (positivi o negativi) di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ tenderanno a essere gli stessi. A questo punto, se gli scarti hanno segno concorde, il loro prodotto $(x_i - \bar{x})(y_i - \bar{y})$ sarà positivo. Si ottiene che la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà a essere un grande numero positivo.  
-
-```{=latex}
-\begin{small}
-\vspace{2mm}
-\begin{minipage}[c]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{rel-diretta.png}
-\end{minipage}
-\hspace{1.5mm}
-\begin{minipage}[c]{0.3\textwidth}
-    \vspace{0mm}
-    \begin{tabular}{ccc}
-    x "grande" & e & y "grande" \\
-    $x \ge \bar{x}$ &  & $y \ge \bar{y}$ \\
-    $(x_i - \bar{x}) \ge 0$ &  & $(y_i - \bar{y}) \ge 0$ \\[2ex]
-    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
-    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) \ge 0$} \\[1mm]
-    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) > 0$}
-    \end{tabular}
-\end{minipage}
-\begin{minipage}[c]{0.01\textwidth}
-    \centering
-    \vrule width 0.35pt height 2.85cm
-\end{minipage}
-\hspace{1mm}
-\begin{minipage}[c]{0.3\textwidth}
-    \vspace{0mm}
-    \begin{tabular}{ccc}
-    x "piccolo" & e & y "piccolo" \\
-    $x < \bar{x}$ &  & $y < \bar{y}$ \\
-    $(x_i - \bar{x}) < 0$ &  & $(y_i - \bar{y}) < 0$ \\[2ex]
-    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
-    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) \ge 0$} \\[1mm]
-    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) > 0$}
-    \end{tabular}
-\end{minipage}
-
-\vspace{1mm}
-\begin{center}
-	\begin{minipage}[c]{0.9\textwidth}
-		Si individua quindi una correlazione positiva tra le due variabili poiché tendenzialmente presentano segno concorde. In questo caso si parla di relazione tra le due variabili di tipo diretta.
-	\end{minipage}
-\end{center}
-\vspace{2mm}
-\end{small}
-```
-
-Per lo stesso motivo, quando grandi valori di una variabile tendono a verificarsi in corrispondenza a piccoli valori dell'altra, allora i segni di $(x_i - \bar{x})$ e $(y_i - \bar{y})$ saranno discordi e quindi la sommatoria $\sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})$ tenderà ad essere un grande numero negativo.  
-
-```{=latex}
-\begin{small}
-\vspace{2.5mm}
-\begin{minipage}[c]{0.31\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{rel-indiretta.png}
-\end{minipage}
-\hspace{1.5mm}
-\begin{minipage}[c]{0.3\textwidth}
-    \vspace{0mm}
-    \begin{tabular}{ccc}
-    x "grande" & e & y "piccola" \\
-    $x \ge \bar{x}$ &  & $y < \bar{y}$ \\
-    $(x_i - \bar{x}) \ge 0$ &  & $(y_i - \bar{y}) < 0$ \\[2ex]
-    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
-    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) < 0$} \\[1mm]
-    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) < 0$}
-    \end{tabular}
-\end{minipage}
-\begin{minipage}[c]{0.01\textwidth}
-    \centering
-    \vrule width 0.35pt height 2.85cm
-\end{minipage}
-\hspace{1mm}
-\begin{minipage}[c]{0.3\textwidth}
-    \vspace{0mm}
-    \begin{tabular}{ccc}
-    x "piccolo" & e & y "grande" \\
-    $x < \bar{x}$ &  & $y \ge \bar{y}$ \\
-    $(x_i - \bar{x}) < 0$ &  & $(y_i - \bar{y}) \ge 0$ \\[2ex]
-    \multicolumn{3}{c}{\text{Tendenzialmente:}} \\[1mm]
-    \multicolumn{3}{c}{$(x_i - \bar{x})(y_i - \bar{y}) < 0$} \\[1mm]
-    \multicolumn{3}{c}{$\displaystyle\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) < 0$}
-    \end{tabular}
-\end{minipage}
-
-\vspace{1mm}
-\begin{center}
-	\begin{minipage}[c]{0.9\textwidth}
-		Si individua quindi una correlazione negativa tra le due variabili poiché tendenzialmente presentano segno discorde. In questo caso si parla di relazione tra le due variabili di tipo indiretta.
-	\end{minipage}
-\end{center}
-\vspace{2mm}
-\end{small}
-```
-
-Si procede poi standardizzando la sommatoria dividendo per $n-1$, al fine di evitare che questo indice assuma valori troppo elevati. Si osserva che la formula della covarianza campionaria è riconducibile a quello della varianza campionaria, motivo per il quale si possa intuire perché si vada a dividere per $n-1$ e non direttamente per il numero totale di osservazioni.
-
-Ricapitolando, si definisce la covarianza campionaria come:
-$$
-s_{x,y} = \dfrac{1}{n-1} \displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y}) = 
-\begin{cases}
-> 0 & \text{relazione diretta} \\
-\approx 0 & \text{assenza di relazione / indipendenza} \\
-< 0 & \text{relazione indiretta / inversa}
-\end{cases}
-$$
-
-
-### Coefficiente di correlazione di Pearson
-
-```{=latex}
-\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Coefficiente di correlazione di Pearson}
-```
-
-La covarianza campionaria non può essere posizionata all'interno di una scala assoluta in quanto non è normalizzata e il suo valore dipende dalle osservazioni coinvolte. Si ricava perciò da questo indice il *coefficiente di correlazione lineare campionaria* (anche detto indice di correlazione di Pearson), che si indica con $\rho$.
-
-Presa la covarianza campionaria, si standardizza il suo valore dividendolo per il prodotto delle due deviazioni standard campionarie delle due variabili:
-$$
-\rho =\dfrac{\displaystyle \sum^n_{i=1} (x_i - \bar{x})(y_i - \bar{y})}{(n-1)s_x s_y}
-$$
-Il coefficiente di correlazione di Pearson è quindi un numero puro e, proprio come la covarianza campionaria, quando $\rho > 0$ i dati sono correlati positivamente; invece quando $\rho < 0$ sono correlati negativamente.  
-Non dipendendo dalle unità di misura, questo indice può essere usato per comparare dataset diversi.
-
-Una proprietà importante, che non verrà dimostrata, è che $-1 \le \rho \le 1$
-
-#### Relazione deterministica
-
-```{=latex}
-\vspace{-3mm}
-```
-
-##### Primo caso
-
-Si passi da una relazione tendenziale a una deterministica, in cui la variabile $y$ è una trasformazione lineare della variabile $x$; tutti i vari indici statistici variano di conseguenza:
-$$
-\forall i \;\; y_i = a + b x_i \quad \Rightarrow \quad \bar{y} = a + b \bar{x} \quad \Rightarrow \quad s_y^2 = b^2 s_x^2 \quad \Rightarrow \quad s_y = |\, b\, | s_x
-$$
-Nella relazione deterministica $y = a + bx$, la costante $b$ rappresenta la pendenza (ossia il coefficiente angolare) della retta che lega le due variabili e indica di quanto varia $y$ all'aumentare di $x$. Ci si aspetta che: 
-
-- se $b$ è positivo, all’aumento di $x$ corrisponde un incremento di $y \Rightarrow$ relazione diretta
-- se $b$ è negativo, all’aumento di $x$ corrisponde una diminuzione di $y \Rightarrow$ relazione inversa 
-
-Si calcoli ora il coefficiente di correlazione di Pearson:
-$$
-\rho = \dfrac{b \sum_{i=1}^n (x_i - \bar{x})^2}{(n-1)\,|\, b \,|\, s_x^2} =
-	\dfrac{b}{|\, b \,|} \cdot \dfrac{1}{s_x^2} \dfrac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} = \dfrac{b}{|\, b \,|} \cdot \dfrac{1}{\cancel{s_x^2}} \cancel{s_x^2}
-	= \dfrac{b}{|\, b \,|} \;\;= \;\;
-    \begin{cases}
-		+1 & \text{se } b>0 \\
-		-1 & \text{se } b < 0
-    \end{cases}
-$$
-Questo significa che:
-
-- l'indice $\rho$ è uguale a $+1$ se $b$ è una costante positiva, e se quindi le due variabili esibiscono una relazione di tipo deterministica diretta.
-- l'indice $\rho$ è uguale a $-1$ se $b$ è una costante negativa, e se quindi le due variabili esibiscono una relazione di tipo deterministica indiretta.
-
-Le conclusioni che abbiamo ottenuto con i calcoli rispecchiano le attese iniziali.
-
-```{=latex}
-\newpage
-```
-
-##### Secondo caso
-
-Si consideri ora una relazione in cui entrambe le variabili $x$ e $y$ sono soggette a una trasformazione lineare; i vari indici statistici variano nel seguente modo:
-$$
-\forall i \quad
-\begin{aligned}
-x'_i &= a + bx_i \quad \Rightarrow \quad \bar{x}' = a + b\bar{x} \quad \Rightarrow \quad s_{x'} = |\, b\,|\, s_x \quad \Rightarrow \quad x'_i - \bar{x}' = b(x_i - \bar{x}) \\
-y'_i &= c + dy_i \,\quad \Rightarrow \quad \bar{y}' = c + d\bar{x} \quad \Rightarrow \quad s_{y'} = |\, d\,|\, s_y \quad \Rightarrow \quad y'_i - \bar{y}' = d(y_i - \bar{y})
-\end{aligned}
-$$
-Si procede calcolando il coefficiente di correlazione di Pearson:
-$$
-\rho' = \dfrac{\sum_{i=1}^n (x'_i - \bar{x}')(y'_i - \bar{y}')}{(n-1) s_x' s_y'} =
-	\dfrac{b\, d\, \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{(n-1)\, |\,b\,|\, |\,d\,|\, s_x s_y} = 
-	\dfrac{b\, d}{|\, b\, |\, |\, d\,|} \rho \;\;=\;\;
-    \begin{cases}
-		+\rho & \text{se } b \text{ concorda con }d \\
-		-\rho & \text{se } b \text{ discorda con }d
-    \end{cases}
-$$
-Ciò significa che la correlazione tra $x'$ e $y'$ rimane numericamente invariata rispetto a quella tra $x$ e $y$ e può eventualmente cambiare solo di segno:
-
-- se i coefficienti di trasformazione $b$ e $d$ hanno lo stesso segno allora $\rho' = \rho$
-- se i coefficienti di trasformazione $b$ e $d$ hanno segni opposti allora $\rho' = -\rho$
-
-```{=latex}
-\vspace{1mm}
-```
-
-#### Conclusioni
-
-Il coefficiente di correlazione di Pearson è un indicatore fondamentale per valutare la forza e la direzione di una relazione (o associazione) di tipo lineare tra due variabili, con valori che spaziano fra $-1$ e $+1$.
-
-Relazione deterministica
-: Quando due variabili presentano una relazione lineare deterministica $y = a + bx$, il coefficiente di correlazione assume valore estremo: $\rho = +1$ se $b>0$ e $\rho = -1$ se $b<0$. In altre parole, se tutti i punti giacciono esattamente su una retta crescente (o decrescente), la correlazione è massima (o minima).
-
-Relazione tendenziale
-:   Nella maggior parte dei casi reali, le due variabili seguono una relazione lineare tendenziale. In questo contesto, il valore assoluto del coefficiente  di correlazione, $|\rho|$, fornisce una misura di quanto le osservazioni si dispongano in prossimità di una retta:
-
-    - $|\rho|=1$ evidenzia una perfetta relazione lineare: in altre parole, è 
-      possibile collegare tutti i valori $(x_i, y_i)$ con $i=1,\cdots,n$ con 
-      una retta.
-    - Più $|\rho|$ si avvicina a $1$, e più i dati esibiscono una relazione lineare forte, anche se non perfetta: ciò significa che se anche non esiste una retta che attraversa tutti i valori dei dati, ce n'è una che passa vicino a tutti.
-    - Se $|\rho|$ è prossimo allo $0$, non c'è evidenza di un legame lineare tra le variabili. 
-      
-    Il segno di $\rho$ indica invece la direzione della relazione. Il segno è positivo quando l'approssimazione lineare è crescente (diretta), ed è invece negativo quando l'approssimazione lineare è decrescente (inversa).
-
-È importante tenere a mente che un valore di $\rho = 0$ non implica automaticamente l’assenza di qualsiasi relazione, poiché potrebbero esistere legami non lineari che questo indice non è in grado di cogliere.
-
-Vale inoltre la pena sottolineare che il coefficiente di correlazione di Pearson non implica in alcun modo un rapporto di causa-effetto tra le due variabili prese in considerazione. In altre parole, due variabili possono presentare un valore di correlazione elevato senza che una determini o causi l’altra. Spesso, infatti, può intervenire un terzo fattore (o più fattori) a influenzare entrambe le variabili, generando un legame che in realtà non corrisponde a un meccanismo causale diretto.
-
-
-
-```{=latex}
-\newpage
-```
-
-## Eterogeneità
-
-Per le variabili qualitative nominali non è possibile calcolare la varianza né gli indici che ne derivano, perché non esistono una media, una mediana o altri valori numerici di riferimento su cui misurare distanze. Risulta comunque necessario avere un indice che misuri la dispersione della distribuzione delle frequenze, detta *eterogeneità*. In particolare si dice che una variabile è distribuita in modo eterogeneo quando ogni suo valore compare con la stessa frequenza.
-
-### Indice di Gini
-
-```{=latex}
-\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indice di Gini}
-```
-
-Si consideri un campione $\{ x_1, \cdots, x_n\}$ in cui occorrono i valori distinti $v_1, \cdots, v_m$, e si indichi con $f_j$ la frequenza relativa dell'elemento $v_j$ per $j=1, \cdots, m$. Si definisce l'*indice di eterogeneità di Gini* come:
-$$
-I = 1 - \sum_{j=1}^m f_j^2
-$$
-Una proprietà importante di questo indice è che $0 \le I < 1$. Inoltre l'omogeneità massima dell'insieme di dati si presenta quando $I = 0$, mentre l'eterogeneità massima la si ha quando $I \to 1$. Di conseguenza, più aumenta il valore dell'indice di Gini e più aumenta il grado di eterogeneità.
-
-Per dimostrare le limitazioni inferiori e superiori si ricordi innanzitutto che, trattandosi di frequenze relative, $0 \le f_j \le 1 \;\; \forall j \in [1,m]$. Inoltre $\sum_{j=1}^m f_j = 1$. Di conseguenza si avrà:
-
-- per almeno un $j$ si ha $\displaystyle f_j > 0 \Rightarrow f_j^2 > 0 \Rightarrow \sum_{j=1}^m f_j^2 > 0 \quad \Rightarrow \quad I < 1$
-- per ogni $j$, dato che $0 \le f_j \le 1$, si ha che $\displaystyle f_j^2 \le f_j \Rightarrow \sum_{j=1}^m f_j^2 \le \sum_{j=1}^m f_j = 1 \quad \Rightarrow \quad I \ge 0$
-
-Si noti, come accennato precedentemente, che l'estremo inferiore si presenta quando l'insieme è massimamente omogeneo e l'estremo superiore quando è massimamente eterogeneo:
-
-- l'eterogeneità minima la si ha quando tutti gli elementi hanno lo stesso valore, e quindi  
-    $\displaystyle \exists\, k \in \left[ 1, m\right]\; |\; f_k = 1, \; \forall j \not = k \;\; f_j = 0 \quad \Rightarrow \quad I = 1 - \sum_{j=1}^m f_j^2 = 1 - f_k^2 = 1 - 1 = 0$
-- l'eterogeneità massima la si ha quando tutti gli elementi hanno la stessa frequenza, e quindi  
-    $\displaystyle \forall j \in \left[ 1,m \right] \;\; f_j = \frac{1}{m} \quad \Rightarrow \quad I = 1 - \sum_{j=1}^m f_j^2 = 1 - \sum_{j-1}^m \frac{1}{m^2} = 1 - \frac{1}{m} = \frac{m-1}{m} \;\; \to 1 \text{ al crescere di }m$
-
-##### Indice di Gini normalizzato
-
-Si ricordi che $m$ è la cardinalità dell'insieme dei valori distinti. Questo indice presenta due problematiche:
-
-1. il valore massimo che può assumere, ossia quando l'insieme di dati è massimamente eterogeneo, è $(m-1)/m$. Di conseguenza, specialmente nel caso in cui non si conosca il valore $m$, non si può sapere quanto questo indice debba tendere a $1$ affinché si abbia la massima eterogeneità nell'insieme dei dati.
-2. il suo valore dipende fortemente dal valore di $m$. Non è quindi possibile confrontare 2 attributi qualitativi che presentano intervalli di valori diversi, ossia $m$ diverso.
-
-Per ovviare a questi problemi si introduce l'*indice di Gini normalizzato*, che si ottiene dividendo l'indice di Gini per il valore massimo $(m-1)/m$ che può assumere:
-$$
-I' = \dfrac{m \cdot I}{m-1}
-$$
-Questo indice può assumere anche 1 come valore: $0 \le I' \le 1$. Si consideri infatti il caso in cui l'eterogeneità di un insieme di dati è massima:
-$$
-I = \dfrac{m-1}{m} \quad \Rightarrow \quad I' = \dfrac{m \cdot I}{m-1} = \dfrac{m \cdot (m-1)}{(m-1) \cdot m} = 1
-$$
-
-
-
-### Indice di entropia
-
-```{=latex}
-\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indice di entropia}
-```
-
-Si consideri un campione $\{ x_1, \cdots, x_n\}$ in cui occorrono i valori distinti $v_1, \cdots, v_m$, e si indichi con $f_j$ la frequenza relativa dell'elemento $v_j$ per $j=1, \cdots, m$. Si definisce l'*indice di entropia* del campione come:
-$$
-H = \sum_{j=1}^m f_j \log \dfrac{1}{f_j} = - \sum_{j=1}^m f_j \log f_j
-$$
-
-La funzione $I(p) = \log 1/p = - \log p$ è detta *autoinformazione* e misura la quantità di informazione ottenuta dal verificarsi di un evento con probabilità $p$. In altre parole, misura quanto viene ridotta l’incertezza una volta che sappiamo che l’evento si è effettivamente realizzato. Questa funzione è descrescente monotona, vale $0$ quando $p=1$ e tende a infinito per $p$ che tende a 0.
-
-Nel calcolo dell'entropia compare $-f_j \log f_j$. Se $f_j = 0$ questa espressione assume la forma indeterminata $0 \cdot \infty$. È però possibile estendere la definizione dell'entropia anche nei casi in cui alcune frequenze relative siano nulle. Valutando il limite $\displaystyle \lim_{f_j \to 0^+} -f_j \log f_j = 0$ si definisce per convenzione $- 0 \log 0 = 0$. 
-
-Si effettuano le seguenti osservazioni:
-
-- $\forall j$ vale $-f_j \log f_j \ge 0 \;\; \Rightarrow \;\; H \ge 0$
-
-- $\forall j$ si ha che $-f_j \log f_j = 0 \;\; \Leftrightarrow \;\; f_j = 0 \lor  \log f_j = 0 \text{ e quindi } f_j =1$. Pertanto $H=0$ se e solo se ci si trova in condizione di massima omogeneità, e quindi tutti i dati del campione assumono lo stesso valore.
-
-- In caso di invece massima eterogeneità si avrà $f_j = 1/m$ e quindi 
-    $$
-    H = \sum_{j=1}^m \dfrac{1}{m} \log m = m \left(\dfrac{1}{m} \log m \right) =  \log m
-    $$
-    Si può dimostrare che in questo caso l'entropia assume il valore massimo.
-
-```{=latex}
-\vspace{2mm}
-```
-
-Una proprietà importante di questo indice è quindi che $0 \le H \le \log m$. Più questo indice cresce, e più aumenta il grado di eterogeneità dell'insieme, viceversa più descresce e più aumenta il grado di omogeneità.
-
-##### Indice di entropia normalizzato
-
-Si definisce l'*indice di entropia normalizzato* come
-$$
-H' = \dfrac{H}{\log m}
-$$
-I valori di questo indice  sono compresi tra $0$ e $1$, infatti nel caso di massima eterogeneità si ha che:
-$$
-H = \log m \quad \Rightarrow \quad H' = \dfrac{\log m}{\log m} = 1
-$$
-Se il logaritmo è in base $2$ allora l'entropia si misura in bit: ciò risulta utile quando bisogna svolgere i calcoli in un computer; è comunque possibile usare altre basi, come per sempio il logaritmo naturale e quello in base 10.
-
-
-
-### Alberi di decisione
-
-```{=latex}
-\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Alberi di decisione}
-```
+## Alberi di decisione
 
 Gli indici di eterogeneità non servono solo per misurare la dispersione delle frequenze nelle variabili qualitative, ma trovano anche un’applicazione fondamentale nella costruzione degli alberi di decisione. In un albero di decisione, ogni oggetto da classificare è descritto da un vettore di attributi, e la classificazione avviene valutando, a partire dalla radice dell’albero, condizioni sui valori di tali attributi.
 
@@ -1235,222 +1733,28 @@ Ad esempio, utilizzando l’indice di Gini si seleziona la condizione che minimi
 
 Così, l’impiego degli indici di eterogeneità consente di valutare quantitativamente la bontà delle suddivisioni, contribuendo a costruire alberi di decisione efficaci per il compito di classificazione.
 
+## Analisi di classificatori
 
-
-## Concentrazione
-
-Le misure di concentrazione sono strumenti statistici che consentono di comprendere come una determinata risorsa o bene – ad esempio la ricchezza – sia distribuita all’interno di una popolazione. In questo modo, è possibile valutare se tale risorsa sia distribuita in maniera equa tra tutti gli individui oppure se risulti concentrata in un numero ristretto di soggetti.
-
-Mentre la varianza quantifica la dispersione dei singoli valori rispetto alla media, gli indici di concentrazione mettono in evidenza se una piccola parte della popolazione detiene una quota sproporzionata del bene considerato.
-
-Si consideri un campione di $n$ osservazioni, ciascuno dei quali possiede una certa quantità di risorse. Si indichi con $a_i$ la quantità posseduta dall'$i$-esimo individuo dopo aver ordinato le osservazioni in ordine crescente, ossia $a_1 \le a_2 \le \cdots \le a_n$. Il valore medio della risorsa è definito come $\bar{a} = 1/n \sum_{i=1}^n a_i$, dove la sommatoria rappresenta la somma di tutte le dotazioni individuali. Moltiplicando il valore medio $\bar{a}$ per il numero totale degli individui $n$ otteniamo il totale aggregato della risorsa:
-$$
-TOT = n\, \bar{a} = \sum_{i=1}^n a_i
-$$
-Qui la somma viene effettuata su tutte le osservazioni $a_1, a_2, \ldots, a_n$, cioè su tutte le dotazioni della risorsa in esame. L'ordinamento in ordine crescente serve per facilitare l'analisi della distribuzione della risorsa fra gli individui (come vedremo dopo per la curva di Lorenz).
-
-Si possono presentare due situazioni estreme:
-
-- caso di concentrazione minima: tutti gli elementi del campione assumono lo stesso valore:  
-    $a_1 = a_2 = \cdots = a_n = \bar{a}$
-- caso di concentrazione massima: tutti gli elementi del campione assumono valore pari a $0$, tranne uno:  
-    $a_1 = a_2 = \cdots = a_{n-1} = 0\,$ e $\,a_n = n\, \bar{a}$
+### Classificatori costanti
 
 ```{=latex}
-\hfill
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Classificatori costanti}
 ```
 
-È necessario avere un indice di concentrazione che valga $0$ e $1$ nei casi rispettivamente di concentrazione minima e massima, e che sia negli altri casi un valore crescente in funzione della concentrazione. Si considerino:
-
-- la frequenza relativa cumulata degli individui fino alla $i$-esima osservazione:  
-    $$
-    F_i = \dfrac{i}{n} \;\; \text{ per } i=1,\cdots,n \qquad \small \text{\% degli inidividui}
-    $$
-
-- la quantità relativa cumulata fino all'$i$-esima osservazione:  
-    $$
-    Q_i = \dfrac{1}{TOT} \sum_{k=1}^i a_k \qquad \text{\small \% della ricchezza}
-    $$
+### Classificatori ideali
 
 ```{=latex}
-\newpage
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Classificatori ideali}
 ```
 
-Queste due quantità possiedono le seguenti proprietà:
-
-- $0 \le F_i,\, Q_i \le 1$
-- $Q_i = F_i\,$ nel caso di concentrazione minima
-- $Q_n = F_n = 1$
-- $Q_i \le F_i\,$ siccome le osservazioni sono state ordinate in modo crescente.
-
-#### Dimostrazione
-
-Vogliamo provare che $Q_i \le F_i$. Pertanto si divide l'insieme ordinato in due sottogruppi, $\{a_1, \cdots, a_i\}$ e $\{a_{i+1}, \cdots, a_n\}$, e definiamo le rispettive somme $S_i$ e $T_i$:
-
-$\displaystyle S_i = \sum_{k=1}^i a_k \qquad T_i = \sum_{k=i+1}^n a_k \qquad TOT = S_i + T_i = S_n$
-
-Si cominci riscrivendo la disuguaglianza $Q_i \le F_i$ in termini di $S_i$ e $T_i$. In particolare, si osserva che
-
-$\displaystyle Q_i = \dfrac{S_i}{TOT} \le \dfrac{i}{n} \;\; \Longleftrightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n}$
-
-Da quest'ultima forma, vogliamo isolare da un lato della disequazione $\tfrac{i\, T_i}{S_i}$:
-
-$\dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; \dfrac{1}{1+\tfrac{T_i}{S_i}} \le \dfrac{i}{n} \;\; \Rightarrow \;\; 1+\dfrac{T_i}{S_i} \ge \dfrac{n}{i} \;\; \Rightarrow \;\; i \roundp{\dfrac{T_i}{S_i}} \ge i \roundp{\dfrac{n}{i} - 1} \;\; \Rightarrow \;\; \dfrac{i\, T_i}{S_i} \ge n - 1$
-
-Si scompone ora il termine $\tfrac{i\, T_i}{S_i}$ come somma sugli elementi $a_k$ con $k > i$:
-
-$\displaystyle \dfrac{i\, T_i}{S_i} = \dfrac{i}{S_i} \sum_{k=i+1}^n a_k = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i}$
-
-Questa rielaborazione ci permette di sfruttare l'ordinamento $a_k \ge a_i \;\; \forall i < k$. Infatti, se $a_k \ge a_i$, allora:
-
-$\dfrac{i\, a_k}{S_i} = \dfrac{\overbrace{a_k + a_k + \cdots + a_k\,\rule[0.8ex]{0pt}{1ex}}^{\raisebox{0.5ex}{\mbox{i volte}}}}{a_1 + a_2 + \cdots + a_k} \;\; \ge 1$
+### Classificatori casuali
 
 ```{=latex}
-\vspace{2mm}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Classificatori casuali}
 ```
 
-Ne consegue che
-
-$\displaystyle \dfrac{i\, T_i}{S_i} = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i} \ge \sum_{k=i+1}^n 1 = n - (i+1) + 1 = n - i$
-
-In tal modo si conclude che $\tfrac{i\, T_i}{S_i} \ge n - i$. Poiché $n-i \ge n-1$ quando $i \ge 1$, abbiamo dunque dimostrato
-
-$\dfrac{i\, T_i}{S_i} \ge n-1 \;\; \Rightarrow \;\; Q_i \le F_i$
+### Classificatori a soglia
 
 ```{=latex}
-\hfill
-\newpage
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Classificatori a soglia}
 ```
-
-Per $i = 1, \cdots, n$ le coppie $(F_i, Q_i)$ indicano che il $100F_i\%$ della popolazione detiene il $100Q_i\%$ della quantità considerata. Si considerino ora i punti sul piano che sono identificati da queste coppie.
-
-```{=latex}
-\vspace{1mm}
-\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
-    \centering
-    \begin{tikzpicture}
-    \begin{axis}[
-        xmin=0, xmax=1,
-        ymin=0, ymax=1,
-        width=6.75cm, height=5.75cm,
-        xlabel={$F_i$},
-        ylabel={$Q_i\;\;\;$},
-        xlabel style={
-            at={(axis description cs:0.5,-0.135)},
-            anchor=north,
-        },
-        y label style={
-            rotate=-90,
-            anchor=center,
-        },
-        grid=major,
-        grid style={dashed,gray!30},
-        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
-        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
-        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
-        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
-        yticklabel style={anchor=center, xshift=-1.1em},
-    ]
-    \addplot [
-        color=black,
-        thick,
-        mark=*,
-        mark options={color=gray!100!black, fill=gray!100!black}
-    ] coordinates {
-        (0,0) (0.125,0.125) (0.25,0.25) (0.375,0.375) (0.5,0.5) (0.625,0.625) (0.75,0.75) (0.875,0.875) (1,1)
-    };
-    \end{axis}
-    \end{tikzpicture}
-\end{minipage}
-\begin{minipage}[l]{0.56\textwidth}
-\vspace{-3em}
-\textbf{Concentrazione minima}\quad Nel caso di concentrazione minima tutti i punti $(F_i, Q_i)$ giacciono sulla retta $F=Q$: si può dunque dire che in questo caso $F_i - Q_i = 0$ per ogni $i$.
-\\[0.7em]
-
-\raggedright
-\makebox[0pt][l]{%
-\hspace{-1mm}$\displaystyle
-\begin{array}{l@{\ =\ }c@{,\,}c@{,\,}c@{,\,}l@{\;\;\;}l}
-a_i 
-  & \bar{a} 
-  & \cdots 
-  & \bar{a} 
-  & \bar{a} 
-  & \quad a_i = \bar{a} \quad \forall i = 1,\dots,n 
-\\[1mm]
-Q_i 
-  & \tfrac{\bar{a}}{TOT}
-  & \cdots
-  & \tfrac{(n-1)\bar{a}}{TOT}
-  & \tfrac{n\,\bar{a}}{TOT}
-  & \quad Q_i = \dfrac{i\,\bar{a}}{TOT} = \dfrac{i\,\bar{a}}{n\,\bar{a}} = \dfrac{i}{n} = F_i
-\end{array}
-$%
-}
-\end{minipage}
-
-
-\hspace{-0.9em}\begin{minipage}[c]{0.44\textwidth}
-    \centering
-    \begin{tikzpicture}
-    \begin{axis}[
-        xmin=0, xmax=1,
-        ymin=0, ymax=1,
-        width=6.75cm, height=5.75cm,
-        xlabel={$F_i$},
-        ylabel={$Q_i\;\;\;$},
-        xlabel style={
-            at={(axis description cs:0.5,-0.135)},
-            anchor=north,
-        },
-        y label style={
-            rotate=-90,
-            anchor=center,
-        },
-        grid=major,
-        grid style={dashed,gray!30},
-        xtick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
-        xticklabels={$\hspace{-1.7em} 0$, $\frac{1}{n}$, $\frac{2}{n}$, $$, \raisebox{-1.5ex}{$\dots$}, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
-        ytick={0,0.125,0.25,0.375,0.5,0.625,0.75,0.875,1},
-        yticklabels={$$, $\frac{1}{n}$, $\frac{2}{n}$, $$, $\dots$, $$, $\frac{n-2}{n}$, $\frac{n-1}{n}$, $1$},
-        yticklabel style={anchor=center, xshift=-1.1em},
-    ]
-    \addplot [
-        color=black,
-        thick,
-        mark=*,
-        mark options={color=gray!100!black, fill=gray!100!black}
-    ] coordinates {
-        (0,0) (0.125,0) (0.25,0) (0.375,0) (0.5,0) (0.625,0) (0.75,0) (0.875,0) (1,1)
-    };
-    \addplot [
-        domain=0:1,
-        dashed,
-        black,
-        thin,
-    ] {x};
-    \end{axis}
-    \end{tikzpicture}
-\end{minipage}
-\begin{minipage}[l]{0.56\textwidth}
-\vspace{-2.2em}
-\textbf{Concentrazione massima}\quad Nel caso di concentrazione \mbox{massima} tutti i punti \((F_i, Q_i)\) giacciono sulla retta \(Q=0\), tranne per l'ultimo in cui $F_n = Q_n$: dunque in questo caso \(F_i - Q_i = F_i\) per \(i=1, \cdots, n-1\) e $F_n - Q_n = 0$.
-\\[0.7em]
-
-\makebox[0pt][l]{%
-\hspace{-1mm}$\displaystyle
-\begin{array}{l@{\ =\ }c@{,\,}c@{,\quad}c@{,\quad}c@{,\,}l@{}l}
-a_i & 0 & 0 & \cdots & 0 & TOT \\[1mm]
-Q_i & 0 & 0 & \cdots & 0 & 1 \\[1mm]
-F_i & \dfrac{1}{n} & \dfrac{2}{n} & \cdots & \dfrac{n-1}{n} & 1
-\end{array}
-$%
-}
-\end{minipage}
-\vspace{1mm}
-```
-
-Nei casi intermedi si avrà dunque che i punti staranno su una curva sotto la bisettrice del I° e III° quadrante $F = Q$, dato che $Q_i \le F_i$ per qualsiasi $i=1,\cdots,n$. Più la curva si avvicina alla bisettrice, e più la concentrazione è bassa, mentre più si allontana e più la concentrazione è alta.
-
-
-
