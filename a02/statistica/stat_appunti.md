@@ -1756,37 +1756,74 @@ Si osserva che:
 
 - gli indici di centralità vengono scalati della stessa quantità $h$.
 - il range di variazione e l'IQR vengono scalati della stessa quantità $h$.
-- la varianze viene scalata di una quantità $h^2$ mentre la deviazione standard viene sacalata di $|h|$.
+- la varianz viene scalata di una quantità $h^2$ mentre la deviazione standard viene sacalata di $|h|$.
 
 Anche in questo caso si verifica che i dati osservati varieranno nei loro valori ma le relative frequenze rimarranno uguali. I grafici che rappresentano la distribuzione dei dati originali e quella dei dati trasformati hanno quindi la medesima forma ma valori diversi sull'asse delle ascisse.
 
 
 
-[^1]: Questo vale solo per campioni in cui tutti i dati hanno segno positivo. Non vale per insiemi di dati che hanno come dominio dei valori $\mathbb{R}$ (esempio: le temperature rilevate in una città).
+[^1]: Questa proprietà vale solo quando i dati del campione $\in \mathbb{R}^+$. Non vale se sono presenti valori negativi.
 
 
 
 ### Cambiamento di origine e scala
 
 Si abbia un insieme di valori nell'intervallo $(a,b)$ e vogliamo adattarli in modo che appartengano all'intervallo $(c,d)$, la trasformazione da applicare sarà:
+
+\vspace{-3mm}
 $$
-f(x) = c + \dfrac{d-c}{b-a} \cdot (x - a)
+f(x) = c + \dfrac{d-c}{b-a} \, (x - a)
 $$
 
-##### Dimostrazione
+\vspace{-5.7mm}
 
-La funzione che trasforma i valori nell'intervallo $(a,b)$ all'interno dell'intervallo $(c,d)$ è una retta, la cui equazione si ricava tramite la formula della retta passante per due punti:
+#### Dimostrazione
+
+\vspace{-4mm}
+
+##### Metodo delle rette
+
+La funzione che trasforma i valori nell'intervallo $(a,b)$ all'interno dell'intervallo $(c,d)$ è una retta, la cui equazione si ricava tramite la formula della retta passante per due punti. Sia $(a,c) = (x_0, y_0)$ e $(b,d)= (x_1,y_1)$:
+
+\vspace{-7mm}
 $$
 \dfrac{y-y_0}{y_1 - y_0} = \dfrac{y-y_0}{y_1 - y_0}  \;\;\Rightarrow\;\; \dfrac{x'-x'_0}{x_1'-x_0'} = \dfrac{y-y_0}{y_1 - y_0} \;\;\Rightarrow\;\; \dfrac{x'-c}{d-c}=\dfrac{x-a}{b-a} \;\;\Rightarrow\;\; f(x) = x' = c + \dfrac{d-c}{b-a} (x-a)
 $$
 
+\vspace{-5mm}
 
+##### Metodo delle condizioni
+
+Si consideri la funzione $f: [a,b] \rightarrow [c,d]$. In generale, una trasformazione lineare ha la forma $f(x) = mx + q$. Per determinare $m$ e $q$ si impongono le condizioni:
+
+1. $f(a) =c$, ossia $ma + q = c$
+2. $f(b) = d$, ossia $m b + q = d$
+
+Sottraendo la prima dalla seconda si ottiene: 
+
+\vspace{-1mm}
+
+$m\, (b-a) = d-c \;\; \Rightarrow \;\; m = \dfrac{d-c}{b-a}$
+
+\vspace{-1mm}
+
+Sostituendo $m$ nella prima equazione:
+
+$\dfrac{d-c}{b-a}\, a + q = c \;\; \Rightarrow \;\; q = c - \dfrac{d-c}{b-a}\, a$
+
+Di conseguenza la funzione diventa:
+
+$f(x) = \dfrac{d-c}{b-a}\, x + \left( c - \dfrac{d-c}{b-a}\, a\right) = c + \dfrac{d-c}{b-a}\, (x-a)$
+
+\newpage
 
 Scegliendo un apposito intervallo $(c,d)$, è possibile trasformare un campione di dati affinché le osservazioni siano compresi tra due valori significativi. Utilizzando l'equazione ottenuta:
 
 - nel caso in cui si vogliano mappare i valori in $(0,1)$ si applica una funzione $f(x) = \dfrac{x-a}{b-a}$
 \vspace{1mm}
 - nel caso in cui si vogliano mappare i valori in $(-1,1)$ si applica una funzione $f(x) = 2 \dfrac{x-a}{b-a} - 1$
+
+Si osserva che questa mappatura lineare conserva l'ordine dei dati.
 
 #### Standardizzazione
 
@@ -1806,7 +1843,7 @@ A volte i valori di una variabile osservata sono molto grandi oppure molto dista
 $$
 f(x) = \log x
 $$
-Nel caso i valori siano molto distanziati tra loro e caratterizzati da una distribuzione di frequenza unimodale fortemente asimmetrica, la trasformazione logaritmica permette di ottenere una distribuzione di frequenza più simmetrica.
+Nel caso i valori siano molto distanziati tra loro e caratterizzati da una distribuzione di frequenza unimodale fortemente asimmetrica, la trasformazione logaritmica permette di ottenere una distribuzione di frequenza più simmetrica. Questo tipo di trasformazione ha molti altri vantaggi, dovuti al fatto che l'operazione di prodotto (o quoziente)  tra due valori viene trasformata nella somma (o nella differenza) dei rispettivi logaritmi.
 
 
 
@@ -1866,13 +1903,114 @@ To do (lezione 08)
 
 # Calcolo combinatorio
 
+Principio fondamentale del calcolo combinatorio
+: Se ci sono $s_1$ modi per operare una scelta e, per ciascuno di essi, ci sono $s_2$ modi per operare una seconda scelta e, per ciascuno di essi, ci sono $s_3$ modi per operare una terza scelta e così via fino a $s_t$ modi per operare la $t$-esima scelta, allora il numero delle sequenze di possibili scelte è 
+$$
+s_1 \cdot s_2 \cdots s_t = \prod^t_{i=1} s_i
+$$
+
+Si osserva che questo risultato corrisponde a calcolare il numero delle foglie di un albero di profondità $t$ il cui primo livello ha $s_1$ nodi, ciascuno dei quali ha $s_2$ figli, ciascuno dei quali ha $s_3$ figli e così via.
+
 ## Permutazioni
+
+Si consideri un insieme di $n$ oggetti $A = \{a_1, \cdots, a_n\}$. Una permutazione di questi $n$ oggetti è una sequenza ordinata in cui compaiono tutti e soli gli elementi dell’insieme $A$.
+
+### Permutazioni semplici
+
+Se gli $n$ oggetti di $A$ sono tutti distinguibili, allora si parla di permutazione semplice. 
+
+Il numero totale di permutazioni semplici si ottiene applicando il principio fondamentale del calcolo combinatorio: il primo elemento della configurazione può essere scelto in $n$ modi, il secondo in $(n-1)$, il terzo in $(n-2)$ e così via, fino all'ultimo che può essere scelto in un solo modo, essendo rimasto un solo oggetto disponibile.
+
+Indicando con $p_n$ il numero delle possibili permutazioni di un insieme di $n$ elementi distinguibili, si ottiene:
+$$
+p_n = n \cdot (n-1) \cdot (n-2) \cdots 1 = n!
+$$
+Come casi particolari, si ottiene $p_1 = 1! = 1$, mentre, per convenzione, si pone $p_0 = 0! = 1$.
+
+### Permutazioni con ripetizioni
+
+Se gli $n$ oggetti di $A$ non sono tutti distinguibili, ma sono suddivisi in $r$ gruppi di oggetti indistinguibili tra loro, con numerosità rispettive $k_1, k_2, \cdots, k_r$, allora una sequenza ordinata che includa tutti gli oggetti è detta *permutazione con ripetizioni*. Poiché ogni oggetto appartiene a un solo gruppo, si ha $\sum_{i=1}^r k_i = n$, da cui segue $r \le n$.
+
+Indicando con $P_n$ il numero delle possibili permutazioni di un insieme di $n$ elementi non tutti distinguibili, si ottiene:
+$$
+P_n^{k_1, k_2, \cdots, k_r} = \dfrac{n!}{k_1!\, k_2!\, \cdots\, k_r!} = \binom{n}{k_1, k_2, \cdots, k_r}
+$$
+Questa formula si ottiene dividendo il numero totale di permutazioni di $n$ oggetti distinti per il numero delle permutazioni indistinguibili, ovvero quelle interne ai singoli gruppi di oggetti uguali, che non alterano la configurazione complessiva. La quantità ottenuta è detta *coefficiente multinomiale*.
+
+Si osserva che $p_n = P_n^{k_1, \cdots, k_r} \cdot k_1! \cdots k_r!$ e che, nel caso in cui tutti i gruppi abbiano numerosità unitaria, ossia $k_i = 1$ per ogni $i$, si ottiene la formula delle permutazioni semplici.
+
+```{=latex}
+\hfill
+```
+
+
 
 ## Disposizioni
 
+Si consideri un insieme di $n$ oggetti $A = \{a_1, \dots, a_n\}$. Una disposizione di $k$ oggetti tratti dall’insieme $A$ è una sequenza ordinata di $k$ elementi in cui l’ordine è rilevante e gli oggetti possono essere scelti con o senza ripetizione, a seconda del contesto.
+
+### Disposizioni semplici
+
+Se gli $n$ oggetti di $A$ sono tutti distinguibili e non sono ammesse ripetizioni, allora si parla di disposizione semplice. Ne segue che $k \le n$.
+
+Il numero totale di disposizioni semplici si ottiene applicando il principio fondamentale del calcolo combinatorio: il primo elemento della configurazione può essere scelto in $n$ modi, il secondo in $(n-1)$, il terzo in $(n-2)$ e così via, fino al $k$-esimo che può essere scelto in $(n-k+1)$ modi diversi.
+
+Indicando con $d_{n,k}$ il numero delle possibili disposizioni semplici di $k$ elementi tra $n$ oggetti distinti, si ottiene:
+$$
+d_{n,k} = n\, (n-1) \dots (n-k+1) = n\, (n-1) \dots (n-k+1)\, \textcolor[rgb]{0.65,0.65,0.65}{\dfrac{(n-k)!}{(n-k)!}} = \dfrac{n!}{(n-k)!}
+$$
+Le permutazioni semplici possono essere interpretate come un caso particolare delle disposizioni semplici, in cui il numero di elementi scelti coincide con il numero totale disponibile, ossia quando $k = n$.
+
+### Disposizioni con ripetizioni
+
+Se gli $n$ oggetti dell’insieme $A$ sono tutti distinguibili e ogni elemento può comparire più volte nella sequenza, si parla di disposizione con ripetizione.
+
+In questo caso, ogni posizione della sequenza può essere occupata da uno qualunque degli $n$ elementi, senza alcuna restrizione, e quindi ognuna delle $k$ posizioni può essere riempita in $n$ modi indipendenti dagli altri.
+
+Indicando con $D_{n,k}$ il numero delle disposizioni con ripetizione di $k$ elementi tratti da un insieme di $n$ oggetti distinti, si ottiene:
+$$
+D_{n,k} = \underbrace{n \cdot n  \dots n}_{k\ \text{volte}} = n^k
+$$
+Tale formula vale per ogni intero $k \ge 0$, indipendentemente dalla cardinalità dell’insieme di partenza.
+
+Quando $k = 1$, si ottiene ${D}_{n,1} = n$; quando $k = 0$, si pone per convenzione ${D}_{n,0} = 1$, in quanto esiste un’unica sequenza vuota di lunghezza zero.
+
+
+
+```{=latex}
+\hfill
+```
+
 ## Combinazioni
 
+Si consideri un insieme di $n$ oggetti $A = \{a_1, \dots, a_n\}$. Una combinazione di $k$ oggetti tratti dall’insieme $A$ è un sottoinsieme di $k$ elementi di $A$, in cui l’ordine di scelta non è rilevante e gli oggetti non possono essere ripetuti. Pertanto, per la validità di tale definizione, si richiede $0 \le k \le n$.
 
+### Combinazioni semplici
+
+Se gli $n$ oggetti dell'insieme $A$ sono tutti distinguibili e si desidera scegliere $k$ elementi senza ripetizione e ignorando l'ordine, si parla di combinazione semplice di $k$ elementi tra $n$.
+
+Per determinare quante siano le combinazioni semplici di $k$ elementi tra $n$, si considerano prima tutte le disposizioni smeplici di $k$ elementi, e poi si tiene conto del fatto che l'ordine non conti, dividendo quindi per il numero di permutazioni dei $k$ elementi stessi.
+
+Indicando con $c_{n,k}$ il numero delle combinazioni semplici di $k$ elementi tratti da un insieme di $n$ oggetti distinti, si ottiene:
+$$
+c_{n,k} = \dfrac{d_{n,k}}{p_k} = \dfrac{n!}{(n-k)!} \, \dfrac{1}{k!} = \dfrac{n!}{k!\,(n-k)!} = \binom{n}{k}
+$$
+
+### Combinazioni con ripetizione
+
+Se ogni elemento di $A$ può comparire più volte nella combinazione, ignorando comunque l'ordine, si parla di combinazione con ripetizione. In tal caso si possono scegliere $k$ elementi (con possibile duplicazione) tra gli $n$ oggetti di $A$, senza considerare l'ordine in cui vengono selezionati.
+
+Indicando con $C_{n,k}$ il numero delle combinazioni con ripetizione di $k$ elementi tratti da un insieme di $n$ oggetti distinti, si ottiene:
+$$
+C_{n,k} = c_{n+k-1, k} = \binom{n+k-1}{k}
+$$
+
+
+
+
+```{=latex}
+\hfill
+```
 
 # Probabilità
 
