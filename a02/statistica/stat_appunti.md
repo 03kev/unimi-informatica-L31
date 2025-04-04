@@ -1756,7 +1756,7 @@ Si osserva che:
 
 - gli indici di centralità vengono scalati della stessa quantità $h$.
 - il range di variazione e l'IQR vengono scalati della stessa quantità $h$.
-- la varianz viene scalata di una quantità $h^2$ mentre la deviazione standard viene sacalata di $|h|$.
+- la varianza viene scalata di una quantità $h^2$ mentre la deviazione standard viene scalata di $|h|$.
 
 Anche in questo caso si verifica che i dati osservati varieranno nei loro valori ma le relative frequenze rimarranno uguali. I grafici che rappresentano la distribuzione dei dati originali e quella dei dati trasformati hanno quindi la medesima forma ma valori diversi sull'asse delle ascisse.
 
@@ -1787,7 +1787,7 @@ La funzione che trasforma i valori nell'intervallo $(a,b)$ all'interno dell'inte
 
 \vspace{-7mm}
 $$
-\dfrac{y-y_0}{y_1 - y_0} = \dfrac{y-y_0}{y_1 - y_0}  \;\;\Rightarrow\;\; \dfrac{x'-x'_0}{x_1'-x_0'} = \dfrac{y-y_0}{y_1 - y_0} \;\;\Rightarrow\;\; \dfrac{x'-c}{d-c}=\dfrac{x-a}{b-a} \;\;\Rightarrow\;\; f(x) = x' = c + \dfrac{d-c}{b-a} (x-a)
+\dfrac{y-y_0}{y_1 - y_0} = \dfrac{x-x_0}{x_1 - x_0}  \;\;\Rightarrow\;\; \dfrac{x'-x'_0}{x_1'-x_0'} = \dfrac{x-x_0}{x_1 - x_0} \;\;\Rightarrow\;\; \dfrac{x'-c}{d-c}=\dfrac{x-a}{b-a} \;\;\Rightarrow\;\; f(x) = x' = c + \dfrac{d-c}{b-a} (x-a)
 $$
 
 \vspace{-5mm}
@@ -1827,7 +1827,7 @@ Si osserva che questa mappatura lineare conserva l'ordine dei dati.
 
 #### Standardizzazione
 
-La standardizzazione è un caso particolare di cambiamento di origine e scala, e consiste nello traslare verso sinistra rispetto alla media dei valori delle osservazioni, per poi applicare una scala il cui fattore è il reciproco della deviazione standard dei valori:
+La standardizzazione è un caso particolare di cambiamento di origine e scala, e consiste nello traslare verso sinistra rispetto alla media dei valori delle osservazioni, per poi applicare una scala il cui fattore è il reciproco della deviazione standard dei valori. Indicando con $\bar{x}$ e con $s_x$ rispettivamente la media campionaria e la deviazione standard campionaria dei valori, la trasformazione che si ottiene sarà:
 $$
 f(x) = \dfrac{x - \bar{x}}{s_x}
 $$
@@ -1843,6 +1843,8 @@ A volte i valori di una variabile osservata sono molto grandi oppure molto dista
 $$
 f(x) = \log x
 $$
+La scelta della base del logaritmo in questa funzione dipende dal contesto in cui bisogna applicarlo: basi comuni sono il 10, la costante $e$ oppure il 2.
+
 Nel caso i valori siano molto distanziati tra loro e caratterizzati da una distribuzione di frequenza unimodale fortemente asimmetrica, la trasformazione logaritmica permette di ottenere una distribuzione di frequenza più simmetrica. Questo tipo di trasformazione ha molti altri vantaggi, dovuti al fatto che l'operazione di prodotto (o quoziente)  tra due valori viene trasformata nella somma (o nella differenza) dei rispettivi logaritmi.
 
 
@@ -1898,7 +1900,7 @@ To do (lezione 08)
 
 ```{=latex}
 \newpage
-\part{Calcolo delle probabilità}
+\part{Teoria delle probabilità}
 ```
 
 # Calcolo combinatorio
@@ -1983,18 +1985,20 @@ Quando $k = 1$, si ottiene ${D}_{n,1} = n$; quando $k = 0$, si pone per convenzi
 
 ## Combinazioni
 
-Si consideri un insieme di $n$ oggetti $A = \{a_1, \dots, a_n\}$. Una combinazione di $k$ oggetti tratti dall’insieme $A$ è un sottoinsieme di $k$ elementi di $A$, in cui l’ordine di scelta non è rilevante e gli oggetti non possono essere ripetuti. Pertanto, per la validità di tale definizione, si richiede $0 \le k \le n$.
+Si consideri un insieme di $n$ oggetti $A = \{a_1, \dots, a_n\}$. Una combinazione di $k$ oggetti tratti dall'insieme $A$ è un insieme di $k$ elementi in cui l'ordine non è rilevante e gli oggetti possono essere scelti con o senza ripetizione, a seconda del contesto.
 
 ### Combinazioni semplici
 
-Se gli $n$ oggetti dell'insieme $A$ sono tutti distinguibili e si desidera scegliere $k$ elementi senza ripetizione e ignorando l'ordine, si parla di combinazione semplice di $k$ elementi tra $n$.
+Una combinazione semplice di $k$ oggetti tratti da un insieme $A$ di $n$ oggetti distinguibili è definita come un sottoinsieme di $k$ elementi di $A$, in cui l’ordine non è rilevante e non è consentito ripetere lo stesso oggetto più volte. Ne consegue che $k$ debba soddisfare la condizione $0 \le k \le n$.
 
-Per determinare quante siano le combinazioni semplici di $k$ elementi tra $n$, si considerano prima tutte le disposizioni smeplici di $k$ elementi, e poi si tiene conto del fatto che l'ordine non conti, dividendo quindi per il numero di permutazioni dei $k$ elementi stessi.
+Per determinarne il numero, si consideri il numero di disposizioni semplici di $k$ elementi su $n$, vale a dire tutte le possibili sequenze ordinate di $k$ oggetti distinti scelti da $A$. Ogni sottoinsieme di $k$ elementi può essere riordinato in $k!$ modi diversi, ossia in un numero pari a quello delle permutazioni dei suoi $k$ oggetti. Per convertire quindi il conteggio delle sequenze ordinate in quello dei sottoinsiemi, in cui l’ordine è irrilevante, è necessario dividere $d_{n,k}$ per $k!$. 
 
 Indicando con $c_{n,k}$ il numero delle combinazioni semplici di $k$ elementi tratti da un insieme di $n$ oggetti distinti, si ottiene:
 $$
 c_{n,k} = \dfrac{d_{n,k}}{p_k} = \dfrac{n!}{(n-k)!} \, \dfrac{1}{k!} = \dfrac{n!}{k!\,(n-k)!} = \binom{n}{k}
 $$
+
+La quantità ottenuta è detta coefficiente binomiale $n$ su $k$ ed esprime il numero di tutti i possibili sottoinsiemi di cardinalità $k$ che si possono formare a partire da $n$ oggetti distinti. Si osservi come per definizione $c_{n,k} < d_{n,k}$. 
 
 ### Combinazioni con ripetizione
 
@@ -2004,6 +2008,41 @@ Indicando con $C_{n,k}$ il numero delle combinazioni con ripetizione di $k$ elem
 $$
 C_{n,k} = c_{n+k-1, k} = \binom{n+k-1}{k}
 $$
+
+#### Dimostrazione
+
+Sia $A = \{a_1, a_2, \dots, a_n\}$ un insieme di $n$ oggetti distinti. Vogliamo contare il numero di combinazioni con ripetizione di $k$ elementi da $A$. Poiché in questo contesto l'ordine non è rilevante e le ripetizioni sono permesse, possiamo associare ogni combinazione (ossia, ogni multinsieme) a una sequenza non decrescente di indici. In particolare, consideriamo una sequenza
+$$
+m_1, m_2, \dots, m_k \quad \text{con} \quad 1 \le m_1 \le m_2 \le \dots \le m_k \le n.
+$$
+Qui, i numeri $m_i$ non rappresentano direttamente gli oggetti di $A$, ma sono gli indici che li identificano: l'indice $m_i$ corrisponde all'oggetto $a_{m_i}$ in $A$. In questo modo, ogni scelta di $k$ elementi da $A$, con ripetizione, è associata a una sequenza non decrescente di indici.
+
+Per facilitare il conteggio, trasformiamo questa sequenza non decrescente in una sequenza strettamente crescente mediante la trasformazione
+$$
+n_i = m_i + (i-1) \quad \text{per } i=1,2,\dots,k.
+$$
+Dal momento che $m_i \le m_{i+1}$, si ha
+$$
+n_i = m_i + (i-1) < m_{i+1} + i = n_{i+1},
+$$
+che garantisce che la nuova sequenza $n_1, n_2, \dots, n_k$ sia strettamente crescente.
+
+Osserviamo inoltre che il primo elemento soddisfa $n_1 = m_1 \ge 1$, mentre l'ultimo elemento è
+$$
+n_k = m_k + (k-1) \le n + (k-1),
+$$
+quindi ogni $n_i$ appartiene all'insieme $\{1, 2, \dots, n+k-1\}$.
+
+La trasformazione appena definita stabilisce una corrispondenza biunivoca tra le sequenze non decrescenti di indici (che rappresentano le combinazioni con ripetizione di $k$ elementi da $A$) e le sequenze strettamente crescenti di $k$ numeri presi da $\{1, 2, \dots, n+k-1\}$. Queste ultime sono esattamente le combinazioni semplici di $k$ elementi da un insieme di $n+k-1$ elementi, il cui numero è dato da
+$$
+\binom{n+k-1}{k}.
+$$
+
+Pertanto, il numero di combinazioni con ripetizione $C_{n,k}$ è proprio quel valore.
+
+Questa dimostrazione evidenzia come il problema delle combinazioni con ripetizione possa essere ridotto a quello delle combinazioni semplici, tramite una trasformazione che converte una sequenza non decrescente di indici in una sequenza strettamente crescente.
+
+
 
 
 
@@ -2015,6 +2054,8 @@ $$
 # Probabilità
 
 ## Definizioni
+
+
 
 
 
