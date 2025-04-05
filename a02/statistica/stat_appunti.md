@@ -40,6 +40,7 @@ header-includes: |
 \newcommand{\roundp}[1]{\left( #1 \right)}
 \newcommand{\squarep}[1]{\left[ #1 \right]}
 \newcommand{\bracketp}[1]{\left\{ #1 \right\}}
+\newcommand{\sube}[1]{\subseteq #1}
 
 \newcommand{\shortunderscore}{\kern0.1em\raisebox{-0.2ex}{\rule[0pt]{0.5em}{0.7pt}}\kern0.1em}
 
@@ -200,7 +201,7 @@ Calcolo delle probabilità: assiomi e teoremi elementari. Spazi equiprobabili.
 ## Definizione
 
 Statistica
-: La statistica è l'arte di apprendere dei dati. Si occupa della raccolta, della descrizione e dell'analisi dei dati, possibilmente permettendo di trarne delle conclusioni.
+: La statistica è l'arte di apprendere dai dati. Si occupa della raccolta, della descrizione e dell'analisi dei dati, possibilmente permettendo di trarne delle conclusioni.
 
 A volte un’analisi statistica comincia con un insieme di dati prestabilito, in questo caso la statistica si usa per descrivere, riassumere e analizzare i dati. In altre situazioni i dati non sono ancora disponibili e si può usare la statistica per progettare un esperimento che li generi. Se ne occupa la statistica descrittiva.
 
@@ -1750,7 +1751,7 @@ Se si vogliono dilatare o contrarre i dati di un fattore costante $h \in \mathbb
 
 Si noti che non viene considerato il caso in cui $h<0$ in quanto, oltre alla dilatazione o contrazione, i dati vengono specchiati rispetto all'asse delle ordinate.
 
-Si consideri $h$ come un valore fratto $1/k$. Se $k$ è minore del valore minimo nel campione, allora tutti i valori trasformati saranno maggiori di 1, mentre se $k$ è maggiore del valore massimo, allora tutti i valori trasformati saranno minori di 1[^1].
+Si consideri $h = 1/k$. Se $k$ è minore del valore minimo nel campione, allora tutti i valori trasformati saranno maggiori di 1, mentre se $k$ è maggiore del valore massimo, allora tutti i valori trasformati saranno minori di 1[^1].
 
 Si osserva che:
 
@@ -1998,7 +1999,7 @@ $$
 c_{n,k} = \dfrac{d_{n,k}}{p_k} = \dfrac{n!}{(n-k)!} \, \dfrac{1}{k!} = \dfrac{n!}{k!\,(n-k)!} = \binom{n}{k}
 $$
 
-La quantità ottenuta è detta coefficiente binomiale $n$ su $k$ ed esprime il numero di tutti i possibili sottoinsiemi di cardinalità $k$ che si possono formare a partire da $n$ oggetti distinti. Si osservi come per definizione $c_{n,k} < d_{n,k}$. 
+La quantità ottenuta è detta *coefficiente binomiale* $n$ su $k$ ed esprime il numero di tutti i possibili sottoinsiemi di cardinalità $k$ che si possono formare a partire da $n$ oggetti distinti. Si osservi come per definizione $c_{n,k} < d_{n,k}$. 
 
 ### Combinazioni con ripetizione
 
@@ -2013,29 +2014,29 @@ $$
 
 Sia $A = \{a_1, a_2, \dots, a_n\}$ un insieme di $n$ oggetti distinti. Vogliamo contare il numero di combinazioni con ripetizione di $k$ elementi da $A$. Poiché in questo contesto l'ordine non è rilevante e le ripetizioni sono permesse, possiamo associare ogni combinazione (ossia, ogni multinsieme) a una sequenza non decrescente di indici. In particolare, consideriamo una sequenza
 $$
-m_1, m_2, \dots, m_k \quad \text{con} \quad 1 \le m_1 \le m_2 \le \dots \le m_k \le n.
+m_1, m_2, \dots, m_k \quad \text{con} \quad 1 \le m_1 \le m_2 \le \dots \le m_k \le n
 $$
 Qui, i numeri $m_i$ non rappresentano direttamente gli oggetti di $A$, ma sono gli indici che li identificano: l'indice $m_i$ corrisponde all'oggetto $a_{m_i}$ in $A$. In questo modo, ogni scelta di $k$ elementi da $A$, con ripetizione, è associata a una sequenza non decrescente di indici.
 
 Per facilitare il conteggio, trasformiamo questa sequenza non decrescente in una sequenza strettamente crescente mediante la trasformazione
 $$
-n_i = m_i + (i-1) \quad \text{per } i=1,2,\dots,k.
+n_i = m_i + (i-1) \quad \text{per } i=1,2,\dots,k
 $$
 Dal momento che $m_i \le m_{i+1}$, si ha
 $$
-n_i = m_i + (i-1) < m_{i+1} + i = n_{i+1},
+n_i = m_i + (i-1) < m_{i+1} + i = n_{i+1}
 $$
 che garantisce che la nuova sequenza $n_1, n_2, \dots, n_k$ sia strettamente crescente.
 
 Osserviamo inoltre che il primo elemento soddisfa $n_1 = m_1 \ge 1$, mentre l'ultimo elemento è
 $$
-n_k = m_k + (k-1) \le n + (k-1),
+n_k = m_k + (k-1) \le n + (k-1)
 $$
 quindi ogni $n_i$ appartiene all'insieme $\{1, 2, \dots, n+k-1\}$.
 
 La trasformazione appena definita stabilisce una corrispondenza biunivoca tra le sequenze non decrescenti di indici (che rappresentano le combinazioni con ripetizione di $k$ elementi da $A$) e le sequenze strettamente crescenti di $k$ numeri presi da $\{1, 2, \dots, n+k-1\}$. Queste ultime sono esattamente le combinazioni semplici di $k$ elementi da un insieme di $n+k-1$ elementi, il cui numero è dato da
 $$
-\binom{n+k-1}{k}.
+\binom{n+k-1}{k}
 $$
 
 Pertanto, il numero di combinazioni con ripetizione $C_{n,k}$ è proprio quel valore.
@@ -2043,6 +2044,29 @@ Pertanto, il numero di combinazioni con ripetizione $C_{n,k}$ è proprio quel va
 Questa dimostrazione evidenzia come il problema delle combinazioni con ripetizione possa essere ridotto a quello delle combinazioni semplici, tramite una trasformazione che converte una sequenza non decrescente di indici in una sequenza strettamente crescente.
 
 
+
+```{=latex}
+\subsection*{Coefficienti combinatori}
+```
+
+I coefficienti combinatori misurano il numero di modi in cui si possono selezionare o distribuire gli elementi. 
+
+Coefficiente binomiale
+: Rappresenta il numero di modi in cui si possono scegliere $k$ elementi da un insieme di $n$ elementi, senza considerare l'ordine. Il suo valore è dato da:
+$$
+\binom{n}{k} = \binom{n}{k,\, n{-}k} = \dfrac{n!}{k!\,(n-k)!}
+$$
+
+Coefficiente multinomiale
+: Generalizza il concetto del coefficiente binomiale e indica il numero di modi per suddividere $n$ elementi in $r$ gruppi distinti di dimensioni $k_1, \dots, k_r$ dove $k_1 + \dots + k_r = n$. Il suo valore è dato da:
+\hfill \vspace{2mm}
+$$
+\binom{n}{k_1, k_2, \cdots, k_r} = \dfrac{n!}{k_1!\, k_2!\, \cdots\, k_r!}
+$$
+
+\hfill
+
+Si osserva che il coefficiente binomiale è il caso particolare del coefficiente multinomiale quando si divide l'insieme in due gruppi: uno di grandezza $k$ e l'altro di grandezza $n-k$. La somma delle cardinalità dei due gruppi distinti continua a essere $n$, infatti $k + (n-k) = n$.
 
 
 
@@ -2053,8 +2077,247 @@ Questa dimostrazione evidenzia come il problema delle combinazioni con ripetizio
 
 # Probabilità
 
+Il concetto di probabilità di un evento, quando si effettua un esperimento, è passabile di diverse interpretazioni filosofiche:
+
+1. Interpretazione frequentista: la probabilità di un evento viene intesa come il limite del rapporto tra il numero di volte in cui l’evento si verifica e il numero totale di prove, quando queste sono ripetute indefinitamente. 
+2. Interpretazione soggettivistica: la probabilità non è vista come una proprietà oggettiva dell’esito, ma come una misura del livello di fiducia che lo studioso ripone nel verificarsi dell’evento.
+
+Indipendentemente dall'approccio che si favorisce, utilizzando un approccio matematico ed i suoi strumenti, come per esempio la notazione insiemistica, è possibile formalizzare le regole e gli assiomi della teoria della probabilità.
+
 ## Definizioni
 
+Prima di enunciare gli assiomi della teoria della probabilità, occorre introdurre alcuni concetti fondamentali relativi agli esperimenti e ai loro esiti.
+
+### Spazio degli esiti
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Spazio degli esiti}
+```
+
+Esperimento
+: Un esperimento è un procedimento o una prova condotta in condizioni controllate, il cui risultato è incerto
+\vspace{1mm}
+
+Esito
+: L'esito è un possibile risultato ottenuto da un esperimento. Si indica con $\omega$ e appartiene allo spazio degli esiti: $\omega \in \Omega$.
+\vspace{1mm}
+
+Spazio degli esiti
+: Lo spazio degli esiti (o insieme universo o spazio campionario) è l'insieme dei possibili esiti dell'esperimento, e si indica con $\Omega$. L'universo può essere:
+
+    - finito o infinito, a seconda del numero di esiti possibili
+    - discreto se gli esiti sono isolati e contabili, o continuo se gli esiti formano un continuum. In questo contesto, la distinzione tra spazi discreti e continui riguarda la struttura complessiva di $\Omega$, e non le proprietà intrinseche degli elementi stessi.
+
+\vspace{1mm}
+
+### Evento
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Evento}
+```
+
+Un evento $E$ è un sottoinsieme dello spazio degli esiti, perciò $E \subseteq \Omega$. Un evento formato da un solo esito $\{\omega\}$ è detto evento elementare. Per definizione, $\Omega$ rappresenta l'evento certo mentre $\varnothing$ è l'evento impossibile.
+
+#### Operazioni
+
+Dati due eventi $E, F \subseteq \Omega$, è possibile applicare le operazioni fondamentali degli insiemi:
+
+- Unione $E \cup F$: è l'evento che si verifica quando si verifica almeno uno tra $E$ e $F$ si verifica.  
+    Per un esito $x$ si ottiene che $\;x \in E \cup F \; \Leftrightarrow\; x \in E \lor x \in F$
+
+- Intersezione $E \cap F$: è l'evento che si verifca quando si verificano entrambi gli eventi $E$ e $F$.  
+    Per un esito $x$ si ottiene che $\;x \in E \cap F \; \Leftrightarrow\; x \in E \land x \in F$  
+    Se $E \cap F = \varnothing$ allora $E$ e $F$ si dicono *mutualmente esclusivi* o eventi *disgiunti*.
+
+- Complementare $E^C$ di $E$: è l'evento che si verifica quando non si verifica $E$ . Si indica anche con $\overline{E}$.  
+    Per un esito $x$ si ottiene che $\;x \in E^C \; \Leftrightarrow\; x \not \in E$  
+    Si osserva che $E^C = \Omega - E$. Vale anche la relazione $\Omega^C = \varnothing$.
+
+- Differenza $E \smallsetminus F$: è l'evento che si verifica quando $E$ si verifica ma non $F$   
+    Per un esito $x$ si ottiene che $x \in E \smallsetminus F \; \Leftrightarrow \; x \in E \land x \not\in F$  
+    Si osserva che questa operazione non è simmetrica, infatti $E \smallsetminus F \not = F \smallsetminus E$.
+
+È possibile definire l'unione o l'intersezione di più eventi. Si considerino gli eventi $E_1, E_2, \dots, E_n$:
+
+- la loro unione $\bigcup_{i=1}^n E_i = E_1 \cup \dots \cup E_n$ è l'evento formato da tutti gli esiti che appartengono ad almeno uno degli eventi $E_i$
+
+- la loro intersezione $\bigcap^n_{i=1} E_i = E_1 \cap \dots \cap E_n$ è l'evento formato da tutti gli esiti che appartengono a tutti gli eventi $E_i$
+
+In altre parole, l'unione degli $E_i$ si verifica se almeno uno degli eventi $E_i$ si verifica, mentre l'intersezione degli $E_i$ si verifica solo se tutti gli $E_i$ si verificano.
+
+Inclusione
+: È inoltre possibile definire delle relazioni di inclusione e uguaglianza tra eventi. Siano $E, F \subseteq \Omega$ due eventi, si dice che l'evento $E$ è contenuto in $F$, e si scrive $E \sube F$, se tutti gli esiti di $E$ appartengono anche a $F$. Formalmente, si può indicare questa relazione come $E \sube F \; \Leftrightarrow \; \forall\, \omega \in E: \omega \in F$. Questo significa che se si verifica $E$, allora si verifica anche $F$. Si osserva che se $E \subseteq F \land F \subseteq E \; \Rightarrow \; E = F$.
+
+#### Proprietà
+
+Per l'unione e l'intersezione valgono le seguenti proprietà (verranno presentate solo sull'unione):
+
+- commutatività: $\;E \cup F = F \cup E$
+- associatività: $\; E \cup F \cup G = (E \cup F) \cup G = E \cup (F \cup G)$
+- distributività: $\; E \cup (F \cap G) = (E \cup F) \cap (E \cup G)$
+
+- leggi di assorbimento: $\; E \cup (E \cap F) = E \;$ e $\; E \cap (E \cup F) = E$ 
+
+- leggi di De Morgan:  $\; \overline{E \cup F} = \overline{E} \cap \overline{F}\;$ e $\;\overline{E \cap F} = \overline{E} \cup \overline{F}$
+
+  **Dimostrazione**
+
+  1. $x \in \overline{E \cup F} \;\Rightarrow\; x \not\in E \cup F \;\Rightarrow\; x \not\in E \land x \not\in F \;\Rightarrow\; x \in \overline{E} \land x \in \overline{F} \;\Rightarrow\; x \in \overline{E} \cap \overline{F} \;\Rightarrow\; \overline{E \cup F} \subseteq \overline{E} \cap \overline{F}$
+
+  2. $x \in \overline{E} \cap \overline{F} \;\Rightarrow\; x \in \overline{E} \land x \in \overline{F} \;\Rightarrow\; x \notin E \land x \notin F \;\Rightarrow\; x \notin E \cup F \;\Rightarrow\; x \in \overline{E \cup F} \;\Rightarrow\; \overline{E} \cap \overline{F} \subseteq \overline{E \cup F}$
+
+  Da entrambe le inclusioni si ottiene che $\overline{E \cup F} = \overline{E} \cap \overline{F}$.
+
+\vspace{1mm}
+
+Un modo rigoroso per dimostrare queste proprietà consiste nel verificare che ogni esito appartenente all'evento al primo membro è anche contenuto nell'evento al secondo membro, e viceversa, proprio come si è fatto pocanzi tramite la dimostrazione della legge di De Morgan.
+
+
+
+##### Diagrammi di Venn
+
+Un tipo di rappresentazione grafica degli eventi, utile per illustrare le relazioni logiche che li legano, sono i *diagrammi di Venn*. Lo spazio degli esiti $\Omega$ è rappresentano da un rettangolo che contiene il resto della figura. Gli eventi da prendere in considerazione sono invece rappresentati da cerchi disegnati all'interno del rettangolo. A questo punto si evidenziano gli eventi complessi rilevanti.
+
+
+
+Si illustrano le operazioni di unione, intersezione, complemento e inclusione tramite i diagrammi di Venn:
+
+```{=latex}
+\noindent
+% --- 1) Unione E ∪ F ---
+\begin{minipage}{0.3\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=1]
+    % Rettangolo di contorno (universo Ω): da (-2, -1.4) a (2, 1.6)
+    \draw[thick] (-2,-1.4) rectangle (2,1.6);
+    % Etichetta del rettangolo: Ω in alto a sinistra
+    \node[anchor=north west] at (-2,1.6) {$\Omega$};
+
+    % UNIONE: coloriamo in grigio le aree coperte dai cerchi di E e F
+    \begin{scope}
+      \clip (-0.5,0) circle (1);
+      \fill[gray!40] (-2,-1.4) rectangle (2,1.6);
+    \end{scope}
+    \begin{scope}
+      \clip (0.5,0) circle (1);
+      \fill[gray!40] (-2,-1.4) rectangle (2,1.6);
+    \end{scope}
+
+    % Disegno dei due cerchi
+    \draw (-0.5,0) circle (1);
+    \draw (0.5,0) circle (1);
+
+    % Etichette degli insiemi: E e F posizionate a y = 1.2
+    \node at (-0.9,1.2) {$E$};
+    \node at (0.9,1.2) {$F$};
+  \end{tikzpicture}
+
+  \vspace{0.5em}
+  \(E \cup F\)
+\end{minipage}
+\hfill
+% --- 2) Intersezione E ∩ F ---
+\begin{minipage}{0.3\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=1]
+    % Rettangolo di contorno (universo Ω): da (-2, -1.4) a (2, 1.6)
+    \draw[thick] (-2,-1.4) rectangle (2,1.6);
+    % Etichetta del rettangolo: Ω in alto a sinistra
+    \node[anchor=north west] at (-2,1.6) {$\Omega$};
+
+    % INTERSEZIONE: coloriamo in grigio la parte comune dei cerchi di E e F
+    \begin{scope}
+      \clip (-0.5,0) circle (1);
+      \clip (0.5,0) circle (1);
+      \fill[gray!40] (-2,-1.4) rectangle (2,1.6);
+    \end{scope}
+
+    % Disegno dei due cerchi
+    \draw (-0.5,0) circle (1);
+    \draw (0.5,0) circle (1);
+
+    % Etichette degli insiemi: E e F posizionate a y = 1.2
+    \node at (-0.9,1.2) {$E$};
+    \node at (0.9,1.2) {$F$};
+  \end{tikzpicture}
+
+  \vspace{0.5em}
+  \(E \cap F\)
+\end{minipage}
+\hfill
+% --- 3) Complemento di F ---
+\begin{minipage}{0.3\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=1]
+    % Rettangolo di contorno (universo Ω): da (-2, -1.4) a (2, 1.6)
+    \draw[thick] (-2,-1.4) rectangle (2,1.6);
+
+    % COMPLEMENTO di F: coloriamo l'intera area del rettangolo in grigio (con margini minimi)
+    \fill[gray!40] (-1.99,-1.39) rectangle (1.99,1.59);
+    % "Buchiamo" (ritagliamo) l'area di F in bianco, per evidenziare il complemento di F
+    \begin{scope}
+      \clip (-2,-1.4) rectangle (2,1.6);
+      \fill[white] (0,0) circle (1);
+    \end{scope}
+
+    % Disegno del cerchio di E
+    \draw (0,0) circle (1);
+    
+    % Disegno del cerchio E concentrico all'interno di F (raggio 0.56)
+    \draw (0,0) circle (0.5);
+    % Etichetta del cerchio interno E
+    \node at (-0.46,0.54) {$E$};
+
+    % Etichetta dell'insieme F
+    \node at (0.65,1.08) {$F$};
+
+	\node[anchor=north west] at (-2,1.6) {$\Omega$};
+	
+  \end{tikzpicture}
+
+  \vspace{0.5em}
+  \(\overline{F},\, E \subseteq F \)
+\end{minipage}
+```
+
+
+
+\hfill
+
+### Algebra degli eventi
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Algebra degli eventi}
+```
+
+Un'algebra degli eventi $\mathcal{A}$ è una collezione di sottoinsiemi di $\Omega$, ossia $\mathcal{A}\subseteq \mathcal{P}(\Omega)$, tale che:
+
+1. $\Omega \in \mathcal{A}:\;$ l'evento certo fa parte dell'algebra
+
+2. $\forall E \in \mathcal{A} \; \Rightarrow\; \overline{E} \in \mathcal{A}:\;$ chiusura rispetto al complementare
+
+3. $\forall E, F \in \mathcal{A} \;\Rightarrow \; E \cup F \in \mathcal{A}:\;$ chiusura rispetto all'unione finita
+
+    - per $|\Omega| < \infty$ si ha che $\forall E_1, E_2, \dots, E_n \in \mathcal{A} \quad \bigcup^n_{{i=1}} E_i \in \mathcal{A}$
+
+    - se la proprietà vale anche per $| \Omega | = \infty$ allora $\mathcal{A}$ si definisce $\sigma$-algebra. Ciò significa che l'algebra è chiusa rispetto a unioni numerabili:
+        $$
+        \forall E_i \in \mathcal{A} \;\;\; \forall i \in N \;\; \Rightarrow \;\; \bigcup_{i=1}^\infty E_i \in \mathcal{A}
+        $$
+
+Da queste proprietà discendono varie conseguenze, come ad esempio la chiusura rispetto all'intersezione finita (che si ottiene dalla chiusura rispetto al complementare e all'unione, grazie alle leggi di De Morgan), la chiusura rispetto alla differenza $E \smallsetminus F = E \cap \overline{F}$, e l'appartenenza di $\varnothing$ all'algebra.
+
+Per spazi finiti, la più grande algebra che si possa considerare è l’intera collezione delle parti, $\mathcal{P}(\Omega)$, e questa è chiaramente un’algebra (e una $\sigma$-algebra) che include tutti i sottoinsiemi di $\Omega$.
+
+Spazio misurabile
+: La coppia $(\Omega, \mathcal{A})$ è detta *spazio misurabile*. In pratica, l'algebra $\mathcal{A}$ permette di associare a dei sottoinsiemi di $\Omega$ una misura, e lo spazio misurabile è l'insieme di tali sottospazi di misura assegnata.
+[ *La scelta di una misura da associare a tali sottospazi produce uno spazio di misura, che in questo caso sarà lo spazio di probabilità. I morfismi degli spazi misurabili sono rappresentati dalle funzioni misurabili.* ]
+
+
+
+https://it.wikipedia.org/wiki/Spazio_campionario
+
+https://it.wikipedia.org/wiki/Spazio_misurabile
 
 
 
@@ -2069,3 +2332,4 @@ Questa dimostrazione evidenzia come il problema delle combinazioni con ripetizio
 # Analisi della varianza
 
 To do (lezione 08)
+
