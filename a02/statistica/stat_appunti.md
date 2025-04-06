@@ -2183,6 +2183,7 @@ Un tipo di rappresentazione grafica degli eventi, utile per illustrare le relazi
 Si illustrano le operazioni di unione, intersezione, complemento e inclusione tramite i diagrammi di Venn:
 
 ```{=latex}
+\vspace{1mm}
 \noindent
 % --- 1) Unione E ∪ F ---
 \begin{minipage}{0.3\linewidth}
@@ -2290,34 +2291,53 @@ Si illustrano le operazioni di unione, intersezione, complemento e inclusione tr
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Algebra degli eventi}
 ```
 
-Un'algebra degli eventi $\mathcal{A}$ è una collezione di sottoinsiemi di $\Omega$, ossia $\mathcal{A}\subseteq \mathcal{P}(\Omega)$, tale che:
+Un'algebra degli eventi $\mathcal{A}$ su $\Omega$ è una collezione di sottoinsiemi di $\Omega$, ossia $\mathcal{A}\subseteq \mathcal{P}(\Omega)$, tale che:
 
 1. $\Omega \in \mathcal{A}:\;$ l'evento certo fa parte dell'algebra
 
 2. $\forall E \in \mathcal{A} \; \Rightarrow\; \overline{E} \in \mathcal{A}:\;$ chiusura rispetto al complementare
 
-3. $\forall E, F \in \mathcal{A} \;\Rightarrow \; E \cup F \in \mathcal{A}:\;$ chiusura rispetto all'unione finita
+3. $\forall E, F \in \mathcal{A} \;\Rightarrow \; E \cup F \in \mathcal{A}:\;$ chiusura rispetto all'unione di due eventi
 
-    - per $|\Omega| < \infty$ si ha che $\forall E_1, E_2, \dots, E_n \in \mathcal{A} \quad \bigcup^n_{{i=1}} E_i \in \mathcal{A}$
+\vspace{3mm}
 
-    - se la proprietà vale anche per $| \Omega | = \infty$ allora $\mathcal{A}$ si definisce $\sigma$-algebra. Ciò significa che l'algebra è chiusa rispetto a unioni numerabili:
-        $$
-        \forall E_i \in \mathcal{A} \;\;\; \forall i \in N \;\; \Rightarrow \;\; \bigcup_{i=1}^\infty E_i \in \mathcal{A}
-        $$
+Da queste proprietà discendono varie conseguenze:
 
-Da queste proprietà discendono varie conseguenze, come ad esempio la chiusura rispetto all'intersezione finita (che si ottiene dalla chiusura rispetto al complementare e all'unione, grazie alle leggi di De Morgan), la chiusura rispetto alla differenza $E \smallsetminus F = E \cap \overline{F}$, e l'appartenenza di $\varnothing$ all'algebra.
+- $\varnothing \in \mathcal{A}\,$ perché $\, \varnothing = \overline{\Omega}$ 
 
-Per spazi finiti, la più grande algebra che si possa considerare è l’intera collezione delle parti, $\mathcal{P}(\Omega)$, e questa è chiaramente un’algebra (e una $\sigma$-algebra) che include tutti i sottoinsiemi di $\Omega$.
+- Per induzione, $\mathcal{A}$ è chiusa per l'unione finita, infatti $\forall E_1, E_2, \dots, E_n \in \mathcal{A} \quad \bigcup^n_{{i=1}} E_i \in \mathcal{A}$.
+
+- $\mathcal{A}$ è chiusa rispetto all'intersezione di due eventi: $\,A \cap B = \overline{\overline{A} \cup \overline{B}}$, e per induzione anche rispetto all'intersezione finita: $\forall E_1, E_2, \dots, E_n \in \mathcal{A} \quad \bigcap^n_{{i=1}} E_i \in \mathcal{A}$
+
+- $\mathcal{A}$ è chiusa rispetto alla differenza finita: $\, E \smallsetminus F = E \cap \overline{F}$ 
+
+Se $\Omega$ è finito, l'algebra più grande che si possa considerare è $\mathcal{P}(\Omega)$, l'insieme di tutte le parti di $\Omega$.
+
+#### $\boldmath{\sigma}$-algebra
+
+Sia $\mathcal{A} \sube \mathcal{P}(\Omega)$ un'algebra su $\Omega$. Se per ogni famiglia numerabile di insiemi $\{E_i\}_{i \in \mathbb{N}} \sube \mathcal{A}$ vale
+
+\vspace{-4mm}
+$$
+\bigcup^{\infty}_{i=1} E_i \in \mathcal{A}
+$$
+\vspace{-4mm}
+
+allora $\mathcal{A}$ si dice $\sigma$-algebra e si indica con $\mathcal{F}$. Da ciò discende, per De Morgan, anche la chiusura rispetto alle intersezioni numerabili. 
+
+Se $\Omega$ è finito, l'insieme di tutte le parti ha cardinalità $|\mathcal{P}(\Omega)| = 2^{|\Omega|}$ ed è quindi finito anch'esso. In questo caso, ogni algebra $\mathcal{A} \sube \mathcal{P}(\Omega)$, che è chiusa per unioni finite, è automaticamente una $\sigma$-algebra, poiché ogni unione numerabile coincide con una unione finita. $\mathcal{P}(\Omega)$ rappresenta la $\sigma$-algebra più grande possibile.  
+Nel caso in cui $\Omega$ sia infinito, $\mathcal{P}(\Omega)$ è certamente una $\sigma$-algebra, ma in genere non è quella che si usa in contesti di misura, perché spesso si considerano $\sigma$-algebre proprie (strettamente più piccole).
+
+\vspace{2.5mm}
 
 Spazio misurabile
-: La coppia $(\Omega, \mathcal{A})$ è detta *spazio misurabile*. In pratica, l'algebra $\mathcal{A}$ permette di associare a dei sottoinsiemi di $\Omega$ una misura, e lo spazio misurabile è l'insieme di tali sottospazi di misura assegnata.
-[ *La scelta di una misura da associare a tali sottospazi produce uno spazio di misura, che in questo caso sarà lo spazio di probabilità. I morfismi degli spazi misurabili sono rappresentati dalle funzioni misurabili.* ]
+: Una volta fissata una $\sigma$-algebra $\mathcal{F}$ su $\Omega$, la coppia $\Omega, \mathcal{F}$ si chiama *spazio misurabile*. Qui $\mathcal{F}$ individua i sottoinsiemi di $\Omega$ considerati misurabili, ossia quelli ai quali sarà in seguito possibile associare una misura in modo coerente. Lo spazio misurabile è dunque la struttura formata dallo spazio degli esiti $\Omega$ e dalla famiglia $\mathcal{F}$ di sottoinsiemi ammessi.
 
 
 
-https://it.wikipedia.org/wiki/Spazio_campionario
 
-https://it.wikipedia.org/wiki/Spazio_misurabile
+
+
 
 
 
@@ -2332,4 +2352,6 @@ https://it.wikipedia.org/wiki/Spazio_misurabile
 # Analisi della varianza
 
 To do (lezione 08)
+
+
 
