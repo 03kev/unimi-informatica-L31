@@ -2515,7 +2515,7 @@ Dimostrazione:
 \hspace*{1em}coppie, è possibile poi applicare il terzo assioma su questi tre eventi disgiunti:
 ```
 
-\quad\quad $\mathbb{P}(E \cup F) = \mathbb{P}(\text{I} \cup \text{II} \cup \text{III}) \overset{\;K3\;}{=}  \underbrace{\mathbb{P}(\text{I}) + \mathbb{P}(\text{II})}_{\Large \mathbb{P}(E)} + \underbrace{\mathbb{P}(\text{III}) \textcolor[rgb]{0.65,0.65,0.65}{\; +\; \mathbb{P}(\text{II})}}_{\Large \mathbb{P}(F)} \textcolor[rgb]{0.65,0.65,0.65}{- \mathbb{P}(\text{II})}$
+\quad\quad $\mathbb{P}(E \cup F) = \mathbb{P}(\text{I} \cup \text{II} \cup \text{III}) \overset{\;K3\;}{=}  \underbrace{\mathbb{P}(\text{I}) + \mathbb{P}(\text{II})}_{\Large \mathbb{P}(E)} + \underbrace{\mathbb{P}(\text{III}) \textcolor[rgb]{0.65,0.65,0.65}{\; +\; \mathbb{P}(\text{II})}}_{\Large \mathbb{P}(F)} \textcolor[rgb]{0.65,0.65,0.65}{- \mathbb{P}(\text{II})} =$
 
 \quad\quad $\;\,\qquad\qquad = \mathbb{P}(E) + \mathbb{P}(F) - \mathbb{P}(E \cap F)$
 
@@ -2601,7 +2601,7 @@ Utilizzando la definizione classica di probabilità, vale la seguente formula su
 $$
 \mathbb{P}(E|F) = \dfrac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} \quad \text{con } \mathbb{P}(F) \not= 0
 $$
-Infatti, se si è verificato l'evento $F$, affinchè si verifichi anche $E$ il caso deve aver favorito un elemento che sta sia in $E$ che in $F$, ovvero che appartiene all'intersezione $E \cap F$. In secondo luogo, essendosi verificato $F$, questo evento diviene il nuovo e ridotto spazio degli esiti: l'evento condizionante diventa quindi il nuovo spazio degli esiti di riferimento e perciò tutti gli eventi al di fuori di $F$ vengono esclusi.
+Infatti, se si è verificato l'evento $F$, affinché si verifichi anche $E$ il caso deve aver favorito un elemento che sta sia in $E$ che in $F$, ovvero che appartiene all'intersezione $E \cap F$. In secondo luogo, il verificarsi di $F$ restringe lo spazio degli esiti ai soli elementi di $F$, escludendo quelli che non vi appartengono. L'evento condizionante diventa quindi il nuovo spazio degli esiti, sostituendo $\Omega$.
 
 Nel caso in cui $F = \varnothing$, e quindi $\mathbb{P}(F) = 0$, non è possibile calcolare $P(E|F)$ che è perciò detta indefinita.
 
@@ -2659,7 +2659,7 @@ Nel caso in cui $F = \varnothing$, e quindi $\mathbb{P}(F) = 0$, non è possibil
 >     \end{tikzpicture}
 > \end{minipage}
 > \begin{minipage}{0.65\linewidth}
-> 	Sia $E = \{(x,y) \in \Omega \;\,|\;\, x + y = 8 \}$ l'evento che si verifica quando la somma dei due dadi lanciati vale 8. Graficamente, queste coppie $(x,y)$ stanno sulla retta $x\,+\,y=8$ nel diagramma: si hanno quindi 5 possibili coppie valide. \\[3mm]
+> 	Sia $E = \{(x,y) \in \Omega \;\,|\;\, x\, +\, y = 8 \}$ l'evento che si verifica quando la somma dei due dadi lanciati vale 8. Graficamente, queste coppie $(x,y)$ stanno sulla retta $x\,+\,y=8$ nel diagramma: si hanno quindi 5 possibili coppie valide. \\[3mm]
 > 	Se si calcola la probabilità di questo evento, si ottiene: \\[-2mm]
 > 	$$
 > 	\mathbb{P}(E) = \dfrac{|E|}{|\Omega|} = \dfrac{5}{36}
@@ -2688,13 +2688,365 @@ Se $(\Omega, \mathcal{F}, \mathbb{P})$ è uno spazio di probabilità (valgono qu
 
 
 
+\hfill
+
 ### Teorema delle probabilità totali
 
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Teorema delle probabilità totali}
 ```
 
-##### Regola di fattorizzazione
+#### Regola di fattorizzazione
+
+Siano $E$ e $F$ due eventi in uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$. Se $\mathbb{P}(F) \not= 0$, moltiplicando entrambi i membri della formula della probabilità condizionata di $E$ dato $F$ per $\mathbb{P}(F)$ si ottiene $\mathbb{P}(E \cap F) = \mathbb{P}(E|F)\, \mathbb{P}(F)$
+
+```{=latex}
+\begin{center}
+  % Minipage 1
+  \begin{minipage}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1]
+      % Rettangolo di contorno (universo Ω)
+      \draw[thick] (-2,-1.4) rectangle (2,1.6);
+      \node[anchor=north west] at (-2,1.6) {$\Omega$};
+
+      % Disegno dei cerchi: E (centro a -0.5,0), F (centro a 0.5,0)
+      \draw (0.5,0) circle (1);
+      \draw (-0.5,0) circle (1);
+      
+      % Etichette E e F
+      \node at (-0.9,1.2) {$E$};
+      \node at (0.9,1.2) {$F$};
+
+      % Colorazione del cerchio F in grigio chiaro
+      \begin{scope}
+        \clip (0.5,0) circle (1);
+        \fill[gray!40] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+      % Cerchio E tratteggiato
+      \draw[dashed] (-0.5,0) circle (1);
+
+      % Etichette probabilità
+      \node at (1.02,0) {$\mathbb{P}(F)$};
+      \node at (-1.02,0) {$\mathbb{P}(E)$};
+    \end{tikzpicture}
+  \end{minipage}
+  % Minipage 2
+  \begin{minipage}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1]
+      % Rettangolo di contorno (universo Ω)
+      \draw[thick] (-2,-1.4) rectangle (2,1.6);
+      \node[anchor=north west] at (-2,1.6) {$\Omega$};
+
+      % Cerchi E e F
+      \draw (-0.5,0) circle (1);
+      \draw (0.5,0) circle (1);
+
+      % Etichette E e F (posizionate un po' in basso)
+      \node at (-1.25,-1) {$E$};
+      \node at (1.25,-1) {$F$};
+
+      % Colorazione dell'intersezione E ∩ F
+      \begin{scope}
+        \clip (-0.5,0) circle (1);
+        \clip (0.5,0) circle (1);
+        \fill[gray!70] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+
+      % Etichetta interna
+      \node at (0,1.25) {\(\mathbb{P}(E \cap F)\)};
+    \end{tikzpicture}
+  \end{minipage}
+  % Minipage 3
+  \begin{minipage}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1]
+      % Forziamo la stessa bounding box invisibile dei primi due
+      \path[draw=none] (-2,-1.4) rectangle (2,1.6);
+      % Eventuale label in alto a sinistra
+      \node[anchor=north west] at (-2,1.6) {\(\mathbb{P}(E|F)\)};
+
+      % Disegno del cerchio F
+      \draw (0.5,0) circle (1);
+
+      % Colora F in grigio chiaro
+      \begin{scope}
+        \clip (0.5,0) circle (1);
+        \fill[gray!40] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+
+      % Colora E∩F in grigio scuro, usando il cerchio di E come clip (non disegnato)
+      \begin{scope}
+        \clip (0.5,0) circle (1);   % F
+        \clip (-0.5,0) circle (1); % E (clip invisibile)
+        \fill[gray!70] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+
+      % Etichetta per l'intersezione
+      \node at (0,0) {\(E \cap F\)};
+      \node at (1.25,-1) {$F$};
+    \end{tikzpicture}
+  \end{minipage}
+
+\end{center}
+\vspace{4mm}
+```
+
+Allo stesso modo, se $\mathbb{P}(E) \not= 0$, si ottiene $\mathbb{P}(F \cap E) = \mathbb{P}(F|E)\, \mathbb{P}(E)$
+
+```{=latex}
+\begin{center}
+
+  % Minipage 1: Diagramma per P(E) (l'evento condizionante per P(F|E))
+  \begin{minipage}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1]
+      % Rettangolo di contorno (universo Ω)
+      \draw[thick] (-2,-1.4) rectangle (2,1.6);
+      \node[anchor=north west] at (-2,1.6) {$\Omega$};
+      
+      % Disegno dei cerchi: E (centro a -0.5,0) e F (centro a 0.5,0)
+      \draw (-0.5,0) circle (1);
+      \draw (0.5,0) circle (1);
+      
+      % Etichette E e F
+      \node at (-0.9,1.2) {$E$};
+      \node at (0.9,1.2) {$F$};
+      
+      % Colorazione del cerchio E (condizionante per P(F|E))
+      \begin{scope}
+        \clip (-0.5,0) circle (1);
+        \fill[gray!40] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+      % Disegno tratteggiato del cerchio F
+      \draw[dashed] (0.5,0) circle (1);
+      
+      % Etichette per le probabilità
+      \node at (-1.02,0) {$\mathbb{P}(E)$};
+      \node at (1.02,0) {$\mathbb{P}(F)$};
+    \end{tikzpicture}
+  \end{minipage}
+  % Minipage 2: Diagramma per P(E ∩ F)
+  \begin{minipage}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1]
+      \draw[thick] (-2,-1.4) rectangle (2,1.6);
+      \node[anchor=north west] at (-2,1.6) {$\Omega$};
+      
+      % Disegno dei cerchi E e F
+      \draw (-0.5,0) circle (1);
+      \draw (0.5,0) circle (1);
+      
+      % Etichette E e F (posizionate in basso per chiarezza)
+      \node at (-1.25,-1) {$E$};
+      \node at (1.25,-1) {$F$};
+      
+      % Colorazione dell'intersezione E ∩ F
+      \begin{scope}
+        \clip (-0.5,0) circle (1);
+        \clip (0.5,0) circle (1);
+        \fill[gray!70] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+      
+      % Etichetta interna
+      \node at (0,1.25) {\(\mathbb{P}(E \cap F)\)};
+    \end{tikzpicture}
+  \end{minipage}
+  % Minipage 3: Diagramma per P(F|E)
+  \begin{minipage}{0.3\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1]
+      % Forza la stessa bounding box invisibile dei diagrammi precedenti
+      \path[draw=none] (-2,-1.4) rectangle (2,1.6);
+      \node[anchor=north west] at (-2,1.6) {\(\mathbb{P}(F|E)\)};
+      
+      % Disegno del cerchio E (l'evento condizionante)
+      \draw (-0.5,0) circle (1);
+      
+      % Colora E in gray!40
+      \begin{scope}
+        \clip (-0.5,0) circle (1);
+        \fill[gray!40] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+      
+      % Colora l'intersezione E ∩ F in gray!70, usando il cerchio F come clip
+      \begin{scope}
+        \clip (-0.5,0) circle (1);  % E
+        \clip (0.5,0) circle (1);     % F (usato solo per clip)
+        \fill[gray!70] (-2,-1.4) rectangle (2,1.6);
+      \end{scope}
+      
+      % Etichetta per l'intersezione
+      \node at (0,0) {\(E\cap F\)};
+      \node at (-1.25,-1) {$E$};
+    \end{tikzpicture}
+  \end{minipage}
+
+\end{center}
+\vspace{4mm}
+```
+
+Essendo però $\mathbb{P}(F \cap E) = \mathbb{P}(E \cap F)$, si può concludere che:
+$$
+\mathbb{P}(E \cap F) = \mathbb{P}(E|F)\, \mathbb{P}(F) =\mathbb{P}(F|E)\, \mathbb{P}(E) \tag{6.2.1}
+$$
+Questa formula è detta *regola di fattorizzazione* e discende in maniera diretta dalla definizione di probabilità condizionata. Essa afferma che la probabilità dell'evento $E \cap F$ può essere vista sotto due prospettive equivalenti, a seconda dell'evento che decidiamo di considerare come condizionante.
+
+Questa reciprocità nasce dal fatto che gli eventi $E \cap F$ e $F \cap E$ sono identici in quanto la loro intersezione è commutativa. Quindi $\mathbb{P}(E|F)$ e $\mathbb{P}(F|E)$ sono due modi diversi di esplorare lo stesso evento $E \cap F$, solo che prendono come spazio degli esiti di riferimento due eventi diversi, rispettivamente $F$ ed $E$.
+
+\vspace{2mm}
+
+La regola di fattorizzazione ci permette di spezzare la probabilità di un evento E in parti più semplici, legate a condizioni note. Partendo dalla considerazione che qualsiasi evento può essere suddiviso rispetto a un altro o più eventi che lo partizionano, si ottiene la *formula delle probabilità totali*.
+
+##### Formula binaria delle probabilità totali
+
+Siano $E$ e $F$ due eventi in uno spazio di probabilità $(\Omega,\mathcal{F},\mathbb{P})$. Poiché $F$ e il complementare $\overline{F}$ costituiscono una partizione di $\Omega$, si può suddividere $E$ in due parti disgiunte:
+
+```{=latex}
+\vspace{1mm}
+\begin{minipage}{0.285\linewidth}
+  \centering
+  
+\begin{tikzpicture}[scale=1]
+  % Rettangolo di contorno (universo Ω)
+  \draw[thick] (-2,-1.4) rectangle (2,1.6);
+  % Etichetta Ω
+  \node[anchor=north west] at (-2,1.6) {$\Omega$};
+
+  % Regione I: E \ F
+  \begin{scope}
+    \clip (-0.5,0) circle (1);
+    \fill[gray!20] (-2,-1.4) rectangle (2,1.6);
+  \end{scope}
+
+  % Regione II: E ∩ F (più scuro per distinguerla)
+  \begin{scope}
+    \clip (-0.5,0) circle (1);
+    \clip (0.5,0) circle (1);
+    \fill[gray!50] (-2,-1.4) rectangle (2,1.6);
+  \end{scope}
+
+  % Disegno dei due cerchi
+  \draw (-0.5,0) circle (1);
+  \draw (0.5,0) circle (1);
+
+  % Etichette degli insiemi
+  \node at (-0.9,1.2) {$E$};
+  \node at (0.9,1.2) {$F$};
+
+  % Etichette delle regioni
+  \node at (-1.3,0) {I};
+  \node at (0,0) {II};
+\end{tikzpicture}
+
+  \vspace{0.3em}
+  \small Suddivisione di $E$
+
+\end{minipage}
+\begin{minipage}{0.7\linewidth}
+\vspace{-4mm}
+	$E = \text{I} \cup \text{II} = (E \cap \overline{F}) \cup (E \cap F)$ \\[2mm]
+	Poiché gli insiemi $E \cap F$ e $E \cap \overline{F}$ sono disgiunti, è possibile applicare il terzo assioma di Kolmogorov: \\[-3.5mm]
+	$$ \mathbb{P}(E) = \mathbb{P}(E \cap \overline{F}) + \mathbb{P}(E \cap F) $$ \\[-4mm]
+	Applicando la regola di fattorizzazione si ottiene: \\[-3.5mm]
+	$$ \mathbb{P}(E) = \mathbb{P}(E|F)\, \mathbb{P}(F) + \mathbb{P}(E|\overline{F})\, \mathbb{P}(\overline{F}) $$
+\end{minipage}
+\vspace{2mm}
+```
+
+Si ottiene quindi una versiona binaria del teorema delle probabilità totali, limitata alla partizione $\{F, \overline{F}\}$:
+$$
+\mathbb{P}(E) = \mathbb{P}(E|F)\, \mathbb{P}(F) + \mathbb{P}(E|\overline{F})\, \mathbb{P}(\overline{F}) \tag{6.2.2}
+$$
+Si osserva che $\mathbb{P}(\overline{F}) = 1 - \mathbb{P}(F)$, di conseguenza andando a sostituire sopra si ha:
+$$
+\mathbb{P}(E) = \mathbb{P}(E|F)\, \mathbb{P}(F) + \mathbb{P}(E|\overline{F})\, (1-\mathbb{P}(F))
+$$
+\hfill
+
+##### Formula estesa delle probabilità totali
+
+Sia $(\Omega, \mathcal{F}, \mathbb{P})$ uno spazio di probabilità. Si consideri una *partizione* $\{F_1, F_2, \dots, F_n\}$ di $\Omega$, ovvero un insieme di eventi tali che:
+
+- $F_i \not= \varnothing \quad \forall i \in [1, n]$
+
+- $F_i \cap F_j = \varnothing \quad \forall i \neq j$
+- $\displaystyle \bigcup_{i=1}^{n} F_i = \Omega$
+
+\vspace{1mm}
+
+Per un evento $E \subseteq \Omega$, possiamo scrivere $E$ come unione disgiunta di più parti:
+\vspace{-2mm}
+$$
+E \;=\; (E \cap F_1) \;\cup\; (E \cap F_2) \;\cup\;\cdots\;\cup\;(E \cap F_n) = \bigcup_{i=1}^n (E \cap F_i)
+$$
+
+\vspace{-4mm}
+dove $(E \cap F_i) \cap (E \cap F_j) = \varnothing$ per $\forall i,j \mid i \neq j$.
+
+Essendo $E$ l'unione di eventi disgiunti, è possibile applicare il terzo assioma di Kolmogorov:
+\vspace{-2mm}
+$$
+\mathbb{P}(E) \;=\; \mathbb{P} \Bigl(\, \bigcup_{i=1}^n (E \cap F_i) \,\Bigr)
+\overset{\;K3\;}{=} \sum_{i=1}^n \mathbb{P}(E \cap F_i)
+$$
+
+Tramite la regola di fattorizzazione, per ogni $F_i$ con $\mathbb{P}(F_i) \neq 0$ si ottiene $\mathbb{P}(E \cap F_i) = \mathbb{P}(E | F_i)\,\mathbb{P}(F_i)$
+
+Sommando su tutti gli indici $i$ si ottiene dunque la *formula delle probabilità totali in forma estesa*:
+\vspace{-2mm}
+$$
+\mathbb{P}(E) = \sum_{i=1}^n \mathbb{P}(E | F_i)\,\mathbb{P}(F_i) \tag{6.2.3}
+$$
+
+Questa relazione generalizza il caso binario $\{ F, \overline{F} \}$ e permette di calcolare $\mathbb{P}(E)$ suddividendo lo spazio degli esiti in una partizione $\{F_1, F_2, \ldots, F_n\}$. In tal modo, ciascun insieme $F_i$ ha probabilità $\mathbb{P}(F_i)$ e, all’interno di ciascuno, si considera la probabilità condizionata $\mathbb{P}(E | F_i)$. Sommando tutti i contributi $\mathbb{P}(E|F_i)\,\mathbb{P}(F_i)$ si ottiene $\mathbb{P}(E)$.
+
+
+
+\newpage
+
+## Teorema di Bayes
+
+Una volta chiarite la regola di fattorizzazione e la formula (o teorema) delle probabilità totali, è naturale introdurre il teorema di Bayes, che fornisce un modo per capovolgere il condizionamento di un evento $E$ rispetto a un altro evento $F$.
+
+Siano $E$ e $F$ due eventi di uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ con $\mathbb{P}(E)\neq 0$. Allora vale la seguente formula:
+$$
+\mathbb{P}(F | E)
+= \frac{\mathbb{P}(E | F)\,\mathbb{P}(F)}{\mathbb{P}(E|F)\, \mathbb{P}(F) + \mathbb{P}(E|\overline{F})\, \mathbb{P}(\overline{F})}
+= \frac{\mathbb{P}(E | F)\,\mathbb{P}(F)}{\mathbb{P}(E)} \tag{6.3.1}
+$$
+
+\vspace{1mm}
+
+Dimostrazione
+: Tramite la formula $(6.2.1)$ si è visto che $\mathbb{P}(E\cap F)$ può essere scritta in 2 modi equivalenti:
+
+    \vspace{-4mm}
+    $$
+    \mathbb{P}(E\cap F) = \mathbb{P}(E| F)\,\mathbb{P}(F) = \mathbb{P}(F| E)\,\mathbb{P}(E)
+    $$
+    Dato che $\mathbb{P}(E) \neq 0$, isolando $\mathbb{P}(F|E)$ si ottiene proprio la formula di Bayes. Si ricordi che tramite la formula binaria delle probabilità totali $(6.2.2)$ si ha che $\mathbb{P}(E|F)\, \mathbb{P}(F) + \mathbb{P}(E|\overline{F})\, \mathbb{P}(\overline{F}) = \mathbb{P}(E)$.
+
+\vspace{3mm}
+
+Mentre $\mathbb{P}(E|F)$ descrive la probabilità che $E$ accada dopo che $F$ è avvenuto, $\mathbb{P}(F|E)$ sposta l’attenzione su $F$, supponendo di aver già osservato $E$.  
+Inoltre il denominatore $\mathbb{P}(E)$ funge da normalizzatore: rappresenta la probabilità totale di $E$ e assicura che la probabilità condizionata $\mathbb{P}(F|E)$ sia un numero tra 0 e 1.
+
+
+
+##### Forma estesa
+
+Estendendo il ragionamento a una partizione generale di $\Omega$, si ottiene la forma estesa del teorema di Bayes. Sia $\{F_1,\dots,F_n\}$ una partizione di $\Omega$ e $\mathbb{P}(F_i)\neq0$ per ogni $i$, e sia $E$ sia un evento tale per cui $\mathbb{P}(E)\neq0$, allora:
+$$
+\mathbb{P}(F_i \mid E)
+=
+\frac{\mathbb{P}(E | F_i)\,\mathbb{P}(F_i)}
+{\displaystyle \sum_{k=1}^n \mathbb{P}(E \mid F_k)\,\mathbb{P}(F_k)} 
+= \dfrac{\mathbb{P}(E | F_i)\,\mathbb{P}(F_i)}{\mathbb{P}(E)}
+\tag{6.3.2}
+$$
+dove il denominatore è $\mathbb{P}(E)$ per via della formula estesa delle probabilità totali.
 
 
 
