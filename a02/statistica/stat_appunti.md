@@ -1909,7 +1909,7 @@ To do (lezione 08)
 
 ```{=latex}
 \newpage
-\part{Teoria delle probabilità}
+\part{Teoria della probabilità}
 ```
 
 # Calcolo combinatorio
@@ -2563,7 +2563,7 @@ Dimostrazione:
 
 Se $\mathcal{F}$ è una $\sigma$-algebra definita sullo spazio degli esiti $\Omega$ e $\mathbb{P}$ è una misura di probabilità definita su $\mathcal{F}$ che soddisfa gli assiomi di Kolmogorov, allora la terna $(\Omega, \mathcal{F}, \mathbb{P})$ è detta spazio di probabilità.
 
-#### Spazio di probabilità equiprobabile
+#### Spazio equiprobabile
 
 Se nello spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ lo spazio degli esiti $\Omega$ è finito e $\forall \omega \in \Omega$ si ha che $\mathbb{P}(\{\omega\})$ è costante, allora lo spazio di dice equiprobabile.
 
@@ -2581,15 +2581,11 @@ Si consideri un evento $E \sube \Omega$, ed essendo $E$ finito sia la sua cardin
 $$
 \mathbb{P}(E) = \mathbb{P}(\{e_1', \dots, e_k'\}) = \mathbb{P}(\{e_1'\} \cup \dots \cup \{e_k'\}) \overset{\;K3\;}{=} \sum_{i=1}^k \mathbb{P}(\{e_i'\}) = \sum_{i=1}^k p = pk = \dfrac{k}{N} = \dfrac{|E|}{|\Omega|}
 $$
-Si definisce $\mathbb{P}(E) = \dfrac{|E|}{|\Omega|}$ come la regola classica per il calcolo delle probabilità.
+Si definisce $\mathbb{P}(E) = \dfrac{|E|}{|\Omega|} = \dfrac{\text{\# casi favorevoli}}{\text{\# casi possibili}}\;$ come la regola classica per il calcolo delle probabilità.
 
 \vspace{3mm}
 
-Se $\Omega$ è infinito non è possibile definire una probabilità equiprobabile nel senso in cui ogni esito riceve la stessa probabilità positiva $p$. Infatti se $|\Omega| = \infty$ allora $p \rightarrow 0$, ma se $\forall \omega \in \Omega$ si ha che $\mathbb{P}(\{\omega\}) = 0$, allora gli assiomi di Kolmogorov non sono più soddisfatti e si giunge ad un assurdo.
-
-
-
-
+Se $\Omega$ è infinito non è possibile definire una probabilità equiprobabile nel senso in cui ogni esito riceve la stessa probabilità positiva $p$. Infatti se $|\Omega| = \infty$ allora $p \rightarrow 0$, ma se $\forall \omega \in \Omega$ si ha che $\mathbb{P}(\{\omega\}) = 0$, allora gli assiomi di Kolmogorov non sono più soddisfatti e si giunge ad un assurdo. Questo vale per spazi discreti.
 
 
 
@@ -2597,7 +2593,110 @@ Se $\Omega$ è infinito non è possibile definire una probabilità equiprobabile
 
 ## Probabilità condizionata
 
-To do
+Si definisce *probabilità condizionata* la probabilità che si verifichi un evento $E$ sapendo che si è già verificato un altro evento $F$. La probabilità condizionata di $E$ dato $F$ si indica con $\mathbb{P}(E|F)$, oppure $\mathbb{P}_F(E)$, e si può definire a patto che la probabilità di $F$ sia diversa da zero.
+
+La probabilità condizionata subentra tutte le volte che si vuole calcolare la probabilità di un evento $E$, detto *evento condizionato*, assumendo che si sia già verificato un altro evento $F$, detto *evento condizionante*. L'incertezza dell'evento $E$ è quindi solo parziale ed è limitata al sottoinsieme degli esiti in cui $F$ si verifica.
+
+Utilizzando la definizione classica di probabilità, vale la seguente formula sulla probabilità condizionata:
+$$
+\mathbb{P}(E|F) = \dfrac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} \quad \text{con } \mathbb{P}(F) \not= 0
+$$
+Infatti, se si è verificato l'evento $F$, affinchè si verifichi anche $E$ il caso deve aver favorito un elemento che sta sia in $E$ che in $F$, ovvero che appartiene all'intersezione $E \cap F$. In secondo luogo, essendosi verificato $F$, questo evento diviene il nuovo e ridotto spazio degli esiti: l'evento condizionante diventa quindi il nuovo spazio degli esiti di riferimento e perciò tutti gli eventi al di fuori di $F$ vengono esclusi.
+
+Nel caso in cui $F = \varnothing$, e quindi $\mathbb{P}(F) = 0$, non è possibile calcolare $P(E|F)$ che è perciò detta indefinita.
+
+> **Esempio** Si immagini di tirare due dadi. Lo spazio degli esiti di questo esperimento è descritto  
+> da $\Omega = \{ (x,y) \;\, | \;\, x,y \in [1,6]  \}$ dove si intende che si ottiene l'esito $(x,y)$ se il risultato del primo dado è $x$ e quello del secondo $y$. Si supponga che entrambi i dadi non siano truccati, e di trovarci quindi in uno spazio equiprobabile dove $\mathbb{P}((x,y)) = 1/|\Omega| = 1/36$.
+>
+> ```{=latex}
+> \begin{minipage}{0.35\linewidth}
+> 	\centering
+>     \begin{tikzpicture}[scale=0.5]
+>         % Assi con frecce
+>         \draw[->] (0,0) -- (7,0) node[below] {$x$};
+>         \draw[->] (0,0) -- (0,7) node[left] {$y$};
+> 
+>         % Unico 0 in obliquo all'origine
+>         \node[below left] at (0,0) {0};
+> 
+>         % Tacche e etichette sugli assi (1..6)
+>         \foreach \x in {1,2,3,4,5,6} {
+>             \draw (\x,0) -- (\x,-0.1) node[below] {\x};
+>         }
+>         \foreach \y in {1,2,3,4,5,6} {
+>             \draw (0,\y) -- (-0.1,\y) node[left] {\y};
+>         }
+> 
+>         % Retta x+y = 8
+>         \draw[color=gray!60] (1.1,6.9) -- (6.9,1.1);
+>         % Retta x = 3
+>         \draw[color=black] (3,0) -- (3,6.9);
+> 
+>         % Rombi per la retta x+y=8, escluso l'intersezione (3,5)
+>         \foreach \p in {(2,6), (4,4), (5,3), (6,2)} {
+>             \draw[rotate around={45:\p}, color=gray!70] \p 
+>                 ++(-0.2,0) -- ++(0.2,0.2) -- 
+>                 ++(0.2,-0.2) -- ++(-0.2,-0.2) -- cycle;
+>         }
+> 
+>         % Rombi per la retta x=3, escluso l'intersezione (3,5)
+>         \foreach \y in {1,2,3,4,6} {
+>             \draw[rotate around={45:(3,\y)}, color=black] (3,\y) 
+>                 ++(-0.2,0) -- ++(0.2,0.2) -- 
+>                 ++(0.2,-0.2) -- ++(-0.2,-0.2) -- cycle;
+>         }
+> 
+>         % Evidenzia l'intersezione (3,5) con un quadrato grosso
+>         \draw[black,thick] (2.8,4.8) rectangle (3.2,5.2);
+> 
+>         % Griglia di punti (i, j) con i, j = 1..6
+>         \foreach \x in {1,2,3,4,5,6} {
+>             \foreach \y in {1,2,3,4,5,6} {
+>                 \fill (\x,\y) circle (2pt);
+>             }
+>         }
+> 
+>     \end{tikzpicture}
+> \end{minipage}
+> \begin{minipage}{0.65\linewidth}
+> 	Sia $E = \{(x,y) \in \Omega \;\,|\;\, x + y = 8 \}$ l'evento che si verifica quando la somma dei due dadi lanciati vale 8. Graficamente, queste coppie $(x,y)$ stanno sulla retta $x\,+\,y=8$ nel diagramma: si hanno quindi 5 possibili coppie valide. \\[3mm]
+> 	Se si calcola la probabilità di questo evento, si ottiene: \\[-2mm]
+> 	$$
+> 	\mathbb{P}(E) = \dfrac{|E|}{|\Omega|} = \dfrac{5}{36}
+> 	$$
+> \end{minipage}
+> ```
+>
+> Si supponga ora che il primo dado sia risultato in un 3, si vuole ancora calcolare la probabilità che $E$ si verifichi. Possedendo questa informazione, si definisce $F = \{(x,y) \in \Omega \;\, | \;\, x = 3\}$ come l'evento condizionante. Graficamente, si osserva che l'evento $F$ contiene esattamente 6 esiti; di conseguenza $\mathbb{P}(F) = |F|/|\Omega| = 1/6$.
+>
+> Calcolando $\mathbb{P}(E|F)$ si ottiene la probabilità di $E$ sapendo che $F$ si è verificato. Per definizione:
+> $$
+> \mathbb{P}(E|F) = \dfrac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} = \dfrac{1/36}{1/6} = \dfrac{1}{6}
+> $$
+> $E \cap F$ è infatti l'insieme degli esiti che soddisfano sia $x+y = 8$ che $x=3$. Graficamente, si osserva che le due rette si incontrano in un unico punto, e di conseguenza $|E \cap F| = 1$.
+>
+> Nel diagramma, l'evento $F$ è rappresentato dalla retta verticale $x=3$ mentre $E$ è rappresentato dalla retta obliqua $x+y = 8$. Una volta saputo che il primo dado risulta in un 3, rimangono solo 6 possibili esiti, ossia quelli della retta verticale: lo spazio degli esiti è quindi ridotto da $\Omega$ a $F$. Tra questi punti, solo uno realizza la somma 8, ossia quella all'incrocio delle due rette.
+
+\newpage
+
+Si osserva che la definizione di probabilità condizionata è compatibile con l'interpretazione frequentista della probabilità degli eventi. Quest'ultima considera la probabilità come il limite del rapporto tra il numero di volte in cui si verifica un evento e il totale delle prove, al crescere indefinito di queste ultime. Pertanto, la probabilità condizionata rappresenta la frequenza relativa con cui $E$ si verifica tra le prove in cui $F$ è accaduto, rendendo la definizione coerente con l’approccio empirico.
+
+##### Definizione rigorosa
+
+Dato uno spazio misurabile $(\Omega, \mathcal{F})$ di misura $\mathbb{P}$, ogni evento $F$ eredita una struttura di spazio misurato $(F, \mathcal{A}_F, \mathbb{P})$, restringendo gli insiemi misurabili a quelli contenuti in $F$, ed induce una nuova misura $\mathbb{P}_F'(E) = \mathbb{P}(E \cap F)$ su $(\Omega, \mathcal{F})$, con $\mathbb{P}_F'(\Omega) = P(F)$.  
+Se $(\Omega, \mathcal{F}, \mathbb{P})$ è uno spazio di probabilità (valgono quindi gli assiomi di Kolmogorov, tra cui $\mathbb{P}(\Omega) = 1$) e $F$ non è trascurabile (ossia $\mathbb{P}(F) \not= 0$), allora riscalando $\mathbb{P}_F'$ a $\mathbb{P}_F = \frac{1}{\mathbb{P}(F)}\, \mathbb{P}_F'$ si ottiene lo spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P}_F)$ condizionato dall'evento $F$.
+
+
+
+### Teorema delle probabilità totali
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Teorema delle probabilità totali}
+```
+
+##### Regola di fattorizzazione
+
+
 
 
 
