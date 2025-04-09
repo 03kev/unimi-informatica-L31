@@ -51,7 +51,7 @@ header-includes: |
 \renewcommand{\paragraph}[1]{\originAlParaGraph{#1} \hfill}
 
 \definecolor{mygray}{HTML}{F7F7F7}
-\newenvironment{myquote}{\begin{mdframed}[backgroundcolor=mygray, leftmargin=0.5cm, rightmargin=0.5cm, skipabove=\baselineskip, linewidth=0pt, innertopmargin=0.5cm, innerbottommargin=0.5cm, innerleftmargin=0.58cm, innerrightmargin=0.58cm]}{\end{mdframed}}
+\newenvironment{myquote}{\begin{mdframed}[backgroundcolor=mygray, leftmargin=0.5cm, rightmargin=0.5cm, skipabove=\baselineskip, linewidth=0pt, innertopmargin=0.45cm, innerbottommargin=0.45cm, innerleftmargin=0.5cm, innerrightmargin=0.5cm]}{\end{mdframed}}
 \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
 ```
 
@@ -715,7 +715,7 @@ Si potrebbe pensare di misurare la dispersione totale di un insieme di dati calc
 
 Questo avviene proprio perché gli scarti positivi e negativi si cancellano tra di loro. Si vogliono quindi considerare i singoli scarti indipendentemente dal segno. Si può ottenere questo risultato sia considerando il valore assoluto degli scarti che, come risulta più utile in pratica, il quadrato.
 
-
+\newpage
 
 ### Varianza campionaria
 
@@ -724,10 +724,6 @@ Questo avviene proprio perché gli scarti positivi e negativi si cancellano tra 
 ```
 
 La varianza campionaria è una misura della media degli scarti quadratici rispetto alla media campionaria. Tuttavia, per ragioni tecniche questa "media" divide la somma di $n$ scarti quadratici per $n-1$, piuttosto che per l'usuale valore $n$.
-
-```{=latex}
-\newpage
-```
 
 La varianza campionaria si può calcolare solo per attributi quantitativi, e a differenza degli indici di centralità presenta un problema: la sua unità di misura è diversa da quella dei singoli dati del campione.
 
@@ -2130,12 +2126,12 @@ Un evento $E$ è un sottoinsieme dello spazio degli esiti, perciò $E \subseteq 
 
 Dati due eventi $E, F \subseteq \Omega$, è possibile applicare le operazioni fondamentali degli insiemi:
 
-- Unione $E \cup F$: è l'evento che si verifica quando si verifica almeno uno tra $E$ e $F$ si verifica.  
+- Unione $E \cup F$: è l'evento che si verifica quando si verifica almeno uno tra $E$ e $F$.  
     Per un esito $x$ si ottiene che $\;x \in E \cup F \; \Leftrightarrow\; x \in E \lor x \in F$
 
 - Intersezione $E \cap F$: è l'evento che si verifca quando si verificano entrambi gli eventi $E$ e $F$.  
     Per un esito $x$ si ottiene che $\;x \in E \cap F \; \Leftrightarrow\; x \in E \land x \in F$  
-    Se $E \cap F = \varnothing$ allora $E$ e $F$ si dicono *mutualmente esclusivi* o eventi *disgiunti*.
+    Se $E \cap F = \varnothing$ allora $E$ e $F$ si dicono *mutualmente esclusivi* o *eventi disgiunti*.
 
 - Complementare $E^C$ di $E$: è l'evento che si verifica quando non si verifica $E$ . Si indica anche con $\overline{E}$.  
     Per un esito $x$ si ottiene che $\;x \in E^C \; \Leftrightarrow\; x \not \in E$  
@@ -2353,12 +2349,12 @@ Due spazi misurabili $(\Omega_1, \mathcal{F}_1)$ e $(\Omega_2, \mathcal{F}_2)$ s
 - Per ogni $E \in \mathcal{F}_1$, vale $\phi(\overline{E}) = \overline{\phi(E)}$
 - Per ogni coppia $E, F \in \mathcal{F}_1$, vale $\phi(E \cup F) = \phi(E) \cup \phi(F)$
 
-La mappa $\phi$ è un isomorfismo di algebre booleane, il che implica che le due strutture hanno la stessa struttura misurabile, pur essendo definite su spazi degli esiti differenti. Questo significa che, per ogni proprietà, operazione o misura che possiamo definire su una delle algebre, c’è una corrispondenza diretta nell’altra
+La mappa $\phi$ è un isomorfismo di algebre booleane, il che implica che le due strutture hanno la stessa struttura misurabile, pur essendo definite su spazi degli esiti differenti. Questo significa che, per ogni proprietà, operazione o misura che possiamo definire su una delle algebre, c’è una corrispondenza diretta nell’altra.
 
 > **Esempio** Si consideri il lancio di una moneta, per il quale la $\sigma$-algebra è  
 > $\mathcal{F}_M = \{\varnothing, \{T\}, \{C\}, \Omega_M\},$ dove $T$ sta per testa, $C$ per croce e $\Omega_M = \{T, C\}$.
 >
-> Per il lancio di un dado, supponiamo di considerare solo due eventi, ottenuti partizionando lo spazio degli esiti $\Omega_D = \{1,2,3,4,5,6\}$ in $\mathcal{F}_D = \{\emptyset, \{1,2\}, \{3,4,5,6\}, \Omega_D\}$. $\mathcal{F}_D$ è un'algebra ammissibile diversa dall'insieme delle parti $\mathcal{P}(\Omega)$. 
+> Per il lancio di un dado, supponiamo di considerare solo due eventi, ottenuti partizionando lo spazio degli esiti $\Omega_D = \{1,2,3,4,5,6\}$ in $\mathcal{F}_D = \{\emptyset, \{1,2\}, \{3,4,5,6\}, \Omega_D\}$. $\mathcal{F}_D$ è un'algebra ammissibile diversa dall'insieme delle parti $\mathcal{P}(\Omega_D)$. 
 >
 > Si definisce la mappa $\phi: \mathcal{F}_D \to \mathcal{F}_M$ mediante:
 >
@@ -2398,6 +2394,8 @@ La funzione $\mathbb{P}$ deve soddisfare i seguenti assiomi (assiomi di Kolmogor
 
 Questi assiomi formalizzano l'osservazione empirica: la probabilità, definita come la frequenza relativa limite, viene interpretata come una misura che assegna ad ogni evento misurabile un valore compreso tra 0 e 1, rispettando le proprietà di coerenza e additività.
 
+Si osserva che per garantire una collezione di $n$ eventi $\{E_1, E_2, \dots, E_n\}$ sia considerata disgiunta, è necessario e sufficiente provare che ogni coppia di eventi distinti $E_i$ e $E_j$, con $i \neq j$, non abbia nessun elemento in comune, ossia che $E_i \cap E_j = \varnothing \quad \forall i \neq j$.
+
 \vspace{2mm}
 
 $\sigma$-additività
@@ -2415,7 +2413,7 @@ $\sigma$-additività
 
 #### Proprietà
 
-Sia $(\Omega, \mathcal{F}, \mathbb{P})$ uno spazio di probabilità. Sono allora vere le seguenti proprietà, e verranno dimostrate.
+Sia $(\Omega, \mathcal{F}, \mathbb{P})$ uno spazio di probabilità. Sono allora vere le seguenti proprietà che verranno dimostrate.
 
 ##### Teorema 1
 
@@ -2423,14 +2421,14 @@ $\forall E \in \mathcal{F} \quad \mathbb{P}(\overline{E}) = 1 - \mathbb{P}(E)$
 
 Dimostrazione:
 
-$\quad E \cup \overline{E} = \Omega \land E \cap \overline{E} = \varnothing \;\; \Rightarrow \;\;
+\qquad - $E \cup \overline{E} = \Omega \land E \cap \overline{E} = \varnothing \;\; \Rightarrow \;\;
 \text{I due insiemi sono disgiunti}$
 
-\quad Dato che i due insiemi sono disgiunti, è possibile applicare il terzo assioma:
+\qquad - Dato che i due insiemi sono disgiunti, è possibile applicare il terzo assioma:
 
-$\quad\quad 1 \overset{\;K2\;}{=} \mathbb{P}(\Omega) \overset{}{=} \mathbb{P}(E \cup \overline{E}) \overset{\;K3\;}{=} \mathbb{P}(E) + \mathbb{P}(\overline{E})$
+$\qquad\qquad 1 \overset{\;K2\;}{=} \mathbb{P}(\Omega) \overset{}{=} \mathbb{P}(E \cup \overline{E}) \overset{\;K3\;}{=} \mathbb{P}(E) + \mathbb{P}(\overline{E})$
 
-$\quad\quad \mathbb{P}(E) + \mathbb{P}(\overline{E}) = 1 \;\; \Rightarrow\;\; \mathbb{P}(\overline{E}) = 1 - \mathbb{P}(E)$
+$\qquad\qquad \mathbb{P}(E) + \mathbb{P}(\overline{E}) = 1 \;\; \Rightarrow\;\; \mathbb{P}(\overline{E}) = 1 - \mathbb{P}(E)$
 
 \vspace{2mm}
 
@@ -2442,7 +2440,7 @@ Dimostrazione:
 
 ```{=latex}
 \vspace{1mm}
-\begin{minipage}{0.285\linewidth}
+\quad\begin{minipage}{0.285\linewidth}
   \centering
   
 \begin{tikzpicture}[scale=1]
@@ -2489,14 +2487,15 @@ Dimostrazione:
 
 \end{minipage}
 \begin{minipage}{0.65\linewidth}
-\vspace{1.5mm}
-
-	Si suddivide l'evento $E \cup F$ in tre eventi distinti: \\
-	1. I = $E \cap \overline{F}$ \\
-	2. II = $E \cap F$ \\
-	3. III = $\overline{E} \cap F$ \\
-	
-	Dal diagramma di Venn si osserva che questi tre eventi sono disgiunti a due a due. Si dimostra ora algebricamente che I e II sono disgiunti. Analogamente sarà possibile dimostrarlo per le altre coppie. \\
+\vspace{-4.2mm}
+	- Si suddivide l'evento $E \cup F$ in tre eventi distinti: \\[1mm]
+	\noindent\hspace*{1em} 1. I = $E \cap \overline{F}$ \\
+	\noindent\hspace*{1em} 2. II = $E \cap F$ \\
+	\noindent\hspace*{1em} 3. III = $\overline{E} \cap F$ \\[3mm]
+    \hspace{-2mm}\begin{tabular}{@{}l@{\hspace{1mm}}p{1\linewidth}}
+    - & Dal diagramma di Venn si osserva che questi tre eventi sono disgiunti a due a due. 
+       Si dimostra ora algebricamente che I e II sono disgiunti. 
+    \end{tabular}
 	
 \end{minipage}
 \vspace{2mm}
@@ -2504,20 +2503,19 @@ Dimostrazione:
 
 
 
-\quad I e II sono disgiunti $\;\; \Leftrightarrow \;\; (\text{I} \cup \text{II} = E) \land (\text{I} \cap \text{II} = \varnothing)$
+\qquad - I e II sono disgiunti $\;\; \Leftrightarrow \;\; (\text{I} \cup \text{II} = E) \land (\text{I} \cap \text{II} = \varnothing)$
 
-\quad\quad $(E \cap \overline{F}) \cup (E \cap F) = E \cup (\overline{F} \cap F) = E \cup \varnothing = E$
+\qquad\qquad $(E \cap \overline{F}) \cup (E \cap F) = E \cup (\overline{F} \cap F) = E \cup \varnothing = E$
 
-\quad\quad $(E \cap \overline{F}) \cap (E \cap F) = (E \cap E) \cap (F \cap \overline{F}) = E \cap \varnothing = \varnothing$
+\qquad\qquad $(E \cap \overline{F}) \cap (E \cap F) = (E \cap E) \cap (F \cap \overline{F}) = E \cap \varnothing = \varnothing$
 
 ```{=latex}
-\noindent\hspace*{1em}Si è quindi dimostrato che I e II sono due eventi disgiunti. Dimostrandolo analogamente per le altre\\
-\hspace*{1em}coppie, è possibile poi applicare il terzo assioma su questi tre eventi disgiunti:
+\qquad \begin{tabular}{@{}l@{\hspace{1mm}}p{0.93\linewidth}}
+- & Si è quindi dimostrato che I e II sono due eventi disgiunti. Dimostrandolo analogamente per le altre coppie, è possibile poi applicare il terzo assioma su questi tre eventi disgiunti:
+\end{tabular}
 ```
 
-\quad\quad $\mathbb{P}(E \cup F) = \mathbb{P}(\text{I} \cup \text{II} \cup \text{III}) \overset{\;K3\;}{=}  \underbrace{\mathbb{P}(\text{I}) + \mathbb{P}(\text{II})}_{\Large \mathbb{P}(E)} + \underbrace{\mathbb{P}(\text{III}) \textcolor[rgb]{0.65,0.65,0.65}{\; +\; \mathbb{P}(\text{II})}}_{\Large \mathbb{P}(F)} \textcolor[rgb]{0.65,0.65,0.65}{- \mathbb{P}(\text{II})} =$
-
-\quad\quad $\;\,\qquad\qquad = \mathbb{P}(E) + \mathbb{P}(F) - \mathbb{P}(E \cap F)$
+\qquad\qquad $\mathbb{P}(E \cup F) = \mathbb{P}(\text{I} \cup \text{II} \cup \text{III}) \overset{\;K3\;}{=}  \underbrace{\mathbb{P}(\text{I}) + \mathbb{P}(\text{II})}_{\Large \mathbb{P}(E)} + \underbrace{\mathbb{P}(\text{III}) \textcolor[rgb]{0.65,0.65,0.65}{\; +\; \mathbb{P}(\text{II})}}_{\Large \mathbb{P}(F)} \textcolor[rgb]{0.65,0.65,0.65}{- \mathbb{P}(\text{II})} = \mathbb{P}(E) + \mathbb{P}(F) + \mathbb{P}(E \cap F)$
 
 
 
@@ -2527,9 +2525,9 @@ $\mathbb{P}(\varnothing) = 0$
 
 Dimostrazione:
 
-\quad $\overline{\Omega} = \varnothing$
+\qquad - $\overline{\Omega} = \varnothing$
 
-\quad $\mathbb{P}(\overline{\Omega}) \overset{\;T1\;}{=} 1 - \mathbb{P}(\Omega) \;\; \Rightarrow \;\; \mathbb{P}(\varnothing) = 1 - \mathbb{P}(\Omega) \;\; \overset{\;K2\;}{\Rightarrow} \;\; \mathbb{P}(\varnothing) = 1-1=0$
+\qquad - $\mathbb{P}(\overline{\Omega}) \overset{\;T1\;}{=} 1 - \mathbb{P}(\Omega) \;\; \Rightarrow \;\; \mathbb{P}(\varnothing) = 1 - \mathbb{P}(\Omega) \;\; \overset{\;K2\;}{\Rightarrow} \;\; \mathbb{P}(\varnothing) = 1-1=0$
 
 ##### Teorema 4
 
@@ -2537,7 +2535,7 @@ $\forall E \in \mathcal{F} \quad \mathbb{P}(E) \le 1$
 
 Dimostrazione:
 
-\quad $\mathbb{P}(\overline{E}) \overset{\;T1\;}{=}  1 - \mathbb{P}(E) \;\; \overset{K1}{\Rightarrow} \;\; \mathbb{P}(\overline{E}) = 1 - \mathbb{P}(E) \ge 0 \;\; \Rightarrow \;\; \mathbb{P}(E) \le 1$
+\qquad - $\mathbb{P}(\overline{E}) \overset{\;T1\;}{=}  1 - \mathbb{P}(E) \;\; \overset{K1}{\Rightarrow} \;\; \mathbb{P}(\overline{E}) = 1 - \mathbb{P}(E) \ge 0 \;\; \Rightarrow \;\; \mathbb{P}(E) \le 1$
 
 ##### Teorema 5
 
@@ -2545,11 +2543,11 @@ $\forall E, F \in \mathcal{F} ~|~ E \sube F \quad \mathbb{P}(E) \le \mathbb{P}(F
 
 Dimostrazione:
 
-\quad Dato che $E \sube F$, allora si può scrivere $F = E \cup (F \smallsetminus E)$ con $E \cap (F \smallsetminus E) = \varnothing$
+\qquad - Dato che $E \sube F$, allora si può scrivere $F = E \cup (F \smallsetminus E)$ con $E \cap (F \smallsetminus E) = \varnothing$
 
-\quad $E$ e $F\smallsetminus E$ sono quindi due eventi disgiunti ed è quindi possibile applicare il terzo assioma:
+\qquad - $E$ e $F\smallsetminus E$ sono quindi due eventi disgiunti ed è quindi possibile applicare il terzo assioma:
 
-\quad $\quad \mathbb{P}(F) \overset{\;K3\;}{=} \mathbb{P}(E) + \mathbb{P}(F \smallsetminus E) \;\; \overset{\;K1\;}{\Rightarrow} \;\; \mathbb{P}(F\smallsetminus E) \ge 0 \;\; \Rightarrow \;\; \mathbb{P}(F) \ge \mathbb{P}(E)$
+\qquad\qquad $\mathbb{P}(F) \overset{\;K3\;}{=} \mathbb{P}(E) + \mathbb{P}(F \smallsetminus E) \;\; \overset{\;K1\;}{\Rightarrow} \;\; \mathbb{P}(F\smallsetminus E) \ge 0 \;\; \Rightarrow \;\; \mathbb{P}(F) \ge \mathbb{P}(E)$
 
 
 
@@ -2567,21 +2565,23 @@ Se $\mathcal{F}$ è una $\sigma$-algebra definita sullo spazio degli esiti $\Ome
 
 Se nello spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ lo spazio degli esiti $\Omega$ è finito e $\forall \omega \in \Omega$ si ha che $\mathbb{P}(\{\omega\})$ è costante, allora lo spazio di dice equiprobabile.
 
-Essendo $\Omega$ finito, lo si può considerare come $\{\omega_1, \omega_2, \dots, \omega_N\}$, e di conseguenza la sua cardinalità è $|\Omega| = N$. L'equiprobabilità degli esiti si scrive come $\mathbb{P}(\{\omega_1\}) = \mathbb{P}(\{\omega_2\}) = \cdots = \mathbb{P}(\{\omega_N\}) = p$
+Essendo $\Omega$ finito, lo si può considerare come $\{\omega_1, \omega_2, \dots, \omega_N\}$, e di conseguenza la sua cardinalità è $|\Omega| = N$. L'equiprobabilità degli esiti si scrive come $\mathbb{P}(\{\omega_1\}) = \mathbb{P}(\{\omega_2\}) = \cdots = \mathbb{P}(\{\omega_N\}) = p$.
 
 Dagli assiomi 1 e 3 segue che
 $$
 1 \overset{\;K1\;}{=} \mathbb{P}(\Omega) = \mathbb{P}(\{\omega_1\} \cup \dots \cup \{\omega_N\}) \overset{\;K3\;}{=} \mathbb{P}(\{\omega_1\}) + \dots + \mathbb{P}(\{\omega_N\}) = N p
 $$
-da cui si deduce che $\mathbb{P}(\{\omega_i\}) = p = 1/N$ per $i \in [1, N]$. Generalizzando si ha:
+da cui si deduce che
 $$
-p = \dfrac{|\{\omega_i\}|}{|\Omega|}
+\mathbb{P}(\{\omega_i\}) = \dfrac{|\{\omega_i\}|}{|\Omega|} = p =\dfrac{1}{N} \quad\; \forall i \in [1,N]
 $$
-Si consideri un evento $E \sube \Omega$, ed essendo $E$ finito sia la sua cardinalità $|E| = k$. Riapplicando gli assiomi:
+\vspace{-1mm}
+
+Si consideri un evento $E \sube \Omega$, ed essendo $E$ finito sia la sua cardinalità $|E| = k$. Inidichiamo genericamente gli elementi di $E$ con $\{e_1', \dots, e_k '\}$ per sottolineare che sono $k$ elementi arbitrari di $\Omega$, e non necessariamente i primi $k$. Riapplicando gli assiomi si ha:
 $$
 \mathbb{P}(E) = \mathbb{P}(\{e_1', \dots, e_k'\}) = \mathbb{P}(\{e_1'\} \cup \dots \cup \{e_k'\}) \overset{\;K3\;}{=} \sum_{i=1}^k \mathbb{P}(\{e_i'\}) = \sum_{i=1}^k p = pk = \dfrac{k}{N} = \dfrac{|E|}{|\Omega|}
 $$
-Si definisce $\mathbb{P}(E) = \dfrac{|E|}{|\Omega|} = \dfrac{\text{\# casi favorevoli}}{\text{\# casi possibili}}\;$ come la regola classica per il calcolo delle probabilità.
+Si definisce $\mathbb{P}(E) = \dfrac{|E|}{|\Omega|} = \dfrac{\text{\# casi favorevoli}}{\text{\# casi possibili}}\,$ come la regola classica per il calcolo delle probabilità.
 
 \vspace{3mm}
 
@@ -2611,52 +2611,55 @@ Nel caso in cui $F = \varnothing$, e quindi $\mathbb{P}(F) = 0$, non è possibil
 > ```{=latex}
 > \begin{minipage}{0.35\linewidth}
 > 	\centering
->     \begin{tikzpicture}[scale=0.5]
->         % Assi con frecce
->         \draw[->] (0,0) -- (7,0) node[below] {$x$};
->         \draw[->] (0,0) -- (0,7) node[left] {$y$};
+>  \begin{tikzpicture}[scale=0.45]
+>      % Assi con frecce
+>      \draw[->] (0,0) -- (7,0) node[below] {$x$};
+>      \draw[->] (0,0) -- (0,7) node[left] {$y$};
 > 
->         % Unico 0 in obliquo all'origine
->         \node[below left] at (0,0) {0};
+>      % Unico 0 in obliquo all'origine
+>      \node[below left] at (0,0) {0};
 > 
->         % Tacche e etichette sugli assi (1..6)
->         \foreach \x in {1,2,3,4,5,6} {
->             \draw (\x,0) -- (\x,-0.1) node[below] {\x};
->         }
->         \foreach \y in {1,2,3,4,5,6} {
->             \draw (0,\y) -- (-0.1,\y) node[left] {\y};
->         }
+>      % Tacche e etichette sugli assi (1..6)
+>      \foreach \x in {1,2,3,4,5,6} {
+>          \draw (\x,0) -- (\x,-0.1) node[below] {\x};
+>      }
+>      \foreach \y in {1,2,3,4,5,6} {
+>          \draw (0,\y) -- (-0.1,\y) node[left] {\y};
+>      }
 > 
->         % Retta x+y = 8
->         \draw[color=gray!60] (1.1,6.9) -- (6.9,1.1);
->         % Retta x = 3
->         \draw[color=black] (3,0) -- (3,6.9);
+>      % Retta x+y = 8
+>      \draw[color=gray!60] (1.1,6.9) -- (6.9,1.1);
+>      % Retta x = 3
+>      \draw[color=black] (3,0) -- (3,6.9);
 > 
->         % Rombi per la retta x+y=8, escluso l'intersezione (3,5)
->         \foreach \p in {(2,6), (4,4), (5,3), (6,2)} {
->             \draw[rotate around={45:\p}, color=gray!70] \p 
->                 ++(-0.2,0) -- ++(0.2,0.2) -- 
->                 ++(0.2,-0.2) -- ++(-0.2,-0.2) -- cycle;
->         }
+>      % Rombi per la retta x+y=8, escluso l'intersezione (3,5)
+>      \foreach \p in {(2,6), (4,4), (5,3), (6,2)} {
+>          \draw[rotate around={45:\p}, color=gray!70] \p 
+>              ++(-0.2,0) -- ++(0.2,0.2) -- 
+>              ++(0.2,-0.2) -- ++(-0.2,-0.2) -- cycle;
+>      }
 > 
->         % Rombi per la retta x=3, escluso l'intersezione (3,5)
->         \foreach \y in {1,2,3,4,6} {
->             \draw[rotate around={45:(3,\y)}, color=black] (3,\y) 
->                 ++(-0.2,0) -- ++(0.2,0.2) -- 
->                 ++(0.2,-0.2) -- ++(-0.2,-0.2) -- cycle;
->         }
+>      % Rombi per la retta x=3, escluso l'intersezione (3,5)
+>      \foreach \y in {1,2,3,4,6} {
+>          \draw[rotate around={45:(3,\y)}, color=black] (3,\y) 
+>              ++(-0.2,0) -- ++(0.2,0.2) -- 
+>              ++(0.2,-0.2) -- ++(-0.2,-0.2) -- cycle;
+>      }
 > 
->         % Evidenzia l'intersezione (3,5) con un quadrato grosso
->         \draw[black,thick] (2.8,4.8) rectangle (3.2,5.2);
+>      % Evidenzia l'intersezione (3,5) con un quadrato grosso
+>      \draw[black,thick] (2.8,4.8) rectangle (3.2,5.2);
 > 
->         % Griglia di punti (i, j) con i, j = 1..6
->         \foreach \x in {1,2,3,4,5,6} {
->             \foreach \y in {1,2,3,4,5,6} {
->                 \fill (\x,\y) circle (2pt);
->             }
->         }
+>      % Griglia di punti (i, j) con i, j = 1..6
+>      \foreach \x in {1,2,3,4,5,6} {
+>          \foreach \y in {1,2,3,4,5,6} {
+>              \fill (\x,\y) circle (2.5pt);
+>          }
+>      }
+>      
+>      \node[color=gray!60, font=\small] at (2,6.6) {$E$};
+>      \node[color=black, font=\small] at (3.4,6.6) {$F$};
 > 
->     \end{tikzpicture}
+>  \end{tikzpicture}
 > \end{minipage}
 > \begin{minipage}{0.65\linewidth}
 > 	Sia $E = \{(x,y) \in \Omega \;\,|\;\, x\, +\, y = 8 \}$ l'evento che si verifica quando la somma dei due dadi lanciati vale 8. Graficamente, queste coppie $(x,y)$ stanno sulla retta $x\,+\,y=8$ nel diagramma: si hanno quindi 5 possibili coppie valide. \\[3mm]
@@ -2676,6 +2679,9 @@ Nel caso in cui $F = \varnothing$, e quindi $\mathbb{P}(F) = 0$, non è possibil
 > $E \cap F$ è infatti l'insieme degli esiti che soddisfano sia $x+y = 8$ che $x=3$. Graficamente, si osserva che le due rette si incontrano in un unico punto, e di conseguenza $|E \cap F| = 1$.
 >
 > Nel diagramma, l'evento $F$ è rappresentato dalla retta verticale $x=3$ mentre $E$ è rappresentato dalla retta obliqua $x+y = 8$. Una volta saputo che il primo dado risulta in un 3, rimangono solo 6 possibili esiti, ossia quelli della retta verticale: lo spazio degli esiti è quindi ridotto da $\Omega$ a $F$. Tra questi punti, solo uno realizza la somma 8, ossia quella all'incrocio delle due rette.
+>
+> Si noti come $\mathbb{P}(E)$ differisca da $\mathbb{P}(E |F)$: l’informazione sul primo dado modifica la probabilità  
+> che la somma dei due dadi sia 8, mostrando il ruolo decisivo della probabilità condizionata.
 
 \newpage
 
@@ -2897,6 +2903,8 @@ Questa reciprocità nasce dal fatto che gli eventi $E \cap F$ e $F \cap E$ sono 
 
 \vspace{2mm}
 
+\newpage
+
 La regola di fattorizzazione ci permette di spezzare la probabilità di un evento E in parti più semplici, legate a condizioni note. Partendo dalla considerazione che qualsiasi evento può essere suddiviso rispetto a un altro o più eventi che lo partizionano, si ottiene la *formula delle probabilità totali*.
 
 ##### Formula binaria delle probabilità totali
@@ -3047,6 +3055,254 @@ $$
 \tag{6.3.2}
 $$
 dove il denominatore è $\mathbb{P}(E)$ per via della formula estesa delle probabilità totali.
+
+
+
+\hfill
+
+## Eventi indipendenti
+
+In generale, la probabilità condizionata $\mathbb{P}(E|F)$ differisce da $\mathbb{P}(E)$, poiché il verificarsi di $F$ fornisce informazioni che possono modificare la probabilità che si verifichi $E$. Tuttavia, se si ha $\mathbb{P}(E|F) = \mathbb{P}(E)$, allora si dice che gli eventi $E$ e $F$ sono *indipendenti*. Questo significa che la conoscenza del verificarsi di $F$ non influisce sulla probabilità che $E$ si realizzi.
+
+Partendo dalla definizione di probabilità condizionata, l'uguaglianza $\mathbb{P}(E|F) = \mathbb{P}(E)$, per $\mathbb{P}(F) \neq 0$, implica
+
+$$
+\mathbb{P}(E|F) = \frac{\mathbb{P}(E \cap F)}{\mathbb{P}(F)} = \mathbb{P}(E)
+$$
+
+Moltiplicando entrambi i membri per $\mathbb{P}(F)$ si ottiene una definizione simmetrica di indipendenza:
+
+$$
+E,\, F \text{ indipendenti} \quad \Longleftrightarrow \quad \mathbb{P}(E \cap F) = \mathbb{P}(E)\,\mathbb{P}(F) \tag{6.4.1}
+$$
+
+Analogamente, ponendo $\mathbb{P}(F|E) = \mathbb{P}(F)$ per $\mathbb{P}(E) \neq 0$ si giunge alla medesima conclusione.
+
+Questa relazione evidenzia che, se $E$ è indipendente da $F$, anche $F$ risulta indipendente da $E$, poiché entrambi gli enunciati implicano l'uguaglianza della probabilità dell'intersezione al prodotto delle probabilità marginali. 
+
+\hfill
+
+La nozione di indipendenza si conserva rispetto ad alcune operazioni insiemistiche elementari tra eventi. In particolare, se due eventi sono indipendenti, anche semplici combinazioni di essi, come intersezioni, unioni o complementi, possono preservare la proprietà di indipendenza.
+
+Nel seguito, si dimostra questo fatto per quanto riguarda l’operazione di complemento.
+
+##### Teorema
+
+Se $E$ e $F$ sono indipendenti, allora lo sono anche $E$ e $\overline{F}$.
+
+Dimostrazione:
+
+```{=latex}
+\qquad
+\begin{tabular}{@{}l@{\hspace{1mm}}p{0.93\linewidth}}
+
+- & Affinché $E$ e $\overline{F}$ siano indipendenti, bisogna dimostrare che 
+$\mathbb{P}(E \cap \overline{F}) = \mathbb{P}(E) \, \mathbb{P}(\overline{F})$
+
+\vspace{3mm}
+\begin{minipage}{0.285\linewidth}
+  \raggedright
+  
+  \begin{tikzpicture}[scale=1]
+    % Rettangolo di contorno (universo Ω)
+    \draw[thick] (-2,-1.4) rectangle (2,1.6);
+    % Etichetta Ω
+    \node[anchor=north west] at (-2,1.6) {$\Omega$};
+
+    % Riempi la porzione di E che appartiene a F (cioè, con y < 0.1-1.5x) in grigio scuro:
+    \begin{scope}
+      \clip (0,0.1) circle (1);
+      \clip (-100,-100) -- (-100, {0.1 - 1.5*(-100)}) -- (100, {0.1 - 1.5*(100)}) -- (100,-100) -- cycle;
+      \fill[gray!50] (0,0.1) circle (1);
+    \end{scope}
+
+    % Riempi la porzione di E che appartiene a F^c (cioè, con y > 0.1-1.5x) in grigio chiaro:
+    \begin{scope}
+      \clip (0,0.1) circle (1);
+      \clip (-100, {0.1 - 1.5*(-100)}) -- (-100,100) -- (100,100) -- (100, {0.1 - 1.5*(100)}) -- cycle;
+      \fill[gray!20] (0,0.1) circle (1);
+    \end{scope}
+
+    % Disegna il bordo del cerchio E
+    \draw[semithick] (0,0.1) circle (1);
+    
+    % Disegno della linea obliqua: y = 0.1 - 1.5x (che passa per il centro del cerchio)
+    \draw[semithick] (-1,1.6) -- (1,-1.4);
+
+    % Etichette per il cerchio e le regioni
+    \node at (0,1.37) {$E$};
+    \node at (-1.7,-1) {$F$};
+    \node at (1.7,1.2) {$\overline{F}$};
+  \end{tikzpicture}
+  
+  \vspace{0.3em}
+  \quad \small $E = (E \cap F) \cup (E \cap \overline{F})$
+
+\end{minipage}
+%
+\begin{minipage}{0.7\linewidth}
+\vspace{-6mm}
+
+\begin{tabular}{@{}l@{\hspace{1mm}}p{0.93\linewidth}}
+- & Osservando il diagramma, è possibile suddividere E in una \\[0.5mm]
+& partizione $E = \{E \cap F, E \cap \overline{F}\}$:\\[1.5mm]
+& \quad 1. $(E \cap F) \cup (E \cap \overline{F}) = E$ \\
+& \quad 2. $(E \cap F) \cap (E \cap \overline{F}) = \varnothing$ \\[2mm]
+& Diventa quindi possibile applicare il terzo assioma di Kolmogorov
+
+\end{tabular}
+\end{minipage} \\
+\\[-1mm]
+- & $\mathbb{P}(E) \overset{\;K3\;}{=} \mathbb{P}(E \cap F) + \mathbb{P}(E \cap \overline{F}) \;\;\Rightarrow\;\; \mathbb{P}(E \cap \overline{F}) = \mathbb{P}(E) - \mathbb{P}(E \cap F)$ \\[2mm]
+- & Dato che $E$ e $F$ sono indipendenti, allora vale $\mathbb{P}(E \cap F) = \mathbb{P}(E)\, \mathbb{P}(F)$. Sostituendo, si ottiene: \\[2mm]
+& \qquad $ \mathbb{P}(E \cap \overline{F}) = \mathbb{P}(E) - \mathbb{P}(E)\, \mathbb{P}(F)$ \\[2mm]
+& \qquad$\mathbb{P}(E \cap \overline{F}) = \mathbb{P}(E) \left( 1 - \mathbb{P}(F) \right) = \mathbb{P}(E)\, \mathbb{P}(\overline{F})$
+\end{tabular}
+```
+
+
+
+\hfill
+
+#### Estensione dell'indipendenza
+
+Si osserva che non è possibile estendere l'indipendenza a più eventi richiedendo solo l'indipendenza a coppie, similmente a quanto invece si fa per provare la disgiunzione tra più eventi.
+
+>**Esempio** Si immagini di tirare due dadi. Lo spazio degli esiti di questo esperimento è descritto  
+>da $\Omega = \{ (x,y) \;\, | \;\, x,y \in [1,6]  \}$ dove si intende che si ottiene l'esito $(x,y)$ se il risultato del primo dado è $x$ e quello del secondo $y$. Si supponga che entrambi i dadi non siano truccati, e di trovarci quindi in uno spazio equiprobabile dove $\mathbb{P}((x,y)) = 1/|\Omega| = 1/36$.
+>
+>```{=latex}
+>\begin{minipage}{0.35\linewidth}
+>	\centering
+> \begin{tikzpicture}[scale=0.5]
+>     % Assi con frecce
+>     \draw[->] (0,0) -- (7,0) node[below] {$x$};
+>     \draw[->] (0,0) -- (0,7) node[left] {$y$};
+>
+>     % Unico 0 in obliquo all'origine
+>     \node[below left] at (0,0) {0};
+>
+>     % Tacche e etichette sugli assi (1..6)
+>     \foreach \x in {1,2,3,4,5,6} {
+>         \draw (\x,0) -- (\x,-0.1) node[below] {\x};
+>     }
+>     \foreach \y in {1,2,3,4,5,6} {
+>         \draw (0,\y) -- (-0.1,\y) node[left] {\y};
+>     }
+>
+>     % Retta x+y = 7
+>     \draw[color=black] (0.4,6.6) -- (6.6,0.4);
+>     % Retta x = 4
+>     \draw[color=gray!90] (4,0) -- (4,6.8);
+>     % Retta y = 3
+>     \draw[color=gray!80] (0,3) -- (6.8,3);
+>
+>
+>     % Evidenzia l'intersezione (4,3) con un quadrato grosso
+>     \draw[black,thick] (3.8,2.8) rectangle (4.2,3.2);
+>
+>     % Griglia di punti (i, j) con i, j = 1..6
+>     \foreach \x in {1,2,3,4,5,6} {
+>         \foreach \y in {1,2,3,4,5,6} {
+>             \fill (\x,\y) circle (2.5pt);
+>         }
+>     }
+>     
+>     \node[color=black, font=\small] at (1,6.6) {$E$};
+>     \node[color=gray!90, font=\small] at (4.4,6.6) {$F$};
+>     \node[color=gray!80, font=\small] at (6.6,3.4) {$G$};
+>
+> \end{tikzpicture}
+>\end{minipage}
+>\begin{minipage}{0.65\linewidth}
+>	\vspace{1mm}
+>	
+>	Si considerano i seguenti eventi: \\[1mm]
+>	\noindent\hspace*{1em} $E = \{(x,y) \in \Omega \;|\; x + y = 7\} = \{\text{somma dei dadi è 7}\}$ \\[1mm]
+>	\noindent\hspace*{1em} $F = \{(x,y) \in \Omega \;|\; x = 4\} = \{ \text{4 sul primo dado} \}$ \\[1mm]
+>	\noindent\hspace*{1em} $G = \{(x,y) \in \Omega \;|\; y = 3\} = \{ \text{3 sul secondo dado} \}$ \\[-1mm]
+>	
+>	Calcolando le probabilità di ciascun evento, si trova che \\[-2.5mm]
+>	$$ \mathbb{P}(E) = \mathbb{P}(F) = \mathbb{P}(F) = 1/6 $$ \\[-4.5mm]
+>	Osservando il grafico a lato si osserva, infatti, che ogni evento, rappresentato dalla propria retta, contiene 6 esiti. Dividendo questa quantità per $|\Omega| = 36$ si ottiene proprio $1/6$.
+>	
+>\end{minipage}
+>\vspace{2mm}
+>```
+>
+>
+
+\hfill
+
+> Gli eventi sono indipendenti a coppie, infatti:
+>
+> ```{=latex}
+> \vspace{-1mm}
+> \noindent\hspace*{1em} $\mathbb{P}(E \cap F) = 1/36 = \mathbb{P}(E)\, \mathbb{P}(F)$ \\[1mm]
+> \noindent\hspace*{1em} $\mathbb{P}(E \cap G) = 1/36 = \mathbb{P}(E)\, \mathbb{P}(G)$ \\[1mm]
+> \noindent\hspace*{1em} $\mathbb{P}(F \cap G) = 1/36 = \mathbb{P}(F)\, \mathbb{P}(G)$
+> ```
+>
+> Se si calcola $\mathbb{P}(E | F \cap G) = 1$, si osserva che la probabilità di $E$ dato $F \cap G$ risulta diversa dalla probabilità marginale $\mathbb{P}(E)$. Questo implica che $E$ è dipendente dal verificarsi di $F \cap G$, e di conseguenza i tre eventi $E$, $F$ e $G$ non sono indipendenti nel senso globale.  
+> Infatti, affinché valga l’indipendenza complessiva, dovrebbe risultare $\mathbb{P}(E | F \cap G) = \mathbb{P}(E)$, condizione che in questo caso non è soddisfatta.
+
+\hfill
+
+Dati tre eventi $E$, $F$ e $G$, questi sono indipendenti se e solo se:
+
+- $\mathbb{P}(E \cap F) = \mathbb{P}(E)\, \mathbb{P}(F)$
+- $\mathbb{P}(E \cap G) = \mathbb{P}(E)\, \mathbb{P}(G)$
+- $\mathbb{P}(F \cap G) = \mathbb{P}(F)\, \mathbb{P}(G)$
+- $\mathbb{P}(E \cap F \cap G) = \mathbb{P}(E)\, \mathbb{P}(F)\, \mathbb{P}(G)$
+
+\vspace{2mm}
+
+Si può osservare come anche in questo contesto valga quanto discusso in precedenza: se gli eventi $E$, $F$ e $G$ sono indipendenti nel senso globale, allora anche eventi ottenuti tramite semplici operazioni insiemistiche (come intersezione, unione o complementare) risultano indipendenti senza necessità di ulteriori verifiche. Questa proprietà conferma che l’indipendenza si estende naturalmente agli eventi costruiti a partire da eventi già indipendenti.
+
+
+
+##### Teorema
+
+Se $E$, $F$ e $G$ sono indipendenti, allora anche $E$ e $F \cup G$ sono indipendenti
+
+Dimostrazione:
+
+```{=latex}
+\qquad
+\begin{tabular}{@{}l@{\hspace{1mm}}p{0.93\linewidth}}
+
+- & Affinché $E$ e $F \cup G$ siano indipendenti, bisogna dimostrare che 
+$\mathbb{P}(E \cap (F \cup G)) = \mathbb{P}(E) \, \mathbb{P}(F \cup G)$ \\[2mm]
+
+- & Si applica la proprietà distributiva su $E \cap (F \cup G)$: \\[2mm]
+& \qquad $\mathbb{P}(E \cap (F \cup G)) = \mathbb{P}((E \cap F) \cup (E \cap G)) = \mathbb{P}(E \cap F) + \mathbb{P}(E \cap G) - \mathbb{P}(\underbrace{(E \cap F) \cap (E \cap G)}_{E \cap F \cap G})$ = \\
+\\[-3mm]
+& \qquad $= \mathbb{P}(E)\, \mathbb{P}(F) + \mathbb{P}(E)\, \mathbb{P}(G) - \mathbb{P}(E)\, \mathbb{P}(F)\, \mathbb{P}(G) = \mathbb{P}(E) [ \mathbb{P}(F) + \mathbb{P}(G) - \underbrace{\mathbb{P}(F)\, \mathbb{P}(G)}_{\mathbb{P}(F \cap G)} ] $ \\[3mm]
+\\[-3mm]
+
+- & Si osserva che $\mathbb{P}(F) + \mathbb{P}(G) - \mathbb{P}(F \cap G)$ corrisponde a $\mathbb{P}(F \cup G)$ dagli assiomi di Kolmogorov, di conseguenza si è dimostrato il teorema: \\[2mm]
+& \qquad $\mathbb{P}(E) \left[ \mathbb{P}(F) + \mathbb{P}(G) - \mathbb{P}(F \cap G) \right] = \mathbb{P}(E)\, \mathbb{P}(F \cup G)$
+
+\end{tabular}
+```
+
+\hfill
+
+\vspace{2mm}
+
+##### Generalizzazione dell'indipendenza
+
+Si abbiano $n$ eventi $E_1, \dots, E_n \sube \Omega$, questi sono indipendenti se e solo se $\forall r \le n \quad \forall\, 1 \le \alpha_1 \le \alpha_2 \le \dots \le \alpha_r \le n\,$ con $\, \alpha_i \in \mathbb{N}$ si ha che
+$$
+\mathbb{P} \Big( \bigcap_{j=1}^r E_{\alpha_j} \Big) = \prod_{j=1}^r \mathbb{P}(E_{\alpha_j})
+$$
+Questo significa che, dati più eventi, l’indipendenza globale richiede che ogni intersezione di un numero qualsiasi di essi abbia probabilità uguale al prodotto delle probabilità dei singoli eventi coinvolti.
+
+
+
+
+
+
 
 
 
