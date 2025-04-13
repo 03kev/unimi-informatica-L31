@@ -32,6 +32,11 @@ header-includes: |
 
     \usepackage{mdframed}
     \usepackage{xcolor}
+    
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{multirow}
+    \usepackage{booktabs}
 ---
 
 ```{=latex}
@@ -1873,7 +1878,54 @@ Così, l’impiego degli indici di eterogeneità consente di valutare quantitati
 
 ## Analisi di classificatori
 
-To do (lezione 08)
+Un classificatore è un meccanismo che, dati degli oggetti su cui si desidera effettuare una distinzione, associa a ciascun oggetto una classe tra quelle disponibili. Matematicamente, ciò equivale ad avere un insieme $\Omega$ (che raccoglie i campioni da classificare), e un insieme di etichettte $\mathcal{C}$. Il classificatore è quindi una funzione $c: \Omega \rightarrow \mathcal{C}$ che. a ogni elemento $x \in \Omega$, associa una delle etichette in $\mathcal{C}$.
+
+Classificatore binario
+: Sia $\Omega$ l'insieme degli oggetti su cui vogliamo effettuare la classificazione, e supponiamo che a ciascun oggetto $x \in \Omega$ sia associata, in modo noto, un'etichetta $\gamma(x)\in \mathcal{C} = \{\text{positivo},\text{negativo}\}$.
+
+    Un classificatore binario è una funzione $c: \Omega \rightarrow \{\text{positivo}, \text{negativo}\}$ che, a partire da un oggetto $x$, ne prevede la classe, positiva o negativa che sia.
+
+
+
+Una volta definito il classificatore $c$, la sua prestazione rispetto a un insieme di oggetti di test $\mathcal{D} \sube \Omega$, di cui sono note le classi vere $\gamma(x)$, si può valutare confrontando l'uscita $c(x)$ con la classe effettiva $\gamma(x)$. Da questo confronto si possono verificare quattro possibili casi: true positive, false negative, true negative e false positive.
+
+I valori ottenuti possono essere organizzati in delle matrici, dette *matrici di confusione*.
+
+
+
+```{=latex}
+\vspace{0mm}
+\noindent
+\begin{minipage}[c]{0.3\textwidth}
+    \centering
+    \begin{tabular}{c c | c c}
+        \toprule
+         & & \multicolumn{2}{c}{\textbf{Valore Effettivo}} \\ 
+         & & P & N \\ 
+        \midrule
+        \multirow{2}{*}{\shortstack{\textbf{Valore} \\ \textbf{Predetto}}}
+         & P & TP  & FP \\
+         & N & FN & TN  \\ 
+        \bottomrule
+    \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.6\textwidth}
+	\vspace{4.5mm}
+	TP: oggetti $x$ con $\gamma(x) = \text{positivo}$ e $c(x)= \text{positivo}$ \\[1mm]
+	FN: oggetti $x$ con $\gamma(x) = \text{positivo}$ e $c(x)= \text{negativo}$ \\[1mm]
+	TN: oggetti $x$ con $\gamma(x) = \text{negativo}$ e $c(x)= \text{negativo}$ \\[1mm]
+	FP: oggetti $x$ con $\gamma(x) = \text{negativo}$ e $c(x)= \text{positivo}$ \\[1mm]
+\end{minipage}
+```
+
+
+
+Si osserva che sommando i valori sulla prima colonna si ha la cardinalità degli elementi realmente positivi, mentre sommando quelli sulla seconda si ottiene la cardinalità degli elementi realmente negativi. Sommando queste due cardinalità si ottiene la cardinalità del campione.
+
+**[To be done]**
+
+\hfill
 
 ### Classificatori costanti
 
@@ -2799,7 +2851,7 @@ Siano $E$ e $F$ due eventi in uno spazio di probabilità $(\Omega, \mathcal{F}, 
 \vspace{4mm}
 ```
 
-Allo stesso modo, se $\mathbb{P}(E) \not= 0$, si ottiene $\mathbb{P}(F \cap E) = \mathbb{P}(F|E)\, \mathbb{P}(E)$
+Allo stresso modo, se $\mathbb{P}(E) \not= 0$, moltiplicando entrambi i membri della formula della probabilità condizionata di $F$ dato $E$ per $\mathbb{P}(E)$ si ottiene $\mathbb{P}(F \cap E) = \mathbb{P}(F|E)\, \mathbb{P}(E)$
 
 ```{=latex}
 \begin{center}
@@ -3047,14 +3099,75 @@ Inoltre il denominatore $\mathbb{P}(E)$ funge da normalizzatore: rappresenta la 
 
 Estendendo il ragionamento a una partizione generale di $\Omega$, si ottiene la forma estesa del teorema di Bayes. Sia $\{F_1,\dots,F_n\}$ una partizione di $\Omega$ e $\mathbb{P}(F_i)\neq0$ per ogni $i$, e sia $E$ sia un evento tale per cui $\mathbb{P}(E)\neq0$, allora:
 $$
-\mathbb{P}(F_i \mid E)
+\mathbb{P}(F_i | E)
 =
 \frac{\mathbb{P}(E | F_i)\,\mathbb{P}(F_i)}
-{\displaystyle \sum_{k=1}^n \mathbb{P}(E \mid F_k)\,\mathbb{P}(F_k)} 
+{\displaystyle \sum_{k=1}^n \mathbb{P}(E | F_k)\,\mathbb{P}(F_k)} 
 = \dfrac{\mathbb{P}(E | F_i)\,\mathbb{P}(F_i)}{\mathbb{P}(E)}
 \tag{6.3.2}
 $$
 dove il denominatore è $\mathbb{P}(E)$ per via della formula estesa delle probabilità totali.
+
+
+
+\hfill
+
+### Classificatori naive Bayes
+
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Classificatori naive-Bayes}
+```
+
+Un classificatore è un meccanismo che, dati degli oggetti (individui) su cui si vuole effettuare una distinzione, associa a ciascun oggetto una classe tra quelle disponibili. Per esempio, potremmo suddividere gli individui in “positivi” o “negativi” rispetto a una determinata condizione.
+
+Nel contesto di un classificatore bayesiano, si sfrutta il teorema di Bayes per valutare la probabilità che un individuo appartenga a una certa classe, sulla base delle proprietà che abbiamo osservato per quell’individuo. In generale, se consideriamo:
+
+- $n$ proprietà (o variabili aleatorie) $X_1,\dots,X_n$, con valori $\{x_1,\dots,x_n\}$
+- $m$ classi $\{y_1,\dots,y_m\}$ (ognuna corrisponde a un evento $\{Y\,{=}\,y_k\}$)
+
+Per un individuo di cui abbiamo misurato $(x_1,\dots,x_n)$ come realizzazioni di $X_1,\dots,X_n$, vorremmo attribuirgli la classe $\{Y\,{=}\,y_k\}$ che risulta più "probabile" alla luce di tali proprietà. Il teorema di Bayes ci dice che:
+$$
+\mathbb{P}\bigl(Y \,{=}\, y_k \mid
+X_1 \,{=}\, x_1,\, \dots,\, X_n \,{=}\, x_n\bigr)
+\;=\;
+\frac{\mathbb{P}\bigl(X_1 \,{=}\, x_1, \dots, X_n \,{=}\, x_n \mid
+Y\,{=}\,y_k\bigr)\, \mathbb{P}(Y \,{=}\, y_k)}
+{\mathbb{P}(X_1 \,{=}\, x_1,\dots, X_n \,{=}\, x_n)}
+$$
+Per classificare l’individuo, dobbiamo scegliere la classe $\{Y\,{=}\,y_k\}$ che massimizza la probabilità a posteriori $\mathbb{P}(Y\,{=}\,y_k \mid X_1\,{=}\,x_1,\dots,X_n\,{=}\,x_n)$. Tuttavia, la stima diretta della probabilità congiunta $\mathbb{P}(X_1 \,{=}\, x_1,\dots, X_n \,{=}\, x_n \mid Y\,{=}\,y_k)$ può risultare molto onerosa, poiché richiede di considerare tutte le combinazioni dei valori $(x_1,\dots,x_n)$.
+
+Il classificatore naive Bayes semplifica tale stima assumendo che, condizionatamente alla classe $Y\,{=}\,y_k$, le variabili $X_1,\dots,X_n$ siano approssimativamente indipendenti. In formule:
+$$
+\mathbb{P}\bigl(X_1 \,{=}\, x_1,\dots, X_n \,{=}\, x_n \mid Y\,{=}\,y_k\bigr)
+\;\approx\;
+\prod_{i=1}^n \mathbb{P}\bigl(X_i \,{=}\, x_i \mid Y\,{=}\,y_k\bigr)
+$$
+Sostituendo questa ipotesi nella versione bayesiana precedente, si ottiene:
+$$
+\mathbb{P}\bigl(Y \,{=}\, y_k \mid
+X_1 \,{=}\, x_1,\, \dots,\, X_n \,{=}\, x_n\bigr)
+\;\approx\;
+\frac{\displaystyle \mathbb{P}(Y \,{=}\, y_k)\, \prod_{i=1}^n \mathbb{P}\bigl(X_i \,{=}\, x_i \mid Y\,{=}\,y_k\bigr)}
+{\mathbb{P}(X_1 \,{=}\, x_1,\dots, X_n \,{=}\, x_n)}
+$$
+Il denominatore $\mathbb{P}(X_1\,{=}\,x_1,\dots,X_n\,{=}\,x_n)$ non dipende dalla classe $y_k$ ma solo dai valori osservati $(x_1,\dots,x_n)$. Per la decisione di classificazione, cioè per confrontare le probabilità di classi diverse, esso funge da costante di normalizzazione, la stessa per ogni classe candidata. Di conseguenza, è sufficiente determinare la classe $\{Y\,{=}\,y_{k^*}\}$ che massimizza il prodotto:
+$$
+\mathbb{P}(Y \,{=}\, y_k)\;\prod_{i\,{=}\,1}^n \mathbb{P}(X_i \,{=}\, x_i \mid Y\,{=}\,y_k)
+$$
+In pratica, per classificare un individuo con proprietà $(x_1,\dots,x_n)$, si calcola per ogni classe $y_k$ il prodotto $\mathbb{P}(Y\,{=}\,y_k)\prod_{i=1}^n\mathbb{P}(X_i\,{=}\,x_i\mid Y\,{=}\,y_k)$ e si sceglie la classe che ne produce il valore più alto. In notazione compatta:
+\vspace{-1mm}
+$$
+k^* =\arg\max_{k\in\{1,\dots,m\}}
+\Bigl[\,
+\mathbb{P}(Y\,{=}\, y_k)\,\prod_{i=1}^n
+\mathbb{P}(X_i \,{=}\, x_i \mid Y\,{=}\,y_k)
+\Bigr]
+$$
+\vspace{-1mm}
+
+L’ipotesi di indipendenza condizionale riduce drasticamente il numero di stime necessarie per calcolare le probabilità, passando da una modellazione congiunta (potenzialmente esponenziale) a una sommatoria di stime “marginali” ($\sum_{i}|\mathcal{X}i|$ invece di $\prod{i}|\mathcal{X}_i|$).
+
+Sebbene nella pratica le variabili $X_i$ possano non essere completamente indipendenti all’interno di una stessa classe (da cui l'aggettivo naive), l’approssimazione risulta spesso efficace in molti scenari, a fronte di una grande semplicità computazionale.
 
 
 
@@ -3080,7 +3193,7 @@ Analogamente, ponendo $\mathbb{P}(F|E) = \mathbb{P}(F)$ per $\mathbb{P}(E) \neq 
 
 Questa relazione evidenzia che, se $E$ è indipendente da $F$, anche $F$ risulta indipendente da $E$, poiché entrambi gli enunciati implicano l'uguaglianza della probabilità dell'intersezione al prodotto delle probabilità marginali. 
 
-\hfill
+
 
 La nozione di indipendenza si conserva rispetto ad alcune operazioni insiemistiche elementari tra eventi. In particolare, se due eventi sono indipendenti, anche semplici combinazioni di essi, come intersezioni, unioni o complementi, possono preservare la proprietà di indipendenza.
 
@@ -3263,7 +3376,7 @@ Si può osservare come anche in questo contesto valga quanto discusso in precede
 
 ##### Teorema
 
-Se $E$, $F$ e $G$ sono indipendenti, allora anche $E$ e $F \cup G$ sono indipendenti
+Se $E$, $F$ e $G$ sono indipendenti, allora anche $E$ e $F \cup G$ sono indipendenti.
 
 Dimostrazione:
 
