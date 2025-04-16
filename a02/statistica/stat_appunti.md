@@ -37,6 +37,9 @@ header-includes: |
     \usepackage[T1]{fontenc}
     \usepackage{multirow}
     \usepackage{booktabs}
+
+    \usepackage[bottom]{footmisc}
+    \setlength{\footnotesep}{3mm}
 ---
 
 ```{=latex}
@@ -3415,25 +3418,39 @@ Questo significa che, dati più eventi, l’indipendenza globale richiede che og
 
 \newpage
 
+
 # Variabili aleatorie
 
-Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$, una variabile aleatoria $X : \Omega \to \mathbb{R}$ è definita come una funzione misurabile, ossia tale che per ogni $\alpha \in \mathbb{R}$ l’insieme
+Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria $X : \Omega \to \mathbb{R}$ è definita come una funzione misurabile, ossia tale che per ogni $A \in \mathcal{E}$ l'evento
+\vspace{-1mm}
 $$
-\{X=\alpha\} \equiv \{\omega \in \Omega \mid X(\omega)=\alpha\}
+\{X \in A\} \equiv \{\omega \in \Omega \mid X(\omega) \in A\}
+\vspace{-1mm}
 $$
-appartenga alla $\sigma$-algebra $\mathcal{F}$. Questo requisito garantisce che i sottoinsiemi di $\Omega$ associati ai valori assunti da $X$ siano misurabili e, dunque, a ciascuno di essi possa essere assegnata una probabilità.
+appartenga alla $\sigma$-algebra $\mathcal{F}$ di $\Omega$. In altre parole, questa condizione garantisce che, per ogni insieme misurabile $A$ in $\mathbb{R}$, il corrispondente sottoinsieme di $\Omega$ (cioè l’insieme degli esiti per cui $X$ assume valori in $A$) sia un evento a cui è possibile assegnare una probabilità.
 
-> **In generale** Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$, una variabile aleatoria
-> \vspace{-2mm}
-> $$
-> X: \Omega \rightarrow \mathbb{R}
-> \vspace{-2mm}
-> $$
-> è definita come una funzione misurabile, ossia una funzione che trasforma gli esiti dello spazio campionario $\Omega$ in valori reali in modo da preservare la struttura misurabile. Questo significa che esiste una collezione di sottoinsiemi di $\mathbb{R}$ (che costituisce uno spazio misurabile, indicato genericamente con $\mathcal{E}$) tale che per ogni insieme $B \in \mathcal{E} \sube \mathbb{R}$ l’insieme preimmagine
-> \vspace{-2mm}
+In particolare, se si considera $A = \{\alpha\}$ per un qualsiasi $\alpha \in \mathbb{R}$, allora si ottiene l'evento
+\vspace{-1mm}
+$$
+\{X = \alpha\} \equiv \{\omega \in \Omega \mid X(\omega) = \alpha\}
+\vspace{-1mm}
+$$
+Questa forma è particolarmente usata quando si trattano variabili aleatorie discrete.
+
+\vspace{3mm}
+Si osserva che per ogni insieme misurabile $A \in \mathcal{E}$, la probabilità che la variabile aleatoria $X$ assuma valori in $A$, ossia la probabilità dell'evento $\{X \in A\}$, è definita come
+\vspace{-1mm}
+$$
+\mathbb{P}(X \in A) = \mathbb{P}(\{\omega \in \Omega \mid X(\omega) \in A\}) = \mathbb{P}(X^{-1}(A))
+\vspace{-3mm}
+$$
+
+> **Definizione completa** Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria
+> $X: \Omega \rightarrow \mathbb{R}$
+> è definita come una funzione misurabile, ossia una funzione che trasforma gli esiti dello spazio campionario $\Omega$ in valori reali in modo da preservare la struttura misurabile. Questo significa che per ogni insieme $B \in \mathcal{E}$ (ossia per ogni insieme misurabile in $\mathbb{R}$) l'insieme preimmagine
 > $$
 > X^{-1}(B)=\{\omega \in \Omega \mid X(\omega) \in B\}
-> \vspace{-2mm}
+> \vspace{-0.5mm}
 > $$
 > appartiene alla $\sigma$-algebra $\mathcal{F}$ su $\Omega$.
 >
@@ -3445,9 +3462,10 @@ I singoli valori che la variabile aleatoria $X$ può assumere sono detti *specif
 
 Una variabile aleatoria si dice *discreta* se può assumere solo un numero finito o infinito numerabile di valori, mentre si dice continua se può assumere valori in un intervallo (o insieme) non numerabile di $\mathbb{R}$.
 
-\hfill
-
-## Funzione di ripartizione
+### Funzione di ripartizione
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Funzione di ripartizione}
+```
 
 La funzione di ripartizione, o funzione di distribuzione cumulativa, di una variabile aleatoria $X$ a valori reali è la funzione che associa a ciascun valore $x$ la probabilità che la variabile $X$ assuma valori minori o uguali a $x$.
 
@@ -3461,30 +3479,44 @@ $$
 
 \newpage
 
+Proprietà
+: La funzione di ripartizione $F_X$ possiede le seguenti proprietà:
+
+    - Limite inferiore: $F_X(x) \ge 0 \;\; \forall x \in \mathbb{R}$
+
+    - Monotonicità: $F_X$ è non decrescente, ossia se $x_1 < x_2$, allora $F_X(x_1) \le F_X(x_2)$. Questo riflette il fatto che $\{X \le x_1\} \sube \{ X \le x_2 \}$.
+
+    - Continuità a destra: per ogni $\displaystyle x \in \mathbb{R} \;\; \lim_{y \to x^+} F_X(y) = F_X(x)$
+
+    - Limiti estremi: $\displaystyle \lim_{x \to -\infty} F_X(x) = 0\,$ e $\,\displaystyle \lim_{x \to +\infty} F_X(x) = 1$
+
+    La funzione di ripartizione non è necessariamente continua a sinistra.
+
+\hfill
 Dalla definizione segue che la probabilità che $X$ risieda in un intervallo semichiuso $(a,b]$, dove $a < b$, è
 $$
 \mathbb{P}(a < X \le b) = F_X(b) - F_X(a)
 $$
 
+\vspace{-1mm}
 Dimostrazione
-: Si consideri l'evento $\{a < X \le b\}$ con $a < b$, di cui bisogna calcolare la probabilità. È possibile affermare che
+: Si consideri l'evento $\{a < X \le b\}$ con $a < b$. È possibile affermare che
 
-    \vspace{-5mm}
-    $$
-    \{X \le b\} = \{X \le a\} \cup \{a < X \le b\}
-    $$
+    \vspace{-0mm}
+    \qquad $\{X \le b\} = \{X \le a\} \cup \{a < X \le b\}$
+
     dove $\{X \le a\}$ e $\{a < X \le b\}$ sono due eventi disgiunti. Utilizzando il terzo assioma di Kolmogorov:
-    $$
-    \mathbb{P}(X \le b)= \mathbb{P}(X \le a) + \mathbb{P}(a < X \le b)
-    $$
+
+    \qquad $\mathbb{P}(X \le b)= \mathbb{P}(X \le a) + \mathbb{P}(a < X \le b)$
+
     Riscrivendo il tutto utilizzando la funzione di ripartizione, si ha
-    $$
-    F_X(b) = F_X(a) +\mathbb{P}(a < X \le b)
-    $$
+
+    \qquad $F_X(b) = F_X(a) +\mathbb{P}(a < X \le b)$
+
     Da cui si ottiene che $\mathbb{P}(a < X \le b) = F_X(b) - F_X(a)$. La tesi è quindi dimostrata.
 
 
-
+\vspace{1mm}
 > Si può quindi esprimere la probabilità di un qualsiasi evento relativo a $X$ in termini della funzione di ripartizione, sfruttando la rappresentazione degli eventi come unioni di intervalli semiaperti. 
 >
 > Sia $A \sube \mathbb{R}$ un evento della variabile $X$, allora si intende in realtà l'evento  
@@ -3496,6 +3528,12 @@ Dimostrazione
 > \mathbb{P}(X\in A)=\sum_{k} \Bigl[F_X(b_k)-F_X(a_k)\Bigr]
 > $$
 > dove la somma è presa sulla rappresentazione disgiunta di $A$ in intervalli semiaperti $(a_k, b_k]$.
+
+
+
+
+
+
 
 \hfill
 
@@ -3509,35 +3547,35 @@ Poiché il supporto $D_X$ di una variabile aleatoria discreta è numerabile e, i
 
 Questo insieme si determina esaminando i valori per cui la funzione di massa di probabilità non è zero.
 
-\hfill
-
 Le probablità di un evento $\{X \in A\}$, per ogni $A \sube D_X$, si ottiene sommando le probabilità dei valori di $X$ che ricadono in $A$:
 $$
 \mathbb{P}(X \in A) = \sum_{x \in A \cap D_X} \mathbb{P} (X = x)
 $$
-\newpage
 
-Si osserva che la somma delle probabilità di tutte le specificazioni deve essere $1$:
+\hfill
+
+Proprietà
+: La somma delle probabilità di tutte le specificazioni deve essere $1$:
 $$
 \sum_{x \in D_X} \mathbb{P}(X=x) = 1
 $$
 
+\vspace{-1mm}
 Dimostrazione
 : Se $D_X$ è il supporto di $X$, allora $\Omega$ si può scrivere come unione disgiunta di tutti gli eventi $\{X = x\}$ con $x \in D_X$, ossia:
 
-    \vspace{-4mm}
-    $$
-    \Omega = \bigcup_{x \in D_X} \{X = x\}
-    $$
+    \vspace{-0mm}
+    
+    \qquad $\displaystyle \Omega = \bigcup_{x \in D_X} \{X = x\}$
+
     perché ogni esito $\omega$ in $\Omega$ genera un valore $X(\omega)$ che appartiene al supporto.
     Essendo gli eventi $\{X = x\}$ a due a due disgiunti, è possibile applicare il terzo assioma di Kolmogorov:
-    $$
-    \mathbb{P}\Big( \bigcup_{x \in D_X} \{X = x\} \Big) = \sum_{x \in D_X} \mathbb{P}(X=x) = 1
-    $$
+    
+    \qquad $\displaystyle \mathbb{P}\Big( \bigcup_{x \in D_X} \{X = x\} \Big) = \sum_{x \in D_X} \mathbb{P}(X=x) = 1$
+
     Infine, poiché l'unione copre interamente $\Omega$, per il primo assioma si ottiene:
-    $$
-    1 = \mathbb{P}(\Omega) = \sum_{x \in D_X} \mathbb{P}(X=x)
-    $$
+
+    \qquad $\displaystyle 1 = \mathbb{P}(\Omega) = \sum_{x \in D_X} \mathbb{P}(X=x)$
 
 \hfill
 
@@ -3551,44 +3589,55 @@ Dimostrazione
 
 Data una variabile aleatoria discreta $X$, la sua *funzione di (massa di) probabilità* è una funzione di variabile reale che assegna ad ogni valore di $X$ la probabilità dell'evento elementare $\{X = x\}$.
 
-Nel caso in cui $X$ sia continua, ogni singolo punto ha probabilità zero, e dunque la funzione di massa perde di significato; in tal caso si usa la funzione di densità.
+- Nel caso in cui $X$ sia continua, ogni singolo punto ha probabilità zero, e dunque la funzione di massa perde di significato; in tal caso si usa la funzione di densità.
 
 Formalmente, data una variabile aleatoria $X : \Omega \rightarrow \mathbb{R}$, la funzione di probabilità è la funzione $p_X: \mathbb{R} \rightarrow [0,1]$ definita da
 $$
 p_X(x) = \mathbb{P}(X = x) = \mathbb{P}(\{\omega \in \Omega \mid X(\omega) = x\}) \quad \forall x \in \mathbb{R}
 $$
-che associa ad ogni valore $x$ assunto da $X$ la probabilità che $X$ assuma esattamente quella specificazione. Questa funzione rispetta le seguenti proprietà:
+che associa ad ogni valore $x$ assunto da $X$ la probabilità che $X$ assuma esattamente quella specificazione.
 
-- $\forall x \in \mathbb{R} \;\; p_X(x) \ge 0$: trattandosi del calcolo di una probabilità, questa funzione non può assuemere valori negativi
+\hfill
+Proprietà
+: La funzione di probabilità rispetta le seguenti proprietà:
 
-- $p_X(x) \not = 0$ solo per $x \in \mathbb{R} \land x\in D_X$
+    - $\forall x \in \mathbb{R} \;\; p_X(x) \ge 0$: trattandosi del calcolo di una probabilità, questa funzione non può assuemere valori negativi
 
-- per $x \not \in D_X$ si assume che $p_X(x) = 0$
+    - $p_X(x) \not = 0$ solo per $x \in \mathbb{R} \land x\in D_X$
 
-\vspace{2mm}
-Si osserva che la somma delle probabilità su tutto il supporto deve essere pari a $1$. Se $D_X$ è numerabile, ovvero se si può enumerare $D_X = \{x_1, x_2, \dots\}$, allora:
-$$
-\sum_{x \in D_X} p_X(x) = 1
-$$
+    - per $x \not \in D_X$ si assume che $p_X(x) = 0\,$[^2]
+
+    Come già dimostrato in precedenza, la somma delle proprobilità su tutto il supporto di $X$ deve essere pari a 1. Di conseguenza, se $D_X$ è numerabile, scrivendo $p_X(x) = \mathbb{P}(X = x)$ si ottiene
+    \vspace{-1.5mm}
+    $$
+    \sum_{x \in D_X} p_X(x) = 1
+    $$
+
+[^2]: L’uso della funzione indicatrice $I_{D_X}(x)$ garantisce formalmente che la funzione di probabilità sia definita unicamente sui valori appartenenti al supporto $D_X$. Infatti, per ogni $x \notin D_X$ abbiamo $I_{D_X}(x) = 0$, e quindi $p_X(x) = \mathbb{P}(X=x) \cdot I_{D_X}(x) = 0$. Questo esplicita il fatto che ogni $x$ non preso in considerazione (ossia, per cui $\mathbb{P}(X=x) = 0$) viene escluso dalla definizione di $p_X$.
 
 \vspace{-3mm}
 
-\newpage
+Funzione indicatrice
+: Sia $X : \Omega \rightarrow \mathbb{R}$ una variabile aleatoria discreta a valori reali con dominio di supporto  
+$D_X = \{x \in \mathbb{R} \mid \mathbb{P}(X=x) > 0\}$. La funzione di massa di probabilità $p_X$ può essere espressa in forma compatta mediante la funzione indicatrice. Formalmente, si scrive
 
-> **Funzione indicatrice** Sia $X : \Omega \rightarrow \mathbb{R}$ una variabile aleatoria discreta con dominio di supporto $D_X$. Se $X$ assume un valore $x$ con una probabilità costante $c$ per ogni $x \in D_X$ (ossia $\Omega$ è uno spazio equiprobabile), allora la funzione di massa di probabilità può essere espressa in forma compatta mediante la funzione indicatrice. Formalmente, si scrive
-> $$
-> \mathbb{P}(X=x) = c \cdot I_{D_X}(x)
-> $$
-> dove $I_{D_X}$ è la funzione indicatrice dell'insieme $D_X$, definita come
-> $$
-> I_{D_X}(x)=
-> \begin{cases}
-> 1 & \text{se } x \in D_X \\
-> 0 & \text{se } x \notin D_X
-> \end{cases}
-> $$
-> e $c$ è una costante positiva tale per cui $\sum_{x\in D_X} c = 1$.
+    \vspace{-4mm}
+    $$
+    p_X(x) = \mathbb{P}(X=x)\, I_{D_X}(x)
+    $$
+    dove $I_{D_X} : \mathbb{R} \rightarrow \{0,1\}$ è la funzione indicatrice dell'insieme $D_X$, definita come
+    $$
+    I_{D_X}(x)=
+    \begin{cases}
+    1 & \text{se } x \in D_X \\
+    0 & \text{altrimenti}
+    \end{cases}
+    $$
 
+    Nel caso in cui $X$ sia uniformemente distribuita su $D_X$, cioè se $\mathbb{P}(X=x) = c$ per ogni $x \in D_X$ (con $c$ costante tale che $\sum_{x \in D_X} c = 1$), la funzione di probabilità si semplifica a $p_X(x) = c \cdot I_{D_X}(x)$.
+
+
+\hfill
 #### Relazione tra funzione di partizione e di probabilità
 
 Sia $F_X$ la funzione di ripartizione di $X$ e sia $p_X$ la sua funzione di probabilità. La prima rappresenta la somma cumulativa dei valori della seconda.
@@ -3607,22 +3656,14 @@ p_X(x) = F_X(x) - F_X(x^-)
 $$
 Da ciò si deduce che se $X$ è una variabile aleatoria continua, tale valore è nullo in ogni punto poiché la sua funzione di ripartizione è continua, e di conseguenza $F_X(x) = F_X(x^-)$
 
-
-
-##### Proprietà
-
-Si elencano le proprietà che $F_X$ possiede se definita su una variabile aleatoria discreta:
-
-- $F_X(x) \ge 0 \;\; \forall x \in \mathbb{R}$ dalla definizione
-
-- $\displaystyle \lim_{x \rightarrow 0^+} F_X(x) = 0\,$ e $\,\displaystyle \lim_{x \rightarrow + \infty} F_X(x) = 1$
-
-- è una funzione monotona non descrescente e continua a destra: di conseguenza se $x_1 < x_2$, allora $F(x_1) \le F(x_2)$
-
-
-
 \hfill
 
+##### Osservazione
+Quando si conosce la funzione di probabilità $p_X$, oppure la funzione di ripartizione $F_X$, di una variabile aleatoria $X$ qualsiasi, si hanno abbastanza informazioni per poter calcolare la probabilità di ogni evento che dipenda solo da tale variabile aleatoria. Si dice in questo caso che si conosce la *distribuzione* o *legge* della variabile aleatoria considerata.  
+Affermare quindi che $X$ e $Y$ hanno la stessa distribuzione significa che le rispettive funzioni di ripartizioni sono identiche, $X \sim F_X \equiv F_Y \sim Y$, e quindi anche che $\mathbb{P}(X \in A) = \mathbb{P}(Y \in A)$ per ogni insieme di valori $A \sube \mathbb{R}$.
+
+
+\newpage
 ## Valore atteso
 
 ### Valore atteso di una variabile discreta
@@ -3631,25 +3672,83 @@ Si elencano le proprietà che $F_X$ possiede se definita su una variabile aleato
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Valore atteso di una variabile discreta}
 ```
 
-Sia $X$ una variabile aleatoria discreta che può assumere i valori $D_X = \{x_1, \dots, x_n, \dots \}$, il valore atteso di $X$, che si indica con $\mathbb{E}(X)$, è il numero[^2]
+Sia $X$ una variabile aleatoria discreta che può assumere i valori $D_X = \{x_1, \dots, x_n, \dots \}$, il valore atteso di $X$, che si indica con $\mathbb{E}[X]$, è il numero$\,$[^3]
 $$
-\mathbb{E}(X) = \sum_{x \in D_X} x\, \mathbb{P}(X = x) = \sum_{x \in D_X} x\, p_X(x) \tag{7.1.2}
+\mathbb{E}[X] = \sum_{x \in D_X} x\, \mathbb{P}(X = x) = \sum_{x \in D_X} x\, p_X(x) \tag{7.1.2}
 $$
 Pertanto, il valore atteso rappresenta la media pesata delle specificazioni di $X$, usando come pesi le probabilità che tali valori vengano assunti da $X$. Perciò $\mathbb{E}[X]$ è un indice di centralità della distribuzione di $X$.
 
-[^2]: Si osserva che $\mathbb{E}(X)$ è definito solo se la serie $(7.1.2)$ converge in valore assoluto, ovvero deve valere
+[^3]: Si osserva che $\mathbb{E}[X]$ è definito solo se la serie $(7.1.2)$ converge in valore assoluto, ovvero deve valere
 
     $$
-    \sum_{x \in D_X} |x|\, \mathbb{P}(X = x) < \infty
+    \sum_{x \in D_X} |x|\, p_X(x) < \infty
     $$
     \qquad In caso contrario si dice che $X$ non ha valore atteso.
 
 \hfill
 
-Analogamente alla media campionaria, si osserva che il valore atteso può non corrispondere ad una specificazione della variabile aleatoria $X$. Inoltre $\mathbb{E}(X)$ presenta la stessa unità di misura delle specificazioni.
+Analogamente alla media campionaria, il valore atteso può non corrispondere a una specificazione della variabile aleatoria $X$. Inoltre $\mathbb{E}[X]$ presenta la stessa unità di misura delle specificazioni.
 
-**[...Manca la dimostrazione del fatto che E(X) sia un operatore lineare...]**
 
+\hfill
+Funzione indicatrice di un evento
+: La funzione indicatrice di un evento $A \sube \Omega$ è definita come una funzione $I_A: \Omega \to \{0,1\}$ tale che
+
+    \vspace{-3mm}
+    $$
+    I_A(\omega) =
+    \begin{cases}
+    1 & \text{sse \(A\) si verifica, cioè se } \omega \in A \\
+    0 & \text{altrimenti}
+    \end{cases}
+    $$
+
+    Utilizzando questa definizione, si può dimostrare che il valore atteso della funzione indicatrice coincide con la probabilità dell'evento, infatti:
+    \vspace{-2mm}
+    $$
+    \mathbb{E}[I_A] = \sum_{\omega \in \Omega} I_A(\omega)\, \mathbb{P}(\{\omega\})  
+    \vspace{-2mm}
+    $$
+    Notando che $I_A(\omega) = 1$ solo se $\omega \in A$ e 0 altrimenti, la somma si riduce a
+    \vspace{-2mm}
+    $$
+    \mathbb{E}[I_A] = \sum_{\omega \in A} \mathbb{P}(\{\omega\}) = \mathbb{P}(A)
+    $$
+
+### Proprietà
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Proprietà}
+```
+
+Si consideri una variabile aleatoria $X$ di cui si conosce la distribuzione. Anziché calcolare il valore atteso di $X$, può essere conveniente calcolare il valore atteso di una funzione $g(X)$, dove $g$ è una funzione $g: \mathbb{R} \to \mathbb{R}$. Si nota che $g(X)$ è anch'essa una variabile aleatoria, e quindi è possibile calcolarne la distribuzione in un qualche modo; dopo averla ottenuta si può calcolare $\mathbb{E}[g(X)]$ con la sua definizione usuale.
+
+Se $X$ è una variabile aleatoria discreta con funzione di probabilità $p_X$, allora, per ogni funzione reale $g$ vale [^4]
+$$
+E[g(X)] = \sum_{x \in D_X} g(x)\, \mathbb{P}(X = x) = \sum_{x \in D_X} g(x)\, p_X(x) \tag{7.1.3}
+$$
+
+[^4]: Anche in questo caso si richede che la serie converga in valore assoluto affinché $\mathbb{E}[g(X)]$ sia definito:
+
+    $$
+    \vspace{-2mm}
+    \sum_{x \in D_X} |g(x)|\, p_X(x) < \infty
+    $$
+
+\newpage
+##### Corollario
+Per ogni coppia di costanti reali $a$ e $b$, si ha $\mathbb{E}[aX + b] = a\, \mathbb{E}[X] + b$.
+
+Dimostrazione:
+
+\qquad $\displaystyle \mathbb{E}[aX + b] = \sum_{x \in D_X} (ax + b)\, p_X(x) = a \sum_{x \in D_X} x\, p_X(x) + b \sum_{x \in D_X} p_X(x) = a\, \mathbb{E}[X] + b$
+
+Il valore atteso è quindi un operatore lineare, proprio come la media campionaria.
+
+Si presentano due casi:
+
+- se $a = 0$, si ha $\mathbb{E}[b] = b$ e quindi il valore atteso di una costante è la costante stessa. Una costante è infatti una variabile aleatoria degenere che assume un unico valore con probabilità 1.
+
+- se $b=0$ si ottiene che $\mathbb{E}[aX] = a\, \mathbb{E}[X]$. Di conseguenza il valore atteso scala rispetto alle costanti moltiplicative.
 
 
 
@@ -3663,6 +3762,5 @@ Analogamente alla media campionaria, si osserva che il valore atteso può non co
 # Analisi della varianza
 
 To do (lezione 08)
-
 
 
