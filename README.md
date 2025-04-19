@@ -8,7 +8,9 @@ unimi-informatica-L31
 ├─ a01
 │   ├─ architettura degli elaboratori I
 │   ├─ architettura degli elaboratori II
-│   └─ programmazione I
+│   ├─ programmazione I
+│   │
+│   └─ matematica del discreto
 │
 └─ a02
     ├─ algoritmi e strutture dati
@@ -18,5 +20,4 @@ unimi-informatica-L31
     │
     └─ statistica
 ```
-
 
