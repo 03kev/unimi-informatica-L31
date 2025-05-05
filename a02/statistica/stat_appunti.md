@@ -44,7 +44,7 @@ header-includes: |
 
 ```{=latex}
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
-\newcommand{\ceil}[1]{\lceil #1 \lceil}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
 \newcommand{\roundp}[1]{\left( #1 \right)}
 \newcommand{\squarep}[1]{\left[ #1 \right]}
 \newcommand{\bracketp}[1]{\left\{ #1 \right\}}
@@ -840,7 +840,7 @@ Questo indice è fondamentale per la costruzione dei boxplot perché viene propr
 
 ## Indici di correlazione
 
-Si consideri un insieme composto da dati accoppiati $(x_1,y_1),(x_2, y_2), \cdots, (x_n, y_n)$. Per vedere la relazione relativa di queste due variabili è possibile rappresentarle in un diagramma di dispersione. Questo approccio è però qualitativo, e quindi soggetto a interpretazione.  
+Si consideri un insieme composto da dati accoppiati $(x_1,y_1),(x_2, y_2), \dots, (x_n, y_n)$. Per vedere la relazione relativa di queste due variabili è possibile rappresentarle in un diagramma di dispersione. Questo approccio è però qualitativo, e quindi soggetto a interpretazione.  
 Si vuole trovare un indice quantitativo in grado di rappresentare questa relazione oggettivamente. Questi indici sono detti di dipendenza o associazione e misurano la forza della relazione, ossia forniscono un valore numerico che indica quanto intensamente le variabili siano collegate.
 
 ### Covarianza campionaria
@@ -1098,7 +1098,7 @@ Una proprietà importante di questo indice è che $0 \le I < 1$. Inoltre l'omoge
 \newpage
 ```
 
-Per dimostrare le limitazioni inferiori e superiori si ricordi innanzitutto che, trattandosi di frequenze relative, $0 \le f_j \le 1 \;\; \forall j \in [1,m]$. Inoltre $\sum_{j=1}^m f_j = 1$. Di conseguenza si avrà:
+Per dimostrare le limitazioni inferiori e superiori si ricordi innanzitutto che, trattandosi di frequenze relative, $0 \le f_j \le 1 \;\; \forall j \in \{1,\dots,m\}$. Inoltre $\sum_{j=1}^m f_j = 1$. Di conseguenza si avrà:
 
 - per almeno un $j$ si ha $\displaystyle f_j > 0 \Rightarrow f_j^2 > 0 \Rightarrow \sum_{j=1}^m f_j^2 > 0 \quad \Rightarrow \quad I < 1$
 - per ogni $j$, dato che $0 \le f_j \le 1$, si ha che $\displaystyle f_j^2 \le f_j \Rightarrow \sum_{j=1}^m f_j^2 \le \sum_{j=1}^m f_j = 1 \quad \Rightarrow \quad I \ge 0$
@@ -1738,7 +1738,7 @@ In questi casi, quando nei dati si hanno due popolazioni ben distinte per quanto
 
 Può risultare utile una rielaborazione dei dati iniziali per diversi motivi: per poterli confrontare con altri dati riportandoli ad un intervallo predefinito, per poter confrontare la loro distribuzione di frequenza con quella di altri dati oppure per renderli più facilmente leggibili.
 
-Si consideri un insieme di valori distinti $V = \{v_1, v_2, \cdots, v_m\}$, ognuno con la propria frequenza relativa $f_1, f_2, \cdots, f_m$. Si consideri anche una funzione $f$ che trasformi i valori di $V$ in valori appartenenti all'insieme $V' = \{v_1', v_2', \cdots, v_m' \}$: si ha perciò che $\forall j \in [1,m] \;\; f(v_j) = v_j'$.
+Si consideri un insieme di valori distinti $V = \{v_1, v_2, \cdots, v_m\}$, ognuno con la propria frequenza relativa $f_1, f_2, \cdots, f_m$. Si consideri anche una funzione $f$ che trasformi i valori di $V$ in valori appartenenti all'insieme $V' = \{v_1', v_2', \cdots, v_m' \}$: si ha perciò che $\forall j \in \{1, \dots,m\} \;\; f(v_j) = v_j'$.
 
 Si prenderanno in esame solo funzioni *iniettive*: per questo tipo di trasformazioni i valori delle frequenze relative per l'insieme $V'$ rimangono i medesimi di quelli per l'insieme $V$, ossia $f_1, f_2, \cdots, f_m$. 
 
@@ -2154,7 +2154,7 @@ Prima di enunciare gli assiomi della teoria della probabilità, occorre introdur
 ```
 
 Esperimento
-: Un esperimento è un procedimento o una prova condotta in condizioni controllate, il cui risultato è incerto
+: Un esperimento è un procedimento o una prova condotta in condizioni controllate, il cui risultato è incerto.
 \vspace{1mm}
 
 Esito
@@ -2165,7 +2165,7 @@ Spazio degli esiti
 : Lo spazio degli esiti (o insieme universo o spazio campionario) è l'insieme dei possibili esiti dell'esperimento, e si indica con $\Omega$. L'universo può essere:
 
     - finito o infinito, a seconda del numero di esiti possibili
-    - discreto se gli esiti sono isolati e contabili, o continuo se gli esiti formano un continuum. In questo contesto, la distinzione tra spazi discreti e continui riguarda la struttura complessiva di $\Omega$, e non le proprietà intrinseche degli elementi stessi.
+    - discreto se gli esiti sono isolati e contabili, o continuo se gli esiti formano un continuum. In questo contesto, la distinzione tra spazi discreti e continui riguarda la struttura complessiva di $\Omega$, e non le proprietà intrinseche degli elementi stessi
 
 \vspace{1mm}
 
@@ -2192,7 +2192,7 @@ Dati due eventi $E, F \subseteq \Omega$, è possibile applicare le operazioni fo
     Per un esito $x$ si ottiene che $\;x \in E^C \; \Leftrightarrow\; x \not \in E$  
     Si osserva che $E^C = \Omega - E$. Vale anche la relazione $\Omega^C = \varnothing$.
 
-- Differenza $E \smallsetminus F$: è l'evento che si verifica quando $E$ si verifica ma non $F$   
+- Differenza $E \smallsetminus F$: è l'evento che si verifica quando $E$ si verifica ma non $F$.
     Per un esito $x$ si ottiene che $x \in E \smallsetminus F \; \Leftrightarrow \; x \in E \land x \not\in F$  
     Si osserva che questa operazione non è simmetrica, infatti $E \smallsetminus F \not = F \smallsetminus E$.
 
@@ -2382,7 +2382,7 @@ $$
 $$
 \vspace{-4mm}
 
-allora $\mathcal{A}$ si dice $\sigma$-algebra e si indica con $\mathcal{F}$. Da ciò discende, per De Morgan, anche la chiusura rispetto alle intersezioni numerabili.
+allora $\mathcal{A}$ si dice $\sigma$-algebra e si indica con $\mathcal{F}$. Da ciò discende, per De Morgan, anche la chiusura rispetto alle intersezioni numerabili. Gli elementi di una $\sigma$-algebra si dicono insiemi *misurabili*.
 
 Insieme numerabile
 : Un insieme è detto numerabile se i suoi elementi sono in numero finito oppure se possono essere messi in corrispondenza biunivoca con $\mathbb{N}$. Se un insieme numerabile ha un numero infinito di elementi, viene detto infinito numerabile, e dato che può essere messo in corrispondenza biunivoca con i numeri naturali, si può dire che un insieme è infinito numerabile se ha la cardinalità di $\mathbb{N}$.
@@ -2409,7 +2409,7 @@ La mappa $\phi$ è un isomorfismo di algebre booleane, il che implica che le due
 > **Esempio** Si consideri il lancio di una moneta, per il quale la $\sigma$-algebra è  
 > $\mathcal{F}_M = \{\varnothing, \{T\}, \{C\}, \Omega_M\},$ dove $T$ sta per testa, $C$ per croce e $\Omega_M = \{T, C\}$.
 >
-> Per il lancio di un dado, supponiamo di considerare solo due eventi, ottenuti partizionando lo spazio degli esiti $\Omega_D = \{1,2,3,4,5,6\}$ in $\mathcal{F}_D = \{\emptyset, \{1,2\}, \{3,4,5,6\}, \Omega_D\}$. $\mathcal{F}_D$ è un'algebra ammissibile diversa dall'insieme delle parti $\mathcal{P}(\Omega_D)$. 
+> Per il lancio di un dado, supponiamo di considerare solo due eventi, ottenuti partizionando lo spazio degli esiti $\Omega_D = \{1,2,3,4,5,6\}$ in $\mathcal{F}_D = \{\varnothing, \{1,2\}, \{3,4,5,6\}, \Omega_D\}$. $\mathcal{F}_D$ è un'algebra ammissibile diversa dall'insieme delle parti $\mathcal{P}(\Omega_D)$. 
 >
 > Si definisce la mappa $\phi: \mathcal{F}_D \to \mathcal{F}_M$ mediante:
 >
@@ -2628,7 +2628,7 @@ $$
 $$
 da cui si deduce che
 $$
-\mathbb{P}(\{\omega_i\}) = \dfrac{|\{\omega_i\}|}{|\Omega|} = p =\dfrac{1}{N} \quad\; \forall i \in [1,N]
+\mathbb{P}(\{\omega_i\}) = \dfrac{|\{\omega_i\}|}{|\Omega|} = p =\dfrac{1}{N} \quad\; \forall i \in \{1,\dots,N\}
 $$
 \vspace{-1mm}
 
@@ -2661,7 +2661,7 @@ Infatti, se si è verificato l'evento $F$, affinché si verifichi anche $E$ il c
 Nel caso in cui $F = \varnothing$, e quindi $\mathbb{P}(F) = 0$, non è possibile calcolare $P(E|F)$ che è perciò detta indefinita.
 
 > **Esempio** Si immagini di tirare due dadi. Lo spazio degli esiti di questo esperimento è descritto  
-> da $\Omega = \{ (x,y) \;\, | \;\, x,y \in [1,6]  \}$ dove si intende che si ottiene l'esito $(x,y)$ se il risultato del primo dado è $x$ e quello del secondo $y$. Si supponga che entrambi i dadi non siano truccati, e di trovarci quindi in uno spazio equiprobabile dove $\mathbb{P}((x,y)) = 1/|\Omega| = 1/36$.
+> da $\Omega = \{ (x,y) \;\, | \;\, x,y \in \{1,\dots, 6\}  \}$ dove si intende che si ottiene l'esito $(x,y)$ se il risultato del primo dado è $x$ e quello del secondo $y$. Si supponga che entrambi i dadi non siano truccati, e di trovarci quindi in uno spazio equiprobabile dove $\mathbb{P}((x,y)) = 1/|\Omega| = 1/36$.
 >
 > ```{=latex}
 > \begin{minipage}{0.35\linewidth}
@@ -3032,7 +3032,7 @@ $$
 
 Sia $(\Omega, \mathcal{F}, \mathbb{P})$ uno spazio di probabilità. Si consideri una *partizione* $\{F_1, F_2, \dots, F_n\}$ di $\Omega$, ovvero un insieme di eventi tali che:
 
-- $F_i \not= \varnothing \quad \forall i \in [1, n]$
+- $F_i \not= \varnothing \quad \forall i \in \{1, \dots, n\}$
 
 - $F_i \cap F_j = \varnothing \quad \forall i \neq j$
 - $\displaystyle \bigcup_{i=1}^{n} F_i = \Omega$
@@ -3285,7 +3285,7 @@ $\mathbb{P}(E \cap \overline{F}) = \mathbb{P}(E) \, \mathbb{P}(\overline{F})$
 Si osserva che non è possibile estendere l'indipendenza a più eventi richiedendo solo l'indipendenza a coppie, similmente a quanto invece si fa per provare la disgiunzione tra più eventi.
 
 >**Esempio** Si immagini di tirare due dadi. Lo spazio degli esiti di questo esperimento è descritto  
->da $\Omega = \{ (x,y) \;\, | \;\, x,y \in [1,6]  \}$ dove si intende che si ottiene l'esito $(x,y)$ se il risultato del primo dado è $x$ e quello del secondo $y$. Si supponga che entrambi i dadi non siano truccati, e di trovarci quindi in uno spazio equiprobabile dove $\mathbb{P}((x,y)) = 1/|\Omega| = 1/36$.
+>da $\Omega = \{ (x,y) \;\, | \;\, x,y \in \{1, \dots, 6\}  \}$ dove si intende che si ottiene l'esito $(x,y)$ se il risultato del primo dado è $x$ e quello del secondo $y$. Si supponga che entrambi i dadi non siano truccati, e di trovarci quindi in uno spazio equiprobabile dove $\mathbb{P}((x,y)) = 1/|\Omega| = 1/36$.
 >
 >```{=latex}
 >\begin{minipage}{0.35\linewidth}
@@ -3417,8 +3417,6 @@ Questo significa che, dati più eventi, l’indipendenza globale richiede che og
 
 
 \newpage
-
-
 # Variabili aleatorie
 
 Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria $X : \Omega \to \mathbb{R}$ è definita come una funzione misurabile, ossia tale che per ogni $A \in \mathcal{E}$ l'evento
@@ -3445,7 +3443,7 @@ $$
 \vspace{-3mm}
 $$
 
-> **Definizione completa** Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria
+> **Definizione rigorosa** Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria
 > $X: \Omega \rightarrow \mathbb{R}$
 > è definita come una funzione misurabile, ossia una funzione che trasforma gli esiti dello spazio campionario $\Omega$ in valori reali in modo da preservare la struttura misurabile. Questo significa che per ogni insieme $B \in \mathcal{E}$ (ossia per ogni insieme misurabile in $\mathbb{R}$) l'insieme preimmagine
 > $$
@@ -3482,7 +3480,7 @@ $$
 Proprietà
 : La funzione di ripartizione $F_X$ possiede le seguenti proprietà:
 
-    - Limite inferiore: $F_X(x) \ge 0 \;\; \forall x \in \mathbb{R}$
+    - $0 \le F_X(x) \le 1 \;\; \forall x \in \mathbb{R}$
 
     - Monotonicità: $F_X$ è non decrescente, ossia se $x_1 < x_2$, allora $F_X(x_1) \le F_X(x_2)$. Questo riflette il fatto che $\{X \le x_1\} \sube \{ X \le x_2 \}$.
 
@@ -3534,7 +3532,6 @@ Dimostrazione
 
 
 
-
 \hfill
 
 ## Variabili aleatorie discrete
@@ -3547,7 +3544,7 @@ Poiché il supporto $D_X$ di una variabile aleatoria discreta è numerabile e, i
 
 Questo insieme si determina esaminando i valori per cui la funzione di massa di probabilità non è zero.
 
-Le probablità di un evento $\{X \in A\}$, per ogni $A \sube D_X$, si ottiene sommando le probabilità dei valori di $X$ che ricadono in $A$:
+Le probabilità di un evento $\{X \in A\}$, per ogni $A \sube D_X$, si ottiene sommando le probabilità dei valori di $X$ che ricadono in $A$:
 $$
 \mathbb{P}(X \in A) = \sum_{x \in A \cap D_X} \mathbb{P} (X = x)
 $$
@@ -3601,13 +3598,13 @@ che associa ad ogni valore $x$ assunto da $X$ la probabilità che $X$ assuma esa
 Proprietà
 : La funzione di probabilità rispetta le seguenti proprietà:
 
-    - $\forall x \in \mathbb{R} \;\; p_X(x) \ge 0$: trattandosi del calcolo di una probabilità, questa funzione non può assuemere valori negativi
+    - $\forall x \in \mathbb{R} \;\; p_X(x) \ge 0$: trattandosi del calcolo di una probabilità, questa funzione non può assumere valori negativi
 
     - $p_X(x) \not = 0$ solo per $x \in \mathbb{R} \land x\in D_X$
 
     - per $x \not \in D_X$ si assume che $p_X(x) = 0\,$[^2]
 
-    Come già dimostrato in precedenza, la somma delle proprobilità su tutto il supporto di $X$ deve essere pari a 1. Di conseguenza, se $D_X$ è numerabile, scrivendo $p_X(x) = \mathbb{P}(X = x)$ si ottiene
+    Come già dimostrato in precedenza, la somma delle probabilità su tutto il supporto di $X$ deve essere pari a 1. Di conseguenza, se $D_X$ è numerabile, scrivendo $p_X(x) = \mathbb{P}(X = x)$ si ottiene
     \vspace{-1.5mm}
     $$
     \sum_{x \in D_X} p_X(x) = 1
@@ -3638,7 +3635,7 @@ $D_X = \{x \in \mathbb{R} \mid \mathbb{P}(X=x) > 0\}$. La funzione di massa di p
 
 
 \hfill
-#### Relazione tra funzione di partizione e di probabilità
+#### Relazione tra funzione di ripartizione e di probabilità
 
 Sia $F_X$ la funzione di ripartizione di $X$ e sia $p_X$ la sua funzione di probabilità. La prima rappresenta la somma cumulativa dei valori della seconda.
 
@@ -3661,6 +3658,111 @@ Da ciò si deduce che se $X$ è una variabile aleatoria continua, tale valore è
 ##### Osservazione
 Quando si conosce la funzione di probabilità $p_X$, oppure la funzione di ripartizione $F_X$, di una variabile aleatoria $X$ qualsiasi, si hanno abbastanza informazioni per poter calcolare la probabilità di ogni evento che dipenda solo da tale variabile aleatoria. Si dice in questo caso che si conosce la *distribuzione* o *legge* della variabile aleatoria considerata.  
 Affermare quindi che $X$ e $Y$ hanno la stessa distribuzione significa che le rispettive funzioni di ripartizioni sono identiche, $X \sim F_X \equiv F_Y \sim Y$, e quindi anche che $\mathbb{P}(X \in A) = \mathbb{P}(Y \in A)$ per ogni insieme di valori $A \sube \mathbb{R}$.
+
+
+\newpage
+## Variabili multivariate
+Risulta necessario talvolta ridurre un esperimento casuale a più variabili aleatorie, in quanto l'oggetto di interesse sono proprio le relazioni presenti tra due o più grandezze numeriche. La coppia $(X, Y)$, con $X$ e $Y$ variabili aleatorie, è detta *variabile aleatoria bivariata*; generalizzando, una *variabile aleatoria multivariata* è un vettore aleatorio $X = (X_1, X_2, \dots, X_n)$, dove $X_i$ è una variabile aleatoria a valori reali.
+
+Verranno ora presentate le definizioni e le proprietà delle variabili aleatorie bivariate, che possono essere però estese sul caso di variabili multivariate.
+
+#### Funzione di ripartizione congiunta
+
+Considerata una variabile aleatoria bivariata $(X, Y)$, la funzione di ripartizione congiunta è definita come
+$$
+F_{X,Y}(x,y) = \mathbb{P}(X \le x, Y \le y)
+$$
+dove la virgola denota l'intersezione tra i due eventi $\{X \le x\}$ e $\{Y \le y\}$.
+
+\hfill
+La conoscenza di questa funzione permette di calcolare la probabilità di tutti gli eventi che dipendono, singolarmente o congiuntamente, da $X$ e $Y$. La funzione di ripartizione di $X$ può essere ottenuta dalla funzione di ripartizione congiunta come
+$$
+F_X(x) = \lim_{y \to +\infty} F_{X,Y}(x,y) = \mathbb{P}(X \le x, Y \le +\infty) = F_{X,Y}(x,+\infty)
+$$
+
+Analogamente, la funzione di ripartizione di $Y$ è
+$$
+F_Y(y) = \lim_{x \to +\infty} F_{X,Y}(x,y) = \mathbb{P}(X \le +\infty, Y \le y) = F_{X,Y}(+\infty,y)
+$$
+
+Le funzioni di ripartizioni $F_X$ e $F_Y$ sono dette *marginali*.
+
+\hfill
+#### Funzione di probabilità congiunta
+Nel caso in cui $X$ e $Y$ siano variabili aleatorie discrete, la funzione di probabilità congiunta è definita come
+$$
+p_{X,Y}(x, y) = \mathbb{P}(X = x, Y = y) 
+$$
+
+Le funzioni di probabilità $p_X$ e $p_Y$ si possono ricavare da quella congiunta notando che, siccome $Y$ deve assumere uno dei valori $y$, l'evento $\{X = x\}$ può essere visto come l'unione al variare degli $y$ degli eventi $\{X = x, Y = y\}$, che sono mutualmente esclusivi. In formule:
+$$
+\{X = x\} = \bigcup_{y \in D_Y} \{X = x, Y = y\}
+$$
+
+Tramite il terzo assioma di Kolmogorov, si ha quindi
+$$
+\mathbb{P}(X = x) = \sum_{y \in D_Y} \mathbb{P}(X = x, Y = y) = \sum_{y \in D_Y} p_{X,Y}(x,y) = p_X(x)
+$$
+
+Analogamente, si può dimostrare che
+$$
+p_Y(y) = \sum_{x \in D_X} p_{X,Y}(x,y)
+$$
+
+Queste due funzioni di probabilità sono dette *marginali*. È importante notare che sebbene le funzioni di massa di probabilità marginali si possono sempre ricavare da quella congiunta, il viceversa è falso.
+
+### Variabili indipendenti
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Variabili indipendenti}
+```
+Due variabili aleatorie $X$ e $Y$ sono dette *indipendenti* se tutti gli eventi relativi alla prima sono indipendenti da tutti gli eventi relativi alla seconda.
+
+Formalmente, due variabili aleatorie che riguardano lo stesso esperimento casuale sono indipendenti se e solo se, per ogni insieme $A,B \sube \mathbb{R}$, si ha 
+$$
+\mathbb{P}(X \in A, Y \in B) = \mathbb{P}(X \in A) \, \mathbb{P}(Y \in B)
+$$
+ovvero, se per ogni scelta di $A$ e $B$, gli eventi $\{X \in A\}$ e $\{Y \in B\}$ sono indipendenti. In caso contrario $X$ e $Y$ sono dette *dipendenti*.
+
+#### Proprietà
+
+Siano $X$ e $Y$ due variabili aleatorie indipendenti. Allora valgono le seguenti proprietà:
+
+- $F_{X,Y}(x,y) = F_X(x) \, F_Y(y)$
+- $p_{X,Y}(x,y) = p_X(x) \, p_Y(y)$
+
+    **Dimostrazione**
+
+    1. $X,Y$ indipendenti $\;\; \Rightarrow \;\; p_{X,Y}(x,y) = p_X(x) \, p_Y(y) \quad \forall x, y$
+        \begin{flalign*}
+        \text{Si fissino } x, y: \quad p_{X,Y}(x,y) 
+        & = \mathbb{P}(X=x, Y=y) = \mathbb{P}(X \in \underset{:=A}{\{x\}}, Y \in \underset{:= B}{\{y\}}) \\
+        & = \mathbb{P}(X \in A, Y \in B) \overset{\text{(1)}}{=} \mathbb{P}(X \in A) \, \mathbb{P}(Y \in B) \\
+        & = \mathbb{P}(X = x) \, \mathbb{P}(Y = y) = p_X(x) \, p_Y(y)
+        &&\end{flalign*}
+        \begin{small}\text{(1): per ipotesi di indipendenza}\end{small}
+
+    \vspace{1mm}
+    2. $p_{X, Y}(x,y) = p_X(x) \, p_Y(y) \quad \forall x, y \;\; \Rightarrow \;\; X, Y$ indipendenti
+        \begin{flalign*}
+        \text{Si fissino } A, B \sube \mathbb{R}: \quad \mathbb{P}(X \in A, Y \in B) 
+        & = \sum_{x \in A, y \in B}\mathbb{P}(X = x, Y = y) = \sum_{x \in A} \sum_{y \in B} p_{X,Y}(x,y) \\ 
+        & = \sum_{x \in A} \sum_{y \in B} p_X(x) \, p_Y(y) = \sum_{x \in A} p_X(x) \sum_{y \in B} p_Y(y) \\ 
+        & = \mathbb{P}(X \in A) \, \mathbb{P}(Y \in B) \\
+        &&\end{flalign*}
+
+        \vspace{-8mm}
+        Di conseguenza $X$ e $Y$ sono indipendenti.
+
+    \vspace{-6mm}
+    \begin{flalign*}
+    \text{Si è dimostrata perciò la tesi in entrambi i versi.}
+    &&\end{flalign*}
+
+\hfill
+È possibile estendere l'indipendenza a più variabili aleatorie. In questo caso, si dice che $X_1, X_2, \dots, X_n$ sono indipendenti se
+$$
+\forall A_1, \dots, A_n \sube \mathbb{R} \quad \mathbb{P}\Big( \bigcap_{i=1}^n X_i \in A_i \Big) = \prod_{i=1}^n \mathbb{P}(X_i \in A_i)
+$$
 
 
 \newpage
@@ -3751,6 +3853,54 @@ Si presentano due casi:
 - se $b=0$ si ottiene che $\mathbb{E}[aX] = a\, \mathbb{E}[X]$. Di conseguenza il valore atteso scala rispetto alle costanti moltiplicative.
 
 
+\hfill
+## Varianza
+La varianza misura quanto i valori di una variabile aleatoria si dispergano intorno alla media. Siccome i valori di $X$ sono distribuiti attorno al suo valore atteso, un approccio per misurare la loro variabilità potrebbe essere quantificare la loro distanza da $\mathbb{E}[X]$, ad esempio calcolando quanto valga $\mathbb{E}[|X - \mu|]$. Tuttavia, il valore assoluto comporta alcuni problemi di calcolo, e si predilige pertanto l'elevamento al quadrato.
+
+Sia $X$ una variabile aleatoria e sia il suo valore atteso $\mu = \mathbb{E}[X]$. La varianza di $X$, che si denota con $\text{Var}(X)$ oppure $\sigma^2$, è (se esiste) la quantità:
+$$
+\text{Var}(X) = \mathbb{E}[(X - \mu)^2]
+$$
+
+\vspace{1mm}
+Teorema
+: Sia $X$ una variabile aleatoria, allora $\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2$.
+
+Dimostrazione:
+
+\qquad $\text{Var}(X) = \mathbb{E}[(X - \mu)^2] = \mathbb{E}[X^2 - 2\mu X + \mu^2] \overset{(1)}{=} \mathbb{E}[X^2] - 2\mu\, \mathbb{E}[X] + \mu^2 = \mathbb{E}[X^2] - 2\mu^2 + \mu^2 = \mathbb{E}[X^2] - \mu^2$
+\begin{footnotesize}\qquad\, $(1)$: il valore atteso è lineare anche rispetto alla somma di variabili aleatorie.\end{footnotesize}
+
+
+\hfill
+Corollario
+: Per ogni coppia di costanti reali $a$ e $b$, si ha $\text{Var}(aX + b) = a^2\, \text{Var}(X)$.
+
+Dimostrazione:
+
+\qquad $\text{Var}(aX + b) = \mathbb{E}[(aX + b - (a\mu+b))^2] = \mathbb{E}[(aX - a\mu)^2] = \mathbb{E}[(a(X - \mu))^2] = a^2\, \mathbb{E}[(X - \mu)^2] = a^2\, \text{Var}(X)$
+
+La varianza non è quindi un operatore lineare, proprio come la varianza campionaria. Si osserva che ha il quadrato dell'unità di misura della variabile aleatoria $X$.
+
+Si presentano due casi:
+
+- se $a=0$, si ha $\text{Var}(b) = 0$ e quindi la varianza di una costante è zero. Infatti, una costante è una variabile aleatoria degenere che assume un unico valore con probabilità 1.
+- se $b=0$, si ottiene che $\text{Var}(aX) = a^2\, \text{Var}(X)$. Di conseguenza la varianza scala al quadrato rispetto alle costanti moltiplicative.
+
+
+\hfill
+Sia $I_A$ la funzione indicatrice di un evento $A \sube \Omega$. Notando che $I_A^2 = I_A$ per idempotenza (infatti i valori possibili di $I_A$ sono solo 0 e 1, che elevati al quadrato rimangono invariati), si ha:
+$$
+\text{Var}(I_A) = \mathbb{E}[I_A^2] - \mathbb{E}[I_A]^2 = \mathbb{E}[I_A] - \mathbb{E}[I_A]^2 = \mathbb{P}(A) - \mathbb{P}(A)^2 = \mathbb{P}(A)(1 - \mathbb{P}(A)) = \mathbb{P}(A)\, \mathbb{P}(\overline{A})
+$$
+
+\hfill
+##### Deviazione standard
+A partire dalla varianza, è possibile deifinire la deviazione standard di una variabile aleatoria $X$ come
+$$
+\sigma_X = \sqrt{\text{Var}(X)} = \sqrt{\mathbb{E}[(X - \mu)^2]} = \sqrt{\mathbb{E}[X^2] - \mathbb{E}[X]^2}
+$$
+La deviazione standard possiede la stessa unità di misura della variabile aleatoria presa in considerazione.
 
 
 
