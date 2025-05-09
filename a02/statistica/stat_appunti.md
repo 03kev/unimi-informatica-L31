@@ -19,6 +19,7 @@ header-includes: |
     \usepackage{tikz}
     \usetikzlibrary{positioning}
     \usetikzlibrary{intersections}
+    \usetikzlibrary{patterns}
 
     \usepackage{tcolorbox}
     \usepackage{caption}
@@ -3655,7 +3656,7 @@ Da ciò si deduce che se $X$ è una variabile aleatoria continua, tale valore è
 
 \hfill
 
-##### Osservazione
+##### Proposizione
 Quando si conosce la funzione di probabilità $p_X$, oppure la funzione di ripartizione $F_X$, di una variabile aleatoria $X$ qualsiasi, si hanno abbastanza informazioni per poter calcolare la probabilità di ogni evento che dipenda solo da tale variabile aleatoria. Si dice in questo caso che si conosce la *distribuzione* o *legge* della variabile aleatoria considerata.  
 Affermare quindi che $X$ e $Y$ hanno la stessa distribuzione significa che le rispettive funzioni di ripartizioni sono identiche, $X \sim F_X \equiv F_Y \sim Y$, e quindi anche che $\mathbb{P}(X \in A) = \mathbb{P}(Y \in A)$ per ogni insieme di valori $A \sube \mathbb{R}$.
 
@@ -3733,6 +3734,7 @@ Siano $X$ e $Y$ due variabili aleatorie indipendenti. Allora valgono le seguenti
     **Dimostrazione**
 
     1. $X,Y$ indipendenti $\;\; \Rightarrow \;\; p_{X,Y}(x,y) = p_X(x) \, p_Y(y) \quad \forall x, y$
+        \vspace{-2mm}
         \begin{flalign*}
         \text{Si fissino } x, y: \quad p_{X,Y}(x,y) 
         & = \mathbb{P}(X=x, Y=y) = \mathbb{P}(X \in \underset{:=A}{\{x\}}, Y \in \underset{:= B}{\{y\}}) \\
@@ -3743,6 +3745,7 @@ Siano $X$ e $Y$ due variabili aleatorie indipendenti. Allora valgono le seguenti
 
     \vspace{1mm}
     2. $p_{X, Y}(x,y) = p_X(x) \, p_Y(y) \quad \forall x, y \;\; \Rightarrow \;\; X, Y$ indipendenti
+        \vspace{-2mm}
         \begin{flalign*}
         \text{Si fissino } A, B \sube \mathbb{R}: \quad \mathbb{P}(X \in A, Y \in B) 
         & = \sum_{x \in A, y \in B}\mathbb{P}(X = x, Y = y) = \sum_{x \in A} \sum_{y \in B} p_{X,Y}(x,y) \\ 
@@ -3817,19 +3820,20 @@ Funzione indicatrice di un evento
     \mathbb{E}[I_A] = \sum_{\omega \in A} \mathbb{P}(\{\omega\}) = \mathbb{P}(A)
     $$
 
-### Proprietà
+#### Proprietà
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Proprietà}
 ```
 
-Si consideri una variabile aleatoria $X$ di cui si conosce la distribuzione. Anziché calcolare il valore atteso di $X$, può essere conveniente calcolare il valore atteso di una funzione $g(X)$, dove $g$ è una funzione $g: \mathbb{R} \to \mathbb{R}$. Si nota che $g(X)$ è anch'essa una variabile aleatoria, e quindi è possibile calcolarne la distribuzione in un qualche modo; dopo averla ottenuta si può calcolare $\mathbb{E}[g(X)]$ con la sua definizione usuale.
-
+##### Proposizione
 Se $X$ è una variabile aleatoria discreta con funzione di probabilità $p_X$, allora, per ogni funzione reale $g$ vale [^4]
 $$
-E[g(X)] = \sum_{x \in D_X} g(x)\, \mathbb{P}(X = x) = \sum_{x \in D_X} g(x)\, p_X(x) \tag{7.1.3}
+\mathbb{E}[g(X)] = \sum_{x \in D_X} g(x)\, \mathbb{P}(X = x) = \sum_{x \in D_X} g(x)\, p_X(x) \tag{7.1.3}
 $$
 
-[^4]: Anche in questo caso si richede che la serie converga in valore assoluto affinché $\mathbb{E}[g(X)]$ sia definito:
+Si consideri infatti una variabile aleatoria $X$ di cui si conosce la distribuzione. Anziché calcolare il valore atteso di $X$, può essere conveniente calcolare il valore atteso di una funzione $g(X)$, dove $g$ è una funzione $g: \mathbb{R} \to \mathbb{R}$. Si nota che $g(X)$ è anch'essa una variabile aleatoria, e quindi è possibile calcolarne la distribuzione in un qualche modo; dopo averla ottenuta si può calcolare $\mathbb{E}[g(X)]$ con la sua definizione usuale.
+
+[^4]: Anche in questo caso si richiede che la serie converga in valore assoluto affinché $\mathbb{E}[g(X)]$ sia definito:
 
     $$
     \vspace{-2mm}
@@ -3837,7 +3841,7 @@ $$
     $$
 
 \newpage
-##### Corollario
+##### Proposizione
 Per ogni coppia di costanti reali $a$ e $b$, si ha $\mathbb{E}[aX + b] = a\, \mathbb{E}[X] + b$.
 
 Dimostrazione:
@@ -3851,6 +3855,158 @@ Si presentano due casi:
 - se $a = 0$, si ha $\mathbb{E}[b] = b$ e quindi il valore atteso di una costante è la costante stessa. Una costante è infatti una variabile aleatoria degenere che assume un unico valore con probabilità 1.
 
 - se $b=0$ si ottiene che $\mathbb{E}[aX] = a\, \mathbb{E}[X]$. Di conseguenza il valore atteso scala rispetto alle costanti moltiplicative.
+
+
+\hfill
+##### Proposizione
+Il valore atteso è lineare rispetto alla somma di variabili aleatorie: $\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y]$.
+
+Dimostrazione:
+
+\hangindent=2em \qquad È possibile estendere la formula $(7.1.3)$ in una variante in due dimensioni: se $X$ e $Y$ sono variabili aleatorie e $g$ è una qualunque funzione di due variabili, allora, se $\mathbb{E}[g(X,Y)]$ è definito, vale
+$$
+\mathbb{E}[g(X,Y)] = \begin{cases} 
+\displaystyle ~ \sum_{x \in D_X} \sum_{y \in D_Y} g(x,y)\, p_{X,Y}(x,y) & \text{nel discreto} \\[2em]
+\displaystyle ~ \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y)\, f_{X,Y}(x,y) \, dx \, dy & \text{nel continuo}
+\end{cases}
+$$
+
+\hangindent=2em \qquad Si consideri la funzione $g(x,y) = x + y$ e si applichi la formula precedente. Verrà presentata la dimostrazione per il caso discreto, ma il ragionamento è analogo nel caso continuo:
+\begin{align*}
+\mathbb{E}[X + Y] = & \sum_{x \in D_X} \sum_{y \in D_Y} (x + y)\, p_{X,Y}(x,y) = \sum_{x \in D_X} \sum_{y \in D_Y} x\, p_{X,Y}(x,y) + \sum_{x \in D_X} \sum_{y \in D_Y} y\, p_{X,Y}(x,y) \\[0.5em]
+= & \sum_{x \in D_X} x\, \left( \sum_{y \in D_Y} p_{X,Y}(x,y) \right) + \sum_{y \in D_Y} y\, \left( \sum_{x \in D_X} p_{X,Y}(x,y) \right) \\[0.5em]
+\overset{(1)}{=} & \sum_{x \in D_X} x\, p_X(x) + \sum_{y \in D_Y} y\, p_Y(y) = \mathbb{E}[X] + \mathbb{E}[Y]
+\end{align*}
+\vspace{-2mm}
+\hangindent=2em \qquad \begin{align*}\begin{small}\text{(1):}\end{small} & \begin{small}\text{ le sommatorie all'interno delle parentesi tonde rappresentano rispettivamente le funzioni di massa di}\end{small} \\ & \begin{small}\text{probabilità marginali di $X$ e $Y$.}\end{small}\end{align*}
+
+Applicando ricorsivamente questa equazione si può estendere la linearità del valore atteso a un numero finito di variabili aleatorie:
+$$
+\mathbb{E}[X_1 + X_2 + \dots + X_n] = \mathbb{E}[X_1] + \mathbb{E}[X_2] + \dots + \mathbb{E}[X_n]
+$$
+Formalmente, se $X_1, X_2, \dots, X_n$ sono variabili aleatorie discrete, si ha
+$$
+\mathbb{E}\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n \sum_{x \in D_{X_i}} x\, p_{X_i}(x) = \sum_{x \in D_X} x\, \left( \sum_{i=1}^n p_{X_i}(x) \right)
+$$
+
+##### Proposizione
+Se $X$ e $Y$ sono variabili aleatorie indipendenti, allora $\mathbb{E}[XY] = \mathbb{E}[X] \, \mathbb{E}[Y]$.
+
+Dimostrazione:
+
+\hangindent=2em \qquad Si consideri la funzione $g(x,y) = xy$ e si applichi la formula $(7.1.3)$:
+\begin{align*}
+\mathbb{E}[XY] = & \sum_{x \in D_X} \sum_{y \in D_Y} xy\, p_{X,Y}(x,y) \overset{(1)}{=} \sum_{x \in D_X}  \sum_{y \in D_Y} xy\, p_{X}(x)\, p_Y(y) \\[0.5em]
+= & \sum_{x \in D_X} x\, p_X(x)\, \sum_{y \in D_Y} y\, p_Y(y) = \mathbb{E}[X] \,\mathbb{E}[Y]
+\end{align*}
+\begin{small}\qquad\, \text{(1): per ipotesi di indipendenza}\end{small}
+
+
+\hfill
+##### Teorema
+Sia $X \ge 0$ una variabile aleatoria discreta a specificazioni non negative, allora
+$$
+\mathbb{E}[X] = \int_{0}^{+\infty} [1 - F_X(x)] \, dx
+$$
+
+\vspace{-4mm}
+Dimostrazione:
+
+\hangindent=2em \qquad Siano $x_1, x_2, \dots, x_n$ le specificazioni non nulle assunte da $X$ e siano $F_X(x_1), F_X(x_2), \dots, F_X(x_n)$ i valori assunti dalla funzione di ripartizione in corrispondenza di tali specificazioni. La funzione di ripartizione è definita come la somma cumulativa delle probabilità associate a ciascun valore di $X$, e quindi il salto della funzione di ripartizione in corrispondenza di $x_i$ è dato da
+$$
+\Delta_i = F_X(x_i) - F_X(x_{i-1}) = \mathbb{P}(X \le x_i) - \mathbb{P}(X \le x_{i-1}) = p_X(x_i) \quad \forall i = 1, \dots, n
+$$
+Si osserva che ciascun salto $\Delta_i$, se moltiplicato per la corrispondente specificazione $x_i$, contribuisce al valore atteso $\mathbb{E}[X]$; sommando i contributi di tutti i salti, si ottiene pertanto proprio il valore atteso:
+$$
+\mathbb{E}[X] = \sum_{i=1}^n x_i \, p_X(x_i) = \sum_{i=1}^n x_i \, \Delta_i
+$$
+
+
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[xscale=1.5, yscale=3.25]
+
+  %--- Parametri generici
+  \def\xone{1}     
+  \def\xtwo{2}     
+  \def\xthree{3}   
+  \def\yone{0.3}   
+  \def\ytwo{0.7}   
+
+  %--- Ombreggiature
+  \fill[pattern=crosshatch dots,pattern color=gray!70]   (0,0)          rectangle (\xone,\yone);
+  \fill[pattern=horizontal lines,pattern color=gray!70] (0,\yone)      rectangle (\xtwo,\ytwo);
+  \fill[pattern=north east lines,pattern color=gray!70] (0,\ytwo)      rectangle (\xthree,1);
+
+  %--- Assi
+  \draw[->] (0,0) -- (3.8,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,1.2) node[above] {$F_X(x)$};
+
+  %--- Ticche su y
+  \node[left,yshift=-7pt,xshift=2px] at (0,0) {0};
+  \draw (-0.04,1) -- (0.04,1) node[left] {1};
+  \draw (-0.04,\yone) -- (0.04,\yone) node[left,xshift=-2pt] {\small $F_X(x_1)$};
+  \draw (-0.04,\ytwo) -- (0.04,\ytwo) node[left,xshift=-2pt] {\small $F_X(x_2)$};
+
+  %--- Ticche su x e tratteggiate verticali
+  \foreach \x/\i in {\xone/1,\xtwo/2,\xthree/3} {
+    \draw (\x,0.04) -- (\x,-0.04) node[below] {$x_{\i}$};
+    \draw[dashed] (\x,0) -- (\x,1);
+  }
+
+  %--- Funzione di ripartizione
+  \draw[thick]
+    (0,0) -- (\xone,0)
+    (\xone,\yone) -- (\xtwo,\yone)
+    (\xtwo,\ytwo) -- (\xthree,\ytwo)
+    (\xthree,1) -- (3.6,1);
+  \draw[thick]
+    (\xone,0)     -- (\xone,\yone)
+    (\xtwo,\yone) -- (\xtwo,\ytwo)
+    (\xthree,\ytwo) -- (\xthree,1);
+
+  %--- Etichette A, B, C
+  \node[fill=white,inner sep=2pt] at ({\xone/2},{\yone/2})                {$A$};
+  \node[fill=white,inner sep=2pt] at ({(\xtwo)/2},{\yone+(\ytwo-\yone)/2}) {$B$};
+  \node[fill=white,inner sep=2pt] at ({(\xthree)/2},{\ytwo+(1-\ytwo)/2})   {$C$};
+
+    %--- Graffe Δ_i compatte e spesse
+  \draw[decorate, decoration={brace, amplitude=3pt, raise=1pt}, line width=0.7pt]
+    (\xone+0.02,\yone-0.02) -- (\xone+0.02,0.02)
+    node[midway,right,xshift=4pt] {\small $\Delta_1$};
+  \draw[decorate, decoration={brace, amplitude=3pt, raise=1pt}, line width=0.7pt]
+    (\xtwo+0.02,\ytwo-0.02) -- (\xtwo+0.02,\yone+0.02)
+    node[midway,right,xshift=4pt] {\small $\Delta_2$};
+  \draw[decorate, decoration={brace, amplitude=3pt, raise=1pt}, line width=0.7pt]
+    (\xthree+0.02,1-0.02) -- (\xthree+0.02,\ytwo+0.02)
+    node[midway,right,xshift=4pt] {\small $\Delta_3$};
+
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+Si consideri ora il grafico della funzione di ripartizione $F_X(x)$ presentato a sinistra: in questo caso si assumono per semplicità solo tre specificazioni. Per quanto detto precedentemente, il valore atteso di $X$ è dato dalla somma dei contributi dei salti della funzione di ripartizione, che sono rappresentati dalle aree $A, B$ e $C$. Ma la somma di queste aree corrisponde proprio all'area sopra la curva della funzione di ripartizione, che è pari a
+$$
+\int_{0}^{+\infty} [1 - F_X(x)] \, dx
+$$
+Si è quindi dimostrato che il valore atteso di una variabile aleatoria discreta non negativa corrisponde all'integrale presentato, provando quindi la tesi.
+\end{minipage}
+
+
+\newpage
+##### Osservazione
+$\mathbb{E}[(X-c)^2] \ge \mathbb{E}[(X-\mu)^2]$
+
+Vi è una interessante proprietà della media che emerge quando si vuole predire con il minore errore possibile il valore che verrà assunto da una variabile aleatoria. Si supponga di voler predire il valore di $X$: se si sceglie un numero reale $c$ e si dice che $X$ sarà uguale a $c$, il quadrato dell'errore che si commetterà sarà $(X - c)^2$. Si dimostra di seguito che la media dell'errore al quadrato (detto errore quadratico medio) è minima quando $c$ coincide con il valore atteso di $X$. Infatti, detta $\mu = \mathbb{E}[X]$, si ha
+\begin{align*}
+\mathbb{E}[(X - c)^2] & = \mathbb{E}[(X - \mu + \mu -c)^2] = \mathbb{E}[(X - \mu)^2 + 2(X - \mu)(\mu - c) + (\mu - c)^2] \\[0.5em]
+& = \mathbb{E}[(X - \mu)^2] + 2(\mu - c)\, \mathbb{E}[X - \mu] + (\mu - c)^2 \\[0.5em]
+& \overset{(1)}{=} \mathbb{E}[(X - \mu)^2] + (\mu - c)^2 \\[0.5em]
+& \ge \mathbb{E}[(X - \mu)^2] 
+\end{align*}
+
+$\begin{small}\qquad\, \text{(1): infatti } \mathbb{E}[X - \mu] = \mathbb{E}[X] - \mu = 0. \end{small}$
+
+Perciò la migliore previsione di $X$, in termini di minimizzazione dell'errore quacratico medio, è proprio il suo valore atteso.
 
 
 \hfill
@@ -3868,12 +4024,11 @@ Teorema
 
 Dimostrazione:
 
-\qquad $\text{Var}(X) = \mathbb{E}[(X - \mu)^2] = \mathbb{E}[X^2 - 2\mu X + \mu^2] \overset{(1)}{=} \mathbb{E}[X^2] - 2\mu\, \mathbb{E}[X] + \mu^2 = \mathbb{E}[X^2] - 2\mu^2 + \mu^2 = \mathbb{E}[X^2] - \mu^2$
-\begin{footnotesize}\qquad\, $(1)$: il valore atteso è lineare anche rispetto alla somma di variabili aleatorie.\end{footnotesize}
+\qquad $\text{Var}(X) = \mathbb{E}[(X - \mu)^2] = \mathbb{E}[X^2 - 2\mu X + \mu^2] = \mathbb{E}[X^2] - 2\mu\, \mathbb{E}[X] + \mu^2 = \mathbb{E}[X^2] - 2\mu^2 + \mu^2 = \mathbb{E}[X^2] - \mu^2$
 
 
 \hfill
-Corollario
+Proposizione
 : Per ogni coppia di costanti reali $a$ e $b$, si ha $\text{Var}(aX + b) = a^2\, \text{Var}(X)$.
 
 Dimostrazione:
@@ -3901,6 +4056,67 @@ $$
 \sigma_X = \sqrt{\text{Var}(X)} = \sqrt{\mathbb{E}[(X - \mu)^2]} = \sqrt{\mathbb{E}[X^2] - \mathbb{E}[X]^2}
 $$
 La deviazione standard possiede la stessa unità di misura della variabile aleatoria presa in considerazione.
+
+\hfill
+### Linearità
+Se il valore atteso è lineare rispetto alla somma di variabili aleatorie, in generale non si può dire lo stesso per la varianza. Infatti, ad esempio
+$$
+\text{Var}(X + X) = \text{Var}(2X) = 4\, \text{Var}(X) \ne \text{Var}(X) + \text{Var}(X)
+$$
+
+
+## Covarianza
+Si considerino due variabili aleatorie $X$ e $Y$ di valore atteso $\mu_X$ e $\mu_Y$ rispettivamente. La loro *covarianza*, che si indica con $\text{Cov}(X,Y)$, è definita come, se esiste, la quantità
+$$
+\text{Cov}(X,Y) = \mathbb{E}[(X - \mu_X)(Y - \mu_Y)]
+$$
+
+
+##### Teorema
+Siano $X$ e $Y$ due variabili aleatorie, allora $\text{Cov}(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\, \mathbb{E}[Y]$.
+
+Dimostrazione:
+\begin{align*}
+\text{Cov}(X,Y) & = \mathbb{E}[(X - \mu_X)(Y - \mu_Y)] = \mathbb{E}[XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y] \\[0.3em]
+& = \mathbb{E}[XY] - \mu_X \mathbb{E}[Y] - \mu_Y \mathbb{E}[X] + \mu_X \mu_Y = \mathbb{E}[XY] - \mu_X \mu_Y - \cancel{\mu_Y \mu_X} + \cancel{\mu_X \mu_Y} \\[0.3em]
+& = \mathbb{E}[XY] - \mathbb{E}[X] \mathbb{E}[Y]
+\end{align*}
+
+
+\hfill
+
+Dalla definizione di covarianza si deducono le seguenti proprietà:
+
+- $\text{Cov}(X,Y) = \text{Cov}(Y,X)$ \quad simmetria
+- $\text{Cov}(X,X) = \text{Var}(X)$
+- $\text{Cov}(X+b, Y) = \text{Cov}(X,Y)$ = $\text{Cov}(X, Y+b)$
+- $\text{Cov}(aX, Y) = a\, \text{Cov}(X,Y)$ = $\text{Cov}(X, aY)$
+
+    **Dimostrazione**:
+
+    \qquad $\text{Cov}(aX, Y) = \mathbb{E}[(aX - a\mu_X)(Y - \mu_Y)] = \mathbb{E}[a (X - \mu_X)(Y - \mu_Y)] = a\, \text{Cov}(X,Y)$
+
+##### Lemma
+Siano $X$,$Y$ e $Z$ tre variabili aleatorie, allora $\text{Cov}(X+Y,Z) = \text{Cov}(X,Z) + \text{Cov}(Y,Z)$.
+
+Dimostrazione:
+\begin{align*}
+\text{Cov}(X+Y,Z) & = \mathbb{E}[(X+Y)Z] - \mathbb{E}[X+Y]\, \mathbb{E}[Z] = \mathbb{E}[XZ + YZ] - (\mathbb{E}[X] + \mathbb{E}[Y])\, \mathbb{E}[Z] \\[0.3em]
+& = \mathbb{E}[XZ] + \mathbb{E}[YZ] - \mathbb{E}[X]\, \mathbb{E}[Z] - \mathbb{E}[Y]\, \mathbb{E}[Z] = \text{Cov}(X,Z) + \text{Cov}(Y,Z)
+\end{align*}
+
+Questo lemma può essere generalizzato a più di due variabili aleatorie, ottenendo che, se $X_1, \dots, X_n$ sono variabili aleatorie, allora
+$$
+\text{Cov}\left(\sum_{i=1}^n X_i, Y\right) = \sum_{i=1}^n \text{Cov}(X_i, Y)
+$$
+
+
+
+
+
+
+
+
 
 
 
