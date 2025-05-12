@@ -20,6 +20,7 @@ header-includes: |
     \usetikzlibrary{positioning}
     \usetikzlibrary{intersections}
     \usetikzlibrary{patterns}
+    \usetikzlibrary{patterns.meta}
 
     \usepackage{tcolorbox}
     \usepackage{caption}
@@ -364,7 +365,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 ```{=latex}
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{diagramma-bastoncini.png}
+    \includegraphics[width=\linewidth]{diagramma-bastoncini.jpg}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.66\textwidth}
@@ -380,7 +381,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{diagramma-barre.png}
+    \includegraphics[width=\linewidth]{diagramma-barre.jpg}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.66\textwidth}
@@ -395,7 +396,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 
 \begin{minipage}[c]{0.30\textwidth}
 	\centering
- 	\includegraphics[width=\linewidth]{diagramma-poligonale.png}
+ 	\includegraphics[width=\linewidth]{diagramma-poligonale.jpg}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.66\textwidth}
@@ -869,7 +870,7 @@ Quando grandi valori di $x$ tendono a essere associati con grandi valori di $y$,
 \vspace{2mm}
 \begin{minipage}[c]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{rel-diretta.png}
+    \includegraphics[width=\linewidth]{rel-diretta.jpg}
 \end{minipage}
 \hspace{1.5mm}
 \begin{minipage}[c]{0.3\textwidth}
@@ -917,7 +918,7 @@ Per lo stesso motivo, quando grandi valori di una variabile tendono a verificars
 \vspace{2.5mm}
 \begin{minipage}[c]{0.31\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{rel-indiretta.png}
+    \includegraphics[width=\linewidth]{rel-indiretta.jpg}
 \end{minipage}
 \hspace{1.5mm}
 \begin{minipage}[c]{0.3\textwidth}
@@ -1686,7 +1687,7 @@ I pallini a destra del box plot rappresentano dei valori fuori scala, determinat
 ```{=latex}
 \begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=\linewidth]{qq-plot.png}
+    \includegraphics[width=\linewidth]{qq-plot.jpg}
 \end{minipage}
 \hspace{2mm}
 \begin{minipage}[c]{0.65\textwidth}
@@ -4028,6 +4029,12 @@ Dimostrazione:
 
 
 \hfill
+### Proprietà
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Proprietà}
+```
+
+\hfill
 Proposizione
 : Per ogni coppia di costanti reali $a$ e $b$, si ha $\text{Var}(aX + b) = a^2\, \text{Var}(X)$.
 
@@ -4058,11 +4065,49 @@ $$
 La deviazione standard possiede la stessa unità di misura della variabile aleatoria presa in considerazione.
 
 \hfill
-### Linearità
+#### Linearità
 Se il valore atteso è lineare rispetto alla somma di variabili aleatorie, in generale non si può dire lo stesso per la varianza. Infatti, ad esempio
 $$
 \text{Var}(X + X) = \text{Var}(2X) = 4\, \text{Var}(X) \ne \text{Var}(X) + \text{Var}(X)
 $$
+
+##### Proposizione
+Si considerino due variabili aleatorie qualsiasi $X$ e $Y$. La varianza della loro somma è data da
+$$
+\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\, \text{Cov}(X, Y)
+$$
+
+\vspace{-4mm}
+Dimostrazione:
+\begin{align*}
+\text{Var}(X + Y) & = \mathbb{E}[(X+Y)^2] - \mathbb{E}[X + Y]^2 = \mathbb{E}[X^2 + 2XY + Y^2] - (\mathbb{E}[X] + \mathbb{E}[Y])^2 \\[0.5em]
+& = \mathbb{E}[X^2] + 2\mathbb{E}[XY] + \mathbb{E}[Y^2] - (\mathbb{E}[X]^2 + 2\,\mathbb{E}[X]\, \mathbb{E}[Y] + \mathbb{E}[Y]^2) \\[0.5em]
+& = \mathbb{E}[X^2] - \mathbb{E}[X]^2 + \mathbb{E}[Y^2] - \mathbb{E}[Y]^2 + 2\,\mathbb{E}[XY] - 2\,\mathbb{E}[X]\, \mathbb{E}[Y] \\[0.5em]
+& = \text{Var}(X) + \text{Var}(Y) + 2\, \text{Cov}(X, Y) \\
+\end{align*}
+
+\vspace{-7mm}
+Utilizzando questa formula sul caso precedente, si ottiene infatti
+$$
+\text{Var}(X+X) = \text{Var}(X) + \text{Var}(X) + 2 \text{Cov}(X,X) = 2\, \text{Var}(X) + 2\, \text{Var}(X) = 4\, \text{Var}(X)
+$$
+
+Questa formula può essere estesa a un numero finito di variabili aleatorie, ottenendo che, se $X_1, X_2, \dots, X_n$ sono variabili aleatorie, allora
+$$
+\text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) +  \sum_{i=1}^n \sum_{\substack{j=1\\ j\neq i}}^n \mathrm{Cov}(X_i, X_j)
+$$
+
+\hfill
+##### Proposizione
+Se $X$ e $Y$ sono variabili aleatorie indipendenti, allora $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$.
+
+Dimostrazione:
+
+\qquad $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\, \text{Cov}(X, Y) \overset{(1)}{=} \text{Var}(X) + \text{Var}(Y) + 2\cdot 0 = \text{Var}(X) + \text{Var}(Y)$
+
+$\begin{small}\qquad\, \text{(1): per ipotesi di indipendenza } \end{small}$
+
+\hfill
 
 
 ## Covarianza
@@ -4083,7 +4128,12 @@ Dimostrazione:
 \end{align*}
 
 
+
 \hfill
+### Proprietà
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Proprietà}
+```
 
 Dalla definizione di covarianza si deducono le seguenti proprietà:
 
@@ -4096,6 +4146,7 @@ Dalla definizione di covarianza si deducono le seguenti proprietà:
 
     \qquad $\text{Cov}(aX, Y) = \mathbb{E}[(aX - a\mu_X)(Y - \mu_Y)] = \mathbb{E}[a (X - \mu_X)(Y - \mu_Y)] = a\, \text{Cov}(X,Y)$
 
+\hfill
 ##### Lemma
 Siano $X$,$Y$ e $Z$ tre variabili aleatorie, allora $\text{Cov}(X+Y,Z) = \text{Cov}(X,Z) + \text{Cov}(Y,Z)$.
 
@@ -4109,6 +4160,323 @@ Questo lemma può essere generalizzato a più di due variabili aleatorie, ottene
 $$
 \text{Cov}\left(\sum_{i=1}^n X_i, Y\right) = \sum_{i=1}^n \text{Cov}(X_i, Y)
 $$
+
+##### Proposizione
+Siano $X_1, \dots, X_n$ e $Y_1, \dots, Y_n$ variabili aleatorie qualsiasi, allora
+$$
+\text{Cov}\left(\sum_{i=1}^n X_i, \sum_{j=1}^n Y_j\right) = \sum_{i=1}^n \sum_{j=1}^n \text{Cov}(X_i, Y_j)
+$$
+
+\hfill
+### Indipendenza
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Indipendenza}
+```
+
+##### Teorema
+Siano $X$ e $Y$ due variabili aleatorie indipendenti, allora $\text{Cov}(X,Y) = 0$.
+
+Dimostrazione:
+
+\qquad $\text{Cov}(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\, \mathbb{E}[Y] \overset{(1)}{=} \mathbb{E}[X]\, \mathbb{E}[Y] - \mathbb{E}[X]\, \mathbb{E}[Y] = 0$
+
+$\begin{small}\qquad\, \text{(1): per ipotesi di indipendenza } \end{small}$
+
+
+\hfill
+Se due variabili aleatorie non sono indipendenti, la loro covarianza è un importante indicatore della relazione che sussiste tra loro. Si consideri la situazione in cui $X$ e $Y$ sono le funzioni indicatrici di due eventi $A, B \sube \mathcal{F}$:
+$$
+X = I_A = \begin{cases}
+1 & \text{sse \(A\) si verifica} \\[0.5em]
+0 & \text{altrimenti}
+\end{cases} \\
+\qquad\qquad Y = I_B = \begin{cases}
+1 & \text{sse \(B\) si verifica} \\[0.5em]
+0 & \text{altrimenti}
+\end{cases}
+$$
+Si ricorda che $\mathbb{E}[X] = \mathbb{P}(A)$ e $\mathbb{E}[Y] = \mathbb{P}(B)$. Si osserva che anche $XY$ è una funzione indicatrice:
+$$
+XY = I_{A \cap B} = \begin{cases}
+1 & \text{sse } X = 1 \text{ e } Y = 1 \\[0.5em]
+0 & \text{altrimenti}
+\end{cases}
+$$
+
+Sapendo che $\mathbb{E}[XY] = \mathbb{P}(X=1, Y=1) = \mathbb{P}(A \cap B)$, si ottiene che
+$$
+\text{Cov}(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\, \mathbb{E}[Y] = \mathbb{P}(X=1, Y=1) - \mathbb{P}(X=1)\, \mathbb{P}(Y=1)
+$$
+
+da cui si deduce che
+\begin{align*}
+\text{Cov}(X, Y) > 0 & \iff \mathbb{P}(X=1, Y=1) > \mathbb{P}(X=1)\, \mathbb{P}(Y=1) \\[0.5em]
+& \iff \dfrac{\mathbb{P}(X=1, Y=1)}{\mathbb{P}(Y=1)} > \mathbb{P}(X=1) \\[0.5em]
+& \iff \mathbb{P}(X=1 | Y=1) > \mathbb{P}(X=1)
+\end{align*}
+
+Perciò la covarianza di $X$ e $Y$ è positiva se condizionando a $\{Y=1\}$ aumenta la probabilità di $X=1$. 
+
+\hfill
+Indice di correlazione lineare
+
+: In generale si può dimostrare che un valore positivo di $\text{Cov}(X,Y)$ indica che $X$ e $Y$ tendenzialmente assumono valori grandi o piccoli contemporaneamente. La forza della relazione tra $X$ e $Y$ è misurata propriamente dal *coefficiente di correlazione lineare*, un numero puro che tiene conto anche delle deviazioni standard di $X$ e $Y$. Viene indicato con $\text{Corr}(X,Y)$ e definito come:
+$$
+\text{Corr}(X,Y) = \dfrac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y} = \dfrac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\,\text{Var}(Y)}}
+$$
+
+Si può dimostrare che questa quantità è sempre compresa tra -1 e +1. Valgono le seguenti affermazioni:
+
+- $\text{Corr}(X,Y) = 1$ se $X$ e $Y$ sono perfettamente correlati positivamente, cioè se esiste una relazione lineare crescente tra $X$ e $Y$.
+
+- $\text{Corr}(X,Y) = -1$ se $X$ e $Y$ sono perfettamente correlati negativamente, cioè se esiste una relazione lineare decrescente tra $X$ e $Y$.
+
+- $\text{Corr}(X,Y) = 0$ se $X$ e $Y$ sono incorrelati, cioè se non esiste alcuna relazione lineare tra $X$ e $Y$. Ciò non implica che $X$ e $Y$ siano indipendenti, in quanto potrebbero esistere relazioni non lineari che questo coefficiente non è in grado di cogliere.
+
+
+\hfill
+## Disuguaglianze
+
+L'importanza delle disuguaglianze di Markov e Chebyshev, che verranno presentate di seguito, sta nel fatto che permettono di limitare le probabilità di eventi rari che riguardano variabili aleatorie di cui si conosce solo il valore atteso oppure il valore atteso e la varianza. Naturalmente, quando la distribuzione è nota, è possibile calcolare queste probabilità esattamente e non vi è quindi la necesittà di ridursi alle disuguaglianze.
+
+### Disuguaglianza di Markov
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Disuguaglianza di Markov}
+```
+Sia $X \ge 0$ una variabile aleatoria qualsiasi a specificazioni non negative, allora
+$$
+\mathbb{P}(X \ge a) \le \dfrac{\mathbb{E}[X]}{a} \quad \forall a > 0
+$$
+
+**Dimostrazione**:
+
+\hangindent=2em \qquad Si mostra la dimostrazione per il caso discreto, ma il ragionamento è analogo nel caso continuo. 
+\begin{align*}
+\mathbb{E}[X] & = \sum_{x \in D_X} x\, \mathbb{P}(X=x) = \underbrace{\sum_{x < a} x\, \mathbb{P}(X=x)}_{\ge 0 \text{ per ipotesi}} + \sum_{x \ge a} x\, \mathbb{P}(X=x) \\[0.5em]
+& \overset{(1)}{\ge} \sum_{x \ge a} x\, \mathbb{P}(X=x) \overset{(2)}{\ge} \sum_{x \ge a} a\, \mathbb{P}(X=x) = a\, \underbrace{\sum_{x \ge a} \mathbb{P}(X=x)}_{\text{eventi disgiunti}} \\
+& \overset{K3}{=} a\, \mathbb{P}(X \ge a)
+\end{align*}
+\vspace{-8mm}
+\begin{small}\qquad\, \text{(1): perché il primo addendo è positivo}\\ \hspace*{2.17em} \text{(2): perché $x \ge a$ nella sommatoria}\end{small}
+
+
+\hangindent=2em \qquad Si è quindi dimostrato che $\;\mathbb{E}[X] \ge a\, \mathbb{P}(X \ge a) \; \Rightarrow \; \mathbb{P}(X \ge a) \le \dfrac{\mathbb{E}[X]}{a},\;$ provando di fatto la tesi.
+
+\hfill
+
+Si osserva che è possibile utilizzare questa disuguaglianza anche nel verso opposto, ossia
+$$
+\mathbb{P}(X < a) = 1 - \mathbb{P}(X \ge a) \ge 1 - \dfrac{\mathbb{E}[X]}{a} \quad \forall a > 0
+$$
+
+\hfill
+### Disuguaglianza di Chebyshev
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Disuguaglianza di Chebyshev}
+```
+
+Sia $X$ una variabile aleatoria qualsiasi con media $\mu$ e varianza $\sigma^2$, allora
+$$
+\mathbb{P}(|X - \mu| \ge r) \le \dfrac{\sigma^2}{r^2} \quad \forall r > 0
+$$
+
+**Dimostrazione**:
+
+\hangindent=2em \qquad Si osservi che gli eventi $\{|X - \mu| \ge r\}$ e $\{(|X - \mu|)^2 \ge r^2\}$ si implicano a vicenda e sono quindi equiprobabili:
+$$
+\mathbb{P}(|X - \mu| \ge r) = \mathbb{P}((X - \mu)^2 \ge r^2)
+$$
+
+\hangindent=2em \qquad Si consideri perciò la variabile aleatoria $Y = (X - \mu)^2$. Essendo le sue specificazioni non negative, è possibile applicarle la disuguaglianza di Markov con $a = r^2$:
+\begin{align*}
+& \mathbb{P}(Y \ge a) \le \dfrac{\mathbb{E}[Y]}{a} \quad \forall a > 0 \\[0.5em]
+& \Rightarrow \mathbb{P}((X - \mu)^2 \ge r^2) \le \dfrac{\mathbb{E}[(X - \mu)^2]}{r^2} = \dfrac{\sigma^2}{r^2}
+\end{align*}
+La disuguaglianza finale implica a sua volta che $\mathbb{P}(|X - \mu| \ge r) \le \dfrac{\sigma^2}{r^2}$, provando di fatto la tesi.
+
+\hfill
+Si osserva che è possibile utilizzare questa disuguaglianza anche nel verso opposto, ossia
+$$
+\mathbb{P}(|X - \mu| < r) = 1 - \mathbb{P}(|X - \mu| \ge r) \ge 1 - \dfrac{\sigma^2}{r^2} \quad \forall r > 0
+$$
+
+Inoltre, se nella disugualianza di Chebyshev si pone $r = k \sigma$, essa assume la seguente forma:
+$$
+\mathbb{P}(|X - \mu| \ge k \sigma) \le \dfrac{1}{k^2} \quad \forall k > 0
+$$
+In altri termini, la probabilità che una variabile aleatoria differisca dalla sua media per più di $k$ volte la deviazione standard è al più $\dfrac{1}{k^2}$.
+
+\newpage
+# Modelli di distribuzione
+In ambito statistico, un modello di distribuzione è una rappresentazione teorica che specifica, attraverso una funzione di probabilità (discreta) o di densità (continua), la legge con cui una variabile aleatoria assume i propri valori nello spazio campionario. L’adozione di tale modello consente di trascendere l’osservazione empirica di una singola realizzazione o di un campione finito, attribuendo invece alla variabile un comportamento stocastico stabilito a priori mediante assunzioni strutturate.
+
+In sintesi, il ragionamento si fonda su tre passaggi essenziali. Anzitutto si introduce la variabile aleatoria $X$, intesa come funzione misurabile che collega ogni evento elementare $\omega$ dello spazio campionario $\Omega$ a un numero reale. A questa funzione si associa poi la sua distribuzione: una misura di probabilità, indicata con $P_X$, che a ogni insieme boreliano $B$ assegna la probabilità che $X$ vi cada, ossia $P(X\in B)$; tale legge può essere descritta tramite funzione di ripartizione, massa di probabilità o densità. Infine, adottare un modello di distribuzione significa disporre di un linguaggio per calcolare momenti, quantili e altre probabilità rilevanti, così da fornire la base matematica per inferenze, verifiche di ipotesi e previsioni sul fenomeno in esame.
+
+\hfill
+## Modelli discreti
+Quando il fenomeno osservato può assumere solo un insieme numerabile di valori, parliamo di distribuzioni discrete. Ciascun modello discreto è descritto da una funzione di massa di probabilità che assegna a ogni possibile valore $k$ la probabilità $P(X=k)$.
+
+### Modello di Bernoulli
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello di Bernoulli}
+```
+Si supponga che venga realizzato un esperimento di Bernoulli, ossia un esperimento che può avere solo due esiti possibili, positivo e negativo. Si definisce una variabile aleatoria $X$ in modo tale che $X = 1$ nel primo caso e $X = 0$ nel secondo: il supporto è quindi $D_X = \{0, 1\}$.
+
+Per identificare univocamente una distribuzione basta conoscerne la funzione di massa di probabilità, che in questo caso è definita come
+\begin{align*}
+P(X=x) = \begin{cases}
+p & \text{se } x=1 \\[0.5em]
+1-p & \text{se } x=0
+\end{cases}
+\end{align*}
+dove con $p$ si indica la probabilità che l'esperimento registri un successo. Deve essere ovviamente $0 \le p \le 1$.
+
+Una variabile aleatoria $X$ si dice di Bernoulli con parametro $p \in [0,1]$ e si indica con $X \sim B(p)$ se la sua funzione di massa di probabilità è definita come sopra. In altri termini, $X$ si dice bernoulliana se può assumere solo i valori $0$ e $1$.
+
+\hfill
+È possibile definire più formalmente la funzione di massa di probabilità come
+$$
+p_X(x) = p^x (1-p)^{1-x}\, I_{\{0,1\}}(x)
+$$
+Per essere una funzione di massa di probabilità, $p_X(x)$ deve soddisfare le seguenti condizioni:
+
+- $p_X(x) \ge 0$ per ogni $x \in \mathbb{R}$;
+- $\sum_{x \in D_X} p_X(x) = 1$.
+
+La prima condizione è soddisfatta per ogni $x \in \mathbb{R}$, mentre la seconda condizione è verificata come segue:
+\begin{align*}
+\sum_{x \in D_X} p_X(x) & = p^1 (1-p)^{1-1} + p^0 (1-p)^{1-0} = p + (1-p) = 1
+\end{align*}
+
+\hfill
+La funzione di ripartizione di una variabile aleatoria bernoulliana è definita come
+$$
+F_X(x) = \begin{cases}
+0 & \text{se } x < 0 \\[0.5em]
+1-p & \text{se } 0 \le x < 1 \\[0.5em]
+1 & \text{se } x \ge 1
+\end{cases}
+$$
+
+```{=latex}
+\def\p{0.7}                 % probabilità di successo
+\pgfmathsetmacro{\q}{1-\p}
+
+%------------------------------------------------
+% STILI: ora registrati in /pgfplots/…
+%------------------------------------------------
+\pgfplotsset{
+  pmfaxis/.style={
+    width=6.5cm, height=4.8cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-0.25, xmax=1.25, ymin=0, ymax=1.05,
+    xtick={0,1}, xticklabels={$0$,$1$},
+    tick style={draw=none}, clip=false
+  },
+  cdfaxis/.style={
+    width=6.5cm, height=4.8cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-0.25, xmax=1.25, ymin=0, ymax=1.05,
+    xtick={0,1}, xticklabels={$0$,$1$},
+    tick style={draw=none}, clip=false
+  }
+}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+%---------------------- PANNELLO 1: pmf ----------------------
+\begin{axis}[pmfaxis,
+  ylabel={$p_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south},
+  ytick={\q,\p}, yticklabels={$1-p$,$p$},
+  xlabel={$x$}
+]
+  % asse x
+  \addplot[blue,very thick] coordinates {(-0.25,0) (1.25,0)};
+  % stanghette e puntini
+  \addplot[black,thick] coordinates {(0,0) (0,\q)};
+  \addplot[black,thick] coordinates {(1,0) (1,\p)};
+  \addplot[blue,only marks,mark=*] coordinates {(0,\q) (1,\p)};
+  \addplot[white,draw=black,very thick,
+           mark=*,mark options={scale=1.25,fill=white},
+           only marks] coordinates {(0,0) (1,0)};
+\end{axis}
+
+%---------------------- PANNELLO 2: cdf ----------------------
+\begin{axis}[cdfaxis,
+  at={(current bounding box.east)}, anchor=west, xshift=1.4cm,
+  ylabel={$F_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south},
+  ytick={\q,1}, yticklabels={$1-p$,$1$},
+  xlabel={$x$}
+]
+  % segmenti orizzontali + verticali
+  \addplot[blue,very thick] coordinates {(-0.25,0) (0,0)};
+  \addplot[blue,very thick] coordinates {(0,\q) (1,\q)};
+  \addplot[blue,very thick] coordinates {(1,1) (1.25,1)};
+  \addplot[blue,very thick] coordinates {(0,0) (0,\q)};
+  \addplot[blue,very thick] coordinates {(1,\q) (1,1)};
+  % punti pieni/vuoti
+  \addplot[blue,only marks,mark=*] coordinates {(0,\q) (1,1)};
+  \addplot[white,draw=black,very thick,
+           mark=*,mark options={scale=1.25,fill=white},
+           only marks] coordinates {(0,0) (1,\q)};
+  % area tratteggiata = p
+  \addplot[pattern={Lines[angle=45,distance=6pt]},
+           pattern color=red!65,draw=none]
+           coordinates {(0,\q) (1,\q) (1,1) (0,1) (0,\q)};
+  % freccia centrata
+  \draw[->,thick] (axis cs:0.75,{\q+0.5*\p})
+        -- (axis cs:1.25,{\q+0.5*\p})
+        node[right,font=\footnotesize] {$p$};
+\end{axis}
+
+\end{tikzpicture}
+\end{center}
+```
+
+Il suo valore atteso è dato da $\;\;\mathbb{E}[X] = 1\cdot p + 0\cdot (1-p) = p\;\;$ ed è quindi pari alla probabilità che la variabile aleatoria assuma il valore 1.
+
+La varianza è $\;\;\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \overset{(1)}{=} \mathbb{E}[X] - \mathbb{E}[X]^2 = p - p^2 = p(1-p) \begin{small}\qquad\text{(1): per idempotenza}\end{small}$
+
+```{=latex}
+\vspace{2mm}
+\begin{minipage}{0.42\textwidth}
+\begin{tikzpicture}[>=stealth,line cap=round]
+  \begin{axis}[
+      width=6cm, height=4cm,
+      domain=0:1, samples=250,
+      xlabel={$p$},
+      ylabel={$\operatorname{Var}(X)$},
+      axis lines=left,
+      axis line style={-stealth},
+      xmin=0, xmax=1.05,
+      ymin=0, ymax=0.26,
+      xtick={0,0.25,0.5,0.75,1},
+      ytick={0,0.05,0.10,0.15,0.20,0.25},
+      tick style={draw=none},
+      clip=false
+    ]
+    \addplot[blue,very thick]{x*(1-x)};
+    \addplot[blue,only marks,mark=*] coordinates {(0.5,0.25)};
+    \addplot[gray,dashed] coordinates {(0.5,0) (0.5,0.25)};
+    \addplot[gray,dashed] coordinates {(0,0.25) (0.5,0.25)};
+    \node[above right,font=\tiny] at (axis cs:0.5,0.25) {$(0.5,\;0.25)$};
+  \end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.57\textwidth}
+\vspace{-7mm}
+Si osserva che nel caso si scelga $p=0$ oppure $p=1$, la variabile aleatoria assume il valore 0 o 1 con probabilità 1, rispettivamente. In questo caso si ha una variabile aleatoria degenere e la varianza è nulla.
+\end{minipage}
+```
+
+### Modello binomiale
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello binomiale}
+```
+
+
 
 
 
