@@ -4471,10 +4471,248 @@ Si osserva che nel caso si scelga $p=0$ oppure $p=1$, la variabile aleatoria ass
 \end{minipage}
 ```
 
+\hfill
 ### Modello binomiale
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello binomiale}
 ```
+Si supponga di realizzare $n \in \mathbb{N}$ ripetizioni indipendenti di un esperimento bernoulliano di parametro $p$. Se $X$ denota il numero totale di successi, allora $X$ si dice variabile aleatoria binomiale con parametri $n$ e $p$ e si indica con $X \sim B(n,p)$.
+
+Formalmente, dati $n \in \mathbb{N}$ e $X_1, \dots, X_n \sim B(p)$ variabili aleatorie indipendenti, si definisce una variabile aleatoria $X$ binomiale come
+$$
+X = \sum_{i=1}^n X_i \sim B(n,p)
+$$
+
+dove $X_i$ è la funzione indicatrice del successo dell'$i$-esimo esperimento:
+$$
+X_i = \begin{cases}
+1 & \text{se la prova $i$-esima ha successo} \\[0.5em]
+0 & \text{altrimenti}
+\end{cases}
+$$
+
+Il dominio di supporto è quindi $D_X = \{0, 1, \dots, n\}$. La funzione di massa di probabilità per una variabile aleatoria binomiale di parametri $(n,p)$ è data da
+$$
+p_X(x) = \binom{n}{x} p^x (1-p)^{n-x} \, I_{\{0,\dots,n\}}(x)
+$$
+dove il coefficiente binomiale
+$$
+\binom{n}{x} = \dfrac{n!}{x!(n-x)!}
+$$
+rappresenta il numero di combinazioni differenti che si possono ottenere scegliendo $x$ successi tra $n$ prove.
+
+La correttezza della funzione di massa di probabilità è garantita dalle seguenti condizioni:
+
+- $p_X(x) \ge 0$ per ogni $x \in \mathbb{R}$;
+- $\sum_{x \in D_X} p_X(x) = 1$.
+
+La prima condizione è soddisfatta per ogni $x \in \mathbb{R}$, mentre la seconda condizione è verificata come segue:
+\begin{align*}
+\sum_{x \in D_X} p_X(x) & = \sum_{x=0}^n \binom{n}{x} p^x (1-p)^{n-x} \overset{(1)}{=} (p + (1-p))^n = 1
+\end{align*}
+$\begin{small}\qquad\, \displaystyle \text{(1): per la formula delle potenze del binomio } (x+y)^n = \sum_{i=0}^n \binom{n}{i} x^i \, y^{n-i}\end{small}$
+
+\hfill
+La funzione di ripartizione di una variabile aleatoria binomiale è definita come
+$$
+F_X(x) = \mathbb{P}(X \le \floor{x}) = \sum_{i=0}^{\floor{x}} p_X(i)
+$$
+
+```{=latex}
+Grafici di aggiungere
+```
+
+Si osserva che indipendetemente dal valore di $p$, il grafico di $p_X$ cresce e poi decresce in maniera simmetrica. Ciò che $p$ stabilisce è se questo grafico sia spostato verso $0$ o verso $n$, il che è ragionevole in quanto, come si vedrà ora, il valore atteso di $X$ è $np$.
+
+\hfill
+Per definizione di variabile aleatoria binomiale, essa è la somma di $n$ variabili aleatorie bernoulliane, ognuna delle quali ha valore atteso $p$. Sfruttando la linearità del valore atteso, si ottiene
+$$
+\mathbb{E}[X] = \mathbb{E}\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n p = n\, p
+$$
+Ragionamento analogo si può fare per la varianza, notando che è possibile sfruttare l'indipendenza tra le variabili bernoulliane $X_i$ per evitare il termine di covarianza:
+$$
+\text{Var}(X) = \text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n p(1-p) = n\, p(1-p)
+$$
+
+Come nel modello di Bernoulli, anche in questo caso la varianza assume il grafico di una parabola. La varianza aumenta sia quando $p$ tende a $1/2$, ma anche all'aumentare di $n$.
+
+#### Riproducibilità
+
+Si considerino due variabili aleatorie $X \sim B(n,p)$ e $Y \sim B(m,p)$ indipendenti tra loro. Queste due variabili non seguono la stessa distribuzione, ma sono correlate in quanto seguono lo stesso modello di distribuzione e, in aggiunta, condividono lo stesso parametro $p$.
+
+La somma di due variabili aleatorie binomiali con lo stesso parametro $p$ è una variabile aleatoria binomiale con parametri $n+m$ e $p$:
+$$
+X + Y = \sum_{i=1}^n X_i + \sum_{i=1}^m Y_i = \sum_{i=1}^{n+m} Z_i \; \sim B(n+m,p)
+$$
+
+Si osserva che $\forall i = 1, \dots, n \quad Z_i = X_i$ e $\forall i = 1, \dots, m \quad Z_{n+i} = Y_i$.
+
+Si dice perciò che questo modello gode della proprietà di riproducibilità tra variabili binomiali con lo stesso parametro $p$.
+
+\hfill
+### Modello uniforme discreto
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello uniforme discreto}
+```
+
+Questo modello si presenta quando l'esperimento casuale può restituire $n$ esiti distinti, ciascuno dei quali ha la stessa probabilità di verificarsi. Una variabile aleatoria $X$ che codifica tale esperimento si dice uniforme discreta con parametro $n$ e si indica con $X \sim U(n)$.
+
+Il suo dominio di supporto è quindi $D_X = \{1, \dots, n\}$ e $\forall i \in D_X \;\; \mathbb{P}(X=i) = 1/n$.
+
+La funzione di massa di probabilità è definita come
+$$
+p_X(x) = \dfrac{1}{n} \, I_{\{1,\dots,n\}}(x)
+$$
+La correttezza della funzione di massa di probabilità è banale, in quanto
+$$
+\sum_{x \in D_X} p_X(x) = \sum_{i=1}^n \dfrac{1}{n} = 1
+$$
+
+La funzione di ripartizione di una variabile aleatoria uniforme discreta è definita come
+$$
+F_X(x) = \mathbb{P}(X \le x) = \sum_{i \le x} p_X(i) = \sum_{i=1}^{\floor{x}} p_X(i) = \sum_{i=1}^{\floor{x}} \dfrac{1}{n} = \dfrac{\floor{x}}{n}
+$$
+
+Il valore atteso è dato da
+\begin{align*}
+\mathbb{E}[X] & = \sum_{x=1}^n x\, p_X(x) = \sum_{x=1}^n \dfrac{x}{n} = \dfrac{1}{n} \sum_{x=1}^n x = \dfrac{1}{n}\, \dfrac{n(n+1)}{2} = \dfrac{n+1}{2}
+\end{align*}
+
+La varianza invece si calcola come
+\begin{align*}
+\mathbb{E}[X^2] & = \sum_{x=1}^n x^2\, p_X(x) = \sum_{x=1}^n \dfrac{x^2}{n} = \dfrac{1}{n} \sum_{x=1}^n x^2 = \dfrac{1}{n}\, \dfrac{n(n+1)(2n+1)}{6} = \dfrac{(n+1)(2n+1)}{6} \\[1.5em]
+\text{Var}(X) & = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \dfrac{(n+1)(2n+1)}{6} - \dfrac{(n+1)^2}{4} = (n+1) \left( \dfrac{2n+1}{6} - \dfrac{n+1}{4} \right)\\[0.5em]
+&  = (n+1) \left( \dfrac{4n + 2 - 3n - 3}{12} \right) = \dfrac{(n+1)(n-1)}{12} = \dfrac{(n^2-1)}{12}
+\end{align*}
+
+
+\hfill
+### Modello geometrico
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello geometrico}
+```
+Si supponga di realizzare un esperimento di Bernoulli con parametro $p$ e di contare il numero di prove necessarie affinché si verifichi il primo successo. La variabile aleatoria $X$ che codifica questo esperimento si dice geometrica con parametro $p$ e si indica con $X \sim G(p)$.  
+$X$ quindi conta il numero di fallimenti che precedono il primo successo.
+
+Formalmente, dati $X_1, X_2, \dots$ variabili aleatorie indipendenti e identicamente distribuite (i.i.d.) di Bernoulli con parametro $p$, si definisce una variabile aleatoria $X$ geometrica come
+$$
+X = \sum_{i=1}^{+\infty} X_i \cdot I_{\{X_i = 0\}} \sim G(p)
+$$
+
+Si osserva che se $p=1$ allora $X=0$ con probabilità 1, mentre se $p=0$ allora $X \to +\infty$ con probabilità 1. In entrambi i casi la variabile aleatoria è degenere. Si considera per tale motivo $p \in (0,1]$.
+
+\hfill
+#### Funzione di massa di probabilità
+Il dominio di supporto è $D_X = \mathbb{N} \cup \{0\}$. La funzione di massa di probabilità è definita come
+$$
+p_X(x) = p(1-p)^x \, I_{\mathbb{N} \cup \{0\}}(x)
+$$
+
+Infatti calcolare $p_X(x) = \mathbb{P}(X=x)$ equivale a calcolare la probabilità che i primi $x$ esperimenti siano fattili e che il $(x+1)$-esimo sia un successo, ossia:
+$$
+\mathbb{P}(X=x) = \mathbb{P}\left(\bigcap_{i=0}^x X_i = 0 \cap X_{x+1} = 1\right) \overset{(1)}{=} \prod_{i=0}^x \mathbb{P}(X_i = 0) \cdot \mathbb{P}(X_{x+1} = 1) = \prod_{i=0}^x (1-p) \cdot p = p\,(1-p)^x
+$$
+$\begin{small}\qquad\text{(1): per indipendenza}\end{small}$
+
+La correttezza della funzione di massa di probabilità è così dimostrata:
+\begin{align*}
+\sum_{x = 0}^{+\infty} = \sum_{x = 0}^{+\infty} p(1-p)^x & = p \sum_{x = 0}^{+\infty} (1-p)^x \overset{(1)}{=} p \, \dfrac{1}{1-(1-p)} = p \, \dfrac{1}{p} = 1
+\end{align*}
+
+\vspace{-2mm}
+$\begin{small}
+  \qquad \displaystyle
+  \text{(1): per la formula della somma geometrica: }
+  \sum_{i=0}^{+\infty} \alpha^i
+  \text{ converge a }
+  \dfrac{1}{1 - \alpha}
+  \text{ per }-1 < \alpha < 1.
+  \text{ Nel nostro caso }\alpha = p,\\[1mm]
+  \hspace*{3.9em}\text{che è una probabilità ed è quindi compresa tra 0 e 1.}
+\end{small}$
+
+Il grafico della funzione di massa di probabilità presenta un decadimento esponenziale, ed è tanto più ripido quanto più è grande il valore di $p$.
+
+
+\hfill
+#### Funzione di ripartizione
+Prima di calcolare la funzione di ripartizione, si osservi che
+\begin{align*}
+\mathbb{P}(X > n) & = \sum_{x=n+1}^{+\infty} p_X(x) = \sum_{x=n+1}^{+\infty} p\,(1-p)^x = p\, (1-p)^{n+1} \sum_{x=n+1}^{+\infty} (1-p)^{x-(n+1)}\\[0.5em]
+&  \overset{(1)}{=} p\, (1-p)^{n+1} \sum_{y=0}^{+\infty} (1-p)^y  \overset{(2)}{=} p\, (1-p)^{n+1} \cdot \dfrac{1}{1-(1-p)} = p\, (1-p)^{n+1} \cdot \dfrac{1}{p} = (1-p)^{n+1}
+\end{align*}
+
+$\begin{small}
+  \qquad\text{(1): ponendo } y = x - (n+1)\\[1mm]
+  \hspace*{2em} \text{(2): per la formula della serie geometrica}
+\end{small}$
+
+\vspace{2mm}
+Ora è possibile calcolare la funzione di ripartizione:
+\begin{align*}
+F_X(n) 
+  &= \mathbb{P}(X \le n)
+     = 1 - \mathbb{P}(X > n)
+     = 1 - (1-p)^{n+1}
+     && \hspace{-6em} \forall n \in \mathbb{N} \cup \{0\}\\[0.5em]
+F_X(x) 
+  &= \mathbb{P}(X \le x)
+     = \mathbb{P}(X \le \lfloor x\rfloor)
+     = 1 - (1-p)^{\lfloor x\rfloor+1}
+     && \hspace{-6em} \forall x \in \mathbb{R}
+\end{align*}
+
+##### Assenza di memoria
+L'assenza di memoria è una proprietà di cui gode il modello geometrico, ed è l'unico a possederla tra i vari modelli discreti. Si consideri $X \sim G(p)$ e si provi a calcolare $\mathbb{P}(X > i + j \mid X \ge i)$, ovvero la probabilità condizionata di ottenere un successo dopo $i+j$ prove, sapendo che ne sono già state effettuate $i$ senza successo. Si ha:
+\begin{gather*}
+\mathbb{P}(X \ge n) = \mathbb{P}(X > n-1) = (1-p)^n \\[0.5em]
+\mathbb{P}(X \ge i + j \mid X \ge i)  = \dfrac{\mathbb{P}(X \ge i+j, X \ge i)}{\mathbb{P}(X \ge i)} = \dfrac{\mathbb{P}(X \ge i+j)}{\mathbb{P}(X \ge i)} = \dfrac{(1-p)^{i+j}}{(1-p)^i} = (1-p)^j = \mathbb{P}(X \ge j)
+\end{gather*}
+
+Si ottiene quindi che $\mathbb{P}(X > i + j \mid X \ge i) = \mathbb{P}(X > j)$, ossia la probabilità di ottenere un successo dopo $i+j$ prove, sapendo che ne sono già state effettuate $i$ senza successo, è uguale alla probabilità di ottenere un successo dopo $j$ prove. In altre parole, il numero di prove necessarie per ottenere il primo successo non dipende da quante prove siano già state effettuate.
+
+#### Valore atteso e varianza
+
+Prima di calcolare il valore atteso, si osservi che
+\begin{align*}
+\sum_{i=0}^{+\infty} i \alpha^i & = \alpha \sum_{i=0}^{+\infty} i \alpha^{i-1} \overset{(1)}{=} \alpha \sum_{i=1}^{+\infty} \dfrac{d}{d\alpha} \alpha^i = \alpha \dfrac{d}{d\alpha} \left[\, \sum_{i=0}^{+\infty} \alpha^i \,\right]
+\overset{(2)}{=} \alpha \dfrac{d}{d\alpha} \left( \dfrac{1}{1-\alpha} \right) \overset{(3)}{=} \alpha \dfrac{1}{(1-\alpha)^2} = \dfrac{\alpha}{(1-\alpha)^2}
+\end{align*}
+$\begin{small}
+  \qquad\text{(1): } \displaystyle \dfrac{d}{dx} x^i = i\, x^{i-1}\\[1mm]
+  \hspace*{2em} \text{(2): per la formula della serie geometrica, considerando } |\alpha| < 1\\[1mm]
+  \hspace*{2em} \text{(3): } \displaystyle \dfrac{d}{dx} \dfrac{1}{x} = -\dfrac{1}{x^2}
+\end{small}$
+
+\vspace{3mm}
+Ora è possibile calcolare il valore atteso:
+\begin{align*}
+\mathbb{E}[X] & = \sum_{x = 0}^{+\infty} x\, p_X(x) = \sum_{x = 0}^{+\infty} x\, p(1-p)^x = p \sum_{x = 0}^{+\infty} x (1-p)^x
+\overset{(1)}{=} p \dfrac{1-p}{[1-(1-p)]^2} = p \dfrac{1-p}{p^2} = \dfrac{1-p}{p}
+\end{align*}
+$\begin{small}
+  \qquad\text{(1): per l'osservazione appena fatta, che si può utilizzare in quanto $0 < 1-p < 1$ e quindi la serie converge}
+\end{small}$
+
+
+\hfill
+La varianza è data da:
+\begin{align*}
+\mathbb{E}[X^2] & = \sum_{x = 0}^{+\infty} x^2\, p (1-p)^x = p(1-p) \sum_{x = 0}^{+\infty} x^2 (1-p)^{x-1} \overset{(1)}{=} p(1-p) \sum_{x = 0}^{+\infty} \dfrac{d}{dp} \left[-x(1-p)^x\right] \\[0.5em]
+& = p(1-p) \dfrac{d}{dp} \left[\, \sum_{x = 0}^{+\infty} -x (1-p)^x \, \right] = - p(1-p) \dfrac{d}{dp} \left[\, \sum_{x = 0}^{+\infty} x (1-p)^x \, \right] \overset{(2)}{=} -p(1-p) \dfrac{d}{dp} \left( \dfrac{1-p}{p^2} \right) \\[0.5em]
+& = - \cancel{p} (1-p) \dfrac{-p^2 -2p(1-p)}{p^{\cancel{4} 3}} = -(1-p) \dfrac{-p -2(1-p)}{p^2} = (1-p) \dfrac{p + 2 -2p}{p^2} = \dfrac{(1-p)(2-p)}{p^2}
+\end{align*}
+
+$\begin{small}
+  \qquad\text{(1): } \displaystyle \dfrac{d}{dx} x(1-p)^x = - x^2 (1-p)^{x-1} \;\;\Rightarrow \;\;
+  \displaystyle \dfrac{d}{dx} [-x (1-p)^x] = x^2 (1-p)^{x-1} \\[1mm]
+  \hspace*{2em} \text{(2): per l'osservazione fatta in precedenza}
+\end{small}$
+
+\begin{align*}
+\text{Var}(X) & = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \dfrac{(1-p)(2-p)}{p^2} - \left(\dfrac{1-p}{p}\right)^2 = \dfrac{(1-p)(2-p) - (1-p)^2}{p^2}\\[0.5em]
+& = \dfrac{(1-p)(2- \cancel p - 1 + \cancel p)}{p^2} = \dfrac{1-p}{p^2}
+\end{align*}
 
 
 
