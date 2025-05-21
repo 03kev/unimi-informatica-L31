@@ -4359,7 +4359,7 @@ F_X(x) = \begin{cases}
 $$
 
 ```{=latex}
-\def\p{0.7}                 % probabilità di successo
+\def\p{0.75}                 % probabilità di successo
 \pgfmathsetmacro{\q}{1-\p}
 
 %------------------------------------------------
@@ -4369,14 +4369,14 @@ $$
   pmfaxis/.style={
     width=6.5cm, height=4.8cm,
     axis lines=left, axis line style={-stealth},
-    xmin=-0.25, xmax=1.25, ymin=0, ymax=1.05,
+    xmin=-0.25, xmax=1.25, ymin=0, ymax=1.15,
     xtick={0,1}, xticklabels={$0$,$1$},
     tick style={draw=none}, clip=false
   },
   cdfaxis/.style={
     width=6.5cm, height=4.8cm,
     axis lines=left, axis line style={-stealth},
-    xmin=-0.25, xmax=1.25, ymin=0, ymax=1.05,
+    xmin=-0.25, xmax=1.25, ymin=0, ymax=1.15,
     xtick={0,1}, xticklabels={$0$,$1$},
     tick style={draw=none}, clip=false
   }
@@ -4387,17 +4387,22 @@ $$
 %---------------------- PANNELLO 1: pmf ----------------------
 \begin{axis}[pmfaxis,
   ylabel={$p_{X}$},
-  ylabel style={at={(axis description cs:-0.08,1)},anchor=south},
-  ytick={\q,\p}, yticklabels={$1-p$,$p$},
-  xlabel={$x$}
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south, rotate=-90},
+  ytick={\q,\p}, yticklabels={$1{-}p$,$p$},
+  xlabel={$x$},
+  xlabel style={
+    at={(axis description cs:1,0)},    % fine asse x
+    anchor=north west,                 % aggancio al nord-ovest dell’etichetta
+    yshift=-2pt                        % un po' più in basso
+  }
 ]
   % asse x
-  \addplot[blue,very thick] coordinates {(-0.25,0) (1.25,0)};
+  \addplot[gray!30,very thick] coordinates {(-0.25,0) (1.20,0)};
   % stanghette e puntini
   \addplot[black,thick] coordinates {(0,0) (0,\q)};
   \addplot[black,thick] coordinates {(1,0) (1,\p)};
-  \addplot[blue,only marks,mark=*] coordinates {(0,\q) (1,\p)};
-  \addplot[white,draw=black,very thick,
+  \addplot[gray!30,only marks,mark=*] coordinates {(0,\q) (1,\p)};
+  \addplot[white,draw=gray!30,very thick,
            mark=*,mark options={scale=1.25,fill=white},
            only marks] coordinates {(0,0) (1,0)};
 \end{axis}
@@ -4406,32 +4411,42 @@ $$
 \begin{axis}[cdfaxis,
   at={(current bounding box.east)}, anchor=west, xshift=1.4cm,
   ylabel={$F_{X}$},
-  ylabel style={at={(axis description cs:-0.08,1)},anchor=south},
-  ytick={\q,1}, yticklabels={$1-p$,$1$},
-  xlabel={$x$}
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south, rotate=-90},
+  ytick={\q,1}, yticklabels={$1{-}p$,$1$},
+  yticklabel style={yshift=-1.5pt},    % abbassa il “1”
+  xlabel={$x$},
+  xlabel style={
+    at={(axis description cs:1,0)},
+    anchor=north west,
+    yshift=-2pt
+  }
 ]
-  % segmenti orizzontali + verticali
-  \addplot[blue,very thick] coordinates {(-0.25,0) (0,0)};
-  \addplot[blue,very thick] coordinates {(0,\q) (1,\q)};
-  \addplot[blue,very thick] coordinates {(1,1) (1.25,1)};
-  \addplot[blue,very thick] coordinates {(0,0) (0,\q)};
-  \addplot[blue,very thick] coordinates {(1,\q) (1,1)};
-  % punti pieni/vuoti
-  \addplot[blue,only marks,mark=*] coordinates {(0,\q) (1,1)};
-  \addplot[white,draw=black,very thick,
-           mark=*,mark options={scale=1.25,fill=white},
-           only marks] coordinates {(0,0) (1,\q)};
   % area tratteggiata = p
   \addplot[pattern={Lines[angle=45,distance=6pt]},
-           pattern color=red!65,draw=none]
+           pattern color=gray!35,draw=none]
            coordinates {(0,\q) (1,\q) (1,1) (0,1) (0,\q)};
+  % segmenti orizzontali + verticali
+  \addplot[gray!30,very thick] coordinates {(-0.25,0) (0,0)};
+  \addplot[gray!30,very thick] coordinates {(0,\q) (1,\q)};
+  \addplot[gray!30,very thick] coordinates {(1,1) (1.25,1)};
+  \addplot[black,thick] coordinates {(0,0) (0,\q)};
+  \addplot[black,thick] coordinates {(1,\q) (1,1)};
+  % punti pieni/vuoti
+  \addplot[gray!30,only marks,mark=*] coordinates {(0,\q) (1,1)};
+  \addplot[white,draw=gray!30,very thick,
+           mark=*,mark options={scale=1.25,fill=white},
+           only marks] coordinates {(0,0) (1,\q)};
   % freccia centrata
-  \draw[->,thick] (axis cs:0.75,{\q+0.5*\p})
+  \draw[->,gray!50,thick] (axis cs:0.75,{\q+0.5*\p})
         -- (axis cs:1.25,{\q+0.5*\p})
         node[right,font=\footnotesize] {$p$};
 \end{axis}
 
 \end{tikzpicture}
+\\[0.1mm]
+{\small
+    Funzione di massa di probabilità e funzione di ripartizione della variabile aleatoria $X \sim B(p)$.
+}
 \end{center}
 ```
 
@@ -4441,35 +4456,44 @@ La varianza è $\;\;\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \overset{(
 
 ```{=latex}
 \vspace{2mm}
-\begin{minipage}{0.42\textwidth}
+\begin{minipage}{0.35\textwidth}
 \begin{tikzpicture}[>=stealth,line cap=round]
   \begin{axis}[
       width=6cm, height=4cm,
       domain=0:1, samples=250,
       xlabel={$p$},
       ylabel={$\operatorname{Var}(X)$},
-      axis lines=left,
+      ylabel style={at={(axis description cs:0,1.02)},anchor=south, rotate=-90},
+      xlabel style={
+        at={(axis description cs:1,0)},    % fine asse x
+        anchor=north west,                 % aggancio al nord-ovest dell’etichetta
+        yshift=-2pt                        % un po' più in basso
+      },
       axis line style={-stealth},
-      xmin=0, xmax=1.05,
-      ymin=0, ymax=0.26,
-      xtick={0,0.25,0.5,0.75,1},
-      ytick={0,0.05,0.10,0.15,0.20,0.25},
+      axis lines=left,
+      xmin=0, xmax=1.15,
+      ymin=0, ymax=0.29,
+      xtick={0,0.5,1},
+      ytick={0.25},
+      yticklabels={$\tfrac{1}{4}$},
+      xticklabels={0,$1/2$,1},
       tick style={draw=none},
       clip=false
     ]
-    \addplot[blue,very thick]{x*(1-x)};
-    \addplot[blue,only marks,mark=*] coordinates {(0.5,0.25)};
+    \addplot[gray!40,very thick]{x*(1-x)};
+    \addplot[gray!40,only marks,mark=*] coordinates {(0.5,0.25)};
     \addplot[gray,dashed] coordinates {(0.5,0) (0.5,0.25)};
     \addplot[gray,dashed] coordinates {(0,0.25) (0.5,0.25)};
-    \node[above right,font=\tiny] at (axis cs:0.5,0.25) {$(0.5,\;0.25)$};
+    \node[above right,font=\tiny] at (axis cs:0.5,0.25) {$\bigl(\tfrac12,\tfrac14\bigr)$};
   \end{axis}
 \end{tikzpicture}
 \end{minipage}
-\begin{minipage}{0.57\textwidth}
+\begin{minipage}{0.62\textwidth}
 \vspace{-7mm}
-Si osserva che nel caso si scelga $p=0$ oppure $p=1$, la variabile aleatoria assume il valore 0 o 1 con probabilità 1, rispettivamente. In questo caso si ha una variabile aleatoria degenere e la varianza è nulla.
+Si osserva che nel caso si scelga $p=0$ oppure $p=1$, la variabile aleatoria assume il valore 0 o 1 con probabilità 1, rispettivamente. In questo caso si ha una variabile aleatoria degenerata e la varianza è nulla. La varianza inoltre assume valore massimo quando $p=\frac{1}{2}$, in cui caso la variabile aleatoria assume i valori 0 e 1 con probabilità $\frac{1}{2}$ ciascuna. In questo caso la varianza è pari a $\frac{1}{4}$.
 \end{minipage}
 ```
+
 
 \hfill
 ### Modello binomiale
@@ -4594,12 +4618,15 @@ La varianza invece si calcola come
 Si supponga di realizzare un esperimento di Bernoulli con parametro $p$ e di contare il numero di prove necessarie affinché si verifichi il primo successo. La variabile aleatoria $X$ che codifica questo esperimento si dice geometrica con parametro $p$ e si indica con $X \sim G(p)$.  
 $X$ quindi conta il numero di fallimenti che precedono il primo successo.
 
-Formalmente, dati $X_1, X_2, \dots$ variabili aleatorie indipendenti e identicamente distribuite (i.i.d.) di Bernoulli con parametro $p$, si definisce una variabile aleatoria $X$ geometrica come
+Formalmente, date $X_1, X_2, \dots$ variabili aleatorie indipendenti e identicamente distribuite (i.i.d.) di Bernoulli con parametro $p$, si pone
 $$
-X = \sum_{i=1}^{+\infty} X_i \cdot I_{\{X_i = 0\}} \sim G(p)
+T \;=\; \min\{\,i\ge 1 : X_i = 1\},
+\qquad
+X \;=\; T-1 \;\sim\; G(p),
 $$
+dove $T$ è l’istante del primo successo e $X$ conta i fallimenti che lo precedono.
 
-Si osserva che se $p=1$ allora $X=0$ con probabilità 1, mentre se $p=0$ allora $X \to +\infty$ con probabilità 1. In entrambi i casi la variabile aleatoria è degenere. Si considera per tale motivo $p \in (0,1]$.
+Si osserva che se $p=1$ allora $X=0$ con probabilità 1, mentre se $p=0$ allora $X \to +\infty$ con probabilità 1. In entrambi i casi la variabile aleatoria è degenere. Si considera per tale motivo $p \in (0,1)$.
 
 \hfill
 #### Funzione di massa di probabilità
@@ -4608,9 +4635,9 @@ $$
 p_X(x) = p(1-p)^x \, I_{\mathbb{N} \cup \{0\}}(x)
 $$
 
-Infatti calcolare $p_X(x) = \mathbb{P}(X=x)$ equivale a calcolare la probabilità che i primi $x$ esperimenti siano fattili e che il $(x+1)$-esimo sia un successo, ossia:
+Infatti calcolare $p_X(x) = \mathbb{P}(X=x)$ equivale a calcolare la probabilità che i primi $x$ esperimenti siano falliti e che il $(x+1)$-esimo sia un successo, ossia:
 $$
-\mathbb{P}(X=x) = \mathbb{P}\left(\bigcap_{i=0}^x X_i = 0 \cap X_{x+1} = 1\right) \overset{(1)}{=} \prod_{i=0}^x \mathbb{P}(X_i = 0) \cdot \mathbb{P}(X_{x+1} = 1) = \prod_{i=0}^x (1-p) \cdot p = p\,(1-p)^x
+\mathbb{P}(X=x) = \mathbb{P}\left(\,\bigcap_{i=0}^x X_i = 0, X_{x+1} = 1\right) \overset{(1)}{=} \prod_{i=0}^x \mathbb{P}(X_i = 0) \cdot \mathbb{P}(X_{x+1} = 1) = \prod_{i=0}^x (1-p) \cdot p = p\,(1-p)^x
 $$
 $\begin{small}\qquad\text{(1): per indipendenza}\end{small}$
 
@@ -4627,8 +4654,8 @@ $\begin{small}
   \text{ converge a }
   \dfrac{1}{1 - \alpha}
   \text{ per }-1 < \alpha < 1.
-  \text{ Nel nostro caso }\alpha = p,\\[1mm]
-  \hspace*{3.9em}\text{che è una probabilità ed è quindi compresa tra 0 e 1.}
+  \text{ Nel nostro caso }\\[1mm]
+  \hspace*{3.9em} \alpha = 1-p, \text{ che è una probabilità ed è quindi compresa tra 0 e 1.}
 \end{small}$
 
 Il grafico della funzione di massa di probabilità presenta un decadimento esponenziale, ed è tanto più ripido quanto più è grande il valore di $p$.
@@ -4713,6 +4740,200 @@ $\begin{small}
 \text{Var}(X) & = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \dfrac{(1-p)(2-p)}{p^2} - \left(\dfrac{1-p}{p}\right)^2 = \dfrac{(1-p)(2-p) - (1-p)^2}{p^2}\\[0.5em]
 & = \dfrac{(1-p)(2- \cancel p - 1 + \cancel p)}{p^2} = \dfrac{1-p}{p^2}
 \end{align*}
+
+
+
+\newpage
+### Modello di Poisson
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello di Poisson}
+```
+
+
+La distribuzione di Poisson nasce come modello per il conteggio di eventi rari che si verificano in un intervallo di tempo o in una regione di spazio (es. numero di refusi in un libro, chiamate al centralino in un minuto).
+
+Dal punto di vista teorico, essa si ottiene come caso limite della distribuzione binomiale: sia $\{X_n\}_{n\ge 1}$ una successione di variabili aleatorie con $X_n \sim \mathrm{Bin}(n,p_n)$, dove gli $n$ tentativi sono indipendenti e con la stessa probabilità $p_n$ di “successo”. Se esiste $\lambda>0$ tale che
+$$
+\lim_{n\to\infty} n\,p_n = \lambda,
+$$
+allora $X_n$ converge in distribuzione a una variabile $X$ di Poisson con parametro $\lambda$:
+$$
+X_n \xrightarrow{\,d\,} \mathrm{P}(\lambda).
+$$
+
+Pertanto, quando $n$ è molto grande e $p$ è molto piccolo con $n p = \lambda$ finito, la binomiale $\mathrm{Bin}(n,p)$ è ben approssimata dalla $\mathrm{P}(\lambda)$.
+
+#### Funzione di massa di probabilità
+A differenza della binomiale, il dominio di supporto è $D_X = \mathbb{N} \cup \{0\}$, e non ha quindi una specificazione massima. La funzione di massa di probabilità è definita come
+$$
+p_X(i) = \dfrac{\lambda^i}{i!} e^{-\lambda} \, I_{\mathbb{N} \cup \{0\}}(i)
+$$
+
+Infatti per calcolare $p_X(i) = \mathbb{P}(X=i)$ si considera, per definizione di variabile aleatoria di Poisson, la funzione di massa di probabilità come il limite della funzione di massa di probabilità della binomiale $X_n$:
+$$
+p_X(i) = \lim_{n\to\infty} \mathbb{P}(X_n=i) = \lim_{n\to\infty} \binom{n}{i} p^i (1-p)^{n-i}
+$$
+
+Prima di sviluppare il termine del limite, si osserva che:
+
+- $\dbinom{n}{i} = \dfrac{n!}{i!(n-i)!} = \dfrac{n(n-1)\cdots(n-i+1)}{i!}$
+- $p = \dfrac{\lambda}{n}$
+
+Sostituendo si ottiene
+\begin{align*}
+p_X(i) & = \lim_{n\to\infty} \dfrac{n(n-1)\cdots(n-i+1)}{i!} \, \dfrac{\lambda^i}{n^i} \, \left(1-\dfrac{\lambda}{n}\right)^{n-i}
+= \lim_{n\to\infty} \underbrace{\dfrac{n}{n} \,\dfrac{n-1}{n} \cdots \dfrac{n-i+1}{n}}_{i \text{ volte}} \, \dfrac{\lambda^i}{i!} \, \left( 1 - \dfrac{\lambda}{n} \right)^{n-1} \\[-0.1em]
+& = \dfrac{\lambda^i}{i!} \, \lim_{n\to\infty} \underbrace{\dfrac{n}{n} \,\dfrac{n-1}{n} \cdots \dfrac{n-i+1}{n}}_{\to 1} \, \dfrac{\overbrace{\left( 1 - \dfrac{\lambda}{n} \right)^n}^{\to e^{-\lambda} \text{ (1)}}}{\underbrace{\left( 1 - \dfrac{\lambda}{n} \right)^i}_{\to 1}}
+= \dfrac{\lambda^i}{i!} \, e^{-\lambda}
+\end{align*}
+\begin{small}
+  \qquad\text{(1): per il limite notevole } $\displaystyle \lim_{n\to\infty} \left(1 - \dfrac{\alpha}{n}\right)^n = e^{-\alpha}$
+\end{small}
+
+\hfill
+La correttezza della funzione di massa di probabilità è verificata come segue:
+$$
+\sum_{i=0}^{+\infty} p_X(i) = \sum_{i=0}^{+\infty} \dfrac{\lambda^i}{i!} e^{-\lambda} = e^{-\lambda} \sum_{i=0}^{+\infty} \dfrac{\lambda^i}{i!} \overset{(1)}{=} e^{-\lambda} e^{\lambda} = 1
+$$
+\vspace{-3mm}
+\begin{small}
+  \qquad\text{(1): per lo sviluppo in serie di Taylor centrato in $0$ di $e^{\lambda}$ si ha } $\displaystyle e^{\lambda} = \sum_{i=0}^{+\infty} \dfrac{\lambda^i}{i!}$
+\end{small}
+
+Si osserva che la funzione di massa di probabilità è definita per ogni $i \in \mathbb{N} \cup \{0\}$, e che il suo grafico presenta un andamento crescente fino a un certo punto, per poi decrescere esponenzialmente fino a tendere a 0. È anche possibile che essa decresca subito.
+
+> **Approfondimento** Per vedere l'andamento della funzione di massa di probabilità al variare del parametro $\lambda$, bisogna considerare il rapporto consecutivo tra i due termini della successione:
+$$
+\dfrac{p_X(i+1)}{p_X(i)} = \frac{\lambda^{i+1}}{(i+1)!} e^{-\lambda} \cdot \frac{i!}{\lambda^i e^{-\lambda}} = \frac{\lambda}{i+1}
+$$
+> Si osserva quindi che la funzione cresce o decresce nel seguente modo:
+$$
+\dfrac{p(i+1)}{p(i)} \;\;
+\begin{cases}
+{>}\,1 &\Longleftrightarrow\;\; i<\lambda-1,\\[4pt]
+<1 &\Longleftrightarrow\;\; i>\lambda-1.
+\end{cases}
+$$
+> Si conclude quindi che la funzione di massa di probabilità è crescente fino a $i=\floor{\lambda}$ e decrescente per $i>\floor{\lambda}$. Il massimo viene raggiunto per $i=\floor{\lambda}$ o $i=\floor{\lambda}+1$ a seconda che $\lambda$ sia intero o meno.
+> Nel caso in cui $\lambda \le 1$, poiché già per i=0 vale $\lambda<1$, il massimo è in $i=0$ e la funzione decresce subito.
+
+
+\hfill
+#### Valore atteso e varianza
+Il valore atteso di una variabile aleatoria di Poisson è dato da
+\begin{align*}
+\mathbb{E}[X] & = \sum_{i=0}^{+\infty} i\, p_X(i) = \sum_{i=0}^{+\infty} i\, \dfrac{\lambda^i}{i!} e^{-\lambda} \overset{(1)}{=} e^{-\lambda} \sum_{i=1}^{+\infty} i\, \dfrac{\lambda^i}{i!} = e^{-\lambda} \sum_{i=1}^{+\infty} \dfrac{\lambda^i}{(i-1)!} \\[0.5em]
+& = \lambda \, e^{-\lambda} \sum_{i=1}^{+\infty} \dfrac{\lambda^{i-1}}{(i-1)!} \overset{(2)}{=} \lambda \, e^{-\lambda} \sum_{j=0}^{+\infty} \dfrac{\lambda^j}{j!} \overset{(3)}{=} \lambda \, e^{-\lambda} e^{\lambda} = \lambda
+\end{align*}
+\begin{small}
+  \qquad\text{(1): la sommatoria parte da 1 in quanto per $i=0$ il termine è nullo}\\[1mm]
+  \hspace*{2em}\text{(2): ponendo } $j = i - 1$ \\[1mm]
+  \hspace*{2em}\text{(3): per lo sviluppo in serie di Taylor centrato in $0$ di $e^{\lambda}$ si ha } $\displaystyle e^{\lambda} = \sum_{j=0}^{+\infty} \dfrac{\lambda^j}{j!}$
+\end{small}
+
+\newpage
+La varianza è data da:
+\begin{align*}
+\mathbb{E}[X^2] & = \sum_{i=0}^{+\infty} i^2\, p_X(i) 
+    \overset{(1)}{=} \sum_{i=1}^{+\infty} i^2\, \dfrac{\lambda^i}{i!} e^{-\lambda} 
+    = \sum_{i=1}^{+\infty} i\, \dfrac{\lambda^i}{(i-1)!} e^{-\lambda} 
+    = \lambda \sum_{i=1}^{+\infty} i\, \dfrac{\lambda^{i-1}}{(i-1)!} e^{-\lambda} \\[0.5em]
+& = \lambda \sum_{i=1}^{+\infty} \left[ ((i-1) +1) \dfrac{\lambda^{i-1}}{(i-1)!} e^{-\lambda} \right]
+    = \lambda \left[\, \sum_{i=1}^{+\infty} (i-1) \dfrac{\lambda^{i-1}}{(i-1)!} e^{-\lambda} + \sum_{i=1}^{+\infty} \dfrac{\lambda^{i-1}}{(i-1)!} e^{-\lambda} \right] \\[0.5em]
+& \overset{(2)}{=} \lambda \left[\, \sum_{j=0}^{+\infty} j \dfrac{\lambda^j}{j!} e^{-\lambda} + \sum_{j=0}^{+\infty} \dfrac{\lambda^j}{j!} e^{-\lambda} \right] 
+    \overset{(3)}{=} \lambda \left[ \,\mathbb{E}[X] + 1 \, \right] 
+    = \lambda (\lambda + 1) = \lambda^2 + \lambda
+\end{align*}
+\begin{small}
+  \qquad\text{(1): la sommatoria parte da 1 in quanto per $i=0$ il termine è nullo}\\[1mm]
+  \hspace*{2em}\text{(2): ponendo } $j = i - 1$\\[1mm]
+  \hspace*{2em}\text{(3): il primo termine della sommatoria corrisponde al valore atteso di $X$, mentre il secondo è la somma di tutte } \\ 
+    \hspace*{3.4em}  \text{le specificazioni, e converge, come già dimostrato, a 1.}
+\end{small}
+
+$$
+\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \lambda^2 + \lambda - \lambda^2 = \lambda
+$$
+
+Quindi sia il valore atteso che la varianza delle variabili aleatorie di Poisson sono uguali al parametro $\lambda$. 
+
+
+\hfill
+Come già visto in precedenza, le variabili aleatorie di Poisson possono essere utilizzate come approssimazione di una binomiale di parametri $(n,p)$ quando $n$ è molto grande e $p$ molto piccolo. In altri termini, il totale dei "successi" in un gran numero $n$ di ripetizioni indipendenti di un esperimento che ha una piccola probabilità di riuscita $p$, è una variabile aleatoria con distribuzione approssimativamente di Poisson, con parametro $\lambda = n p$.
+
+
+##### Riproducibilità
+La distribuzione di Poisson è riproducibile, ovvero la somma di due poissoniane indipendenti è ancora una poissoniana. Si abbiano infatti due variabili aleatorie $X \sim P(\lambda_1)$ e $Y \sim P(\lambda_2)$, indipendenti tra loro, la loro somma è ancora una variabile aleatoria di Poisson: $X + Y \sim P(\lambda_1 + \lambda_2)$.
+
+
+
+\hfill
+### Modello ipergeometrico
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello ipergeometrico}
+```
+Il modello ipergeometrico descrive il numero di “successi” ottenuti estraendo senza reinserimento $n$ elementi da una popolazione finita di cardinalità $N+M$, dove
+
+- $N$ è il numero di elementi del primo tipo (successi),
+- $M$ è il numero di elementi del secondo tipo (insuccessi).
+
+La variabile aleatoria $X$ che codifica questo esperimento si dice ipergeometrica con parametri $(N,M,n)$ e si scrive $X \sim H(N,M,n)$.
+
+\hfill
+Definizione formale
+: Sia $A$ l’insieme con $|A| = N+M$, contenente $N$ successi e $M$ insuccessi. Si estraggono senza reinserimento $n \le N+M$ elementi e si pone
+    $$
+    X = \text{numero di successi osservati},
+    $$
+    allora $X \sim H(N,M,n)$.
+
+\hfill
+Si può pensare una variabile ipergeometrica come una somma di variabili bernoulliane. Si denotino con $Y_1, \dots, Y_n$ le etichette (successo o insuccesso) degli $n$ oggetti estratti, in ordine. Si definiscono gli indicatori
+$$
+X_i \sim B(p) = I_{\{Y_i=\text{successo}\}}
+     = \begin{cases}
+         1 &\text{se il $i$-esimo estratto è un successo}\\
+         0 &\text{altrimenti}
+       \end{cases}
+$$
+e si pone
+$$
+X = \sum_{i=1}^{n} X_i.
+$$
+Poiché contiamo precisamente i successi nei $n$ estratti, otteniamo la stessa $X$ di sopra e
+$$
+X \sim H(N, M, n).
+$$
+Si osserva che le varie $X_i$ non sono indipendenti tra loro, il che differenzia il modello ipergeometrico da quello binomiale. Infatti, se si estrae un successo, il numero di successi rimanenti diminuisce e quindi anche la probabilità di estrarre un successo alla prova successiva.
+
+
+\hfill
+#### Funzione di massa di probabilità
+Il dominio di supporto è $D_X=\{\,x\in\mathbb N\cup\{0\}\mid\max(0,n-M)\le x\le\min(n,N)\}$, infatti il numero di successi:
+
+- non può essere maggiore né di quelli estratti $n$ né di quelli presenti $N$
+- non può essere minore di $n-M$, in quanto se si estraggono $n$ elementi e $M$ sono insuccessi, gli altri $n-M$ devono essere successi. Nel caso in cui $M$ fosse maggiore di $n$, il numero di successi non può essere minore di 0.
+
+\hfill
+La funzione di massa di probabilità è definita utilizzando la regola classica della probabilità:
+\begin{align*}
+p_X(i) &= \mathbb{P}(X=i)
+       = \dfrac{\dbinom{N}{i}\,\dbinom{M}{n-i}}{\dbinom{N+M}{n}}\,
+         I_{D_X}(i) \,\footnotemark
+\end{align*}
+\footnotetext{Per $i\notin D_X$ l’indicatrice azzera il termine, perciò non si calcola mai $\binom{a}{b}$ con $b<0$ o $b>a$.}
+Infatti si effettuano le seguenti osservazioni:
+
+- $p_X(i)$ rappresenta la probabilità di estrarre un sottoinsieme di $i$ oggetti da $N+M$ oggetti totali
+
+- $\dbinom{N}{i}$ è il numero di modi in cui si possono scegliere $i$ successi da un insieme di $N$ successi
+
+- $\dbinom{M}{n-i}$ è il numero di modi in cui si possono scegliere $n-i$ insuccessi da un insieme di $M$ insuccessi
+
+- $\dbinom{N+M}{n}$ è il numero totale di modi di scegliere $n$ oggetti da un insieme di $N+M$ oggetti
+
+
+#### Valore atteso e varianza
 
 
 
