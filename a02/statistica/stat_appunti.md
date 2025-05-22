@@ -4890,13 +4890,13 @@ Definizione formale
 \hfill
 Si può pensare una variabile ipergeometrica come una somma di variabili bernoulliane. Si denotino con $Y_1, \dots, Y_n$ le etichette (successo o insuccesso) degli $n$ oggetti estratti, in ordine. Si definiscono gli indicatori
 $$
-X_i \sim B(p) = I_{\{Y_i=\text{successo}\}}
+X_i = I_{\{Y_i=\text{successo}\}}
      = \begin{cases}
          1 &\text{se il $i$-esimo estratto è un successo}\\
          0 &\text{altrimenti}
        \end{cases}
 $$
-e si pone
+dove ogni $X_i \sim B(p)$, e si pone
 $$
 X = \sum_{i=1}^{n} X_i.
 $$
@@ -4921,7 +4921,7 @@ p_X(i) &= \mathbb{P}(X=i)
        = \dfrac{\dbinom{N}{i}\,\dbinom{M}{n-i}}{\dbinom{N+M}{n}}\,
          I_{D_X}(i) \,\footnotemark
 \end{align*}
-\footnotetext{Per $i\notin D_X$ l’indicatrice azzera il termine, perciò non si calcola mai $\binom{a}{b}$ con $b<0$ o $b>a$.}
+\footnotetext{Per $i\notin D_X$ l’indicatrice azzera il termine, perciò non si calcola mai $\binom{a}{b}$ con $b<0$ o $b>a$, che sarebbe privo di significato.}
 Infatti si effettuano le seguenti osservazioni:
 
 - $p_X(i)$ rappresenta la probabilità di estrarre un sottoinsieme di $i$ oggetti da $N+M$ oggetti totali
@@ -4933,7 +4933,83 @@ Infatti si effettuano le seguenti osservazioni:
 - $\dbinom{N+M}{n}$ è il numero totale di modi di scegliere $n$ oggetti da un insieme di $N+M$ oggetti
 
 
-#### Valore atteso e varianza
+\newpage
+#### Valore atteso
+Per calcolare il valore atteso, si ricorda che una variabile aleatoria $X \sim H(N,M,n)$ può essere vista come la somma di $n$ variabili aleatorie di Bernoulli $X_i \sim B(p)$, dove queste non sono indipendenti tra loro:
+$$
+X = \sum_{i=1}^{n} X_i
+$$
+Il valore atteso di ciascun $X_i$ può essere calcolato tramite la regola classica delle probabilità, assumendo di non sapere nulla sulle estrazioni precedenti:
+$$
+\mathbb{E}[X_i] = \mathbb{P}(X_i=1) = \dfrac{N}{N+M} \; := p
+$$
+Sfruttando la linearità del valore atteso, si ottiene
+$$
+\mathbb{E}[X] = \mathbb{E}\left[ \; \sum_{i=1}^n X_i \right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n \dfrac{N}{N+M} = n \dfrac{N}{N+M} \; := n p
+$$
+
+\hfill
+#### Varianza
+Per quanto riguarda la varianza, si adotta lo stesso approccio, calcolando prima la varianza di ciascun $X_i$:
+$$
+\text{Var}(X_i) = \mathbb{P}(X_i = 1)\, \mathbb{P}(X_i = 0) = \mathbb{E}[X_i] (1 - \mathbb{E}[X_i]) = \dfrac{N}{N+M} \dfrac{M}{N+M} = \dfrac{N M}{(N+M)^2}
+$$
+Essendo però le variabili $X_i$ dipendenti, non si può calcolare la varianza della somma come la somma delle varianze. Si deve quindi calcolare anche il termine di covarianza:
+$$
+\text{Var}(X) = \text{Var} \left( \,\sum_{i=1}^n X_i \right) = \sum_{i=1}^n \text{Var}(X_i) + \sum_{i=1}^n \sum_{\substack{j=1\\ j\neq i}}^n \mathrm{Cov}(X_i, X_j)
+$$
+
+La covarianza tra due variabili aleatorie $X_i$ e $X_j$ è definita come
+$$
+\mathrm{Cov}(X_i, X_j) = \mathbb{E}[X_i X_j] - \mathbb{E}[X_i] \mathbb{E}[X_j]
+$$
+Si noti che la variabile aleatoria $X_i X_j$ è ancora una bernoulliana:
+$$
+X_i X_j = \begin{cases}
+  1 &\text{se } X_i = 1 \land X_j = 1\\
+  0 &\text{altrimenti}
+\end{cases}
+$$
+Di conseguenza si può calcolare il suo valore atteso come
+$$
+\mathbb{E}[X_i X_j] = \mathbb{P}(X_i = 1, X_j = 1) 
+    \overset{(1)}{=} \mathbb{P}(X_i = 1 \mid X_j = 1)\, \mathbb{P}(X_j = 1)
+    \overset{(2)}{=} \dfrac{N-1}{N+M-1} \, \dfrac{N}{N+M}
+$$
+\vspace{-6mm}
+\begin{small}
+  \qquad\text{(1): regola di fattorizzazione} \\
+  \hspace*{2em}\text{(2): in $\mathbb{P}(X_i = 1 \mid X_j = 1)$ se $X_j = 1$, il numero di successi rimanenti è $N-1$ e il numero totale di oggetti rimanenti} \\
+  \hspace*{3.7em} \text{è $N+M-1$. Applicando la regola classica della probabilità, si ottiene il risultato.}
+\end{small}
+
+Ora è possibile calcolare la covarianza:
+\begin{align*}
+\mathrm{Cov}(X_i, X_j) & = \dfrac{N-1}{N+M-1}\, \dfrac{N}{N+M} - \left(\dfrac{N}{N+M}\right)^2
+    = \dfrac{N}{N+M} \left( \dfrac{N-1}{N+M-1} - \dfrac{N}{N+M} \right) \\[0.5em]
+    & = \dfrac{N}{N+M} \, \dfrac{(N-1)(N+M) - N(N+M-1)}{(N+M-1)(N+M)}
+    = \dfrac{N}{N+M} \, \dfrac{\cancel{N^2} + \cancel{NM} - \cancel{N} - M - \cancel{N^2} - \cancel{NM} + \cancel{N}}{(N+M-1)(N+M)} \\[0.5em]
+    & = - \dfrac{N}{N+M} \, \dfrac{M}{(N+M-1)(N+M)} = - \dfrac{N M}{(N+M)^2(N+M-1)}
+\end{align*}
+
+Si osservi che la covarianza è negativa, in quanto se si estrae un successo, il numero di successi rimanenti diminuisce e quindi anche la probabilità di estrarre un successo alla prova successiva.
+
+\hfill
+Ora si conoscono tutti i termini per calcolare la varianza:
+\begin{align*}
+\text{Var}(X) & = \sum_{i=1}^n \dfrac{N M}{(N+M)^2} - \sum_{i=1}^n \sum_{\substack{j=1\\ j\neq i}}^n \dfrac{N M}{(N+M)^2(N+M-1)}
+    \overset{(1)}{=} \dfrac{n N M}{(N+M)^2} - \dfrac{n(n-1) N M}{(N+M)^2(N+M-1)} \\[0.5em]
+    & = \dfrac{n N M}{(N+M)^2} \left( 1 - \dfrac{n-1}{N+M-1} \right) = n \dfrac{N}{N + M} \, \dfrac{M}{N+M} \, \left( 1 - \dfrac{n-1}{N+M-1} \right) \\[0.5em]
+    & = n p\, (1-p) \left( 1 - \dfrac{n-1}{N+M-1} \right)
+\end{align*}
+
+\begin{small}
+    \qquad\text{(1): la prima sommatoria svolge $n$ passi, mentre la seconda sommatoria svolge $n(n-1)$ passi, in quanto per} \\
+    \hspace*{3.7em} \text{ogni $i$ ci sono $n-1$ scelte per $j$.}
+\end{small}
+
+\hfill
+Si nota come nella varianza del modello ipergeometrico compaia quella del binomiale se si fissa $p$. Inoltre, se si fa tendere $N+M$ all'infinito, si ha che la varianza tende a $np(1-p)$, che è proprio la varianza del modello binomiale di parametri $(n,p)$. Intuitivamente, se si estrae un oggetto da una popolazione molto grande, il suo contributo alla probabilità di successo è trascurabile, e quindi la distribuzione ipergeometrica si avvicina a quella binomiale.
 
 
 
