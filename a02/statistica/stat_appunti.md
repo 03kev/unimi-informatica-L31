@@ -16,21 +16,21 @@ header-includes: |
     \setlength{\droptitle}{-1.5cm}
 
     \usepackage{graphicx}
-    \usepackage{tikz}
+    \usepackage{tikz, pgfplots}
+    \pgfplotsset{compat=newest}
+
     \usetikzlibrary{positioning}
     \usetikzlibrary{intersections}
     \usetikzlibrary{patterns}
     \usetikzlibrary{patterns.meta}
 
-    \usepackage{tcolorbox}
-    \usepackage{caption}
-    \usepackage{cancel}
-
-    \usepackage{pgfplots}
-    \pgfplotsset{compat=1.17}
     \usepgfplotslibrary{statistics}
     \usepgfplotslibrary{groupplots}
     \usepgfplotslibrary{fillbetween}
+
+    \usepackage{tcolorbox}
+    \usepackage{caption}
+    \usepackage{cancel}
 
     \usepackage{mdframed}
     \usepackage{xcolor}
@@ -42,6 +42,24 @@ header-includes: |
 
     \usepackage[bottom]{footmisc}
     \setlength{\footnotesep}{3mm}
+
+    \pgfplotsset{
+        pmfaxis/.style={
+            width=6.5cm, height=4.8cm,
+            axis lines=left, axis line style={-stealth},
+            xmin=-0.25, xmax=1.25, ymin=0, ymax=1.15,
+            xtick={0,1}, xticklabels={$0$,$1$},
+            tick style={black,thin}, clip=false
+        },
+        cdfaxis/.style={
+            width=6.5cm, height=4.8cm,
+            axis lines=left, axis line style={-stealth},
+            xmin=-0.25, xmax=1.25, ymin=0, ymax=1.15,
+            xtick={0,1}, xticklabels={$0$,$1$},
+            tick style={black,thin}, clip=false
+        }
+    }
+
 ---
 
 ```{=latex}
@@ -64,6 +82,7 @@ header-includes: |
 \newenvironment{myquote}{\begin{mdframed}[backgroundcolor=mygray, leftmargin=0.5cm, rightmargin=0.5cm, skipabove=\baselineskip, linewidth=0pt, innertopmargin=0.45cm, innerbottommargin=0.45cm, innerleftmargin=0.5cm, innerrightmargin=0.5cm]}{\end{mdframed}}
 \renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
 ```
+\newenvironment{myquote_smaller}{\begin{mdframed}[backgroundcolor=mygray, leftmargin=0.5cm, rightmargin=0.5cm, skipabove=\baselineskip, linewidth=0pt, innertopmargin=0.35cm, innerbottommargin=0.35cm, innerleftmargin=0.5cm, innerrightmargin=0.5cm]}{\end{mdframed}}
 
 ```{=latex}
 \vspace{2em}
@@ -3420,15 +3439,22 @@ Questo significa che, dati più eventi, l’indipendenza globale richiede che og
 
 \newpage
 # Variabili aleatorie
+## Definizioni
 
-Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria $X : \Omega \to \mathbb{R}$ è definita come una funzione misurabile, ossia tale che per ogni $A \in \mathcal{E}$ l'evento
-\vspace{-1mm}
-$$
-\{X \in A\} \equiv \{\omega \in \Omega \mid X(\omega) \in A\}
-\vspace{-1mm}
-$$
-appartenga alla $\sigma$-algebra $\mathcal{F}$ di $\Omega$. In altre parole, questa condizione garantisce che, per ogni insieme misurabile $A$ in $\mathbb{R}$, il corrispondente sottoinsieme di $\Omega$ (cioè l’insieme degli esiti per cui $X$ assume valori in $A$) sia un evento a cui è possibile assegnare una probabilità.
+Lo spazio $(\Omega,\mathcal F,\mathbb P)$ descrive tutti gli esiti possibili di un esperimento e assegna le probabilità agli eventi. Per analizzare quantitativamente questi esiti si ha bisogno di rappresentarli mediante numeri reali: risulta necessario introdurre perciò le variabili aleatorie. Una variabile aleatoria è una funzione $X\colon\Omega\to\mathbb R$ che, preservando la struttura misurabile, trasporta la misura di probabilità $\mathbb P$ da $\Omega$ alla retta reale. Grazie a questo “ponte” concetti come media, varianza e distribuzione, nonché gli strumenti dell’analisi, diventano applicabili a fenomeni aleatori di qualunque natura.
 
+\vspace{2mm}
+Definizione
+: Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria $X : \Omega \to \mathbb{R}$ è definita come una funzione misurabile, ossia tale che per ogni $A \in \mathcal{E}$ l'evento
+
+    \vspace{-4mm}
+    $$
+    \{X \in A\} \equiv \{\omega \in \Omega \mid X(\omega) \in A\} = X^{-1}(A)
+    \vspace{-0mm}
+    $$
+    appartenga alla $\sigma$-algebra $\mathcal{F}$ di $\Omega$. In altre parole, questa condizione garantisce che, per ogni insieme misurabile $A$ in $\mathbb{R}$, il corrispondente sottoinsieme di $\Omega$ (cioè l’insieme degli esiti per cui $X$ assume valori in $A$) sia un evento a cui è possibile assegnare una probabilità.
+
+\vspace{2mm}
 In particolare, se si considera $A = \{\alpha\}$ per un qualsiasi $\alpha \in \mathbb{R}$, allora si ottiene l'evento
 \vspace{-1mm}
 $$
@@ -3437,31 +3463,28 @@ $$
 $$
 Questa forma è particolarmente usata quando si trattano variabili aleatorie discrete.
 
-\vspace{3mm}
-Si osserva che per ogni insieme misurabile $A \in \mathcal{E}$, la probabilità che la variabile aleatoria $X$ assuma valori in $A$, ossia la probabilità dell'evento $\{X \in A\}$, è definita come
+\hfill
+Per ogni insieme misurabile $A \in \mathcal{E}$, la probabilità che la variabile aleatoria $X$ assuma valori in $A$, ossia la probabilità dell'evento $\{X \in A\}$, è definita come
 \vspace{-1mm}
 $$
-\mathbb{P}(X \in A) = \mathbb{P}(\{\omega \in \Omega \mid X(\omega) \in A\}) = \mathbb{P}(X^{-1}(A))
-\vspace{-3mm}
+\mathbb{P}(X \in A) = \mathbb{P}(\{\omega \in \Omega \mid X(\omega) \in A\})
 $$
 
-> **Definizione rigorosa** Dato uno spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ e una $\sigma$-algebra $\mathcal{E}$ su $\mathbb{R}$, una variabile aleatoria
-> $X: \Omega \rightarrow \mathbb{R}$
-> è definita come una funzione misurabile, ossia una funzione che trasforma gli esiti dello spazio campionario $\Omega$ in valori reali in modo da preservare la struttura misurabile. Questo significa che per ogni insieme $B \in \mathcal{E}$ (ossia per ogni insieme misurabile in $\mathbb{R}$) l'insieme preimmagine
-> $$
-> X^{-1}(B)=\{\omega \in \Omega \mid X(\omega) \in B\}
-> \vspace{-0.5mm}
-> $$
-> appartiene alla $\sigma$-algebra $\mathcal{F}$ su $\Omega$.
->
-> In altre parole, la funzione $X$ rispetta la struttura misurabile: essa trasforma gli esiti possibili in $\Omega$ in valori misurabili in $\mathbb{R}$, permettendo così l’applicazione degli strumenti della teoria della probabilità alla variabile $X$.
+\vspace{3mm}
+Supporto
+: I valori che la variabile aleatoria $X$ può assumere sono detti *specificazioni* o *osservazioni*. L'insieme di tutte le specificazioni di $X$ costituisce il *dominio di supporto* della variabile, e si indica con $D_X$.
 
-\vspace{2.5mm}
+> **Definizione rigorosa** Il supporto di $X$ è il più piccolo insieme chiuso $S\subseteq\mathbb R$ tale che  
+$\mathbb P(X\in S)=1$. In altre parole, un punto $x$ appartiene al supporto se e solo se ogni suo intorno aperto $U$ possiede probabilità positiva, $\mathbb P(X\in U)>0$.
 
-I singoli valori che la variabile aleatoria $X$ può assumere sono detti *specificazioni* o *variabili osservabili*. L'insieme di tutte le specificazioni di $X$ costituisce il *dominio di supporto* della variabile, e si indica con $D_X$.
+\vspace{2mm}
+\hfill
+A seconda della natura del dominio di supporto, le variabili aleatorie possono essere classificate in due categorie principali: *discrete* e *continue*.
+Una variabile aleatoria si dice discreta se può assumere solo un numero finito o infinito numerabile di valori, mentre si dice continua se può assumere valori in un intervallo (o insieme) non numerabile di $\mathbb{R}$.
 
-Una variabile aleatoria si dice *discreta* se può assumere solo un numero finito o infinito numerabile di valori, mentre si dice continua se può assumere valori in un intervallo (o insieme) non numerabile di $\mathbb{R}$.
 
+
+\newpage
 ### Funzione di ripartizione
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Funzione di ripartizione}
@@ -3475,49 +3498,126 @@ F_X(x) = \mathbb{P}(X \le x) \quad \forall x \in \mathbb{R}
 $$
 \vspace{-8mm}
 
-> La definizione della variabile aleatoria $X$ come funzione misurabile implica che $\forall x \in \mathbb{R}$ l'insieme $\{X \le x\}$, che è l'immagine inversa dell'intervallo $(-\infty, x]$, sia un evento, ossia appartenga alla $\sigma$-algebra $\mathcal{F}$ dello spazio di probabilità su cui $X$ è definita. Senza questa condizione di misurabilità, non avrebbe senso assegnare una probabilità a tali eventi e, di conseguenza, la funzione di ripartizione non sarebbe ben definita.
 
-\newpage
+```{=latex}
+\vspace{4.0mm}
 
-Proprietà
-: La funzione di ripartizione $F_X$ possiede le seguenti proprietà:
+\def\pA{0.16}   % p1
+\def\pB{0.20}   % p2
+\def\pC{0.25}   % p3
+\pgfmathsetmacro{\pD}{1-\pA-\pB-\pC}
 
-    - $0 \le F_X(x) \le 1 \;\; \forall x \in \mathbb{R}$
+\pgfmathsetmacro{\Fone}{\pA}
+\pgfmathsetmacro{\Ftwo}{\pA+\pB}
+\pgfmathsetmacro{\Fthree}{\pA+\pB+\pC}
 
-    - Monotonicità: $F_X$ è non decrescente, ossia se $x_1 < x_2$, allora $F_X(x_1) \le F_X(x_2)$. Questo riflette il fatto che $\{X \le x_1\} \sube \{ X \le x_2 \}$.
+\begin{minipage}{0.40\textwidth}
+    \begin{tikzpicture}[>=stealth,line cap=round]
+    \begin{axis}[cdfaxis,
+      tick style={black},                % ← mostra i tick
+      ylabel={$F_{X}$},
+      ylabel style={at={(axis description cs:-0.08,1)},
+                   anchor=south,rotate=-90},
+      ytick={0,\Fone,\Ftwo,\Fthree,1},
+      yticklabels={$0$,$F(x_{1})$,$F(x_{2})$,$F(x_{3})$,$1$},
+      xlabel={$x$},
+      xlabel style={at={(axis description cs:1,0)},
+                   anchor=north west,yshift=-2pt},
+      xtick={0,1,2,3},
+      xticklabels={$x_{1}$,$x_{2}$,$x_{3}$,$x_{4}$},
+      xmin=-0.4, xmax=3.7, ymin=0, ymax=1.15,
+      clip=false
+    ]
 
-    - Continuità a destra: per ogni $\displaystyle x \in \mathbb{R} \;\; \lim_{y \to x^+} F_X(y) = F_X(x)$
+      %----------------------------------------------
+      %    segmenti orizzontali
+      %----------------------------------------------
+      \addplot[gray!30,very thick] coordinates {(-0.378,0) (0,0)};
+      \addplot[gray!30,very thick] coordinates {(0,\Fone) (1,\Fone)};
+      \addplot[gray!30,very thick] coordinates {(1,\Ftwo) (2,\Ftwo)};
+      \addplot[gray!30,very thick] coordinates {(2,\Fthree) (3,\Fthree)};
+      \addplot[gray!30,very thick] coordinates {(3,1) (3.7,1)};
 
-    - Limiti estremi: $\displaystyle \lim_{x \to -\infty} F_X(x) = 0\,$ e $\,\displaystyle \lim_{x \to +\infty} F_X(x) = 1$
+      %----------------------------------------------
+      %    segmenti verticali
+      %----------------------------------------------
+      \addplot[black,thin] coordinates {(0,0) (0,\Fone)};
+      \addplot[black,thin] coordinates {(1,0) (1,\Ftwo)};
+      \addplot[black,thin] coordinates {(2,0) (2,\Fthree)};
+      \addplot[black,thin] coordinates {(3,0) (3,1)};
 
-    La funzione di ripartizione non è necessariamente continua a sinistra.
+      %----------------------------------------------
+      %    punti pieni/vuoti
+      %----------------------------------------------
+      \addplot[gray!30,only marks,mark=*]
+               coordinates {(0,\Fone) (1,\Ftwo) (2,\Fthree) (3,1)};
+      \addplot[white,draw=gray!30,very thick,
+               mark=*,mark options={scale=1.25,fill=white},
+               only marks]
+               coordinates {(0,0) (1,\Fone) (2,\Ftwo) (3,\Fthree)};
 
-\hfill
-Dalla definizione segue che la probabilità che $X$ risieda in un intervallo semichiuso $(a,b]$, dove $a < b$, è
+    \end{axis}
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.57\textwidth}
+La funzione a gradini sulla sinistra rappresenta la funzione \\ di ripartizione $F_X$ di una variabile discreta con dominio di supporto $\{ x_1, x_2, x_3, x_4 \}$. Si osserva che:
+\vspace{2mm}
+
+\begin{itemize}
+    \item ogni scalino verticale coincide con un valore specifico della variabile, e l'altezza dello scalino rappresenta la probabilità che la variabile assuma quel valore.
+
+\vspace{1mm}
+    \item i tratti orizzontali mostrano che in tutti gli intervalli aperti fra un punto e il successivo la probabilità non cambia, ossia la funzione è costante.
+\end{itemize}
+\end{minipage}
+```
+\vspace{1.5mm}
+\begin{myquote_smaller} \textbf{Approfondimento} La definizione della variabile aleatoria $X$ come funzione misurabile implica che $\forall x \in \mathbb{R}$ l'insieme $\{X \le x\}$, che è l'immagine inversa dell'intervallo $(-\infty, x]$, sia un evento, ossia appartenga alla $\sigma$-algebra $\mathcal{F}$ dello spazio di probabilità su cui $X$ è definita. Senza questa condizione di misurabilità, non avrebbe senso assegnare una probabilità a tali eventi e, di conseguenza, la funzione di ripartizione non sarebbe ben definita. \end{myquote_smaller}
+
+
+#### Proprietà
+La funzione di ripartizione $F_X$ possiede le seguenti proprietà:
+
+- $0 \le F_X(x) \le 1 \;\; \forall x \in \mathbb{R}$
+
+- Monotonicità: $F_X$ è non decrescente, ossia se $x_1 < x_2$, allora $F_X(x_1) \le F_X(x_2)$.  
+Questo riflette il fatto che $\{X \le x_1\} \sube \{ X \le x_2 \}$.
+
+- Continuità a destra: per ogni $\displaystyle x \in \mathbb{R} \;\; \lim_{y \to x^+} F_X(y) = F_X(x)$
+
+- Limiti estremi: $\displaystyle \lim_{x \to -\infty} F_X(x) = 0\,$ e $\,\displaystyle \lim_{x \to +\infty} F_X(x) = 1$
+
+La funzione di ripartizione non è necessariamente continua a sinistra.
+
+\vspace{3mm}
+##### Proposizione
+La probabilità che $X$ risieda in un intervallo semichiuso $(a,b]$, dove $a < b$, è
 $$
 \mathbb{P}(a < X \le b) = F_X(b) - F_X(a)
 $$
+\vspace{-8mm}
 
-\vspace{-1mm}
 Dimostrazione
-: Si consideri l'evento $\{a < X \le b\}$ con $a < b$. È possibile affermare che
 
-    \vspace{-0mm}
-    \qquad $\{X \le b\} = \{X \le a\} \cup \{a < X \le b\}$
+```{=latex}
+\qquad - Si consideri l'evento $\{a < X \le b\}$ con $a < b$. È possibile affermare che
 
-    dove $\{X \le a\}$ e $\{a < X \le b\}$ sono due eventi disgiunti. Utilizzando il terzo assioma di Kolmogorov:
+\begin{center}$\{X \le b\} = \{X \le a\} \cup \{a < X \le b\}$\end{center}
 
-    \qquad $\mathbb{P}(X \le b)= \mathbb{P}(X \le a) + \mathbb{P}(a < X \le b)$
+\hspace*{2.3em} dove $\{X \le a\}$ e $\{a < X \le b\}$ sono due eventi disgiunti. Utilizzando il terzo assioma di Kolmogorov:
 
-    Riscrivendo il tutto utilizzando la funzione di ripartizione, si ha
+\begin{center}$\mathbb{P}(X \le b)= \mathbb{P}(X \le a) + \mathbb{P}(a < X \le b)$\end{center}
 
-    \qquad $F_X(b) = F_X(a) +\mathbb{P}(a < X \le b)$
+\qquad - Riscrivendo il tutto utilizzando la funzione di ripartizione, si ha
 
-    Da cui si ottiene che $\mathbb{P}(a < X \le b) = F_X(b) - F_X(a)$. La tesi è quindi dimostrata.
+\begin{center}$F_X(b) = F_X(a) +\mathbb{P}(a < X \le b)$\end{center}
+
+\hspace*{2.3em} da cui si ottiene che $\mathbb{P}(a < X \le b) = F_X(b) - F_X(a)$. La tesi è quindi dimostrata.
+```
 
 
 \vspace{1mm}
-> Si può quindi esprimere la probabilità di un qualsiasi evento relativo a $X$ in termini della funzione di ripartizione, sfruttando la rappresentazione degli eventi come unioni di intervalli semiaperti. 
+> **Approfondimento** Si può quindi esprimere la probabilità di un qualsiasi evento relativo a $X$ in termini della funzione di ripartizione, sfruttando la rappresentazione degli eventi come unioni di intervalli semiaperti. 
 >
 > Sia $A \sube \mathbb{R}$ un evento della variabile $X$, allora si intende in realtà l'evento  
 > $\{X \in A\} \equiv \{\omega \in \Omega \mid X(\omega) \in A \}$, ossia il sottoinsieme di $\Omega$ formato da tutti gli esiti $\omega$ per cui la trasformazione $X$ produce un valore appartentente all'insieme $A \sube \mathbb{R}$.
@@ -3533,9 +3633,7 @@ Dimostrazione
 
 
 
-
 \hfill
-
 ## Variabili aleatorie discrete
 
 Le variabili aleatorie discrete sono variabili il cui dominio di supporto è un insieme numerabile:
@@ -3553,28 +3651,32 @@ $$
 
 \hfill
 
-Proprietà
+Proposizione
 : La somma delle probabilità di tutte le specificazioni deve essere $1$:
 $$
 \sum_{x \in D_X} \mathbb{P}(X=x) = 1
 $$
 
-\vspace{-1mm}
+\vspace{-2.5mm}
 Dimostrazione
-: Se $D_X$ è il supporto di $X$, allora $\Omega$ si può scrivere come unione disgiunta di tutti gli eventi $\{X = x\}$ con $x \in D_X$, ossia:
 
-    \vspace{-0mm}
-    
-    \qquad $\displaystyle \Omega = \bigcup_{x \in D_X} \{X = x\}$
+```{=latex}
+\qquad - Se $D_X$ è il supporto di $X$, allora $\Omega$ si può scrivere come unione disgiunta di tutti gli eventi $\{X = x\}$  
+\hspace*{2.3em} con $x \in D_X$, ossia:
 
-    perché ogni esito $\omega$ in $\Omega$ genera un valore $X(\omega)$ che appartiene al supporto.
-    Essendo gli eventi $\{X = x\}$ a due a due disgiunti, è possibile applicare il terzo assioma di Kolmogorov:
-    
-    \qquad $\displaystyle \mathbb{P}\Big( \bigcup_{x \in D_X} \{X = x\} \Big) = \sum_{x \in D_X} \mathbb{P}(X=x) = 1$
+\vspace{-2mm}
+\begin{center}$\displaystyle \Omega = \bigcup_{x \in D_X} \{X = x\}$\end{center}
 
-    Infine, poiché l'unione copre interamente $\Omega$, per il primo assioma si ottiene:
+\hspace*{2.3em} perché ogni esito $\omega$ in $\Omega$ genera un valore $X(\omega)$ che appartiene al supporto.
 
-    \qquad $\displaystyle 1 = \mathbb{P}(\Omega) = \sum_{x \in D_X} \mathbb{P}(X=x)$
+\qquad - Essendo gli eventi $\{X = x\}$ a due a due disgiunti, è possibile applicare il terzo assioma di Kolmogorov:
+
+\begin{center}$\displaystyle \mathbb{P}\Big( \bigcup_{x \in D_X} \{X = x\} \Big) = \sum_{x \in D_X} \mathbb{P}(X=x) = 1$\end{center}
+
+\qquad - Infine, poiché l'unione copre interamente $\Omega$, per il primo assioma si ottiene:
+
+\begin{center}$\displaystyle 1 = \mathbb{P}(\Omega) = \sum_{x \in D_X} \mathbb{P}(X=x)$\end{center}
+``````
 
 \hfill
 
@@ -3588,34 +3690,92 @@ Dimostrazione
 
 Data una variabile aleatoria discreta $X$, la sua *funzione di (massa di) probabilità* è una funzione di variabile reale che assegna ad ogni valore di $X$ la probabilità dell'evento elementare $\{X = x\}$.
 
-- Nel caso in cui $X$ sia continua, ogni singolo punto ha probabilità zero, e dunque la funzione di massa perde di significato; in tal caso si usa la funzione di densità.
+- Come si vedrà successivamente, nel caso in cui $X$ sia continua, ogni singolo punto assume probabilità zero, e dunque la funzione di massa perde di significato; in tal caso si userà la funzione di densità.
 
-Formalmente, data una variabile aleatoria $X : \Omega \rightarrow \mathbb{R}$, la funzione di probabilità è la funzione $p_X: \mathbb{R} \rightarrow [0,1]$ definita da
+\hfill
+Formalmente, dato $X : \Omega \rightarrow \mathbb{R}$, la funzione di probabilità è la funzione $p_X: \mathbb{R} \rightarrow [0,1]$ definita da
 $$
 p_X(x) = \mathbb{P}(X = x) = \mathbb{P}(\{\omega \in \Omega \mid X(\omega) = x\}) \quad \forall x \in \mathbb{R}
 $$
 che associa ad ogni valore $x$ assunto da $X$ la probabilità che $X$ assuma esattamente quella specificazione.
 
+
 \hfill
-Proprietà
-: La funzione di probabilità rispetta le seguenti proprietà:
+```{=latex}
+%------------------------------------------------
+% PARAMETRI DELLA DISTRIBUZIONE A 4 PUNTI
+%------------------------------------------------
+\def\pA{0.16}   % p1
+\def\pB{0.30}   % p2
+\def\pC{0.05}   % p3
+\def\pD{0.23}
 
-    - $\forall x \in \mathbb{R} \;\; p_X(x) \ge 0$: trattandosi del calcolo di una probabilità, questa funzione non può assumere valori negativi
 
-    - $p_X(x) \not = 0$ solo per $x \in \mathbb{R} \land x\in D_X$
+\pgfmathsetmacro{\Fone}{\pA}
+\pgfmathsetmacro{\Ftwo}{\pA+\pB}
+\pgfmathsetmacro{\Fthree}{\pA+\pB+\pC}
 
-    - per $x \not \in D_X$ si assume che $p_X(x) = 0\,$[^2]
+%------------------------------------------------
+%   pmf a 4 punti (x1, x2, x3, x4)
+%------------------------------------------------
+\begin{minipage}{0.39\textwidth}
+  \begin{tikzpicture}[>=stealth,line cap=round]
+  \begin{axis}[pmfaxis,
+    ylabel={$p_{X}$},
+    ylabel style={at={(axis description cs:-0.08,1)},
+                  anchor=south,rotate=-90},
+    ytick={0,\pA,\pB,\pC,\pD},
+    yticklabels={0,$p(x_1)$,$p(x_2)$,$p(x_3)$,$p(x_4)$},
+    xlabel={$x$},
+    xlabel style={at={(axis description cs:1,0)},
+                  anchor=north west,yshift=-2pt},
+    xtick={0,1,2,3},
+    xticklabels={$x_{1}$,$x_{2}$,$x_{3}$,$x_{4}$},
+    xmin=-0.4, xmax=3.7,
+    ymin=0,  ymax=0.35,       % un po’ di margine sopra p_max = 0.30
+    clip=false
+  ]
 
-    Come già dimostrato in precedenza, la somma delle probabilità su tutto il supporto di $X$ deve essere pari a 1. Di conseguenza, se $D_X$ è numerabile, scrivendo $p_X(x) = \mathbb{P}(X = x)$ si ottiene
-    \vspace{-1.5mm}
-    $$
-    \sum_{x \in D_X} p_X(x) = 1
-    $$
+    %--------------------------------------------
+    %   asse x (linea di base)
+    %--------------------------------------------
+    \addplot[gray!30,very thick] coordinates {(-0.378,0) (3.6,0)};
 
-[^2]: L’uso della funzione indicatrice $I_{D_X}(x)$ garantisce formalmente che la funzione di probabilità sia definita unicamente sui valori appartenenti al supporto $D_X$. Infatti, per ogni $x \notin D_X$ abbiamo $I_{D_X}(x) = 0$, e quindi $p_X(x) = \mathbb{P}(X=x) \cdot I_{D_X}(x) = 0$. Questo esplicita il fatto che ogni $x$ non preso in considerazione (ossia, per cui $\mathbb{P}(X=x) = 0$) viene escluso dalla definizione di $p_X$.
+    %--------------------------------------------
+    %   barrette verticali
+    %--------------------------------------------
+    \addplot[black,thick] coordinates {(0,0) (0,\pA)};
+    \addplot[black,thick] coordinates {(1,0) (1,\pB)};
+    \addplot[black,thick] coordinates {(2,0) (2,\pC)};
+    \addplot[black,thick] coordinates {(3,0) (3,\pD)};
 
-\vspace{-3mm}
+    %--------------------------------------------
+    %   punti pieni/vuoti
+    %--------------------------------------------
+    \addplot[gray!30,only marks,mark=*]
+             coordinates {(0,\pA) (1,\pB) (2,\pC) (3,\pD)};
+    \addplot[white,draw=gray!30,very thick,
+             mark=*,mark options={scale=1.25,fill=white},
+             only marks]
+             coordinates {(0,0) (1,0) (2,0) (3,0)};
 
+  \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.58\textwidth}
+Il diagramma a colonne a sinistra rappresenta la funzione di probabilità $p_X$ di una variabile discreta con dominio di supporto $\{ x_1, x_2, x_3, x_4 \}$. Si osserva che:
+\vspace{2mm}
+
+\begin{itemize}
+    \item ogni colonna verticale rappresenta un valore specifico \\ della variabile, e l'altezza della colonna indica la probabilità che la variabile assuma quel valore.
+\vspace{1mm}
+    \item fra due colonne consecutive la probabilità è nulla, in quanto $X$ può assumere solo i valori specifici del supporto.
+\end{itemize}
+\end{minipage}
+```
+
+
+\vspace*{6mm}
 Funzione indicatrice
 : Sia $X : \Omega \rightarrow \mathbb{R}$ una variabile aleatoria discreta a valori reali con dominio di supporto  
 $D_X = \{x \in \mathbb{R} \mid \mathbb{P}(X=x) > 0\}$. La funzione di massa di probabilità $p_X$ può essere espressa in forma compatta mediante la funzione indicatrice. Formalmente, si scrive
@@ -3637,6 +3797,27 @@ $D_X = \{x \in \mathbb{R} \mid \mathbb{P}(X=x) > 0\}$. La funzione di massa di p
 
 
 \hfill
+#### Proprietà
+La funzione di probabilità rispetta le seguenti proprietà:
+
+- $\forall x \in \mathbb{R} \;\; p_X(x) \ge 0$: trattandosi di una probabilità, questa funzione non può assumere valori negativi
+
+- $p_X(x) \not = 0$ solo per $x \in \mathbb{R} \land x\in D_X$
+
+- per $x \not \in D_X$ si assume che $p_X(x) = 0\,$[^2]
+
+[^2]: L’uso della funzione indicatrice $I_{D_X}(x)$ garantisce formalmente che la funzione di probabilità sia definita unicamente sui valori appartenenti al supporto $D_X$. Infatti, per ogni $x \notin D_X$ abbiamo $I_{D_X}(x) = 0$, e quindi $p_X(x) = \mathbb{P}(X=x) \cdot I_{D_X}(x) = 0$. Questo esplicita il fatto che ogni $x$ non preso in considerazione (ossia, per cui $\mathbb{P}(X=x) = 0$) viene escluso dalla definizione di $p_X$.
+
+
+\hfill
+Proposizione
+: Come già dimostrato in precedenza, la somma delle probabilità su tutto il supporto di $X$ deve essere pari a 1. Di conseguenza, se $D_X$ è numerabile, scrivendo $p_X(x) = \mathbb{P}(X = x)$ si ottiene
+\vspace{-1mm}
+$$
+\sum_{x \in D_X} p_X(x) = 1
+$$
+
+\hfill
 #### Relazione tra funzione di ripartizione e di probabilità
 
 Sia $F_X$ la funzione di ripartizione di $X$ e sia $p_X$ la sua funzione di probabilità. La prima rappresenta la somma cumulativa dei valori della seconda.
@@ -3645,21 +3826,374 @@ Per definizione si ha che $F_X(x) = \mathbb{P}(X \le x)$ e, per una variabile di
 $$
 F_X(x) = \sum_{ y \le x} p_X(y)
 $$
-Questo significa che, per ogni valore $x$, la funzione $F_X(x)$ è data dal contributo cumulativo dei salti indotti da ciascun valore specifico di $X$ minore o uguale a $x$. In particolare, se $x_0$ è un punto in cui $X$ può assumere un valore, ossia $x_0 \in D_X$, allora il salto di $F_X$ in $x_0$ è proprio
-$$
-F_X(x_0) - \lim_{x\to x_0^-} F_X(x) = p_X(x_0)
-$$
-Indicando con $F_X(x^-)$ il limite sinistro della $F_X$ in $x$, si può riscrivere l'equazione precedente in
-$$
-p_X(x) = F_X(x) - F_X(x^-)
-$$
-Da ciò si deduce che se $X$ è una variabile aleatoria continua, tale valore è nullo in ogni punto poiché la sua funzione di ripartizione è continua, e di conseguenza $F_X(x) = F_X(x^-)$
+Questo significa che, per ogni valore $x$, la funzione $F_X(x)$ è data dal contributo cumulativo dei salti indotti da ciascun valore specifico di $X$ minore o uguale a $x$.
+
+>**Approfondimento** In particolare, se $x_0$ è un punto in cui $X$ può assumere un valore, ossia $x_0 \in D_X$, allora il salto di $F_X$ in $x_0$ è proprio
+>$$
+>F_X(x_0) - \lim_{x\to x_0^-} F_X(x) = p_X(x_0)
+>$$
+>Indicando con $F_X(x^-)$ il limite sinistro della $F_X$ in $x$, si può riscrivere l'equazione precedente in
+>$$
+>p_X(x) = F_X(x) - F_X(x^-)
+>$$
+>Da ciò si deduce che se $X$ è una variabile aleatoria continua, tale valore è nullo in ogni punto poiché la sua funzione di ripartizione è continua, e di conseguenza $F_X(x) = F_X(x^-)$
+
+
+\vspace{4mm}
+```{=latex}
+%------------------------------------------------
+%  PROBABILITÀ (3 punti)
+%------------------------------------------------
+\def\pA{0.33}          % p(x1)
+\def\pB{0.15}          % p(x2)
+\pgfmathsetmacro{\pC}{1-\pA-\pB}   % p(x3) = 0.70
+
+\pgfmathsetmacro{\Fone}{\pA}
+\pgfmathsetmacro{\Ftwo}{\pA+\pB}
+
+%------------------------------------------------
+%  GRAFICI AFFIANCATI
+%------------------------------------------------
+\begin{center}
+\begin{minipage}{0.46\textwidth}
+\centering
+\begin{tikzpicture}[>=stealth,line cap=round]
+\begin{axis}[pmfaxis,
+  ylabel={$p_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},
+                  anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},
+                  anchor=north west,yshift=-2pt},
+  ytick={0,\pA,\pB,\pC,1},
+  yticklabels={0,$p(x_1)$,$p(x_2)$,$p(x_3)$,1},
+  xtick={0,1,2},
+  xticklabels={$x_{1}$,$x_{2}$,$x_{3}$},
+  xmin=-0.4, xmax=2.6,
+  ymin=0,  ymax=1.15,      % margine sopra p_max = 0.70
+  clip=false
+]
+  % asse x
+  \addplot[gray!30,very thick] coordinates {(-0.4,0) (2.5,0)};
+  % barrette
+  \addplot[black,thick] coordinates {(0,0) (0,\pA)};
+  \addplot[black,thick] coordinates {(1,0) (1,\pB)};
+  \addplot[black,thick] coordinates {(2,0) (2,\pC)};
+  % punti pieni / vuoti
+  \addplot[gray!30,only marks,mark=*] coordinates {(0,\pA) (1,\pB) (2,\pC)};
+  \addplot[white,draw=gray!30,very thick,
+           mark=*,mark options={scale=1.25,fill=white},
+           only marks] coordinates {(0,0) (1,0) (2,0)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.46\textwidth}
+\centering
+\begin{tikzpicture}[>=stealth,line cap=round]
+\begin{axis}[cdfaxis,
+  ylabel={$F_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},
+                  anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},
+                  anchor=north west,yshift=-2pt},
+  ytick={0,\Fone,\Ftwo,1},
+  yticklabels={$0$,$F(x_{1})$,$F(x_{2})$,$1$},
+  xtick={0,1,2},
+  xticklabels={$x_{1}$,$x_{2}$,$x_{3}$},
+  xmin=-0.4, xmax=2.6, ymin=0, ymax=1.15,
+  clip=false
+]
+  % segmenti orizzontali
+  \addplot[gray!30,very thick] coordinates {(-0.4,0) (0,0)};
+  \addplot[gray!30,very thick] coordinates {(0,\Fone) (1,\Fone)};
+  \addplot[gray!30,very thick] coordinates {(1,\Ftwo) (2,\Ftwo)};
+  \addplot[gray!30,very thick] coordinates {(2,1) (2.6,1)};
+  % segmenti verticali (salti = p_i)
+  \addplot[black,thin] coordinates {(0,0) (0,\Fone)};
+  \addplot[black,thin] coordinates {(1,\Fone) (1,\Ftwo)};
+  \addplot[black,thin] coordinates {(2,\Ftwo) (2,1)};
+  % punti pieni / vuoti
+  \addplot[gray!30,only marks,mark=*] coordinates {(0,\Fone) (1,\Ftwo) (2,1)};
+  \addplot[white,draw=gray!30,very thick,
+           mark=*,mark options={scale=1.25,fill=white},
+           only marks] coordinates {(0,0) (1,\Fone) (2,\Ftwo)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+```
+Sopra si propongono i grafici di una funzione di probabilità $p_X$ e della corrispondente funzione di ripartizione $F_X$ di una variabile aleatoria discreta $X$ con dominio di supporto $\{ x_1, x_2, x_3 \}$, con:
+
+- $p(x_1) = 0.33$
+- $p(x_2) = 0.15$
+- $p(x_3) = 0.52$
+
+Si può notare come l'altezza di ogni colonna nel grafico della funzione di probabilità corrisponda al salto della funzione di ripartizione in quel punto. In altre parole, $F_X$ è la somma cumulativa delle barrette di $p_X$.
+
 
 \hfill
 
-##### Proposizione
+
+\newpage
+## Variabili aleatorie continue
+
+Le variabili aleatorie continue sono variabili il cui dominio di supporto è un insieme non numerabile, tipicamente un intervallo di $\mathbb{R}$. In questo caso, la funzione di probabilità non è definita, poiché la probabilità di ogni singolo punto è zero. Si introduce allora la funzione di densità.
+
+### Funzione di densità
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Funzione di densità}
+```
+Una variabile aleatoria si dice continua se esiste una funzione non negativa $f_X : \mathbb R\to\mathbb R^+$ tale che per ogni insieme misurabile $A \sube \mathbb{R}$ allora
+$$
+\mathbb P(X\in A)=\int_{A} f(x)\,dx
+$$
+
+La funzione $f_X$ prende il nome di *funzione di densità di probabilità*, o più semplicemente *densità*, di $X$.
+
+Poiché $X$ deve assumere un qualche valore in $\mathbb{R}$ (ossia il codominio di $X$), la sua densità deve soddisfare:
+$$
+1 = \mathbb P (X \in \mathbb R) = \int_{- \infty}^{+ \infty} f_X(x) \, dx
+$$
+Quindi l'integrale della densità su tutto il suo dominio deve essere pari a 1. Questa rappresenta l'unica condizione necessaria affinché $f_X$ possa essere considerata una densità di probabilità.
+
+>```{=latex}
+>% intervallo dell’area rigata
+>\def\a{0.6}
+>\def\b{2.3}
+>
+>\pgfplotsset{
+>  densityaxis/.style={
+>    width=6.5cm, height=4.8cm,
+>    axis lines=left, axis line style={-stealth},
+>    xmin=0, xmax=4, ymin=0, ymax=1.25,
+>    xtick={\a,\b},
+>    xticklabels={$a$,$b$},
+>    ytick={0,1},
+>    yticklabels={$0$,$1$},
+>    tick style={black,thin}, clip=false
+>  }
+>}
+>
+>\begin{minipage}{0.45\textwidth}
+>\begin{tikzpicture}[>=stealth,line cap=round]
+>\begin{axis}[densityaxis,
+>    axis on top=true,        %  ← NEW: curva sopra gli assi
+>  set layers,
+>  ylabel={$f_{X}(x) = e^{-x}$},
+>  ylabel style={at={(axis description cs:0.08,1)},anchor=south,rotate=-90},
+>  xlabel={$x$},
+>  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt}
+>]
+>
+>
+>  % area rigata fra a e b
+>  \addplot[domain=\a:\b,
+>           fill=gray!20,
+>           pattern={Lines[angle=45,distance=3pt]}, pattern color=gray!35,
+>           draw=none,samples=120]
+>           {exp(-x)} \closedcycle;
+>
+>    % curva f(x)=e^{-x}, includendo esplicitamente il punto (0,1)
+>    \addplot[
+>      domain=0:4.5,
+>      thick,
+>      gray!60,
+>      samples at={0,0.02,...,3.5}   % <— primo sample esattamente in 0
+>    ] {exp(-x)};
+>
+>  % tratteggiate verticali
+>  \addplot[gray!60,dashed] coordinates {(\a,0) (\a,{exp(-\a)})};
+>  \addplot[gray!60,dashed] coordinates {(\b,0) (\b,{exp(-\b)})};
+>
+>  % freccia + testo dell’area
+>  \draw[->,gray!50,thick] (axis cs:{(\a+\b)/2+0.1},{0.29})
+>        -- ++(0,0.28)
+>        node[above,gray!50,font=\footnotesize]
+>        {$\mathbb P(a<X<b)$};
+>
+>\end{axis}
+>\end{tikzpicture}
+>\end{minipage}
+>\begin{minipage}{0.53\textwidth}
+>La figura a sinistra mostra un esempio di funzione di densità $f_X(x) = e^{-x}$, che è definita per ogni $x \ge 0$. Si osserva che la funzione di densità integra a 1 su $[0, +\infty)$, ossia 
+>$$
+>\displaystyle \int_{0}^{\infty} e^{-x}\,dx = [-e^{-x}]_0^{+\infty} = 1
+>$$
+>il che la rende una valida densità di probabilità quando normalizzata su questo intervallo.
+>\end{minipage}
+> \vspace{2mm}
+> 
+> Si può quindi assumere che la funzione di densità sia definita su tutto $\mathbb{R}$, ma che sia zero al di fuori dell'intervallo di interesse:
+> $$
+> f_X(x) = \begin{cases}
+> e^{-x} & \text{se } x \ge 0 \\
+> 0 & \text{se } x < 0
+> \end{cases}
+> $$
+>```
+
+\hfill
+La probabilità viene normalmente calcolata su intervalli, e quindi ponendo $A = [a,b]$ si ha
+$$
+\mathbb{P}(a \le X \le b) = \int_a^b f_X(x) \, dx
+$$
+
+Ponendo in quest'ultima equazione $b = a$ si osserva come la probabilità che una variabile aleatoria continua assuma un qualunque valore specifico $a$ sia zero:
+$$
+\mathbb{P}(X = a) = \int_a^a f_X(x) \, dx = 0
+$$
+Per questo motivo non è rilevante che gli estremi dell'intervallo siano chiusi o aperti.
+
+\hfill
+\newpage
+#### Relazione tra funzione di ripartizione e densità
+Sia $F_X$ la funzione di ripartizione di $X$ e sia $f_X$ la sua densità. Queste due funzioni sono legate dalla seguente relazione:
+$$
+F_X(x) = \mathbb P(X \le x) = \mathbb P(X \in (-\infty, x]) = \int_{-\infty}^x f_X(t) \, dt
+$$
+
+Derivando entrambi i membri rispetto a $x$ si ottiene, per il teorema fondamentale del calcolo integrale, che
+$$
+\frac{d}{dx} F_X(x) = f_X(x)
+$$
+e quindi la funzione di ripartizione è la primitiva della densità.
+
+\hfill
+##### Proprietà
+La funzione di ripartizione, oltre alle proprietà già viste quando è stata introdotta, possiede delle proprietà aggiuntive per $X$ continua:
+
+- Continuità a sinistra: per ogni $\displaystyle x \in \mathbb{R} \; \lim_{y \to x^-} F_X(y) = F_X(x)$
+
+- Essendo continua a destra e sinistra, la funzione di ripartizione è continua in ogni punto $x \in \mathbb{R}$. Non presenta quindi nessun salto o discontinuità.
+
+\hfill
+>```{=latex}
+>%------------------------------------------------
+>% Parametri e stili
+>%------------------------------------------------
+>\def\a{0.55}
+>\def\b{1.7}
+>\pgfplotsset{
+>  densityaxis/.style={
+>    width=6.5cm, height=4.8cm,
+>    xmin=0, xmax=4.5, ymin=0, ymax=1.25,
+>    axis x line=bottom,        % asse x in basso
+>    axis y line=left,        % asse y in x=0
+>    axis line style={-stealth},% frecce su entrambi
+>    xtick={\a,\b}, xticklabels={$a$,$b$},
+>    ytick={0,1}, yticklabels={$0$,$1$},
+>    tick style={black,thin}, clip=false
+>  },
+>  cdfcontaxis/.style={
+>    width=6.5cm, height=4.8cm,
+>    xmin=0, xmax=4.5, ymin=0, ymax=1.25,
+>    axis x line=bottom,    % asse x in basso
+>    axis y line=left,    % asse y in x=0
+>    axis line style={-stealth},
+>    xtick={\a,\b}, xticklabels={$a$,$b$},
+>    ytick={0,1-exp(-\a),1-exp(-\b),1},
+>    yticklabels={$0$,$F(a)$,$F(b)$,$1$},
+>    tick style={black,thin}, clip=false
+>  }
+>}
+>
+>\begin{center}
+>%-------------- DENSITÀ ------------------------
+>\begin{minipage}{0.43\textwidth}
+>\centering
+>\begin{tikzpicture}[>=stealth,line cap=round]
+>\begin{axis}[densityaxis,
+>  axis on top=true,
+>  ylabel={$f_{X}(x) = e^{-x}$},
+>  ylabel style={at={(axis description cs:0.08,1)},anchor=south,rotate=-90},
+>  xlabel={$x$},
+>  xlabel style={at={(axis description cs:1,0)},
+>                anchor=north west,yshift=-2pt}
+>]
+>  % area sotto la curva
+>  \addplot[domain=\a:\b,
+>           fill=gray!20,
+>           pattern={Lines[angle=45,distance=3pt]},
+>           pattern color=gray!35,
+>           draw=none,samples=120] {exp(-x)} \closedcycle;
+>  % curva
+>  \addplot[domain=0:4.0, thick, gray!60, samples=160] {exp(-x)};
+>  % tratti verticali
+>  \addplot[gray!60,dash pattern=on 1pt off 1pt] coordinates {(\a,0) (\a,{exp(-\a)})};
+>  \addplot[gray!60,dash pattern=on 1pt off 1pt] coordinates {(\b,0) (\b,{exp(-\b)})};
+>  % didascalia area
+>  \draw[->,gray!50,thick]
+>    (axis cs:{(\a+\b)/2+0.1},0.35) -- ++(0,0.3)
+>    node[above,gray!50,font=\footnotesize] {$\mathbb P(a<X<b)$};
+>\end{axis}
+>\end{tikzpicture}
+>\end{minipage}
+>%-------------- CDF ----------------------------
+>\begin{minipage}{0.43\textwidth}
+>\centering
+>\begin{tikzpicture}[>=stealth,line cap=round]
+>  \begin{axis}[cdfcontaxis,
+>    axis on top=true,
+>    ylabel={$F_{X}(x) = 1 - e^{-x}$},
+>    ylabel style={at={(axis description cs:0.14,1)},anchor=south,rotate=-90},
+>    xlabel={$x$},
+>    xlabel style={at={(axis description cs:1,0)},
+>                  anchor=north west,yshift=-2pt},
+>  ]
+>    % asse x di base
+>
+>    % curva continua di CDF
+>    \addplot[domain=0:4.0, thick, gray!60, samples=160]
+>             {x<0 ? 0 : 1 - exp(-x)};
+>
+>    % tratteggiate verticali in a e b
+>    \addplot[gray!60,dashed]
+>             coordinates {(\a,0) (\a,{1-exp(-\a)})};
+>    \addplot[gray!60,dashed]
+>             coordinates {(\b,0) (\b,{1-exp(-\b)})};
+>
+>    % tratteggiate orizzontali a livello F(a) e F(b)
+>    \addplot[gray!60,dashed]
+>             coordinates {(0,{1-exp(-\a)}) (\a,{1-exp(-\a)})};
+>    \addplot[gray!60,dashed]
+>             coordinates {(0,{1-exp(-\b)}) (\b,{1-exp(-\b)})};
+>    \addplot[gray!60,dashed]
+>             coordinates {(0,1) (4.2,1)};
+>
+>    % evidenziazione differenza F(b)-F(a)
+>    \draw[<->,gray!50,thick]
+>      (axis cs:\b,{1-exp(-\a)}) -- (axis cs:\b,{1-exp(-\b)})
+>      node[midway,right,gray!50,font=\footnotesize]
+>      {$F(b)-F(a)$};
+>
+>  \end{axis}
+>\end{tikzpicture}
+>\end{minipage}
+>\end{center}
+>```
+> Sopra sono riportati i grafici della funzione di densità $f_X(x) = e^{-x}$ e della corrispondente funzione di ripartizione $F_X(x) = 1 - e^{-x}$, che è definita per ogni $x \ge 0$. Infatti:
+> $$
+> F_X(x) = \mathbb P (X \le x) = \int_{-\infty}^x f_X(t) \,dt = \begin{cases}
+> 0 & \text{se } x < 0 \\
+> \displaystyle \int_0^x e^{-t} \,dt = 1 - e^{-x} & \text{se } x \ge 0
+> \end{cases}
+> $$
+> 
+
+
+\hfill
+
+---
+
+\vspace{2mm}
+#### Legge di distribuzione
+
 Quando si conosce la funzione di probabilità $p_X$, oppure la funzione di ripartizione $F_X$, di una variabile aleatoria $X$ qualsiasi, si hanno abbastanza informazioni per poter calcolare la probabilità di ogni evento che dipenda solo da tale variabile aleatoria. Si dice in questo caso che si conosce la *distribuzione* o *legge* della variabile aleatoria considerata.  
 Affermare quindi che $X$ e $Y$ hanno la stessa distribuzione significa che le rispettive funzioni di ripartizioni sono identiche, $X \sim F_X \equiv F_Y \sim Y$, e quindi anche che $\mathbb{P}(X \in A) = \mathbb{P}(Y \in A)$ per ogni insieme di valori $A \sube \mathbb{R}$.
+
+
+
 
 
 \newpage
@@ -3679,15 +4213,15 @@ dove la virgola denota l'intersezione tra i due eventi $\{X \le x\}$ e $\{Y \le 
 \hfill
 La conoscenza di questa funzione permette di calcolare la probabilità di tutti gli eventi che dipendono, singolarmente o congiuntamente, da $X$ e $Y$. La funzione di ripartizione di $X$ può essere ottenuta dalla funzione di ripartizione congiunta come
 $$
-F_X(x) = \lim_{y \to +\infty} F_{X,Y}(x,y) = \mathbb{P}(X \le x, Y \le +\infty) = F_{X,Y}(x,+\infty)
+F_X(x) = \lim_{y \to +\infty} F_{X,Y}(x,y) \;\; = \;\; \mathbb{P}(X \le x, Y \le +\infty) = F_{X,Y}(x,+\infty)
 $$
 
 Analogamente, la funzione di ripartizione di $Y$ è
 $$
-F_Y(y) = \lim_{x \to +\infty} F_{X,Y}(x,y) = \mathbb{P}(X \le +\infty, Y \le y) = F_{X,Y}(+\infty,y)
+F_Y(y) = \lim_{x \to +\infty} F_{X,Y}(x,y) \;\; = \;\; \mathbb{P}(X \le +\infty, Y \le y) = F_{X,Y}(+\infty,y)
 $$
 
-Le funzioni di ripartizioni $F_X$ e $F_Y$ sono dette *marginali*.
+Le funzioni di ripartizioni $F_X$ e $F_Y$ sono dette *marginali*. È importante notare che sebbene le funzioni di ripartizione marginali si possano sempre ricavare da quella congiunta, il viceversa è falso.
 
 \hfill
 #### Funzione di probabilità congiunta
@@ -3703,7 +4237,7 @@ $$
 
 Tramite il terzo assioma di Kolmogorov, si ha quindi
 $$
-\mathbb{P}(X = x) = \sum_{y \in D_Y} \mathbb{P}(X = x, Y = y) = \sum_{y \in D_Y} p_{X,Y}(x,y) = p_X(x)
+p_X(x) = \mathbb{P}(X = x) = \sum_{y \in D_Y} \mathbb{P}(X = x, Y = y) = \sum_{y \in D_Y} p_{X,Y}(x,y)
 $$
 
 Analogamente, si può dimostrare che
@@ -3713,6 +4247,54 @@ $$
 
 Queste due funzioni di probabilità sono dette *marginali*. È importante notare che sebbene le funzioni di massa di probabilità marginali si possono sempre ricavare da quella congiunta, il viceversa è falso.
 
+#### Funzione di densità congiunta
+Due variabili aleatorie $X$ e $Y$ sono congiuntamente continue se esiste una funzione non negativa $f_{X,Y}(x,y)$, definita per tutti gli $x$ e $y$, avente la proprietà che per ogni sottoinsieme $C$ del piano cartesiano
+$$
+\mathbb{P}((X,Y) \in C) = \iint_{(x,y) \in C} f_{X,Y}(x,y) \, dx \, dy
+$$
+
+La funzione $f_{X,Y}$ prende il nome di *funzione di densità congiunta* di $X$ e $Y$.
+
+\vspace{2.5mm}
+> **Approfondimento** Se $A$ e $B$ sono sottoinsiemi qualsiasi di $\mathbb{R}$, e se si denota con $C = A \times B$ il loro prodotto cartesiano su $\mathbb{R}^2$, ovvero
+> $$
+> C = \{(x,y) \in \mathbb{R}^2 \mid x \in A, y \in B\}
+> $$
+> allora la densità congiunta $_{X,Y}$ soddisfa
+> $$
+> \mathbb{P}(X \in A, Y \in B) = \int_B \int_A f_{X,Y}(x,y) \, dx \, dy
+> $$
+> 
+> Ponendo $A = (-\infty, a]$ e $B = (-\infty, b]$, si può riscrivere la funzione di ripartizione congiunta di $X$ e $Y$ come
+> $$
+> F_{X,Y}(a,b) = \mathbb{P}(X \le a, Y \le b) = \mathbb{P} (X \in A, Y \in B) = \int_{-\infty}^b \int_{-\infty}^a f_{X,Y}(x,y) \, dx \, dy
+> $$
+> da cui derivando, nelle due direzioni
+> $$
+> f_{X,Y}(a,b) = \dfrac{\partial^2 F_{X,Y}(a,b)}{\partial a \, \partial b}
+> $$
+> in tutti i punti in cui le derivate parziali sono definite.
+
+\hfill
+Le funzioni di densità $f_X$ e $f_Y$ si possono ricavare da quella congiunta, infatti per ogni insieme $A \sube \mathbb{R}$ si ha
+$$
+\int_A f_X(x) \, dx = \mathbb P (X \in A) = \mathbb P (X \in A, Y \in \mathbb{R}) = \int_A \int_{-\infty}^{+\infty} f_{X,Y}(x,y) \, dy \, dx
+$$
+Da questa equazione, dato che $A$ è un insieme arbitrario, si ricava che deve valere per forza l'uguaglianza degli integrandi:
+$$
+f_X(x) = \int_{-\infty}^{+\infty} f_{X,Y}(x,y) \, dy
+$$
+
+Analogamente, si può ricavare la funzione di densità di $Y$ come
+$$
+f_Y(y) = \int_{-\infty}^{+\infty} f_{X,Y}(x,y) \, dx
+$$
+
+Queste due funzioni di densità sono dette *marginali*. È importante notare che sebbene le densità marginali si possano sempre ricavare da quella congiunta, il viceversa è falso.
+
+
+
+\newpage
 ### Variabili indipendenti
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Variabili indipendenti}
@@ -3730,9 +4312,12 @@ ovvero, se per ogni scelta di $A$ e $B$, gli eventi $\{X \in A\}$ e $\{Y \in B\}
 Siano $X$ e $Y$ due variabili aleatorie indipendenti. Allora valgono le seguenti proprietà:
 
 - $F_{X,Y}(x,y) = F_X(x) \, F_Y(y)$
-- $p_{X,Y}(x,y) = p_X(x) \, p_Y(y)$
 
-    **Dimostrazione**
+- $f_{X,Y}(x,y) = f_X(x) \, f_Y(y)\;$ nel caso continuo
+
+- $p_{X,Y}(x,y) = p_X(x) \, p_Y(y)\;$ nel caso discreto
+
+    Dimostrazione
 
     1. $X,Y$ indipendenti $\;\; \Rightarrow \;\; p_{X,Y}(x,y) = p_X(x) \, p_Y(y) \quad \forall x, y$
         \vspace{-2mm}
@@ -3759,10 +4344,12 @@ Siano $X$ e $Y$ due variabili aleatorie indipendenti. Allora valgono le seguenti
 
     \vspace{-6mm}
     \begin{flalign*}
-    \text{Si è dimostrata perciò la tesi in entrambi i versi.}
+    \hspace*{2.5mm}\text{Si è dimostrata perciò la tesi in entrambi i versi.}
     &&\end{flalign*}
 
+
 \hfill
+##### Estensione dell'indipendenza
 È possibile estendere l'indipendenza a più variabili aleatorie. In questo caso, si dice che $X_1, X_2, \dots, X_n$ sono indipendenti se
 $$
 \forall A_1, \dots, A_n \sube \mathbb{R} \quad \mathbb{P}\Big( \bigcap_{i=1}^n X_i \in A_i \Big) = \prod_{i=1}^n \mathbb{P}(X_i \in A_i)
@@ -3772,31 +4359,18 @@ $$
 \newpage
 ## Valore atteso
 
-### Valore atteso di una variabile discreta
-
-```{=latex}
-\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Valore atteso di una variabile discreta}
-```
-
+#### Valore atteso di una variabile discreta
 Sia $X$ una variabile aleatoria discreta che può assumere i valori $D_X = \{x_1, \dots, x_n, \dots \}$, il valore atteso di $X$, che si indica con $\mathbb{E}[X]$, è il numero$\,$[^3]
 $$
-\mathbb{E}[X] = \sum_{x \in D_X} x\, \mathbb{P}(X = x) = \sum_{x \in D_X} x\, p_X(x) \tag{7.1.2}
+\mathbb{E}[X] = \sum_{x \in D_X} x\, \mathbb{P}(X = x) = \sum_{x \in D_X} x\, p_X(x) \tag{7.5.1}
 $$
 Pertanto, il valore atteso rappresenta la media pesata delle specificazioni di $X$, usando come pesi le probabilità che tali valori vengano assunti da $X$. Perciò $\mathbb{E}[X]$ è un indice di centralità della distribuzione di $X$.
 
-[^3]: Si osserva che $\mathbb{E}[X]$ è definito solo se la serie $(7.1.2)$ converge in valore assoluto, ovvero deve valere
-
-    $$
-    \sum_{x \in D_X} |x|\, p_X(x) < \infty
-    $$
-    \qquad In caso contrario si dice che $X$ non ha valore atteso.
-
-\hfill
 
 Analogamente alla media campionaria, il valore atteso può non corrispondere a una specificazione della variabile aleatoria $X$. Inoltre $\mathbb{E}[X]$ presenta la stessa unità di misura delle specificazioni.
 
 
-\hfill
+\vspace{3mm}
 Funzione indicatrice di un evento
 : La funzione indicatrice di un evento $A \sube \Omega$ è definita come una funzione $I_A: \Omega \to \{0,1\}$ tale che
 
@@ -3809,45 +4383,56 @@ Funzione indicatrice di un evento
     \end{cases}
     $$
 
-    Utilizzando questa definizione, si può dimostrare che il valore atteso della funzione indicatrice coincide con la probabilità dell'evento, infatti:
-    \vspace{-2mm}
+    Utilizzando la definizione di valore atteso, si trova che
     $$
-    \mathbb{E}[I_A] = \sum_{\omega \in \Omega} I_A(\omega)\, \mathbb{P}(\{\omega\})  
-    \vspace{-2mm}
-    $$
-    Notando che $I_A(\omega) = 1$ solo se $\omega \in A$ e 0 altrimenti, la somma si riduce a
-    \vspace{-2mm}
-    $$
-    \mathbb{E}[I_A] = \sum_{\omega \in A} \mathbb{P}(\{\omega\}) = \mathbb{P}(A)
+    \mathbb{E}[I_A] = 1\, \mathbb{P}(I_A = 1) + 0\, \mathbb{P}(I_A = 0) = 1 \, \mathbb{P}(A) + 0 \, \mathbb{P}(\overline{A}) = \mathbb{P}(A)
     $$
 
-#### Proprietà
+
+\vspace{3mm}
+#### Valore atteso di una variabile continua
+Sia $X$ una variabile aleatoria continua con densità $f_X$. Il valore atteso di $X$ è definito come$\,$\footnotemark[\value{footnote}]
+$$
+\mathbb{E}[X] = \int_{-\infty}^{+\infty} x\, f_X(x) \, dx \tag{7.5.2}
+$$
+
+
+[^3]: Si osserva che $\mathbb{E}[X]$ è definito solo se la serie $(7.5.1)$ o l'integrale $(7.5.2)$ convergono in valore assoluto, ovvero deve valere
+
+    \vspace{-2mm}
+    $$
+    \sum_{x \in D_X} |x|\, p_X(x) < \infty \quad \text{oppure} \quad \int_{-\infty}^{+\infty} |x|\, f_X(x) \, dx < \infty
+    $$
+    \hangindent=2em In caso contrario si dice che $X$ non ha valore atteso. Questa questione di esistenza e buona definizione non verrà più trattata, ma si assumerà che il valore atteso sia sempre definito, nonostante la questione comunque si ponga e risulti necessario verificare la convergenza caso per caso.
+
+\vspace{1mm}
+### Proprietà
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Proprietà}
 ```
 
 ##### Proposizione
-Se $X$ è una variabile aleatoria discreta con funzione di probabilità $p_X$, allora, per ogni funzione reale $g$ vale [^4]
+Il valore atteso di una funzione reale $g$ di una variabile aleatoria $X$ è definito come
+
 $$
-\mathbb{E}[g(X)] = \sum_{x \in D_X} g(x)\, \mathbb{P}(X = x) = \sum_{x \in D_X} g(x)\, p_X(x) \tag{7.1.3}
+\mathbb{E}[g(X)] = \begin{cases} 
+\displaystyle ~ \sum_{x \in D_X} g(x)\, p_{X}(x) & \; \text{per $X$ discreta con funzione di probabilità $p_X$} \\[2em]
+\displaystyle ~ \int_{-\infty}^{+\infty} g(x)\, f_{X}(x) \, dx & \; \text{per $X$ continua con funzione di densità $f_X$}
+\end{cases} \tag{7.5.3}
 $$
 
 Si consideri infatti una variabile aleatoria $X$ di cui si conosce la distribuzione. Anziché calcolare il valore atteso di $X$, può essere conveniente calcolare il valore atteso di una funzione $g(X)$, dove $g$ è una funzione $g: \mathbb{R} \to \mathbb{R}$. Si nota che $g(X)$ è anch'essa una variabile aleatoria, e quindi è possibile calcolarne la distribuzione in un qualche modo; dopo averla ottenuta si può calcolare $\mathbb{E}[g(X)]$ con la sua definizione usuale.
 
-[^4]: Anche in questo caso si richiede che la serie converga in valore assoluto affinché $\mathbb{E}[g(X)]$ sia definito:
 
-    $$
-    \vspace{-2mm}
-    \sum_{x \in D_X} |g(x)|\, p_X(x) < \infty
-    $$
-
-\newpage
+\hfill
 ##### Proposizione
 Per ogni coppia di costanti reali $a$ e $b$, si ha $\mathbb{E}[aX + b] = a\, \mathbb{E}[X] + b$.
 
 Dimostrazione:
 
-\qquad $\displaystyle \mathbb{E}[aX + b] = \sum_{x \in D_X} (ax + b)\, p_X(x) = a \sum_{x \in D_X} x\, p_X(x) + b \sum_{x \in D_X} p_X(x) = a\, \mathbb{E}[X] + b$
+\qquad Verrà dimostrato per le variabili aleatorie discrete, ma il ragionamento è analogo per quelle continue.
+
+\qquad $\,\, \displaystyle \mathbb{E}[aX + b] = \sum_{x \in D_X} (ax + b)\, p_X(x) = a \sum_{x \in D_X} x\, p_X(x) + b \sum_{x \in D_X} p_X(x) = a\, \mathbb{E}[X] + b$
 
 Il valore atteso è quindi un operatore lineare, proprio come la media campionaria.
 
@@ -3858,13 +4443,13 @@ Si presentano due casi:
 - se $b=0$ si ottiene che $\mathbb{E}[aX] = a\, \mathbb{E}[X]$. Di conseguenza il valore atteso scala rispetto alle costanti moltiplicative.
 
 
-\hfill
+\vspace{3mm}
 ##### Proposizione
 Il valore atteso è lineare rispetto alla somma di variabili aleatorie: $\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y]$.
 
 Dimostrazione:
 
-\hangindent=2em \qquad È possibile estendere la formula $(7.1.3)$ in una variante in due dimensioni: se $X$ e $Y$ sono variabili aleatorie e $g$ è una qualunque funzione di due variabili, allora, se $\mathbb{E}[g(X,Y)]$ è definito, vale
+\hangindent=2em \qquad È possibile estendere la formula $(7.5.3)$ in una variante in due dimensioni: se $X$ e $Y$ sono variabili aleatorie e $g$ è una qualunque funzione di due variabili, allora vale
 $$
 \mathbb{E}[g(X,Y)] = \begin{cases} 
 \displaystyle ~ \sum_{x \in D_X} \sum_{y \in D_Y} g(x,y)\, p_{X,Y}(x,y) & \text{nel discreto} \\[2em]
@@ -3881,13 +4466,20 @@ $$
 \vspace{-2mm}
 \hangindent=2em \qquad \begin{align*}\begin{small}\text{(1):}\end{small} & \begin{small}\text{ le sommatorie all'interno delle parentesi tonde rappresentano rispettivamente le funzioni di massa di}\end{small} \\ & \begin{small}\text{probabilità marginali di $X$ e $Y$.}\end{small}\end{align*}
 
-Applicando ricorsivamente questa equazione si può estendere la linearità del valore atteso a un numero finito di variabili aleatorie:
+Estensione della linearità
+: Applicando ricorsivamente questa equazione si può estendere la linearità del valore atteso a un numero finito di variabili aleatorie:
+\vspace{0.5mm}
 $$
 \mathbb{E}[X_1 + X_2 + \dots + X_n] = \mathbb{E}[X_1] + \mathbb{E}[X_2] + \dots + \mathbb{E}[X_n]
 $$
-Formalmente, se $X_1, X_2, \dots, X_n$ sono variabili aleatorie discrete, si ha
+\vspace{-5mm}
+
+Formalmente, se $X_1, X_2, \dots, X_n$ sono variabili aleatorie, si ha
 $$
-\mathbb{E}\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n \sum_{x \in D_{X_i}} x\, p_{X_i}(x) = \sum_{x \in D_X} x\, \left( \sum_{i=1}^n p_{X_i}(x) \right)
+\mathbb{E}\left[\, \sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \begin{cases}
+\displaystyle \sum_{i=1}^n \sum_{x \in D_{X_i}} x\, p_{X_i}(x) & \text{nel discreto} \\
+\displaystyle \sum_{i=1}^n \int_{-\infty}^{+\infty} x\, f_{X_i}(x) \, dx & \text{nel continuo}
+\end{cases}
 $$
 
 ##### Proposizione
@@ -3895,23 +4487,28 @@ Se $X$ e $Y$ sono variabili aleatorie indipendenti, allora $\mathbb{E}[XY] = \ma
 
 Dimostrazione:
 
-\hangindent=2em \qquad Si consideri la funzione $g(x,y) = xy$ e si applichi la formula $(7.1.3)$:
+\hangindent=2em \qquad Verrà dimostrato per le variabili aleatorie discrete, ma il ragionamento è analogo per quelle continue.
+
+\hangindent=2em \qquad Si consideri la funzione $g(x,y) = xy$ e si applichi la formula $(7.5.3)$:
 \begin{align*}
 \mathbb{E}[XY] = & \sum_{x \in D_X} \sum_{y \in D_Y} xy\, p_{X,Y}(x,y) \overset{(1)}{=} \sum_{x \in D_X}  \sum_{y \in D_Y} xy\, p_{X}(x)\, p_Y(y) \\[0.5em]
 = & \sum_{x \in D_X} x\, p_X(x)\, \sum_{y \in D_Y} y\, p_Y(y) = \mathbb{E}[X] \,\mathbb{E}[Y]
 \end{align*}
+\vspace{-4.5mm}
 \begin{small}\qquad\, \text{(1): per ipotesi di indipendenza}\end{small}
 
 
-\hfill
+\vspace{3mm}
 ##### Teorema
-Sia $X \ge 0$ una variabile aleatoria discreta a specificazioni non negative, allora
+Sia $X \ge 0$ una variabile aleatoria qualsiasi e non negativa, allora
 $$
 \mathbb{E}[X] = \int_{0}^{+\infty} [1 - F_X(x)] \, dx
 $$
 
 \vspace{-4mm}
 Dimostrazione:
+
+\qquad Verrà dimostrato per le variabili aleatorie discrete, ma il ragionamento è analogo per quelle continue.
 
 \hangindent=2em \qquad Siano $x_1, x_2, \dots, x_n$ le specificazioni non nulle assunte da $X$ e siano $F_X(x_1), F_X(x_2), \dots, F_X(x_n)$ i valori assunti dalla funzione di ripartizione in corrispondenza di tali specificazioni. La funzione di ripartizione è definita come la somma cumulativa delle probabilità associate a ciascun valore di $X$, e quindi il salto della funzione di ripartizione in corrispondenza di $x_i$ è dato da
 $$
@@ -3922,10 +4519,11 @@ $$
 \mathbb{E}[X] = \sum_{i=1}^n x_i \, p_X(x_i) = \sum_{i=1}^n x_i \, \Delta_i
 $$
 
-
+```{=latex}
 \begin{minipage}{0.45\textwidth}
+    \vspace{-6mm}
     \centering
-    \begin{tikzpicture}[xscale=1.5, yscale=3.25]
+    \begin{tikzpicture}[xscale=1.47, yscale=3.15]
 
   %--- Parametri generici
   \def\xone{1}     
@@ -3940,7 +4538,7 @@ $$
   \fill[pattern=north east lines,pattern color=gray!70] (0,\ytwo)      rectangle (\xthree,1);
 
   %--- Assi
-  \draw[->] (0,0) -- (3.8,0) node[right] {$x$};
+  \draw[->] (0,0) -- (3.8,0) node[below,yshift=-0.5mm,xshift=0.5mm] {$x$};
   \draw[->] (0,0) -- (0,1.2) node[above] {$F_X(x)$};
 
   %--- Ticche su y
@@ -3956,7 +4554,7 @@ $$
   }
 
   %--- Funzione di ripartizione
-  \draw[thick]
+  \draw[very thick]
     (0,0) -- (\xone,0)
     (\xone,\yone) -- (\xtwo,\yone)
     (\xtwo,\ytwo) -- (\xthree,\ytwo)
@@ -3984,20 +4582,21 @@ $$
 
 \end{tikzpicture}
 \end{minipage}
-\begin{minipage}{0.55\textwidth}
+\begin{minipage}{0.54\textwidth}
 Si consideri ora il grafico della funzione di ripartizione $F_X(x)$ presentato a sinistra: in questo caso si assumono per semplicità solo tre specificazioni. Per quanto detto precedentemente, il valore atteso di $X$ è dato dalla somma dei contributi dei salti della funzione di ripartizione, che sono rappresentati dalle aree $A, B$ e $C$. Ma la somma di queste aree corrisponde proprio all'area sopra la curva della funzione di ripartizione, che è pari a
 $$
 \int_{0}^{+\infty} [1 - F_X(x)] \, dx
 $$
 Si è quindi dimostrato che il valore atteso di una variabile aleatoria discreta non negativa corrisponde all'integrale presentato, provando quindi la tesi.
 \end{minipage}
+```
 
 
 \newpage
 ##### Osservazione
 $\mathbb{E}[(X-c)^2] \ge \mathbb{E}[(X-\mu)^2]$
 
-Vi è una interessante proprietà della media che emerge quando si vuole predire con il minore errore possibile il valore che verrà assunto da una variabile aleatoria. Si supponga di voler predire il valore di $X$: se si sceglie un numero reale $c$ e si dice che $X$ sarà uguale a $c$, il quadrato dell'errore che si commetterà sarà $(X - c)^2$. Si dimostra di seguito che la media dell'errore al quadrato (detto errore quadratico medio) è minima quando $c$ coincide con il valore atteso di $X$. Infatti, detta $\mu = \mathbb{E}[X]$, si ha
+Vi è una interessante proprietà della media che emerge quando si vuole predire con il minore errore possibile il valore che verrà assunto da una variabile aleatoria. Si supponga di voler predire il valore di $X$: se si sceglie un numero reale $c$ e si dice che $X$ sarà uguale a $c$, il quadrato dell'errore che si commetterà sarà $(X - c)^2$. Si dimostra di seguito che la media dell'errore al quadrato (detto *errore quadratico medio*) è minima quando $c$ coincide con il valore atteso di $X$. Infatti, posto $\mu = \mathbb{E}[X]$, si ha
 \begin{align*}
 \mathbb{E}[(X - c)^2] & = \mathbb{E}[(X - \mu + \mu -c)^2] = \mathbb{E}[(X - \mu)^2 + 2(X - \mu)(\mu - c) + (\mu - c)^2] \\[0.5em]
 & = \mathbb{E}[(X - \mu)^2] + 2(\mu - c)\, \mathbb{E}[X - \mu] + (\mu - c)^2 \\[0.5em]
@@ -4007,7 +4606,7 @@ Vi è una interessante proprietà della media che emerge quando si vuole predire
 
 $\begin{small}\qquad\, \text{(1): infatti } \mathbb{E}[X - \mu] = \mathbb{E}[X] - \mu = 0. \end{small}$
 
-Perciò la migliore previsione di $X$, in termini di minimizzazione dell'errore quacratico medio, è proprio il suo valore atteso.
+Perciò la migliore previsione di $X$, in termini di minimizzazione dell'errore quadratico medio, è proprio il suo valore atteso.
 
 
 \hfill
@@ -4018,14 +4617,33 @@ Sia $X$ una variabile aleatoria e sia il suo valore atteso $\mu = \mathbb{E}[X]$
 $$
 \text{Var}(X) = \mathbb{E}[(X - \mu)^2]
 $$
+Si osserva che ha il quadrato dell'unità di misura della variabile aleatoria $X$.
 
-\vspace{1mm}
+
+\vspace{3.2mm}
 Teorema
 : Sia $X$ una variabile aleatoria, allora $\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2$.
 
 Dimostrazione:
 
 \qquad $\text{Var}(X) = \mathbb{E}[(X - \mu)^2] = \mathbb{E}[X^2 - 2\mu X + \mu^2] = \mathbb{E}[X^2] - 2\mu\, \mathbb{E}[X] + \mu^2 = \mathbb{E}[X^2] - 2\mu^2 + \mu^2 = \mathbb{E}[X^2] - \mu^2$
+
+
+\hfill
+Sia $I_A$ la funzione indicatrice di un evento $A \sube \Omega$. Notando che $I_A^2 = I_A$ per idempotenza (infatti i valori possibili di $I_A$ sono solo 0 e 1, che elevati al quadrato rimangono invariati), si ha:
+$$
+\text{Var}(I_A) = \mathbb{E}[I_A^2] - \mathbb{E}[I_A]^2 = \mathbb{E}[I_A] - \mathbb{E}[I_A]^2 = \mathbb{P}(A) - \mathbb{P}(A)^2 = \mathbb{P}(A)(1 - \mathbb{P}(A)) = \mathbb{P}(A)\, \mathbb{P}(\overline{A})
+$$
+
+\vspace{1mm}
+Deviazione standard
+: A partire dalla varianza, è possibile deifinire la deviazione standard di una variabile aleatoria $X$ come
+
+    \vspace{-5mm}
+    $$
+    \sigma_X = \sqrt{\text{Var}(X)} = \sqrt{\mathbb{E}[(X - \mu)^2]} = \sqrt{\mathbb{E}[X^2] - \mathbb{E}[X]^2}
+    $$
+    La deviazione standard possiede la stessa unità di misura della variabile aleatoria presa in considerazione.
 
 
 \hfill
@@ -4042,8 +4660,7 @@ Dimostrazione:
 
 \qquad $\text{Var}(aX + b) = \mathbb{E}[(aX + b - (a\mu+b))^2] = \mathbb{E}[(aX - a\mu)^2] = \mathbb{E}[(a(X - \mu))^2] = a^2\, \mathbb{E}[(X - \mu)^2] = a^2\, \text{Var}(X)$
 
-La varianza non è quindi un operatore lineare, proprio come la varianza campionaria. Si osserva che ha il quadrato dell'unità di misura della variabile aleatoria $X$.
-
+La varianza non è quindi un operatore lineare, proprio come la varianza campionaria.
 Si presentano due casi:
 
 - se $a=0$, si ha $\text{Var}(b) = 0$ e quindi la varianza di una costante è zero. Infatti, una costante è una variabile aleatoria degenere che assume un unico valore con probabilità 1.
@@ -4051,25 +4668,14 @@ Si presentano due casi:
 
 
 \hfill
-Sia $I_A$ la funzione indicatrice di un evento $A \sube \Omega$. Notando che $I_A^2 = I_A$ per idempotenza (infatti i valori possibili di $I_A$ sono solo 0 e 1, che elevati al quadrato rimangono invariati), si ha:
-$$
-\text{Var}(I_A) = \mathbb{E}[I_A^2] - \mathbb{E}[I_A]^2 = \mathbb{E}[I_A] - \mathbb{E}[I_A]^2 = \mathbb{P}(A) - \mathbb{P}(A)^2 = \mathbb{P}(A)(1 - \mathbb{P}(A)) = \mathbb{P}(A)\, \mathbb{P}(\overline{A})
-$$
-
-\hfill
-##### Deviazione standard
-A partire dalla varianza, è possibile deifinire la deviazione standard di una variabile aleatoria $X$ come
-$$
-\sigma_X = \sqrt{\text{Var}(X)} = \sqrt{\mathbb{E}[(X - \mu)^2]} = \sqrt{\mathbb{E}[X^2] - \mathbb{E}[X]^2}
-$$
-La deviazione standard possiede la stessa unità di misura della variabile aleatoria presa in considerazione.
-
-\hfill
-#### Linearità
+\paragraph{Linearità\,\protect\footnote{%
+    Per poter studiare la linearità della varianza, è necessario prima conoscere la covarianza e, in particolar modo, come questa sia nulla in caso di indipendenza tra variabili aleatorie. Perciò, si rimanda alla sezione successiva per la definizione di covarianza e si ritorni qui dopo averla studiata.
+}}
 Se il valore atteso è lineare rispetto alla somma di variabili aleatorie, in generale non si può dire lo stesso per la varianza. Infatti, ad esempio
 $$
 \text{Var}(X + X) = \text{Var}(2X) = 4\, \text{Var}(X) \ne \text{Var}(X) + \text{Var}(X)
 $$
+
 
 ##### Proposizione
 Si considerino due variabili aleatorie qualsiasi $X$ e $Y$. La varianza della loro somma è data da
@@ -4086,18 +4692,18 @@ Dimostrazione:
 & = \text{Var}(X) + \text{Var}(Y) + 2\, \text{Cov}(X, Y) \\
 \end{align*}
 
-\vspace{-7mm}
+\vspace{-5.5mm}
 Utilizzando questa formula sul caso precedente, si ottiene infatti
 $$
 \text{Var}(X+X) = \text{Var}(X) + \text{Var}(X) + 2 \text{Cov}(X,X) = 2\, \text{Var}(X) + 2\, \text{Var}(X) = 4\, \text{Var}(X)
 $$
 
+\vspace{1mm}
 Questa formula può essere estesa a un numero finito di variabili aleatorie, ottenendo che, se $X_1, X_2, \dots, X_n$ sono variabili aleatorie, allora
 $$
 \text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) +  \sum_{i=1}^n \sum_{\substack{j=1\\ j\neq i}}^n \mathrm{Cov}(X_i, X_j)
 $$
 
-\hfill
 ##### Proposizione
 Se $X$ e $Y$ sono variabili aleatorie indipendenti, allora $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$.
 
@@ -4111,12 +4717,12 @@ $\begin{small}\qquad\, \text{(1): per ipotesi di indipendenza } \end{small}$
 
 
 ## Covarianza
-Si considerino due variabili aleatorie $X$ e $Y$ di valore atteso $\mu_X$ e $\mu_Y$ rispettivamente. La loro *covarianza*, che si indica con $\text{Cov}(X,Y)$, è definita come, se esiste, la quantità
+Si considerino due variabili aleatorie $X$ e $Y$ di valore atteso $\mu_X$ e $\mu_Y$ rispettivamente. La loro *covarianza*, che si indica con $\text{Cov}(X,Y)$, è definita come la quantità
 $$
 \text{Cov}(X,Y) = \mathbb{E}[(X - \mu_X)(Y - \mu_Y)]
 $$
 
-
+\vspace{1mm}
 ##### Teorema
 Siano $X$ e $Y$ due variabili aleatorie, allora $\text{Cov}(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\, \mathbb{E}[Y]$.
 
@@ -4128,8 +4734,7 @@ Dimostrazione:
 \end{align*}
 
 
-
-\hfill
+\vspace{1mm}
 ### Proprietà
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Proprietà}
@@ -4137,16 +4742,16 @@ Dimostrazione:
 
 Dalla definizione di covarianza si deducono le seguenti proprietà:
 
-- $\text{Cov}(X,Y) = \text{Cov}(Y,X)$ \quad simmetria
+- $\text{Cov}(X,Y) = \text{Cov}(Y,X)$ \;\; proprietà di simmetria
 - $\text{Cov}(X,X) = \text{Var}(X)$
 - $\text{Cov}(X+b, Y) = \text{Cov}(X,Y)$ = $\text{Cov}(X, Y+b)$
 - $\text{Cov}(aX, Y) = a\, \text{Cov}(X,Y)$ = $\text{Cov}(X, aY)$
 
-    **Dimostrazione**:
+    Dimostrazione:
 
     \qquad $\text{Cov}(aX, Y) = \mathbb{E}[(aX - a\mu_X)(Y - \mu_Y)] = \mathbb{E}[a (X - \mu_X)(Y - \mu_Y)] = a\, \text{Cov}(X,Y)$
 
-\hfill
+\vspace{3.5mm}
 ##### Lemma
 Siano $X$,$Y$ e $Z$ tre variabili aleatorie, allora $\text{Cov}(X+Y,Z) = \text{Cov}(X,Z) + \text{Cov}(Y,Z)$.
 
@@ -4161,6 +4766,7 @@ $$
 \text{Cov}\left(\sum_{i=1}^n X_i, Y\right) = \sum_{i=1}^n \text{Cov}(X_i, Y)
 $$
 
+\vspace{1mm}
 ##### Proposizione
 Siano $X_1, \dots, X_n$ e $Y_1, \dots, Y_n$ variabili aleatorie qualsiasi, allora
 $$
@@ -4232,6 +4838,9 @@ Si può dimostrare che questa quantità è sempre compresa tra -1 e +1. Valgono 
 - $\text{Corr}(X,Y) = -1$ se $X$ e $Y$ sono perfettamente correlati negativamente, cioè se esiste una relazione lineare decrescente tra $X$ e $Y$.
 
 - $\text{Corr}(X,Y) = 0$ se $X$ e $Y$ sono incorrelati, cioè se non esiste alcuna relazione lineare tra $X$ e $Y$. Ciò non implica che $X$ e $Y$ siano indipendenti, in quanto potrebbero esistere relazioni non lineari che questo coefficiente non è in grado di cogliere.
+
+
+
 
 
 \hfill
@@ -4371,14 +4980,14 @@ $$
     axis lines=left, axis line style={-stealth},
     xmin=-0.25, xmax=1.25, ymin=0, ymax=1.15,
     xtick={0,1}, xticklabels={$0$,$1$},
-    tick style={draw=none}, clip=false
+    tick style={black,thin}, clip=false
   },
   cdfaxis/.style={
     width=6.5cm, height=4.8cm,
     axis lines=left, axis line style={-stealth},
     xmin=-0.25, xmax=1.25, ymin=0, ymax=1.15,
     xtick={0,1}, xticklabels={$0$,$1$},
-    tick style={draw=none}, clip=false
+    tick style={black,thin}, clip=false
   }
 }
 
@@ -4388,7 +4997,7 @@ $$
 \begin{axis}[pmfaxis,
   ylabel={$p_{X}$},
   ylabel style={at={(axis description cs:-0.08,1)},anchor=south, rotate=-90},
-  ytick={\q,\p}, yticklabels={$1{-}p$,$p$},
+  ytick={\q,\p,1}, yticklabels={$1{-}p$,$p$,1},
   xlabel={$x$},
   xlabel style={
     at={(axis description cs:1,0)},    % fine asse x
@@ -4429,8 +5038,8 @@ $$
   \addplot[gray!30,very thick] coordinates {(-0.25,0) (0,0)};
   \addplot[gray!30,very thick] coordinates {(0,\q) (1,\q)};
   \addplot[gray!30,very thick] coordinates {(1,1) (1.25,1)};
-  \addplot[black,thick] coordinates {(0,0) (0,\q)};
-  \addplot[black,thick] coordinates {(1,\q) (1,1)};
+  \addplot[black,thin] coordinates {(0,0) (0,\q)};
+  \addplot[black,thin] coordinates {(1,0) (1,1)};
   % punti pieni/vuoti
   \addplot[gray!30,only marks,mark=*] coordinates {(0,\q) (1,1)};
   \addplot[white,draw=gray!30,very thick,
@@ -4752,7 +5361,7 @@ $\begin{small}
 
 La distribuzione di Poisson nasce come modello per il conteggio di eventi rari che si verificano in un intervallo di tempo o in una regione di spazio (es. numero di refusi in un libro, chiamate al centralino in un minuto).
 
-Dal punto di vista teorico, essa si ottiene come caso limite della distribuzione binomiale: sia $\{X_n\}_{n\ge 1}$ una successione di variabili aleatorie con $X_n \sim \mathrm{Bin}(n,p_n)$, dove gli $n$ tentativi sono indipendenti e con la stessa probabilità $p_n$ di “successo”. Se esiste $\lambda>0$ tale che
+Dal punto di vista teorico, essa si ottiene come caso limite della distribuzione binomiale: sia $\{X_n\}_{n\ge 1}$ una successione di variabili aleatorie con $X_n \sim \mathrm{B}(n,p_n)$, dove gli $n$ tentativi sono indipendenti e con la stessa probabilità $p_n$ di “successo”. Se esiste $\lambda>0$ tale che
 $$
 \lim_{n\to\infty} n\,p_n = \lambda,
 $$
@@ -5010,6 +5619,7 @@ Ora si conoscono tutti i termini per calcolare la varianza:
 
 \hfill
 Si nota come nella varianza del modello ipergeometrico compaia quella del binomiale se si fissa $p$. Inoltre, se si fa tendere $N+M$ all'infinito, si ha che la varianza tende a $np(1-p)$, che è proprio la varianza del modello binomiale di parametri $(n,p)$. Intuitivamente, se si estrae un oggetto da una popolazione molto grande, il suo contributo alla probabilità di successo è trascurabile, e quindi la distribuzione ipergeometrica si avvicina a quella binomiale.
+
 
 
 
