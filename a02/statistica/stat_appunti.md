@@ -13,7 +13,7 @@ header-includes: |
     \pagestyle{fancy}
 
     \usepackage{titling}
-    \setlength{\droptitle}{-1.5cm}
+    \setlength{\droptitle}{-0cm}
 
     \usepackage{graphicx}
     \usepackage{tikz, pgfplots}
@@ -85,153 +85,9 @@ header-includes: |
 \newenvironment{myquote_smaller}{\begin{mdframed}[backgroundcolor=mygray, leftmargin=0.5cm, rightmargin=0.5cm, skipabove=\baselineskip, linewidth=0pt, innertopmargin=0.35cm, innerbottommargin=0.35cm, innerleftmargin=0.5cm, innerrightmargin=0.5cm]}{\end{mdframed}}
 
 ```{=latex}
-\vspace{2em}
 \newpage
 ```
 
-# Lezioni {-}
-
-```{=latex}
-\subsection*{L01 - 25/02/2025}
-```
-
-```{=latex}
-\textbf{Dispense L01-Introduzione\shortunderscore a\shortunderscore python}
-```
-
-Introduzione a Python: panoramica sul linguaggio Python e le sue applicazioni.
-
-Tipi di dati e operatori: 
-
-- dati semplici e operatori:  numeri, stringhe e booleani; operazioni aritmetiche e logiche.
-- dati strutturati:  liste, tuple, dizionari e insiemi; metodi e funzioni utili per manipolare le liste (e altri tipi strutturati).  
-
-Operazioni sulle liste: creazione e manipolazione delle liste; uso di metodi e operatori specifici per le liste (*list comprehension*); esempi pratici e funzioni integrate.  
-Import e utilizzo di librerie per specifiche funzionalità: `numpy` per operazioni numeriche; `pandas` per la gestione di dati strutturati; `matplotlib.pyplot` per la visualizzazione grafica; `csv` e `collections` per la manipolazione dei dati.
-
-
-
-```{=latex}
-\subsection*{L02 - 27/02/2025}
-```
-
-**Dispense L02-Pandas**
-
-Introduzione alla libreria `Pandas` e ai dataset: caricamento del file `heroes.csv`.
-
-- Serie: creazione e manipolazione di serie; gestione degli indici e accesso tramite slicing, `loc` e `iloc`; calcolo delle frequenze con `value_counts`; operazioni matematiche e uso del metodo `apply`.
-- Visualizzazione grafica: creazione di grafici a barre per rappresentare le frequenze; personalizzazione dell’asse delle ascisse (utilizzo di `numpy.arange` e `xticks`).
-- DataFrame: creazione di DataFrame da file CSV tramite `read_csv`; accesso a righe e colonne (utilizzo di `loc`, `iloc`, `at` e `iat`); ordinamento dei dati con `sort_values` e `sort_index`; filtraggio e selezione di sottoinsiemi di dati
-
-Librerie utilizzate: `pandas`, `matplotlib.pyplot`, `numpy`, `csv`.
-
-
-
-```{=latex}
-\subsection*{L03 - 04/03/2025}
-```
-
-```{=latex}
-\textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze - Capitolo 2 RS}
-```
-
-Dati e Frequenze: concetti di base; introduzione alla distinzione tra dati quantitativi e qualitativi.   
-Classificazione dei dati: dati qualitativi (categorie e modalità); dati quantitativi (tipologie e suddivisione).  
-Frequenze: calcolo e visualizzazione delle frequenze assolute e relative. Frequenze cumulate: definizione e applicazioni. Frequenze congiunte e marginali. Diagrammi:
-
-- grafici a barre, istogrammi e diagrammi a torta.
-- diagrammi di Pareto: ordinamento delle frequenze in ordine decrescente; identificazione della regola dell’80/20 per evidenziare le componenti più rilevanti.
-- diagrammi stelo-foglia: rappresentazione della distribuzione dei dati quantitativi; visualizzazione della forma e concentrazione dei valori.
-
-Suggerimenti e tecniche per la generazione dei grafici con l’uso di librerie come `matplotlib` e `pandas`.
-
-
-
-```{=latex}
-\subsection*{L04 - 06/03/2025}
-```
-
-```{=latex}
-\textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze - Capitolo 3 RS}
-```
-
-
-
-```{=latex}
-\subsection*{L05 - 11/03/2025}
-```
-
-```{=latex}
-\textbf{Dispense L03-Dati\shortunderscore e\shortunderscore frequenze}: diagrammi a stelo \\
-\textbf{Dispense L04-Indici\shortunderscore di\shortunderscore dispersione - Capitolo 3 RS}
-```
-
-
-
-```{=latex}
-\subsection*{L06 - 13/03/2025}
-```
-
-```{=latex}
-\textbf{Dispense L05-Indici\shortunderscore di\shortunderscore eterogeneita}
-```
-
-Indici di dipendenza. Indici di eterogeneità: indice di Gini, indice di entropia. Alberi di decisione e "machine learning" tramite questi indici.
-
-
-
-```{=latex}
-\subsection*{L07 - 18/03/2025}
-```
-
-```{=latex}
-\textbf{Dispense L05-Indici\shortunderscore di\shortunderscore eterogeneita}: indici di concentrazione \\
-\textbf{Dispense L06-Trasformazione\shortunderscore dei\shortunderscore dati}
-```
-
-
-
-```{=latex}
-\subsection*{L08 - 25/04/2025}
-```
-
-```{=latex}
-\textbf{Dispense L07-Analisi\shortunderscore della\shortunderscore varianza}: anova \\
-\textbf{Dispense L08-Analisi\shortunderscore di\shortunderscore classificatori}: classificatori
-```
-
-
-
-```{=latex}
-\subsection*{L09 - 27/04/2025}
-```
-
-```{=latex}
-\textbf{Dispense L08-Calcolo\shortunderscore combinatorio}: calcolo combinatorio \\
-Introduzione ai concetti basilari della probabilità.
-```
-
-
-
-```{=latex}
-\subsection*{L10 - 01/04/2025}
-```
-
-Calcolo delle probabilità: assiomi di Kolmogorov e teoremi elementari. Spazi equiprobabili.
-
-
-
-```{=latex}
-\subsection*{L11 - 03/04/2025}
-```
-
-Probabilità condizionata, regola di fattorizzazione, teorema delle probabilità totali, teorema di Bayes.
-
-
-
-```{=latex}
-\newpage
-```
 
 # Introduzione alla statistica
 
@@ -374,7 +230,7 @@ Un modo semplice per rendersi conto se una distribuzione è (quasi) simmetrica �
 
 ### Grafici per la frequenza
 
-Se l'insieme di dati contiene un numero ridotto di valori distinti, lo si può rappresentrare con una *tabella delle frequenze*. Questa tabella associa a ciascun valore distinto osservato la sua frequenza assoluta. La somma di tutte le frequenze deve corrispondere al numero totale di osservazioni.  
+Se l'insieme di dati contiene un numero ridotto di valori distinti, lo si può rappresentare con una *tabella delle frequenze*. Questa tabella associa a ciascun valore distinto osservato la sua frequenza assoluta. La somma di tutte le frequenze deve corrispondere al numero totale di osservazioni.  
 Data una variabile statistica $X$ che può assumere vari valori, si elencano i valori distinti di $X$ in una colonna e, a fianco di ognuno, la relativa frequenza di occorrenza nel campione.
 
 Per costruire una tabella delle frequenze relative da un insieme di dati, bisogna innanzitutto disporre i valori dei dati in ordine crescente. Si determinano i valori distinti e quante volte ciascuno di essi compaia. Si elencano questi valori distinti affiancati dalla loro frequenza $f$ e dalla loro frequenza relativa $f/n$, dove $n$ è il numero totale di osservazioni nell'insieme di dati.
@@ -456,7 +312,7 @@ Per costruire una tabella delle frequenze relative da un insieme di dati, bisogn
 \hspace{2mm}
 \begin{minipage}[c]{0.66\textwidth}
     \vspace{-3mm}
-    Un modo efficiente di rappresentare un insieme di dati di dimensioni medie consiste nell'utilizzare il \textit{diagramma ramo-foglia} (o a stelo). Tale grafico si ottiene dividendo ciascun valore dei dati in due parti, chiamati appunto rami e foglie. \\ \\
+    Un modo efficiente di rappresentare un insieme di dati di dimensioni medie consiste nel utilizzare il \textit{diagramma ramo-foglia} (o a stelo). Tale grafico si ottiene dividendo ciascun valore dei dati in due parti, chiamati appunto rami e foglie. \\ \\
     La scelta dei rami dovrebbe essere fatta in modo che il \mbox{diagramma} ramo-foglia che ne risulta sia informativo sui dati. Questi diagrammi sono particolarmente adatti a descrivere insiemi di dati dimensioni ridotte.
 \end{minipage}
 \vspace{1mm}
@@ -3463,9 +3319,22 @@ $$
 $$
 Questa forma è particolarmente usata quando si trattano variabili aleatorie discrete.
 
-\hfill
+\vspace{2mm}
+> **Approfondimento**
+> Alla variabile aleatoria $X$ si associa una misura di probabilità indotta su $\mathbb R$:
+> 
+> \vspace{-4mm}
+> $$
+> \mathbb{P}_X\colon \mathcal{E}\to[0,1]
+> \quad \text{ tale che } \quad
+> \mathbb{P}_X(A) = \mathbb{P}\bigl( X^{-1} (A) \bigr) = \mathbb{P}(X \in A) \;\;\; \forall A \in \mathcal{E}
+> $$
+> Questa misura, detta distribuzione di probabilità (o legge) di $X$, trasporta lo spazio di probabilità $(\Omega, \mathcal{F}, \mathbb{P})$ nello spazio reale $(\mathbb{R}, \mathcal{E}, \mathbb{P}_X)$, permettendo di studiare le proprietà statistiche di $X$.
+> 
+> Essendo $\mathbb{P}_X$ una misura di probabilità, ed essendo $\mathbb{P}_X(\mathbb{R}) = \mathbb{P}(X^{-1}(\mathbb{R})) = \mathbb{P}(\Omega) = 1$, si ha che $(\mathbb{R}, \mathcal{E}, \mathbb{P}_X)$ è anche esso uno spazio di probabilità.
+
+\vspace{1mm}
 Per ogni insieme misurabile $A \in \mathcal{E}$, la probabilità che la variabile aleatoria $X$ assuma valori in $A$, ossia la probabilità dell'evento $\{X \in A\}$, è definita come
-\vspace{-1mm}
 $$
 \mathbb{P}(X \in A) = \mathbb{P}(\{\omega \in \Omega \mid X(\omega) \in A\})
 $$
@@ -3955,7 +3824,7 @@ Poiché $X$ deve assumere un qualche valore in $\mathbb{R}$ (ossia il codominio 
 $$
 1 = \mathbb P (X \in \mathbb R) = \int_{- \infty}^{+ \infty} f_X(x) \, dx
 $$
-Quindi l'integrale della densità su tutto il suo dominio deve essere pari a 1. Questa rappresenta l'unica condizione necessaria affinché $f_X$ possa essere considerata una densità di probabilità.
+Quindi l'integrale della densità su tutto il suo dominio deve essere pari a 1. Questa rappresenta l'unica condizione necessaria affinché $f_X \ge 0$ possa essere considerata una densità di probabilità.
 
 >```{=latex}
 >% intervallo dell’area rigata
@@ -4421,7 +4290,7 @@ $$
 \end{cases} \tag{7.5.3}
 $$
 
-Si consideri infatti una variabile aleatoria $X$ di cui si conosce la distribuzione. Anziché calcolare il valore atteso di $X$, può essere conveniente calcolare il valore atteso di una funzione $g(X)$, dove $g$ è una funzione $g: \mathbb{R} \to \mathbb{R}$. Si nota che $g(X)$ è anch'essa una variabile aleatoria, e quindi è possibile calcolarne la distribuzione in un qualche modo; dopo averla ottenuta si può calcolare $\mathbb{E}[g(X)]$ con la sua definizione usuale.
+Si consideri infatti una variabile aleatoria $X$ di cui si conosce la distribuzione. Anziché calcolare il valore atteso di $X$, può essere conveniente calcolare il valore atteso di una funzione $g(X)$, dove $g$ è una funzione $g: \mathbb{R} \to \mathbb{R}$. Si nota che $g(X)$ è anche essa una variabile aleatoria, e quindi è possibile calcolarne la distribuzione in un qualche modo; dopo averla ottenuta si può calcolare $\mathbb{E}[g(X)]$ con la sua definizione usuale.
 
 
 \hfill
@@ -4596,7 +4465,7 @@ Si è quindi dimostrato che il valore atteso di una variabile aleatoria discreta
 ##### Osservazione
 $\mathbb{E}[(X-c)^2] \ge \mathbb{E}[(X-\mu)^2]$
 
-Vi è una interessante proprietà della media che emerge quando si vuole predire con il minore errore possibile il valore che verrà assunto da una variabile aleatoria. Si supponga di voler predire il valore di $X$: se si sceglie un numero reale $c$ e si dice che $X$ sarà uguale a $c$, il quadrato dell'errore che si commetterà sarà $(X - c)^2$. Si dimostra di seguito che la media dell'errore al quadrato (detto *errore quadratico medio*) è minima quando $c$ coincide con il valore atteso di $X$. Infatti, posto $\mu = \mathbb{E}[X]$, si ha
+Vi è un'interessante proprietà della media che emerge quando si vuole predire con il minore errore possibile il valore che verrà assunto da una variabile aleatoria. Si supponga di voler predire il valore di $X$: se si sceglie un numero reale $c$ e si dice che $X$ sarà uguale a $c$, il quadrato dell'errore che si commetterà sarà $(X - c)^2$. Si dimostra di seguito che la media dell'errore al quadrato (detto *errore quadratico medio*) è minima quando $c$ coincide con il valore atteso di $X$. Infatti, posto $\mu = \mathbb{E}[X]$, si ha
 \begin{align*}
 \mathbb{E}[(X - c)^2] & = \mathbb{E}[(X - \mu + \mu -c)^2] = \mathbb{E}[(X - \mu)^2 + 2(X - \mu)(\mu - c) + (\mu - c)^2] \\[0.5em]
 & = \mathbb{E}[(X - \mu)^2] + 2(\mu - c)\, \mathbb{E}[X - \mu] + (\mu - c)^2 \\[0.5em]
@@ -4637,7 +4506,7 @@ $$
 
 \vspace{1mm}
 Deviazione standard
-: A partire dalla varianza, è possibile deifinire la deviazione standard di una variabile aleatoria $X$ come
+: A partire dalla varianza, è possibile definire la deviazione standard di una variabile aleatoria $X$ come
 
     \vspace{-5mm}
     $$
@@ -4840,13 +4709,48 @@ Si può dimostrare che questa quantità è sempre compresa tra -1 e +1. Valgono 
 - $\text{Corr}(X,Y) = 0$ se $X$ e $Y$ sono incorrelati, cioè se non esiste alcuna relazione lineare tra $X$ e $Y$. Ciò non implica che $X$ e $Y$ siano indipendenti, in quanto potrebbero esistere relazioni non lineari che questo coefficiente non è in grado di cogliere.
 
 
+\newpage
+## Quantili
+Il concetto di quantile può essere esteso anche nel contesto delle variabili aleatorie. Il quantile $x_{\alpha}$ di livello $\alpha \in [0,1]$ è definito come il valore tale che
+\vspace{-1.5mm}
+$$
+\mathbb{P}(X \le x_{\alpha}) = \alpha = F_X(x_{\alpha})
+$$
+
+\vspace{-3.5mm}
+Quando $\alpha = 1/2$, il quantile corrisponde alla mediana della distribuzione di $X$.
+
+Variabili discrete
+: Se $X$ è discreta, non è garantito che esista un valore $x$ tale che $F_X(x)=\alpha$ per ogni $\alpha\in[0,1]$. Questo perché $F_X$ salta a gradini e può non assumere esattamente il valore $\alpha$.
+
+Variabili continue
+: Se $X$ è continua, la funzione di ripartizione è continua e strettamente crescente. In questo caso l’inversa
+
+    \vspace{-7mm}
+    $$
+    x_{\alpha} = F_X^{-1}(\alpha) \qquad \forall \alpha\in[0,1]
+    $$
+    è sempre ben definita e fornisce l’unico quantile di livello $\alpha$, poiché
+    $$
+    \vspace{-1mm}
+    \mathbb{P}(X \le x_{\alpha})
+    =F_X\bigl(F_X^{-1}(\alpha)\bigr)
+    =\alpha
+    $$
+
+\vspace{-4mm}
+#### Q-Q Plot
+Nella statistica descrittiva, il $Q$-$Q$ plot è un grafico che confronta i quantili di due campioni diversi per verificare se questi seguano la stessa distribuzione (e se quindi possano provenire dalla stessa popolazione).
+
+Questo stesso grafico può essere introdotto per le variabili aleatorie. Se disponiamo di un campione e della distribuzione teorica $F$ di una popolazione, possiamo costruire un $Q$–$Q$ plot confrontando i quantili empirici del campione con quelli teorici di $F$. Se i punti giacciono lungo la bisettrice $y = x$, allora il campione può essere considerato come proveniente dalla popolazione considerata.
+
+Il $Q$–$Q$ plot è spesso usato per valutare la normalità di un campione stimando media e deviazione standard dai dati stessi quando i parametri della popolazione non sono noti.
 
 
-
-\hfill
+\vspace{4mm}
 ## Disuguaglianze
 
-L'importanza delle disuguaglianze di Markov e Chebyshev, che verranno presentate di seguito, sta nel fatto che permettono di limitare le probabilità di eventi rari che riguardano variabili aleatorie di cui si conosce solo il valore atteso oppure il valore atteso e la varianza. Naturalmente, quando la distribuzione è nota, è possibile calcolare queste probabilità esattamente e non vi è quindi la necesittà di ridursi alle disuguaglianze.
+L'importanza delle disuguaglianze di Markov e Chebyshev, che verranno presentate di seguito, sta nel fatto che permettono di limitare le probabilità di eventi rari che riguardano variabili aleatorie di cui si conosce solo il valore atteso oppure il valore atteso e la varianza. Naturalmente, quando la distribuzione è nota, è possibile calcolare queste probabilità esattamente e non vi è quindi la necessità di ridursi alle disuguaglianze.
 
 ### Disuguaglianza di Markov
 ```{=latex}
@@ -4857,21 +4761,20 @@ $$
 \mathbb{P}(X \ge a) \le \dfrac{\mathbb{E}[X]}{a} \quad \forall a > 0
 $$
 
+\vspace{-3mm}
 **Dimostrazione**:
 
 \hangindent=2em \qquad Si mostra la dimostrazione per il caso discreto, ma il ragionamento è analogo nel caso continuo. 
 \begin{align*}
-\mathbb{E}[X] & = \sum_{x \in D_X} x\, \mathbb{P}(X=x) = \underbrace{\sum_{x < a} x\, \mathbb{P}(X=x)}_{\ge 0 \text{ per ipotesi}} + \sum_{x \ge a} x\, \mathbb{P}(X=x) \\[0.5em]
-& \overset{(1)}{\ge} \sum_{x \ge a} x\, \mathbb{P}(X=x) \overset{(2)}{\ge} \sum_{x \ge a} a\, \mathbb{P}(X=x) = a\, \underbrace{\sum_{x \ge a} \mathbb{P}(X=x)}_{\text{eventi disgiunti}} \\
-& \overset{K3}{=} a\, \mathbb{P}(X \ge a)
+\mathbb{E}[X] & = \sum_{x \in D_X} x\, \mathbb{P}(X=x) = \sum_{x < a} x\, \mathbb{P}(X=x) + \sum_{x \ge a} x\, \mathbb{P}(X=x) \\[0.5em]
+& \overset{(1)}{\ge} \sum_{x \ge a} x\, \mathbb{P}(X=x) \overset{(2)}{\ge} \sum_{x \ge a} a\, \mathbb{P}(X=x) = a\, \underbrace{\sum_{x \ge a} \mathbb{P}(X=x)}_{\text{eventi disgiunti}} \overset{K3}{=} a\, \mathbb{P}(X \ge a)
 \end{align*}
 \vspace{-8mm}
-\begin{small}\qquad\, \text{(1): perché il primo addendo è positivo}\\ \hspace*{2.17em} \text{(2): perché $x \ge a$ nella sommatoria}\end{small}
+\begin{small}\qquad\, \text{(1): perché il primo addendo è per ipotesi $\ge 0$}\\ 
+\hspace*{2.17em} \text{(2): perché $x \ge a$ nella sommatoria}\end{small}
 
 
 \hangindent=2em \qquad Si è quindi dimostrato che $\;\mathbb{E}[X] \ge a\, \mathbb{P}(X \ge a) \; \Rightarrow \; \mathbb{P}(X \ge a) \le \dfrac{\mathbb{E}[X]}{a},\;$ provando di fatto la tesi.
-
-\hfill
 
 Si osserva che è possibile utilizzare questa disuguaglianza anche nel verso opposto, ossia
 $$
@@ -4909,7 +4812,7 @@ $$
 \mathbb{P}(|X - \mu| < r) = 1 - \mathbb{P}(|X - \mu| \ge r) \ge 1 - \dfrac{\sigma^2}{r^2} \quad \forall r > 0
 $$
 
-Inoltre, se nella disugualianza di Chebyshev si pone $r = k \sigma$, essa assume la seguente forma:
+Inoltre, se nella disuguaglianza di Chebyshev si pone $r = k \sigma$, essa assume la seguente forma:
 $$
 \mathbb{P}(|X - \mu| \ge k \sigma) \le \dfrac{1}{k^2} \quad \forall k > 0
 $$
@@ -4917,13 +4820,21 @@ In altri termini, la probabilità che una variabile aleatoria differisca dalla s
 
 \newpage
 # Modelli di distribuzione
-In ambito statistico, un modello di distribuzione è una rappresentazione teorica che specifica, attraverso una funzione di probabilità (discreta) o di densità (continua), la legge con cui una variabile aleatoria assume i propri valori nello spazio campionario. L’adozione di tale modello consente di trascendere l’osservazione empirica di una singola realizzazione o di un campione finito, attribuendo invece alla variabile un comportamento stocastico stabilito a priori mediante assunzioni strutturate.
+In statistica un modello di distribuzione fornisce una descrizione teorica del comportamento di una variabile aleatoria $X$ definita su uno spazio campionario $\Omega$. Mediante una funzione di massa (quando $X$ è discreta) o di densità (quando $X$ è continua), esso specifica la legge di probabilità che rende conto della frequenza con cui $X$ assume i valori nel suo supporto. Adottare un modello significa dunque sostituire l’osservazione empirica di uno o più campioni con un quadro stocastico rigoroso, fondato su ipotesi strutturate che consentono di estendere l’analisi oltre la singola specificazione.
 
-In sintesi, il ragionamento si fonda su tre passaggi essenziali. Anzitutto si introduce la variabile aleatoria $X$, intesa come funzione misurabile che collega ogni evento elementare $\omega$ dello spazio campionario $\Omega$ a un numero reale. A questa funzione si associa poi la sua distribuzione: una misura di probabilità, indicata con $P_X$, che a ogni insieme boreliano $B$ assegna la probabilità che $X$ vi cada, ossia $P(X\in B)$; tale legge può essere descritta tramite funzione di ripartizione, massa di probabilità o densità. Infine, adottare un modello di distribuzione significa disporre di un linguaggio per calcolare momenti, quantili e altre probabilità rilevanti, così da fornire la base matematica per inferenze, verifiche di ipotesi e previsioni sul fenomeno in esame.
+Alla base di questa impostazione vi sono tre passaggi fondamentali: 
 
-\hfill
+1. si definisce $X$ come funzione misurabile che mappa ogni evento elementare $\omega\in\Omega$ in un valore reale; 
+2. in secondo luogo si introduce la misura di probabilità $\mathbb P_X$ indotta da $X$, che può essere rappresentata tramite la funzione di ripartizione $F_X$, la funzione di massa di probabilità o la funzione di densità; 
+3. infine si sfruttano tali strumenti per calcolare quantità caratteristiche (media, varianza, quantili) e per valutare probabilità di eventi, ponendo così le basi sia per procedure di inferenza statistica e test di ipotesi, sia per previsioni e simulazioni del fenomeno in esame.
+
+Per ogni modello la legge di probabilità è governata da uno o più parametri raccolti in un vettore $\theta$. Questi parametri quantificano aspetti essenziali del fenomeno (ad esempio la probabilità di successo $p$ nella Bernoulli, il numero di prove $n$ e la stessa $p$ nella binomiale, ecc) e ne determinano completamente la forma: fissato $\theta$, la funzione di massa (o di densità) è univocamente definita. In pratica, quando si dispone di dati osservati, il problema centrale diventa stimare $\theta$ in modo da adattare al meglio il modello alla realtà – lavoro di cui si occupa la statistica inferenziale.
+
+Per ciascun modello di distribuzione analizzeremo l’esperimento sottostante e la variabile aleatoria associata; ne descriveremo il supporto, la funzione di ripartizione e la funzione di massa o di densità di probabilità; calcoleremo valore atteso e varianza; infine, ne illustreremo le proprietà principali.
+
+\vspace{4mm}
 ## Modelli discreti
-Quando il fenomeno osservato può assumere solo un insieme numerabile di valori, parliamo di distribuzioni discrete. Ciascun modello discreto è descritto da una funzione di massa di probabilità che assegna a ogni possibile valore $k$ la probabilità $P(X=k)$.
+Quando il fenomeno osservato può assumere solo un insieme numerabile di valori, si parla di distribuzioni discrete. Ciascun modello discreto è descritto da una funzione di massa di probabilità che assegna a ogni possibile valore $x$ la probabilità $\mathbb P(X=x)$.
 
 ### Modello di Bernoulli
 ```{=latex}
@@ -4933,7 +4844,7 @@ Si supponga che venga realizzato un esperimento di Bernoulli, ossia un esperimen
 
 Per identificare univocamente una distribuzione basta conoscerne la funzione di massa di probabilità, che in questo caso è definita come
 \begin{align*}
-P(X=x) = \begin{cases}
+p_X(x) = \begin{cases}
 p & \text{se } x=1 \\[0.5em]
 1-p & \text{se } x=0
 \end{cases}
@@ -4942,22 +4853,23 @@ dove con $p$ si indica la probabilità che l'esperimento registri un successo. D
 
 Una variabile aleatoria $X$ si dice di Bernoulli con parametro $p \in [0,1]$ e si indica con $X \sim B(p)$ se la sua funzione di massa di probabilità è definita come sopra. In altri termini, $X$ si dice bernoulliana se può assumere solo i valori $0$ e $1$.
 
-\hfill
+\vspace{3mm}
 È possibile definire più formalmente la funzione di massa di probabilità come
 $$
 p_X(x) = p^x (1-p)^{1-x}\, I_{\{0,1\}}(x)
 $$
+
 Per essere una funzione di massa di probabilità, $p_X(x)$ deve soddisfare le seguenti condizioni:
 
-- $p_X(x) \ge 0$ per ogni $x \in \mathbb{R}$;
-- $\sum_{x \in D_X} p_X(x) = 1$.
+- $p_X(x) \ge 0$ per ogni $x \in \mathbb{R}$
+- $\sum_{x \in D_X} p_X(x) = 1$
 
 La prima condizione è soddisfatta per ogni $x \in \mathbb{R}$, mentre la seconda condizione è verificata come segue:
 \begin{align*}
 \sum_{x \in D_X} p_X(x) & = p^1 (1-p)^{1-1} + p^0 (1-p)^{1-0} = p + (1-p) = 1
 \end{align*}
 
-\hfill
+
 La funzione di ripartizione di una variabile aleatoria bernoulliana è definita come
 $$
 F_X(x) = \begin{cases}
@@ -5054,15 +4966,27 @@ $$
 \end{tikzpicture}
 \\[0.1mm]
 {\small
-    Funzione di massa di probabilità e funzione di ripartizione della variabile aleatoria $X \sim B(p)$.
+    Funzioni di massa e di ripartizione della variabile aleatoria $X \sim B(0.75)$
 }
 \end{center}
 ```
+Nel grafico della funzione di massa di probabilità compaiono solo due barre, quella in $x=1$ alta $p$ e quella in $x=0$ alta $1-p$. La funzione di ripartizione riproduce questi valori con due salti: il primo salto in $x=0$ raggiunge il valore $1-p$, mentre il secondo salto in $x=1$ raggiunge il valore 1; l'area tratteggiata segnala il salto di ampiezza $p$.
 
-Il suo valore atteso è dato da $\;\;\mathbb{E}[X] = 1\cdot p + 0\cdot (1-p) = p\;\;$ ed è quindi pari alla probabilità che la variabile aleatoria assuma il valore 1.
+\vspace{3mm}
+Il suo valore atteso è dato da 
+$$
+\mathbb{E}[X] = 1\cdot p + 0\cdot (1-p) = p
+$$
+ed è quindi pari alla probabilità che la variabile aleatoria assuma il valore 1.
 
-La varianza è $\;\;\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \overset{(1)}{=} \mathbb{E}[X] - \mathbb{E}[X]^2 = p - p^2 = p(1-p) \begin{small}\qquad\text{(1): per idempotenza}\end{small}$
+\vspace{2mm}
+Sfruttando la proprietà di idempotenza della funzione indicatrice, si ha che la varianza di $X$ è data da
+\vspace{-3mm}
+$$
+\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \overset{(1)}{=} \mathbb{E}[X] - \mathbb{E}[X]^2 = p - p^2 = p(1-p) \begin{small}\qquad\text{(1): per idempotenza}\end{small}
+$$
 
+\vspace{-4mm}
 ```{=latex}
 \vspace{2mm}
 \begin{minipage}{0.35\textwidth}
@@ -5098,13 +5022,14 @@ La varianza è $\;\;\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 \overset{(
 \end{tikzpicture}
 \end{minipage}
 \begin{minipage}{0.62\textwidth}
-\vspace{-7mm}
-Si osserva che nel caso si scelga $p=0$ oppure $p=1$, la variabile aleatoria assume il valore 0 o 1 con probabilità 1, rispettivamente. In questo caso si ha una variabile aleatoria degenerata e la varianza è nulla. La varianza inoltre assume valore massimo quando $p=\frac{1}{2}$, in cui caso la variabile aleatoria assume i valori 0 e 1 con probabilità $\frac{1}{2}$ ciascuna. In questo caso la varianza è pari a $\frac{1}{4}$.
+\vspace{-3mm}
+Si osserva che nel caso si scelga $p=0$ oppure $p=1$, la variabile aleatoria assume il valore 0 o 1 con probabilità 1, rispettivamente. In questo caso si ha una variabile aleatoria degenere e la varianza è nulla. La varianza inoltre raggiunge il valore massimo $\frac{1}{4}$ quando $p=\frac{1}{2}$, in cui caso la variabile aleatoria assume i valori 0 e 1 con probabilità $\frac{1}{2}$ ciascuna.
 \end{minipage}
 ```
 
 
 \hfill
+\newpage
 ### Modello binomiale
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello binomiale}
@@ -5132,17 +5057,30 @@ dove il coefficiente binomiale
 $$
 \binom{n}{x} = \dfrac{n!}{x!(n-x)!}
 $$
+
 rappresenta il numero di combinazioni differenti che si possono ottenere scegliendo $x$ successi tra $n$ prove.
+
+> La correttezza dell'equazione sopra può essere verificata fissando una sequenza di esiti con $i$ successi e $n-i$ fallimenti. La probabilità che si verifichi questa sequenza è $p^i (1-p)^{n-i}$ per l'indipendenza delle ripetizioni:
+> \begin{align*}
+> & \mathbb{P}(X_1=1, \dots, X_i=1, X_{i+1}=0, \dots, X_n=0) \\[1mm]
+> = ~ & \mathbb{P}(X_1=1) \cdots \mathbb{P}(X_{i}=1)\, \mathbb{P}(X_{i+1}=0) \cdots \mathbb{P}(X_n=0) = p^i (1-p)^{n-i}
+> \end{align*}
+> L'equazione segue quindi dal contare quante sono le diverse sequenze di esiti con questa  
+> caratteristica. Esse sono $\binom{n}{i}$ perché corrispondono a tutti i modi in cui si possono scegliere gli $i$ esperimenti che hanno dato esito positivo sugli $n$ in totale.
+
+
 
 La correttezza della funzione di massa di probabilità è garantita dalle seguenti condizioni:
 
-- $p_X(x) \ge 0$ per ogni $x \in \mathbb{R}$;
-- $\sum_{x \in D_X} p_X(x) = 1$.
+- $p_X(x) \ge 0$ per ogni $x \in \mathbb{R}$
+- $\sum_{x \in D_X} p_X(x) = 1$
 
 La prima condizione è soddisfatta per ogni $x \in \mathbb{R}$, mentre la seconda condizione è verificata come segue:
 \begin{align*}
 \sum_{x \in D_X} p_X(x) & = \sum_{x=0}^n \binom{n}{x} p^x (1-p)^{n-x} \overset{(1)}{=} (p + (1-p))^n = 1
 \end{align*}
+
+\vspace{-5mm}
 $\begin{small}\qquad\, \displaystyle \text{(1): per la formula delle potenze del binomio } (x+y)^n = \sum_{i=0}^n \binom{n}{i} x^i \, y^{n-i}\end{small}$
 
 \hfill
@@ -5152,19 +5090,128 @@ F_X(x) = \mathbb{P}(X \le \floor{x}) = \sum_{i=0}^{\floor{x}} p_X(i)
 $$
 
 ```{=latex}
-Grafici di aggiungere
+% ---- incolla qui i tre blocchi generati dallo script ------------
+\def\PMFCOORDSA  { (0,0.000000) (1,0.000000) (2,0.000000) (3,0.000000) (4,0.000000) (5,0.000001) (6,0.000003) (7,0.000017
+) (8,0.000070) (9,0.000249) (10,0.000771) (11,0.002103) (12,0.005081) (13,0.010944) (14,0.021107) (15,0.036585) (16,0.05
+7164) (17,0.080702) (18,0.103119) (19,0.119401) (20,0.125371) (21,0.119401) (22,0.103119) (23,0.080702) (24,0.057164) (2
+5,0.036585) (26,0.021107) (27,0.010944) (28,0.005081) (29,0.002103) (30,0.000771) (31,0.000249) (32,0.000070) (33,0.0000
+17) (34,0.000003) (35,0.000001) (36,0.000000) (37,0.000000) (38,0.000000) (39,0.000000) (40,0.000000) }
+\def\CDFTOPA     { (0,0.000000) (1,0.000000) (2,0.000000) (3,0.000000) (4,0.000000) (5,0.000001) (6,0.000004) (7,0.000021
+) (8,0.000091) (9,0.000340) (10,0.001111) (11,0.003213) (12,0.008295) (13,0.019239) (14,0.040345) (15,0.076930) (16,0.13
+4094) (17,0.214795) (18,0.317914) (19,0.437315) (20,0.562685) (21,0.682086) (22,0.785205) (23,0.865906) (24,0.923070) (2
+5,0.959655) (26,0.980761) (27,0.991705) (28,0.996787) (29,0.998889) (30,0.999660) (31,0.999909) (32,0.999979) (33,0.9999
+96) (34,0.999999) (35,1.000000) (36,1.000000) (37,1.000000) (38,1.000000) (39,1.000000) (40,1.000000) }
+
+\def\PMFCOORDS  { (0,0.000001) (1,0.000011) (2,0.000091) (3,0.000495) (4,0.001963) (5,0.006057) (6,0.015143) (7,0.03152
+2) (8,0.055726) (9,0.084916) (10,0.112817) (11,0.131864) (12,0.136574) (13,0.126068) (14,0.104199) (15,0.077405) (16,0.0
+51834) (17,0.031362) (18,0.017174) (19,0.008523) (20,0.003835) (21,0.001565) (22,0.000579) (23,0.000194) (24,0.000059) (
+25,0.000016) (26,0.000004) (27,0.000001) (28,0.000000) (29,0.000000) (30,0.000000) (31,0.000000) (32,0.000000) (33,0.000
+000) (34,0.000000) (35,0.000000) (36,0.000000) (37,0.000000) (38,0.000000) (39,0.000000) (40,0.000000) }
+\def\CDFTOP     { (0,0.000001) (1,0.000012) (2,0.000103) (3,0.000598) (4,0.002561) (5,0.008618) (6,0.023761) (7,0.05528
+3) (8,0.111009) (9,0.195925) (10,0.308743) (11,0.440607) (12,0.577181) (13,0.703249) (14,0.807448) (15,0.884853) (16,0.9
+36687) (17,0.968049) (18,0.985223) (19,0.993745) (20,0.997581) (21,0.999146) (22,0.999725) (23,0.999920) (24,0.999979) (
+25,0.999995) (26,0.999999) (27,1.000000) (28,1.000000) (29,1.000000) (30,1.000000) (31,1.000000) (32,1.000000) (33,1.000
+000) (34,1.000000) (35,1.000000) (36,1.000000) (37,1.000000) (38,1.000000) (39,1.000000) (40,1.000000) }
+
+\def\PMFCOORDSB  { (0,0.000001) (1,0.000019) (2,0.000181) (3,0.001087) (4,0.004621) (5,0.014786) (6,0.036964) (7,0.07392
+9) (8,0.120134) (9,0.160179) (10,0.176197) (11,0.160179) (12,0.120134) (13,0.073929) (14,0.036964) (15,0.014786) (16,0.0
+04621) (17,0.001087) (18,0.000181) (19,0.000019) (20,0.000001) }
+\def\CDFTOPB     { (0,0.000001) (1,0.000020) (2,0.000201) (3,0.001288) (4,0.005909) (5,0.020695) (6,0.057659) (7,0.13158
+8) (8,0.251722) (9,0.411901) (10,0.588099) (11,0.748278) (12,0.868412) (13,0.942341) (14,0.979305) (15,0.994091) (16,0.9
+98712) (17,0.999799) (18,0.999980) (19,0.999999) (20,1.000000) }
+
+
+% ----------------------------------------------------------------
+
+%------------------------------------------------
+% STILI: ora registrati in /pgfplots/…
+%------------------------------------------------
+\pgfplotsset{
+  pmfaxis/.style={
+    width=7.3cm, height=5.5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-0.85, xmax=44.5, ymin=-0.015, ymax=0.28,
+    tick style={black,thin}, clip=false
+  },
+  cdfaxis/.style={
+    width=7.3cm, height=5.5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-0.85, xmax=44.5, ymin=-0.05, ymax=1.15,
+    tick style={black,thin}, clip=false
+  }
+}
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+
+% ---------- PMF --------------------------------------------------
+\begin{axis}[pmfaxis,
+  ylabel={$p_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+  legend style={
+      at={(0.70,0.98)},            % in alto a sinistra (0,0 = SW, 1,1 = NE)
+      anchor=north west,
+      draw=none,                   % niente bordo
+      fill=none,                   % niente riquadro di sfondo
+      font=\small
+  },
+  legend cell align=left           % etichette allineate a sx
+]
+  % serie 1: n=20, p=0.3  (grigio chiaro)
+  \addplot[only marks,mark=*,gray!20] coordinates \PMFCOORDS;
+  \addlegendentry{$B(40,0.3)$}
+
+  % serie 2: n=20, p=0.5  (grigio medio)
+  \addplot[only marks,mark=*,gray!70] coordinates \PMFCOORDSA;
+  \addlegendentry{$B(40,0.5)$}
+
+  % serie 3: n=10, p=0.5  (nero)
+  \addplot[only marks,mark=*,black]  coordinates \PMFCOORDSB;
+  \addlegendentry{$B(20,0.5)$}
+\end{axis}
+
+% ---------- CDF --------------------------------------------------
+\begin{axis}[cdfaxis,
+  at={(current bounding box.east)}, anchor=west, xshift=1.4cm,
+  ylabel={$F_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south, rotate=-90},
+  yticklabel style={yshift=-1.5pt},    % abbassa il “1”
+  xlabel={$x$},
+  xlabel style={
+    at={(axis description cs:1,0)},
+    anchor=north west,
+    yshift=-2pt
+  }
+]
+  % puntini pieni (sopra)
+  \addplot[only marks,mark=*,gray!20] coordinates \CDFTOP;
+  \addplot[only marks,mark=*,gray!70] coordinates \CDFTOPA;
+  \addplot[only marks,mark=*,black] coordinates \CDFTOPB;
+
+
+\end{axis}
+
+\end{tikzpicture}
+\\[0.2mm]
+{\small
+    Funzioni di massa e di ripartizione di tre variabili aleatorie $X \sim B(n,p)$.
+}
+\end{center}
+\vspace{1mm}
 ```
 
-Si osserva che indipendetemente dal valore di $p$, il grafico di $p_X$ cresce e poi decresce in maniera simmetrica. Ciò che $p$ stabilisce è se questo grafico sia spostato verso $0$ o verso $n$, il che è ragionevole in quanto, come si vedrà ora, il valore atteso di $X$ è $np$.
+Nei diagrammi binomiali la probabilità si concentra attorno a un punto che dipende da $p$: riducendo $p$ l’insieme dei valori più probabili scivola verso 0, aumentandolo scivola verso $n$; esattamente a metà ($p=0.5$) la curva risulta simmetrica rispetto al suo centro, mentre per valori diversi la coda più distante dal centro diventa più pronunciata. Il parametro $n$, invece, incide sulla larghezza complessiva della distribuzione: al crescere del numero di prove l’intervallo dove si trovano quasi tutti i risultati rimane proporzionalmente più stretto rispetto all’intero asse orizzontale, e il profilo assume una forma sempre più “campanulare”. In poche righe: $p$ stabilisce dove si colloca la massa di probabilità e quanta simmetria abbia il grafico, $n$ stabilisce quanto questa massa sia concentrata o dispersa.
 
-\hfill
+
+\vspace{3mm}
 Per definizione di variabile aleatoria binomiale, essa è la somma di $n$ variabili aleatorie bernoulliane, ognuna delle quali ha valore atteso $p$. Sfruttando la linearità del valore atteso, si ottiene
 $$
-\mathbb{E}[X] = \mathbb{E}\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n p = n\, p
+\mathbb{E}[X] = \mathbb{E}\left[\,\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n p = n p
 $$
 Ragionamento analogo si può fare per la varianza, notando che è possibile sfruttare l'indipendenza tra le variabili bernoulliane $X_i$ per evitare il termine di covarianza:
 $$
-\text{Var}(X) = \text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n p(1-p) = n\, p(1-p)
+\text{Var}(X) = \text{Var}\left(\,\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i) = \sum_{i=1}^n p(1-p) = n p \,(1-p)
 $$
 
 Come nel modello di Bernoulli, anche in questo caso la varianza assume il grafico di una parabola. La varianza aumenta sia quando $p$ tende a $1/2$, ma anche all'aumentare di $n$.
@@ -5190,22 +5237,127 @@ Si dice perciò che questo modello gode della proprietà di riproducibilità tra
 
 Questo modello si presenta quando l'esperimento casuale può restituire $n$ esiti distinti, ciascuno dei quali ha la stessa probabilità di verificarsi. Una variabile aleatoria $X$ che codifica tale esperimento si dice uniforme discreta con parametro $n$ e si indica con $X \sim U(n)$.
 
-Il suo dominio di supporto è quindi $D_X = \{1, \dots, n\}$ e $\forall i \in D_X \;\; \mathbb{P}(X=i) = 1/n$.
+Il suo dominio di supporto è quindi $D_X = \{1, \dots, n\}$ e $\forall i \in D_X$ si ha che $\mathbb{P}(X=i) = 1/n$.
 
 La funzione di massa di probabilità è definita come
+\vspace{-0.5mm}
 $$
 p_X(x) = \dfrac{1}{n} \, I_{\{1,\dots,n\}}(x)
 $$
+
 La correttezza della funzione di massa di probabilità è banale, in quanto
+\vspace{-0.5mm}
 $$
 \sum_{x \in D_X} p_X(x) = \sum_{i=1}^n \dfrac{1}{n} = 1
 $$
 
 La funzione di ripartizione di una variabile aleatoria uniforme discreta è definita come
+\vspace{-0.5mm}
 $$
 F_X(x) = \mathbb{P}(X \le x) = \sum_{i \le x} p_X(i) = \sum_{i=1}^{\floor{x}} p_X(i) = \sum_{i=1}^{\floor{x}} \dfrac{1}{n} = \dfrac{\floor{x}}{n}
 $$
 
+
+```{=latex}
+\vspace{1mm}
+%------------------------------------------------
+%   UNIFORME DISCRETA SU {1,…,n}
+%   (qui n = 7 solo per far girare i cicli)
+%------------------------------------------------
+\def\numpts{7}                       % ← cambia se serve un n diverso
+\pgfmathsetmacro{\invn}{1/\numpts}   % 1/n
+
+%------------------------------------------------
+%   GRAFICI AFFIANCATI • STILI IDENTICI
+%------------------------------------------------
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+  \begin{axis}[pmfaxis,
+    width=7cm, height=5cm,
+    ylabel={$p_{X}$},
+    ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+    xlabel={$x$},
+    xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+    ytick={0,\invn},
+    yticklabels={$0$,$\dfrac1n$},
+    xtick={1,2,4,5,6,7},
+    xticklabels={$1$,$2$,$\dots$,,$n{-}1$,$n$},
+    xmin=0.4, xmax=\numpts+0.9,
+    ymin=0, ymax=2*\invn,
+    clip=false
+  ]
+      % asse x
+      \addplot[gray!30,very thick]
+               coordinates {(0.45,0) (\numpts+0.7,0)};
+
+      % barrette uniformi
+      \foreach \k in {1,...,\numpts}{
+          \addplot[black,thick]  coordinates {(\k,0) (\k,\invn)};
+          % puntino pieno
+          \addplot[gray!30,only marks,mark=*] coordinates {(\k,\invn)};
+          % puntino vuoto alla base
+          \addplot[white,draw=gray!30,very thick,
+                   mark=*,mark options={scale=1.25,fill=white},
+                   only marks] coordinates {(\k,0)};
+      }
+  \end{axis}
+
+  \begin{axis}[cdfaxis,
+    width=7cm, height=5cm,
+    at={(current bounding box.east)}, anchor=west, xshift=1.6cm,
+    ylabel={$F_{X}$},
+    ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+    xlabel={$x$},
+    xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+    ytick={0,\invn,2*\invn,4*\invn,6*\invn,1},
+    yticklabels={$0$,$1/n$,$2/n$,$\dots$,$(n{-}1)/n$,$1$},
+    xtick={1,2,4,6,7},
+    xticklabels={$1$,$2$,$\dots$,$n{-}1$,$n$},
+    xmin=0.4, xmax=\numpts+1,
+    ymin=0, ymax=1.15,
+    clip=false
+  ]
+      % segmento iniziale a F(0)=0
+      \addplot[gray!30,very thick] coordinates {(0.5,0) (1,0)};
+
+      \addplot[black,very thin,dashed] coordinates {(0.66,1) (7,1)};
+      \addplot[black,very thin,dashed] coordinates {(7,0.05) (7,1)};
+
+      % costruisci la scala: orizzontale + salto di 1/n
+      \pgfmathsetmacro{\cumprob}{0}
+      \foreach \k in {1,...,\numpts}{
+          \pgfmathsetmacro{\cumnext}{\cumprob + \invn}
+
+          % salto verticale
+          \addplot[black,thin] coordinates {(\k,\cumprob) (\k,\cumnext)};
+
+          % tratto orizzontale (chiuso–aperto)
+          \pgfmathsetmacro{\xnext}{\k + ( (\k<\numpts) ? 1 : 0.6 )}
+          \addplot[gray!30,very thick] coordinates {(\k,\cumnext) (\xnext,\cumnext)};
+
+          % puntini pieno/vuoto
+          \addplot[gray!30,only marks,mark=*]   coordinates {(\k,\cumnext)};
+          \addplot[white,draw=gray!30,very thick,
+                   mark=*,mark options={scale=1.25,fill=white},
+                   only marks] coordinates {(\k,\cumprob)};
+
+          \xdef\cumprob{\cumnext}
+      }
+  \end{axis}
+\end{tikzpicture}
+
+\vspace{-2mm}
+{\small
+    Funzioni di massa e di ripartizione della variabile aleatoria $X \sim U(n)$
+}
+\end{center}
+\vspace{1mm}
+```
+Nel grafico della funzione di massa di probabilità l’uniformità si traduce in $n$ segmenti verticali di identica altezza $1/n$; l’insieme delle barre forma pertanto un profilo costante, privo di qualsiasi tendenza monotona.
+La funzione di ripartizione mostra gradini di ampiezza orizzontale unitaria e altezza invariata $1/n$; la somma di tali incrementi genera una scalinata lineare che cresce con pendenza costante, raggiungendo il valore $1$ in corrispondenza dell’ultimo punto $x=n$.
+
+
+\vspace{2mm}
 Il valore atteso è dato da
 \begin{align*}
 \mathbb{E}[X] & = \sum_{x=1}^n x\, p_X(x) = \sum_{x=1}^n \dfrac{x}{n} = \dfrac{1}{n} \sum_{x=1}^n x = \dfrac{1}{n}\, \dfrac{n(n+1)}{2} = \dfrac{n+1}{2}
@@ -5219,34 +5371,35 @@ La varianza invece si calcola come
 \end{align*}
 
 
-\hfill
+\newpage
 ### Modello geometrico
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello geometrico}
 ```
-Si supponga di realizzare un esperimento di Bernoulli con parametro $p$ e di contare il numero di prove necessarie affinché si verifichi il primo successo. La variabile aleatoria $X$ che codifica questo esperimento si dice geometrica con parametro $p$ e si indica con $X \sim G(p)$.  
-$X$ quindi conta il numero di fallimenti che precedono il primo successo.
+Si supponga di realizzare un esperimento di Bernoulli con parametro $p$ e di contare il numero di prove necessarie affinché si verifichi il primo successo. La variabile aleatoria $X$ che codifica questo esperimento si dice geometrica con parametro $p$ e si indica con $X \sim G(p)$.
 
 Formalmente, date $X_1, X_2, \dots$ variabili aleatorie indipendenti e identicamente distribuite (i.i.d.) di Bernoulli con parametro $p$, si pone
+
+\vspace{-7mm}
 $$
-T \;=\; \min\{\,i\ge 1 : X_i = 1\},
+T = \min\{\,i\ge 1 \mid X_i = 1\}
 \qquad
-X \;=\; T-1 \;\sim\; G(p),
+X = T-1 \;\sim\; G(p)
 $$
 dove $T$ è l’istante del primo successo e $X$ conta i fallimenti che lo precedono.
 
 Si osserva che se $p=1$ allora $X=0$ con probabilità 1, mentre se $p=0$ allora $X \to +\infty$ con probabilità 1. In entrambi i casi la variabile aleatoria è degenere. Si considera per tale motivo $p \in (0,1)$.
 
-\hfill
+\vspace{3mm}
 #### Funzione di massa di probabilità
 Il dominio di supporto è $D_X = \mathbb{N} \cup \{0\}$. La funzione di massa di probabilità è definita come
 $$
-p_X(x) = p(1-p)^x \, I_{\mathbb{N} \cup \{0\}}(x)
+p_X(x) = p\,(1-p)^x \, I_{\mathbb{N} \cup \{0\}}(x)
 $$
 
 Infatti calcolare $p_X(x) = \mathbb{P}(X=x)$ equivale a calcolare la probabilità che i primi $x$ esperimenti siano falliti e che il $(x+1)$-esimo sia un successo, ossia:
 $$
-\mathbb{P}(X=x) = \mathbb{P}\left(\,\bigcap_{i=0}^x X_i = 0, X_{x+1} = 1\right) \overset{(1)}{=} \prod_{i=0}^x \mathbb{P}(X_i = 0) \cdot \mathbb{P}(X_{x+1} = 1) = \prod_{i=0}^x (1-p) \cdot p = p\,(1-p)^x
+\mathbb{P}(X=x) = \mathbb{P}\left(\,\bigcap_{i=0}^x X_i = 0, X_{x+1} = 1\right) \overset{(1)}{=} \prod_{i=0}^x \mathbb{P}(X_i = 0) \, \mathbb{P}(X_{x+1} = 1) = \prod_{i=0}^x (1-p) \, p = p\,(1-p)^x
 $$
 $\begin{small}\qquad\text{(1): per indipendenza}\end{small}$
 
@@ -5267,15 +5420,13 @@ $\begin{small}
   \hspace*{3.9em} \alpha = 1-p, \text{ che è una probabilità ed è quindi compresa tra 0 e 1.}
 \end{small}$
 
-Il grafico della funzione di massa di probabilità presenta un decadimento esponenziale, ed è tanto più ripido quanto più è grande il valore di $p$.
 
-
-\hfill
+\vspace{3mm}
 #### Funzione di ripartizione
 Prima di calcolare la funzione di ripartizione, si osservi che
 \begin{align*}
 \mathbb{P}(X > n) & = \sum_{x=n+1}^{+\infty} p_X(x) = \sum_{x=n+1}^{+\infty} p\,(1-p)^x = p\, (1-p)^{n+1} \sum_{x=n+1}^{+\infty} (1-p)^{x-(n+1)}\\[0.5em]
-&  \overset{(1)}{=} p\, (1-p)^{n+1} \sum_{y=0}^{+\infty} (1-p)^y  \overset{(2)}{=} p\, (1-p)^{n+1} \cdot \dfrac{1}{1-(1-p)} = p\, (1-p)^{n+1} \cdot \dfrac{1}{p} = (1-p)^{n+1}
+&  \overset{(1)}{=} p\, (1-p)^{n+1} \sum_{y=0}^{+\infty} (1-p)^y  \overset{(2)}{=} p\, (1-p)^{n+1} \, \dfrac{1}{1-(1-p)} = p\, (1-p)^{n+1}\, \dfrac{1}{p} = (1-p)^{n+1}
 \end{align*}
 
 $\begin{small}
@@ -5298,6 +5449,134 @@ F_X(x)
      && \hspace{-6em} \forall x \in \mathbb{R}
 \end{align*}
 
+
+```{=latex}
+%------------------------------------------------
+%  STILI USATI PIÙ VOLTE
+%------------------------------------------------
+\pgfplotsset{
+  pmfaxis/.style={
+    width=7cm,height=5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=0.5, xmax=11,
+    ymin=0,   ymax=0.4,
+    tick style={black,thin}, clip=false
+  },
+  cdfaxis/.style={
+    width=7cm,height=5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=0.5, xmax=11,
+    ymin=0,   ymax=1.15,
+    tick style={black,thin}, clip=false
+  }
+}
+
+%------------------------------------------------
+%  PARAMETRI DEL MODELLO GEOMETRICO
+%------------------------------------------------
+\def\p{0.4}                           % probabilità di successo
+\pgfmathsetmacro{\q}{1-\p}             % 1-p
+\def\maxk{10}                          % quanti valori mostrare (1..maxk)
+
+%--- valori già calcolati per gli assi (evita errori "ill-formatted") ----
+\pgfmathsetmacro{\PtwoTick}{\p*\q}           % p(1-p)
+\pgfmathsetmacro{\FoneTick}{1-\q}            % 1-q
+\pgfmathsetmacro{\FtwoTick}{1-pow(\q,2)}     % 1-q^2
+
+%------------------------------------------------
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+
+%================================================
+%  PMF
+%================================================
+\begin{axis}[pmfaxis,
+  ylabel={$p_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+  ytick={0,\p,\PtwoTick},
+  yticklabels={$0$,$p$,$p(1-p)$},
+  xtick={0,...,\maxk},
+  xmin=0.4, xmax=\maxk+1,
+  ymin=0,   ymax={\p*1.25},
+  clip=false
+]
+  % linea di base
+  \addplot[gray!30,very thick] coordinates {(0.47,0) (\maxk+0.7,0)};
+
+  % barrette + puntini
+  \foreach \k in {1,...,\maxk}{
+      \pgfmathtruncatemacro{\exp}{\k-1}
+      \pgfmathsetmacro{\pmf}{\p * pow(\q,\exp)}
+      \addplot[black,thin] coordinates {(\k,-0.01) (\k,\pmf)};
+      % \addplot[white,draw=gray!30,very thick,
+      %          mark=*,mark options={scale=1.25,fill=white},
+      %          only marks] coordinates {(\k,0)};
+      \addplot[gray!30,only marks,mark=*] coordinates {(\k,\pmf)};
+  }
+
+\end{axis}
+
+%================================================
+%  CDF
+%================================================
+\begin{axis}[cdfaxis,
+  at={(current bounding box.east)}, anchor=west, xshift=1.4cm,
+  ylabel={$F_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+  ytick={0,\FoneTick,\FtwoTick,1},
+  yticklabels={$0$,$1-q$,$1-q^{2}$,$1$},
+  xtick={0,...,\maxk},
+  xmin=0.4, xmax=\maxk+1.5,
+  ymin=0,   ymax=1.15,
+  clip=false
+]
+  % tratto iniziale F(0)=0
+  \addplot[gray!30,very thick] coordinates {(0.5,0) (1,0)};
+
+  \addplot[black,very thin,dashed] coordinates {(0.66,1) (\maxk,1)};
+  \addplot[black,very thin,dashed] coordinates {(\maxk,0.05) (\maxk,1)};
+
+
+  % gradini e puntini
+  \pgfmathsetmacro{\cumprob}{0}
+  \foreach \k in {1,...,\maxk}{
+      \pgfmathtruncatemacro{\expnext}{\k}
+      \pgfmathsetmacro{\cumnext}{1 - pow(\q,\expnext)}
+
+      % salto verticale
+      \addplot[black,thin] coordinates {(\k,\cumprob+0.008) (\k,\cumnext)};
+
+      % segmento orizzontale
+      \pgfmathsetmacro{\xnext}{\k + ( (\k<\maxk) ? 1 : 0.6 )}
+      \addplot[gray!30,very thick] coordinates {(\k,\cumnext) (\xnext,\cumnext)};
+
+      % punti pieno / vuoto
+      % \addplot[white,draw=gray!30,very thick,
+      %          mark=*,mark options={scale=1.25,fill=white},
+      %          only marks] coordinates {(\k,\cumprob)};
+      \addplot[gray!30,only marks,mark=*] coordinates {(\k,\cumnext)};
+
+      \xdef\cumprob{\cumnext}
+  }
+
+\end{axis}
+
+\end{tikzpicture}
+
+{\small Funzioni di massa e di ripartizione della variabile
+\(X\sim\mathrm{G}(0.4)\) con $q=1{-}p=0.6$.
+}
+\end{center}
+\vspace{1mm}
+```
+Il grafico della funzione di massa di probabilità presenta un decadimento esponenziale, ed è tanto più ripido quanto più è grande il valore di $p$. Quando la probabilità di successo è elevata, la porzione di probabilità che permane dopo ciascun tentativo, ossia quella associata al fattore $(1-p)$, si riduce sensibilmente: le colonne si contraggono rapidamente e la quasi totalità della massa si concentra nei primissimi valori. Di riflesso, nella funzione di ripartizione i gradini iniziali assorbono quasi tutta la probabilità, così la curva cresce in maniera brusca e si assesta vicino a 1 già dopo pochi incrementi di $x$.
+
+
+
 ##### Assenza di memoria
 L'assenza di memoria è una proprietà di cui gode il modello geometrico, ed è l'unico a possederla tra i vari modelli discreti. Si consideri $X \sim G(p)$ e si provi a calcolare $\mathbb{P}(X > i + j \mid X \ge i)$, ovvero la probabilità condizionata di ottenere un successo dopo $i+j$ prove, sapendo che ne sono già state effettuate $i$ senza successo. Si ha:
 \begin{gather*}
@@ -5307,6 +5586,7 @@ L'assenza di memoria è una proprietà di cui gode il modello geometrico, ed è 
 
 Si ottiene quindi che $\mathbb{P}(X > i + j \mid X \ge i) = \mathbb{P}(X > j)$, ossia la probabilità di ottenere un successo dopo $i+j$ prove, sapendo che ne sono già state effettuate $i$ senza successo, è uguale alla probabilità di ottenere un successo dopo $j$ prove. In altre parole, il numero di prove necessarie per ottenere il primo successo non dipende da quante prove siano già state effettuate.
 
+\vspace{2mm}
 #### Valore atteso e varianza
 
 Prima di calcolare il valore atteso, si osservi che
@@ -5331,7 +5611,6 @@ $\begin{small}
 \end{small}$
 
 
-\hfill
 La varianza è data da:
 \begin{align*}
 \mathbb{E}[X^2] & = \sum_{x = 0}^{+\infty} x^2\, p (1-p)^x = p(1-p) \sum_{x = 0}^{+\infty} x^2 (1-p)^{x-1} \overset{(1)}{=} p(1-p) \sum_{x = 0}^{+\infty} \dfrac{d}{dp} \left[-x(1-p)^x\right] \\[0.5em]
@@ -5345,14 +5624,14 @@ $\begin{small}
   \hspace*{2em} \text{(2): per l'osservazione fatta in precedenza}
 \end{small}$
 
+\vspace{-4mm}
 \begin{align*}
 \text{Var}(X) & = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \dfrac{(1-p)(2-p)}{p^2} - \left(\dfrac{1-p}{p}\right)^2 = \dfrac{(1-p)(2-p) - (1-p)^2}{p^2}\\[0.5em]
 & = \dfrac{(1-p)(2- \cancel p - 1 + \cancel p)}{p^2} = \dfrac{1-p}{p^2}
 \end{align*}
 
 
-
-\newpage
+\hfill
 ### Modello di Poisson
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello di Poisson}
@@ -5361,7 +5640,7 @@ $\begin{small}
 
 La distribuzione di Poisson nasce come modello per il conteggio di eventi rari che si verificano in un intervallo di tempo o in una regione di spazio (es. numero di refusi in un libro, chiamate al centralino in un minuto).
 
-Dal punto di vista teorico, essa si ottiene come caso limite della distribuzione binomiale: sia $\{X_n\}_{n\ge 1}$ una successione di variabili aleatorie con $X_n \sim \mathrm{B}(n,p_n)$, dove gli $n$ tentativi sono indipendenti e con la stessa probabilità $p_n$ di “successo”. Se esiste $\lambda>0$ tale che
+Dal punto di vista teorico si ottiene come caso limite della distribuzione binomiale: sia $\{X_n\}_{n\ge 1}$ una successione di variabili aleatorie con $X_n \sim \mathrm{B}(n,p_n)$, dove all'interno di ogni esperimento le $n$ prove bernoulliane sono indipendenti e hanno tutte la stessa probabilità di successo $p_n$. Se esiste $\lambda>0$ tale che
 $$
 \lim_{n\to\infty} n\,p_n = \lambda,
 $$
@@ -5369,37 +5648,43 @@ allora $X_n$ converge in distribuzione a una variabile $X$ di Poisson con parame
 $$
 X_n \xrightarrow{\,d\,} \mathrm{P}(\lambda).
 $$
+Pertanto, quando $n$ è molto grande e $p$ è molto piccolo in modo che $n p = \lambda$ rimanga finito, la binomiale $B(n,p)$ è ben approssimata dalla $\mathrm{P}(\lambda)$.
 
-Pertanto, quando $n$ è molto grande e $p$ è molto piccolo con $n p = \lambda$ finito, la binomiale $\mathrm{Bin}(n,p)$ è ben approssimata dalla $\mathrm{P}(\lambda)$.
-
-#### Funzione di massa di probabilità
+\vspace{2mm}
+#### Funzioni di massa di probabilità e di ripartizione
 A differenza della binomiale, il dominio di supporto è $D_X = \mathbb{N} \cup \{0\}$, e non ha quindi una specificazione massima. La funzione di massa di probabilità è definita come
 $$
-p_X(i) = \dfrac{\lambda^i}{i!} e^{-\lambda} \, I_{\mathbb{N} \cup \{0\}}(i)
+p_X(i) = \dfrac{\lambda^i}{i!}\, e^{-\lambda} \, I_{\mathbb{N} \cup \{0\}}(i)
 $$
 
 Infatti per calcolare $p_X(i) = \mathbb{P}(X=i)$ si considera, per definizione di variabile aleatoria di Poisson, la funzione di massa di probabilità come il limite della funzione di massa di probabilità della binomiale $X_n$:
 $$
-p_X(i) = \lim_{n\to\infty} \mathbb{P}(X_n=i) = \lim_{n\to\infty} \binom{n}{i} p^i (1-p)^{n-i}
+p_X(i) = \lim_{n\to\infty} \mathbb{P}(X_n=i) = \lim_{n\to\infty} \binom{n}{i}\, p^i\, (1-p)^{n-i}
 $$
 
-Prima di sviluppare il termine del limite, si osserva che:
+\newpage
+Prima di sviluppare il limite, si osservi che:
 
-- $\dbinom{n}{i} = \dfrac{n!}{i!(n-i)!} = \dfrac{n(n-1)\cdots(n-i+1)}{i!}$
-- $p = \dfrac{\lambda}{n}$
+- $\dbinom{n}{i} = \dfrac{n!}{i!\,(n-i)!} = \dfrac{n\,(n-1)\cdots(n-i+1)}{i!} \,$ dove i fattori al numeratore sono $i$ in totale
+- $p = \dfrac{\lambda}{n}\,$ per il vincolo $n p = \lambda$
 
-Sostituendo si ottiene
+Sostituendo quanto riportato sopra si ottiene
 \begin{align*}
 p_X(i) & = \lim_{n\to\infty} \dfrac{n(n-1)\cdots(n-i+1)}{i!} \, \dfrac{\lambda^i}{n^i} \, \left(1-\dfrac{\lambda}{n}\right)^{n-i}
-= \lim_{n\to\infty} \underbrace{\dfrac{n}{n} \,\dfrac{n-1}{n} \cdots \dfrac{n-i+1}{n}}_{i \text{ volte}} \, \dfrac{\lambda^i}{i!} \, \left( 1 - \dfrac{\lambda}{n} \right)^{n-1} \\[-0.1em]
-& = \dfrac{\lambda^i}{i!} \, \lim_{n\to\infty} \underbrace{\dfrac{n}{n} \,\dfrac{n-1}{n} \cdots \dfrac{n-i+1}{n}}_{\to 1} \, \dfrac{\overbrace{\left( 1 - \dfrac{\lambda}{n} \right)^n}^{\to e^{-\lambda} \text{ (1)}}}{\underbrace{\left( 1 - \dfrac{\lambda}{n} \right)^i}_{\to 1}}
+= \dfrac{\lambda^i}{i!} \lim_{n\to\infty} \dfrac{n(n-1)\cdots(n-i+1)}{n^i} \, \left( 1 - \dfrac{\lambda}{n} \right)^{n-i} \\[1mm]
+& \overset{(1)}{=} \dfrac{\lambda^i}{i!} \, \lim_{n\to\infty} \dfrac{n}{n} \,\dfrac{n-1}{n} \cdots \dfrac{n-i+1}{n} \, \left( 1 - \dfrac{\lambda}{n} \right)^{n-i}
+= \dfrac{\lambda^i}{i!} \lim_{n\to\infty} \left[\, \prod_{k=0}^{i-1} \left( \dfrac{n-k}{n} \right) \right] \, \left( 1 - \dfrac{\lambda}{n} \right)^n \, \left( 1 - \dfrac{\lambda}{n} \right)^{-i}\\[1mm]
+& \overset{(2)}{=} \dfrac{\lambda^i}{i!} \cdot 1 \cdot e^{-\lambda} \cdot 1 
 = \dfrac{\lambda^i}{i!} \, e^{-\lambda}
 \end{align*}
 \begin{small}
-  \qquad\text{(1): per il limite notevole } $\displaystyle \lim_{n\to\infty} \left(1 - \dfrac{\alpha}{n}\right)^n = e^{-\alpha}$
+  \qquad\text{(1): il primo termine del limite è scomposto in $i$ fattori }
+
+  \qquad\text{(2): per il limite notevole } $\displaystyle \lim_{n\to\infty} \left(1 - \dfrac{\alpha}{n}\right)^n = e^{-\alpha}$
 \end{small}
 
-\hfill
+
+\vspace{3mm}
 La correttezza della funzione di massa di probabilità è verificata come segue:
 $$
 \sum_{i=0}^{+\infty} p_X(i) = \sum_{i=0}^{+\infty} \dfrac{\lambda^i}{i!} e^{-\lambda} = e^{-\lambda} \sum_{i=0}^{+\infty} \dfrac{\lambda^i}{i!} \overset{(1)}{=} e^{-\lambda} e^{\lambda} = 1
@@ -5409,7 +5694,121 @@ $$
   \qquad\text{(1): per lo sviluppo in serie di Taylor centrato in $0$ di $e^{\lambda}$ si ha } $\displaystyle e^{\lambda} = \sum_{i=0}^{+\infty} \dfrac{\lambda^i}{i!}$
 \end{small}
 
-Si osserva che la funzione di massa di probabilità è definita per ogni $i \in \mathbb{N} \cup \{0\}$, e che il suo grafico presenta un andamento crescente fino a un certo punto, per poi decrescere esponenzialmente fino a tendere a 0. È anche possibile che essa decresca subito.
+
+\vspace{3mm}
+La funzione di ripartizione di una variabile aleatoria di Poisson è definita come
+$$
+F_X(x) = \mathbb{P}(X \le \floor{x}) = \sum_{i=0}^{\floor{x}} p_X(i)
+$$
+
+```{=latex}
+\def\PMFCOORDS  { (0,0.000045) (1,0.000454) (2,0.002270) (3,0.007567) (4,0.018917) (5,0.037833) (6,0.063055) (7,0.090079
+) (8,0.112599) (9,0.125110) (10,0.125110) (11,0.113736) (12,0.094780) (13,0.072908) (14,0.052077) (15,0.034718) (16,0.02
+1699) (17,0.012764) (18,0.007091) (19,0.003732) (20,0.001866) }
+\def\CDFTOP     { (0,0.000045) (1,0.000499) (2,0.002769) (3,0.010336) (4,0.029253) (5,0.067086) (6,0.130141) (7,0.220221
+) (8,0.332820) (9,0.457930) (10,0.583040) (11,0.696776) (12,0.791556) (13,0.864464) (14,0.916542) (15,0.951260) (16,0.97
+2958) (17,0.985722) (18,0.992813) (19,0.996546) (20,0.998412) }
+
+
+\def\PMFCOORDSA  { (0,0.018316) (1,0.073263) (2,0.146525) (3,0.195367) (4,0.195367) (5,0.156293) (6,0.104196) (7,0.05954
+0) (8,0.029770) (9,0.013231) (10,0.005292) (11,0.001925) (12,0.000642) (13,0.000197) (14,0.000056) (15,0.000015) (16,0.0
+00004) (17,0.000001) (18,0.000000) (19,0.000000) (20,0.000000) }
+\def\CDFTOPA     { (0,0.018316) (1,0.091578) (2,0.238103) (3,0.433470) (4,0.628837) (5,0.785130) (6,0.889326) (7,0.94886
+6) (8,0.978637) (9,0.991868) (10,0.997160) (11,0.999085) (12,0.999726) (13,0.999924) (14,0.999980) (15,0.999995) (16,0.9
+99999) (17,1.000000) (18,1.000000) (19,1.000000) (20,1.000000) }
+
+\def\PMFCOORDSB  { (0,0.367879) (1,0.367879) (2,0.183940) (3,0.061313) (4,0.015328) (5,0.003066) (6,0.000511) (7,0.00007
+3) (8,0.000009) (9,0.000001) (10,0.000000) (11,0.000000) (12,0.000000) (13,0.000000) (14,0.000000) (15,0.000000) (16,0.0
+00000) (17,0.000000) (18,0.000000) (19,0.000000) (20,0.000000) }
+\def\CDFTOPB     { (0,0.367879) (1,0.735759) (2,0.919699) (3,0.981012) (4,0.996340) (5,0.999406) (6,0.999917) (7,0.99999
+0) (8,0.999999) (9,1.000000) (10,1.000000) (11,1.000000) (12,1.000000) (13,1.000000) (14,1.000000) (15,1.000000) (16,1.0
+00000) (17,1.000000) (18,1.000000) (19,1.000000) (20,1.000000) }
+
+% ----------------------------------------------------------------
+
+
+%------------------------------------------------
+% STILI: ora registrati in /pgfplots/…
+%------------------------------------------------
+\pgfplotsset{
+  pmfaxis/.style={
+    width=7.3cm, height=5.5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-1.2, xmax=22.0, ymin=-0.028, ymax=0.45,
+    tick style={black,thin}, clip=false
+  },
+  cdfaxis/.style={
+    width=7.3cm, height=5.5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-1.2, xmax=22.0, ymin=-0.075, ymax=1.15,
+    tick style={black,thin}, clip=false
+  }
+}
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+
+% ---------- PMF --------------------------------------------------
+\begin{axis}[pmfaxis,
+  ylabel={$p_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+  legend style={
+      at={(0.80,0.98)},            % in alto a sinistra (0,0 = SW, 1,1 = NE)
+      anchor=north west,
+      draw=none,                   % niente bordo
+      fill=none,                   % niente riquadro di sfondo
+      font=\small
+  },
+  legend cell align=left           % etichette allineate a sx
+]
+  % serie 3: n=10, p=0.5  (nero)
+  \addplot[only marks,mark=*,black]  coordinates \PMFCOORDSB;
+  \addlegendentry{$P(1)$}
+
+  % serie 2: n=20, p=0.5  (grigio medio)
+  \addplot[only marks,mark=*,gray!70] coordinates \PMFCOORDSA;
+  \addlegendentry{$P(4)$}
+
+  % serie 1: n=20, p=0.3  (grigio chiaro)
+  \addplot[only marks,mark=*,gray!20] coordinates \PMFCOORDS;
+  \addlegendentry{$P(10)$}
+
+
+\end{axis}
+
+% ---------- CDF --------------------------------------------------
+\begin{axis}[cdfaxis,
+  at={(current bounding box.east)}, anchor=west, xshift=1.4cm,
+  ylabel={$F_{X}$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south, rotate=-90},
+  yticklabel style={yshift=-1.5pt},    % abbassa il “1”
+  xlabel={$x$},
+  xlabel style={
+    at={(axis description cs:1,0)},
+    anchor=north west,
+    yshift=-2pt
+  }
+]
+
+  % puntini pieni (sopra)
+  \addplot[only marks,mark=*,black] coordinates \CDFTOPB;
+  \addplot[only marks,mark=*,gray!70] coordinates \CDFTOPA;
+  \addplot[only marks,mark=*,gray!20] coordinates \CDFTOP;
+
+\end{axis}
+
+\end{tikzpicture}
+\\[0.2mm]
+{\small
+    Funzioni di massa e di ripartizione di tre variabili aleatorie $X \sim P(\lambda)$.
+}
+\end{center}
+\vspace{1mm}
+```
+
+Si osserva che la funzione di massa di probabilità è definita per ogni $i \in \mathbb{N} \cup \{0\}$, e che il suo grafico presenta un andamento crescente fino a un certo punto, per poi decrescere esponenzialmente fino a tendere a 0. È anche possibile che essa decresca subito nel caso in cui $\lambda \le 1$.
+
 
 > **Approfondimento** Per vedere l'andamento della funzione di massa di probabilità al variare del parametro $\lambda$, bisogna considerare il rapporto consecutivo tra i due termini della successione:
 $$
@@ -5423,11 +5822,11 @@ $$
 <1 &\Longleftrightarrow\;\; i>\lambda-1.
 \end{cases}
 $$
-> Si conclude quindi che la funzione di massa di probabilità è crescente fino a $i=\floor{\lambda}$ e decrescente per $i>\floor{\lambda}$. Il massimo viene raggiunto per $i=\floor{\lambda}$ o $i=\floor{\lambda}+1$ a seconda che $\lambda$ sia intero o meno.
-> Nel caso in cui $\lambda \le 1$, poiché già per i=0 vale $\lambda<1$, il massimo è in $i=0$ e la funzione decresce subito.
+> Si conclude quindi che la funzione di massa di probabilità è crescente per $i \le \floor{\lambda}$ e decrescente per $i>\floor{\lambda}$. Il massimo viene raggiunto per $i=\floor{\lambda}$ o $i=\floor{\lambda}+1$ a seconda che $\lambda$ sia intero o meno.
+> Nel caso in cui $\lambda \le 1$, poiché già per i=0 vale $\lambda<1$, il massimo è in $i=0$ e la funzione decresce subito. Si osserva che per $\lambda = 1$ le prime due specificazioni hanno la stessa probabilità.
 
 
-\hfill
+\hspace{2mm}
 #### Valore atteso e varianza
 Il valore atteso di una variabile aleatoria di Poisson è dato da
 \begin{align*}
@@ -5436,11 +5835,10 @@ Il valore atteso di una variabile aleatoria di Poisson è dato da
 \end{align*}
 \begin{small}
   \qquad\text{(1): la sommatoria parte da 1 in quanto per $i=0$ il termine è nullo}\\[1mm]
-  \hspace*{2em}\text{(2): ponendo } $j = i - 1$ \\[1mm]
+  \hspace*{2em}\text{(2): ponendo } $j = i - 1$ \\[0mm]
   \hspace*{2em}\text{(3): per lo sviluppo in serie di Taylor centrato in $0$ di $e^{\lambda}$ si ha } $\displaystyle e^{\lambda} = \sum_{j=0}^{+\infty} \dfrac{\lambda^j}{j!}$
 \end{small}
 
-\newpage
 La varianza è data da:
 \begin{align*}
 \mathbb{E}[X^2] & = \sum_{i=0}^{+\infty} i^2\, p_X(i) 
@@ -5457,9 +5855,10 @@ La varianza è data da:
   \qquad\text{(1): la sommatoria parte da 1 in quanto per $i=0$ il termine è nullo}\\[1mm]
   \hspace*{2em}\text{(2): ponendo } $j = i - 1$\\[1mm]
   \hspace*{2em}\text{(3): il primo termine della sommatoria corrisponde al valore atteso di $X$, mentre il secondo è la somma di tutte } \\ 
-    \hspace*{3.4em}  \text{le specificazioni, e converge, come già dimostrato, a 1.}
+    \hspace*{3.7em}  \text{le specificazioni, e converge, come già dimostrato, a 1.}
 \end{small}
 
+\vspace{-2mm}
 $$
 \text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \lambda^2 + \lambda - \lambda^2 = \lambda
 $$
@@ -5467,8 +5866,7 @@ $$
 Quindi sia il valore atteso che la varianza delle variabili aleatorie di Poisson sono uguali al parametro $\lambda$. 
 
 
-\hfill
-Come già visto in precedenza, le variabili aleatorie di Poisson possono essere utilizzate come approssimazione di una binomiale di parametri $(n,p)$ quando $n$ è molto grande e $p$ molto piccolo. In altri termini, il totale dei "successi" in un gran numero $n$ di ripetizioni indipendenti di un esperimento che ha una piccola probabilità di riuscita $p$, è una variabile aleatoria con distribuzione approssimativamente di Poisson, con parametro $\lambda = n p$.
+Come già visto in precedenza, le variabili aleatorie di Poisson possono essere utilizzate come approssimazione di una binomiale di parametri $(n,p)$ quando $n$ è molto grande e $p$ molto piccolo. In altri termini, il totale dei successi in un gran numero $n$ di ripetizioni indipendenti di un esperimento che ha una piccola probabilità di riuscita $p$, è una variabile aleatoria con distribuzione approssimativamente di Poisson, con parametro $\lambda = n p$.
 
 
 ##### Riproducibilità
@@ -5488,7 +5886,7 @@ Il modello ipergeometrico descrive il numero di “successi” ottenuti estraend
 
 La variabile aleatoria $X$ che codifica questo esperimento si dice ipergeometrica con parametri $(N,M,n)$ e si scrive $X \sim H(N,M,n)$.
 
-\hfill
+\vspace{2mm}
 Definizione formale
 : Sia $A$ l’insieme con $|A| = N+M$, contenente $N$ successi e $M$ insuccessi. Si estraggono senza reinserimento $n \le N+M$ elementi e si pone
     $$
@@ -5496,7 +5894,7 @@ Definizione formale
     $$
     allora $X \sim H(N,M,n)$.
 
-\hfill
+\vspace{2mm}
 Si può pensare una variabile ipergeometrica come una somma di variabili bernoulliane. Si denotino con $Y_1, \dots, Y_n$ le etichette (successo o insuccesso) degli $n$ oggetti estratti, in ordine. Si definiscono gli indicatori
 $$
 X_i = I_{\{Y_i=\text{successo}\}}
@@ -5516,14 +5914,14 @@ $$
 Si osserva che le varie $X_i$ non sono indipendenti tra loro, il che differenzia il modello ipergeometrico da quello binomiale. Infatti, se si estrae un successo, il numero di successi rimanenti diminuisce e quindi anche la probabilità di estrarre un successo alla prova successiva.
 
 
-\hfill
-#### Funzione di massa di probabilità
+\vspace{3mm}
+#### Funzione di massa di probabilità e di ripartizione
 Il dominio di supporto è $D_X=\{\,x\in\mathbb N\cup\{0\}\mid\max(0,n-M)\le x\le\min(n,N)\}$, infatti il numero di successi:
 
 - non può essere maggiore né di quelli estratti $n$ né di quelli presenti $N$
+
 - non può essere minore di $n-M$, in quanto se si estraggono $n$ elementi e $M$ sono insuccessi, gli altri $n-M$ devono essere successi. Nel caso in cui $M$ fosse maggiore di $n$, il numero di successi non può essere minore di 0.
 
-\hfill
 La funzione di massa di probabilità è definita utilizzando la regola classica della probabilità:
 \begin{align*}
 p_X(i) &= \mathbb{P}(X=i)
@@ -5541,8 +5939,13 @@ Infatti si effettuano le seguenti osservazioni:
 
 - $\dbinom{N+M}{n}$ è il numero totale di modi di scegliere $n$ oggetti da un insieme di $N+M$ oggetti
 
+\vspace{3mm}
+La funzione di ripartizione di una variabile aleatoria ipergeometrica è definita come
+$$
+F_X(x) = \mathbb{P}(X \le \floor{x}) = \sum_{i=0}^{\floor{x}} p_X(i)
+$$
 
-\newpage
+
 #### Valore atteso
 Per calcolare il valore atteso, si ricorda che una variabile aleatoria $X \sim H(N,M,n)$ può essere vista come la somma di $n$ variabili aleatorie di Bernoulli $X_i \sim B(p)$, dove queste non sono indipendenti tra loro:
 $$
@@ -5557,7 +5960,6 @@ $$
 \mathbb{E}[X] = \mathbb{E}\left[ \; \sum_{i=1}^n X_i \right] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n \dfrac{N}{N+M} = n \dfrac{N}{N+M} \; := n p
 $$
 
-\hfill
 #### Varianza
 Per quanto riguarda la varianza, si adotta lo stesso approccio, calcolando prima la varianza di ciascun $X_i$:
 $$
@@ -5592,6 +5994,7 @@ $$
   \hspace*{3.7em} \text{è $N+M-1$. Applicando la regola classica della probabilità, si ottiene il risultato.}
 \end{small}
 
+\vspace{3mm}
 Ora è possibile calcolare la covarianza:
 \begin{align*}
 \mathrm{Cov}(X_i, X_j) & = \dfrac{N-1}{N+M-1}\, \dfrac{N}{N+M} - \left(\dfrac{N}{N+M}\right)^2
@@ -5603,7 +6006,7 @@ Ora è possibile calcolare la covarianza:
 
 Si osservi che la covarianza è negativa, in quanto se si estrae un successo, il numero di successi rimanenti diminuisce e quindi anche la probabilità di estrarre un successo alla prova successiva.
 
-\hfill
+\vspace{3mm}
 Ora si conoscono tutti i termini per calcolare la varianza:
 \begin{align*}
 \text{Var}(X) & = \sum_{i=1}^n \dfrac{N M}{(N+M)^2} - \sum_{i=1}^n \sum_{\substack{j=1\\ j\neq i}}^n \dfrac{N M}{(N+M)^2(N+M-1)}
@@ -5613,13 +6016,33 @@ Ora si conoscono tutti i termini per calcolare la varianza:
 \end{align*}
 
 \begin{small}
-    \qquad\text{(1): la prima sommatoria svolge $n$ passi, mentre la seconda sommatoria svolge $n(n-1)$ passi, in quanto per} \\
+    \qquad\text{(1): la prima sommatoria svolge $n$ passi, mentre la seconda sommatoria svolge $n\,(n-1)$ passi, in quanto per} \\
     \hspace*{3.7em} \text{ogni $i$ ci sono $n-1$ scelte per $j$.}
 \end{small}
 
 \hfill
-Si nota come nella varianza del modello ipergeometrico compaia quella del binomiale se si fissa $p$. Inoltre, se si fa tendere $N+M$ all'infinito, si ha che la varianza tende a $np(1-p)$, che è proprio la varianza del modello binomiale di parametri $(n,p)$. Intuitivamente, se si estrae un oggetto da una popolazione molto grande, il suo contributo alla probabilità di successo è trascurabile, e quindi la distribuzione ipergeometrica si avvicina a quella binomiale.
+Si nota come nella varianza del modello ipergeometrico compaia quella del binomiale se si fissa $p$. Inoltre, se si fa tendere $N+M$ all'infinito, si ha che la varianza tende a $np\, (1-p)$, che è proprio la varianza del modello binomiale di parametri $(n,p)$. Intuitivamente, se si estrae un oggetto da una popolazione molto grande, il suo contributo alla probabilità di successo è trascurabile, e quindi la distribuzione ipergeometrica si avvicina a quella binomiale.
 
+
+
+\newpage
+## Modelli continui
+Quando il fenomeno osservato può assumere valori in un intervallo non numerabile, si parla di distribuzioni continue. Ciascun modello continuo è descritto da una funzione di densità di probabilità che assegna a ogni intervallo di valori $[a,b]$ la probabilità che la variabile aleatoria assuma un valore in quell'intervallo.
+
+### Modello uniforme continuo
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello uniforme continuo}
+```
+
+### Modello esponenziale
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello esponenziale}
+```
+
+### Modello normale
+```{=latex}
+\addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello normale}
+```
 
 
 
