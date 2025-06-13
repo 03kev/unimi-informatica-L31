@@ -345,13 +345,13 @@ Una volta suddivisi i dati in classi, si costruisce la tabella delle frequenze (
 ### Diagramma di dispersione
 
 Insieme di dati a coppie
-: Un insieme di dati può consistere in coppie di valori che hanno una relazione di qualche tipo tra di loro. Ne viene che ogni elemento dell'insieme di dati sia costituito da un valore $x$ e da uno $y$.  Si indica con $(x_i, y_i), \; i=1 \cdots n\,$ la $i$-esima coppia.
+: Un insieme di dati può consistere in coppie di valori che hanno una relazione di qualche tipo tra di loro. Ne viene che ogni elemento dell'insieme di dati sia costituito da un valore $x$ e da uno $y$.  Si indica con $(x_i, y_i), \; i=1 \dots n\,$ la $i$-esima coppia.
 
 Un metodo per rappresentare un insieme di dati di questo tipo consiste nel considerare ogni elemento della coppia separatamente, producendo istogrammi (o diagrammi ramo-foglia) separati per ciascuno. Così facendo però, nonostante i due grafici ci diano molte informazioni sulle singole variabili (attributi), non si ha nessun tipo di informazione riguardo al rapporto tra queste due variabili.
 
 Per capirne la relazione è necessario considerare i valori accoppiati di ciascun dato simultaneamente. Si possono allora rappresentare questi dati accoppiati in un diagramma rettangolare e bidimensionale, in cui l'asse $x$ rappresenta il valore $x$ dei dati, e l'asse $y$ il valore $y$. Così facendo si ottiene un *diagramma di dispersione*.
 
-Una delle ragioni per cui *questo* tipo di diagramma è utile consiste nella possibilità di fare previsioni sul valore $y$ di una futura osservazione, noto il valore $x$. Per stimare il valore $y$ a partire da $x$ si cerca, in modo intuitivo, di tracciare una "retta media" che approssimi l’andamento dei punti sul diagramma, ovvero una retta che passi "il più vicino possibile" a tutti i dati.
+Una delle ragioni per cui questo tipo di diagramma è utile consiste nella possibilità di fare previsioni sul valore $y$ di una futura osservazione, noto il valore $x$. Per stimare il valore $y$ a partire da $x$ si cerca, in modo intuitivo, di tracciare una "retta media" che approssimi l’andamento dei punti sul diagramma, ovvero una retta che passi "il più vicino possibile" a tutti i dati.
 
 ```{=latex}
 \newpage
@@ -368,7 +368,7 @@ Statistica
 
 ## Centralità
 
-Verranno presentate le statistiche che descrivono la tendenza centrale di un insieme di dati, ossia delle statistiche che descrivono il centro di un insieme di dati. Questa proprietà che si può individuare in un insieme di dati è detta **centralità** o posizione.
+Verranno presentate le statistiche che descrivono la tendenza centrale di un insieme di dati, ossia delle statistiche che descrivono il centro di un insieme di dati. Questa proprietà che si può individuare in un insieme di dati è detta *centralità* o posizione.
 
 Esistono tre indici di posizione: media, mediana e moda. In tutti i tre i casi si parla di campionaria, in quanto sono effettuate su dei campioni.
 
@@ -435,7 +435,7 @@ Ora, se $w_1, w_2, \cdots, w_k$ sono numeri non negativi la cui somma è $1$, al
 $$
 w_1 x_1 + w_2 x_2 + \cdots + w_k x_k
 $$
-prende il nome di **media pesata** dei valori $x_1, x_2, \cdots, x_k$ dove $w_i$ è il peso di $x_i$.
+prende il nome di *media pesata* dei valori $x_1, x_2, \cdots, x_k$ dove $w_i$ è il peso di $x_i$.
 
 Scrivendo l'equazione $(3.1)$ come
 $$
@@ -445,8 +445,8 @@ possiamo vedere che la media campionaria $\bar{x}$ è la media pesata dell'insie
 
 #### Scarti
 
-Si supponga che l'insieme di dati sia costituito dagli $n$ valori $x_1, \cdots, x_n$ e che $\bar{x} = \sum^n_{i=1} x_i / n$ sia la media campionaria. Le differenze tra ciascun valore dei dati e la media campionaria si chiamano **scarti**.
-Il valore dell'$i$-esimo scarto è $x_i - \bar{x}$
+Si supponga che l'insieme di dati sia costituito dagli $n$ valori $x_1, \cdots, x_n$ e che $\bar{x} = \sum^n_{i=1} x_i / n$ sia la media campionaria. Le differenze tra ciascun valore dei dati e la media campionaria si chiamano *scarti*.
+Il valore dell'$i$-esimo scarto è $x_i - \bar{x}$.
 
 La somma di tutti gli scarti è sempre $0$, ovvero:
 $$
@@ -1115,23 +1115,23 @@ Queste due quantità possiedono le seguenti proprietà:
 
 Si vuole provare che $Q_i \le F_i$. Pertanto si divide l'insieme ordinato in due sottogruppi, $\{a_1, \cdots, a_i\}$ e $\{a_{i+1}, \cdots, a_n\}$, e si definiscono le rispettive somme $S_i$ e $T_i$:
 
-$\displaystyle S_i = \sum_{k=1}^i a_k \qquad T_i = \sum_{k=i+1}^n a_k \qquad TOT = S_i + T_i = S_n$
+\qquad $\displaystyle S_i = \sum_{k=1}^i a_k \qquad T_i = \sum_{k=i+1}^n a_k \qquad TOT = S_i + T_i = S_n$
 
 Si cominci riscrivendo la disuguaglianza $Q_i \le F_i$ in termini di $S_i$ e $T_i$. In particolare, si osserva che
 
-$\displaystyle Q_i = \dfrac{S_i}{TOT} \le \dfrac{i}{n} \;\; \Longleftrightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n}$
+\qquad $\displaystyle Q_i = \dfrac{S_i}{TOT} \le \dfrac{i}{n} \;\; \Longleftrightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n}$
 
 Da quest'ultima forma, si vuole isolare da un lato della disequazione $\tfrac{i\, T_i}{S_i}$:
 
-$\dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; \dfrac{1}{1+\tfrac{T_i}{S_i}} \le \dfrac{i}{n} \;\; \Rightarrow \;\; 1+\dfrac{T_i}{S_i} \ge \dfrac{n}{i} \;\; \Rightarrow \;\; i \roundp{\dfrac{T_i}{S_i}} \ge i \roundp{\dfrac{n}{i} - 1} \;\; \Rightarrow \;\; \dfrac{i\, T_i}{S_i} \ge n - i$
+\qquad $\dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; \dfrac{1}{1+\tfrac{T_i}{S_i}} \le \dfrac{i}{n} \;\; \Rightarrow \;\; 1+\dfrac{T_i}{S_i} \ge \dfrac{n}{i} \;\; \Rightarrow \;\; i \roundp{\dfrac{T_i}{S_i}} \ge i \roundp{\dfrac{n}{i} - 1} \;\; \Rightarrow \;\; \dfrac{i\, T_i}{S_i} \ge n - i$
 
 Si scompone ora il termine $\tfrac{i\, T_i}{S_i}$ come somma sugli elementi $a_k$ con $k > i$:
 
-$\displaystyle \dfrac{i\, T_i}{S_i} = \dfrac{i}{S_i} \sum_{k=i+1}^n a_k = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i}$
+\qquad $\displaystyle \dfrac{i\, T_i}{S_i} = \dfrac{i}{S_i} \sum_{k=i+1}^n a_k = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i}$
 
 Questa rielaborazione permette di sfruttare l'ordinamento $a_k \ge a_i \;\; \forall i < k$. Infatti, se $a_k \ge a_i$, allora:
 
-$\dfrac{i\, a_k}{S_i} = \dfrac{\overbrace{a_k + a_k + \cdots + a_k\,\rule[0.8ex]{0pt}{1ex}}^{\raisebox{0.5ex}{\mbox{i volte}}}}{a_1 + a_2 + \cdots + a_k} \;\; \ge 1$
+\qquad $\dfrac{i\, a_k}{S_i} = \dfrac{\overbrace{a_k + a_k + \cdots + a_k\,\rule[0.8ex]{0pt}{1ex}}^{\raisebox{0.5ex}{\mbox{i volte}}}}{a_1 + a_2 + \cdots + a_k} \;\; \ge 1$
 
 ```{=latex}
 \vspace{2mm}
@@ -1139,11 +1139,11 @@ $\dfrac{i\, a_k}{S_i} = \dfrac{\overbrace{a_k + a_k + \cdots + a_k\,\rule[0.8ex]
 
 Ne consegue che
 
-$\displaystyle \dfrac{i\, T_i}{S_i} = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i} \ge \sum_{k=i+1}^n 1 = n - (i+1) + 1 = n - i$
+\qquad $\displaystyle \dfrac{i\, T_i}{S_i} = \sum_{k=i+1}^n \dfrac{i\, a_k}{S_i} \ge \sum_{k=i+1}^n 1 = n - (i+1) + 1 = n - i$
 
 In tal modo si conclude che $\tfrac{i\, T_i}{S_i} \ge n - i$, che equivale, tramite le equivalenze iniziali, a
 
-$\dfrac{i\, T_i}{S_i} \ge n-i \;\; \Rightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; Q_i \le F_i$
+\qquad $\dfrac{i\, T_i}{S_i} \ge n-i \;\; \Rightarrow \;\; \dfrac{S_i}{S_i + T_i} \le \dfrac{i}{n} \;\; \Rightarrow \;\; Q_i \le F_i$
 
 ```{=latex}
 \vspace{5mm}
@@ -1669,41 +1669,39 @@ $$
 
 #### Dimostrazione
 
-\vspace{-4mm}
+\vspace{-1mm}
+Metodo delle rette
+: La funzione che trasforma i valori nell'intervallo $(a,b)$ all'interno dell'intervallo $(c,d)$ è una retta, la cui equazione si ricava tramite la formula della retta passante per due punti.  
+Sia $(a,c) = (x_0, y_0)$ e $(b,d)= (x_1,y_1)$, allora:
 
-##### Metodo delle rette
-
-La funzione che trasforma i valori nell'intervallo $(a,b)$ all'interno dell'intervallo $(c,d)$ è una retta, la cui equazione si ricava tramite la formula della retta passante per due punti. Sia $(a,c) = (x_0, y_0)$ e $(b,d)= (x_1,y_1)$:
-
-\vspace{-7mm}
-$$
-\dfrac{y-y_0}{y_1 - y_0} = \dfrac{x-x_0}{x_1 - x_0}  \;\;\Rightarrow\;\; \dfrac{x'-x'_0}{x_1'-x_0'} = \dfrac{x-x_0}{x_1 - x_0} \;\;\Rightarrow\;\; \dfrac{x'-c}{d-c}=\dfrac{x-a}{b-a} \;\;\Rightarrow\;\; f(x) = x' = c + \dfrac{d-c}{b-a} (x-a)
-$$
-
-\vspace{-5mm}
-
-##### Metodo delle condizioni
-
-Si consideri la funzione $f: [a,b] \rightarrow [c,d]$. In generale, una trasformazione lineare ha la forma $f(x) = mx + q$. Per determinare $m$ e $q$ si impongono le condizioni:
-
-1. $f(a) =c$, ossia $ma + q = c$
-2. $f(b) = d$, ossia $m b + q = d$
-
-Sottraendo la prima dalla seconda si ottiene: 
+    \vspace{-7mm}
+    $$
+    \dfrac{y-y_0}{y_1 - y_0} = \dfrac{x-x_0}{x_1 - x_0}  \;\;\Rightarrow\;\; \dfrac{x'-x'_0}{x_1'-x_0'} = \dfrac{x-x_0}{x_1 - x_0} \;\;\Rightarrow\;\; \dfrac{x'-c}{d-c}=\dfrac{x-a}{b-a} \;\;\Rightarrow\;\; f(x) = x' = c + \dfrac{d-c}{b-a} (x-a)
+    $$
 
 \vspace{-1mm}
 
-$m\, (b-a) = d-c \;\; \Rightarrow \;\; m = \dfrac{d-c}{b-a}$
+Metodo delle condizioni
+: Si consideri la funzione $f: [a,b] \rightarrow [c,d]$. In generale, una trasformazione lineare ha la forma $f(x) = mx + q$. Per determinare $m$ e $q$ si impongono le condizioni:
 
-\vspace{-1mm}
+    1. $f(a) =c$, ossia $ma + q = c$
+    2. $f(b) = d$, ossia $m b + q = d$
 
-Sostituendo $m$ nella prima equazione:
+    Sottraendo la prima dalla seconda si ottiene: 
 
-$\dfrac{d-c}{b-a}\, a + q = c \;\; \Rightarrow \;\; q = c - \dfrac{d-c}{b-a}\, a$
+    \vspace{-1mm}
 
-Di conseguenza la funzione diventa:
+    \quad $m\, (b-a) = d-c \;\; \Rightarrow \;\; m = \dfrac{d-c}{b-a}$
 
-$f(x) = \dfrac{d-c}{b-a}\, x + \left( c - \dfrac{d-c}{b-a}\, a\right) = c + \dfrac{d-c}{b-a}\, (x-a)$
+    \vspace{-1mm}
+
+    Sostituendo $m$ nella prima equazione:
+
+    \quad $\dfrac{d-c}{b-a}\, a + q = c \;\; \Rightarrow \;\; q = c - \dfrac{d-c}{b-a}\, a$
+
+    Di conseguenza la funzione diventa:
+
+    \quad $f(x) = \dfrac{d-c}{b-a}\, x + \left( c - \dfrac{d-c}{b-a}\, a\right) = c + \dfrac{d-c}{b-a}\, (x-a)$
 
 \newpage
 
@@ -3292,7 +3290,6 @@ $$
 Questo significa che, dati più eventi, l’indipendenza globale richiede che ogni intersezione di un numero qualsiasi di essi abbia probabilità uguale al prodotto delle probabilità dei singoli eventi coinvolti.
 
 
-
 \newpage
 # Variabili aleatorie
 ## Definizioni
@@ -4611,7 +4608,7 @@ Dimostrazione:
 
 Dalla definizione di covarianza si deducono le seguenti proprietà:
 
-- $\text{Cov}(X,Y) = \text{Cov}(Y,X)$ \;\; proprietà di simmetria
+- $\text{Cov}(X,Y) = \text{Cov}(Y,X)\;\;$ proprietà di simmetria
 - $\text{Cov}(X,X) = \text{Var}(X)$
 - $\text{Cov}(X+b, Y) = \text{Cov}(X,Y)$ = $\text{Cov}(X, Y+b)$
 - $\text{Cov}(aX, Y) = a\, \text{Cov}(X,Y)$ = $\text{Cov}(X, aY)$
@@ -4872,7 +4869,7 @@ La prima condizione è soddisfatta per ogni $x \in \mathbb{R}$, mentre la second
 
 La funzione di ripartizione di una variabile aleatoria bernoulliana è definita come
 $$
-F_X(x) = \begin{cases}
+F_X(x) = (1-p) \, I_{[0,1)}(x) + \, I_{[1,+\infty)}(x) = \begin{cases}
 0 & \text{se } x < 0 \\[0.5em]
 1-p & \text{se } 0 \le x < 1 \\[0.5em]
 1 & \text{se } x \ge 1
@@ -5069,7 +5066,7 @@ rappresenta il numero di combinazioni differenti che si possono ottenere sceglie
 > caratteristica. Esse sono $\binom{n}{i}$ perché corrispondono a tutti i modi in cui si possono scegliere gli $i$ esperimenti che hanno dato esito positivo sugli $n$ in totale.
 
 
-
+\vspace{2mm}
 La correttezza della funzione di massa di probabilità è garantita dalle seguenti condizioni:
 
 - $p_X(x) \ge 0$ per ogni $x \in \mathbb{R}$
@@ -5083,10 +5080,10 @@ La prima condizione è soddisfatta per ogni $x \in \mathbb{R}$, mentre la second
 \vspace{-5mm}
 $\begin{small}\qquad\, \displaystyle \text{(1): per la formula delle potenze del binomio } (x+y)^n = \sum_{i=0}^n \binom{n}{i} x^i \, y^{n-i}\end{small}$
 
-\hfill
+\vspace{4mm}
 La funzione di ripartizione di una variabile aleatoria binomiale è definita come
 $$
-F_X(x) = \mathbb{P}(X \le \floor{x}) = \sum_{i=0}^{\floor{x}} p_X(i)
+F_X(x) = \mathbb{P}(X \le \floor{x}) = \left( \, \sum_{i=0}^{\floor{x}} p_X(i) \right) I_{[0,n)}(x) + I_{[n,+\infty)}(x)
 $$
 
 ```{=latex}
@@ -5254,7 +5251,7 @@ $$
 La funzione di ripartizione di una variabile aleatoria uniforme discreta è definita come
 \vspace{-0.5mm}
 $$
-F_X(x) = \mathbb{P}(X \le x) = \sum_{i \le x} p_X(i) = \sum_{i=1}^{\floor{x}} p_X(i) = \sum_{i=1}^{\floor{x}} \dfrac{1}{n} = \dfrac{\floor{x}}{n}
+F_X(x) = \mathbb{P}(X \le x) = \sum_{i \le x} p_X(i) = \sum_{i=1}^{\floor{x}} p_X(i) = \sum_{i=1}^{\floor{x}} \dfrac{1}{n} = \dfrac{\floor{x}}{n} \, I_{[1,n)}(x) + I_{[n,+\infty)}(x)
 $$
 
 
@@ -5440,13 +5437,13 @@ Ora è possibile calcolare la funzione di ripartizione:
 F_X(n) 
   &= \mathbb{P}(X \le n)
      = 1 - \mathbb{P}(X > n)
-     = 1 - (1-p)^{n+1}
-     && \hspace{-6em} \forall n \in \mathbb{N} \cup \{0\}\\[0.5em]
+     = \left[ 1 - (1-p)^{n+1} \right] \, I_{\mathbb{N} \cup \{0\}}(n)
+  \qquad\, \text{per valori interi}\\[0.5em]
 F_X(x) 
   &= \mathbb{P}(X \le x)
      = \mathbb{P}(X \le \lfloor x\rfloor)
-     = 1 - (1-p)^{\lfloor x\rfloor+1}
-     && \hspace{-6em} \forall x \in \mathbb{R}
+     = \left[ 1 - (1-p)^{\lfloor x\rfloor+1} \right] \, I_{[0, +\infty)}(x)
+  \qquad \text{per valori reali}
 \end{align*}
 
 
@@ -5578,13 +5575,13 @@ Il grafico della funzione di massa di probabilità presenta un decadimento espon
 
 
 ##### Assenza di memoria
-L'assenza di memoria è una proprietà di cui gode il modello geometrico, ed è l'unico a possederla tra i vari modelli discreti. Si consideri $X \sim G(p)$ e si provi a calcolare $\mathbb{P}(X > i + j \mid X \ge i)$, ovvero la probabilità condizionata di ottenere un successo dopo $i+j$ prove, sapendo che ne sono già state effettuate $i$ senza successo. Si ha:
+L'assenza di memoria è una proprietà di cui gode il modello geometrico, ed è l'unico a possederla tra i vari modelli discreti. Si consideri $X \sim G(p)$ e si provi a calcolare $\mathbb{P}(X > s+t \mid X \ge s)$, ovvero la probabilità condizionata di ottenere un successo dopo $s+t$ prove, sapendo che ne sono già state effettuate $s$ senza successo. Si ha:
 \begin{gather*}
-\mathbb{P}(X \ge n) = \mathbb{P}(X > n-1) = (1-p)^n \\[0.5em]
-\mathbb{P}(X \ge i + j \mid X \ge i)  = \dfrac{\mathbb{P}(X \ge i+j, X \ge i)}{\mathbb{P}(X \ge i)} = \dfrac{\mathbb{P}(X \ge i+j)}{\mathbb{P}(X \ge i)} = \dfrac{(1-p)^{i+j}}{(1-p)^i} = (1-p)^j = \mathbb{P}(X \ge j)
+\mathbb{P}(X \ge n) = \mathbb{P}(X > n-1) = (1-p)^n \qquad \forall n \in \mathbb{N} \cup 0\\[0.5em]
+\mathbb{P}(X \ge s+t \mid X \ge s)  = \dfrac{\mathbb{P}(X \ge s+j, X \ge s)}{\mathbb{P}(X \ge s)} = \dfrac{\mathbb{P}(X \ge s+j)}{\mathbb{P}(X \ge s)} = \dfrac{(1-p)^{s+j}}{(1-p)^s} = (1-p)^t = \mathbb{P}(X \ge t)
 \end{gather*}
 
-Si ottiene quindi che $\mathbb{P}(X > i + j \mid X \ge i) = \mathbb{P}(X > j)$, ossia la probabilità di ottenere un successo dopo $i+j$ prove, sapendo che ne sono già state effettuate $i$ senza successo, è uguale alla probabilità di ottenere un successo dopo $j$ prove. In altre parole, il numero di prove necessarie per ottenere il primo successo non dipende da quante prove siano già state effettuate.
+Si ottiene quindi che $\mathbb{P}(X > s+t \mid X \ge s) = \mathbb{P}(X > t)$, ossia la probabilità di ottenere un successo dopo $s+t$ prove, sapendo che ne sono già state effettuate $s$ senza successo, è uguale alla probabilità di ottenere un successo dopo $t$ prove. In altre parole, il numero di prove necessarie per ottenere il primo successo non dipende da quante prove siano già state effettuate.
 
 \vspace{2mm}
 #### Valore atteso e varianza
@@ -5698,7 +5695,7 @@ $$
 \vspace{3mm}
 La funzione di ripartizione di una variabile aleatoria di Poisson è definita come
 $$
-F_X(x) = \mathbb{P}(X \le \floor{x}) = \sum_{i=0}^{\floor{x}} p_X(i)
+F_X(x) = \mathbb{P}(X \le \floor{x}) = \left(\, \sum_{i=0}^{\floor{x}} p_X(i) \right) I_{[0,+\infty)}(x)
 $$
 
 ```{=latex}
@@ -6033,17 +6030,771 @@ Quando il fenomeno osservato può assumere valori in un intervallo non numerabil
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello uniforme continuo}
 ```
+Questo modello si presenta quando l’esperimento casuale può restituire un qualsiasi valore reale nell’intervallo $[a,b]$, e ogni sottointervallo di uguale lunghezza ha la stessa probabilità di verificarsi. Una variabile aleatoria $X$ che codifica tale esperimento si dice uniforme continua su $[a,b]$ e si indica con $X \sim U(a,b)$.
 
+Inoltre, questo stesso modello può essere ottenuto come il limite di un modello discreto, in cui si considerano i valori di $X$ come i punti di un intervallo continuo (e quindi con $n \to +\infty$).
+
+Il dominio di supporto è $D_X = [a,b]$, e la funzione di densità di probabilità è definita come
+$$
+f_X(x) = \dfrac{1}{b-a} \, I_{[a,b]}(x)
+$$
+
+È facile verificare che la funzione di densità di probabilità sia corretta, in quanto
+$$
+\int_{-\infty}^{+\infty} f_X(x) \, dx = \dfrac{1}{b-a} \int_a^b dx = \dfrac{1}{b-a} (b-a) = 1
+$$
+
+La funzione di ripartizione è definita come
+$$
+F_X(x) = \int_{-\infty}^{x} f_X(t) \, dt = \int_{a}^{x} \dfrac{1}{b-a} \, dt = \dfrac{1}{b-a} \int_a^x dt \;=\; \dfrac{x-a}{b-a} \, I_{[a,b]}(x) + I_{(b,+\infty)}(x)
+$$
+
+Utilizzando il teorema fondamentale del calcolo integrale, è possibile calcolare la funzione di densità di probabilità a partire dalla funzione di ripartizione:
+$$
+F_X'(x) = \dfrac{d}{dx} \dfrac{x-a}{b-a} = \dfrac{1}{b-a} = f_X(x)
+$$
+
+```{=latex}
+\vspace{2mm}
+%------------------------------------------------
+%  STILI USATI PIÙ VOLTE (pmfaxis, cdfaxis)
+%------------------------------------------------
+\pgfplotsset{
+  pmfaxis/.style={
+    width=7cm, height=5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=0.4, xmax=10,
+    ymin=0,   ymax=2*\invn,
+    tick style={black,thin}, clip=false
+  },
+  cdfaxis/.style={
+    width=7cm, height=5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=0.4, xmax=10,
+    ymin=0,   ymax=1,
+    tick style={black,thin}, clip=false
+  }
+}
+
+%------------------------------------------------
+%  UNIFORME CONTINUA SU [a,b]
+%------------------------------------------------
+\def\a{4}                     % estremo sinistro dell'intervallo
+\def\b{7}                     % estremo destro dell'intervallo
+\def\c{4.75}
+\def\d{6.25}
+\pgfmathsetmacro{\den}{1/(\b-\a)}  % densità costante = 1/(b-a)
+
+%------------------------------------------------
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+
+% ---------- PDF (analogo a “pmf”) ----------
+\begin{axis}[pmfaxis,
+  ylabel={$f_{X}(x)$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+  ytick={0,\den,0.8}, yticklabels={$0$,$\dfrac1{b-a}$,1},
+  xtick={\a,\c,\d,\b},
+  xticklabels={$a$,$c$,$d$,$b$},
+  xmin=\a-1, xmax=\b+1,
+  ymin=0, ymax=0.9,
+  clip=false
+]
+  % linea di base x-axis
+  \addplot[gray!30,very thick] coordinates {(\a-0.95,0) (\a,0)};
+  \addplot[gray!30,very thick] coordinates {(\b,0) (\b+0.85,0)};
+
+  % segmento verticale a x=a
+  % \addplot[black,thin] coordinates {(\a,0) (\a,\den)};
+  % segmento verticale a x=b
+  % \addplot[black,thin] coordinates {(\b,0) (\b,\den)};
+
+  % tratto tratteggiato obliquo tra c e d
+  \addplot[
+    pattern={Lines[angle=45,distance=3pt]},
+    pattern color=gray!35,
+    draw=none
+  ] coordinates {(\c,0) (\c,\den) (\d,\den) (\d,0)};
+
+  \addplot[black,thin] coordinates {(\c,0) (\c,\den)};
+  \addplot[black,thin] coordinates {(\d,0) (\d,\den)};
+  \addplot[black,thin] coordinates {(\c,0) (\d,0)};
+
+  % tratto orizzontale costante f(x)=1/(b-a)
+  \addplot[gray!30,very thick] coordinates {(\a,\den) (\b,\den)};
+
+  % marcatori pieni (a,1/(b-a)) e (b,1/(b-a))
+  \addplot[gray!30,only marks,mark=*] coordinates {(\a,\den) (\b,\den)};
+  % marcatori vuoti alla base (a,0) e (b,0)
+  \addplot[white,draw=gray!30,very thick,
+           mark=*,mark options={scale=1.25,fill=white},
+           only marks] coordinates {(\a,0) (\b,0)};
+\end{axis}
+
+% ---------- CDF ----------
+\begin{axis}[cdfaxis,
+  at={(current bounding box.east)}, anchor=west, xshift=1.6cm,
+  ylabel={$F_{X}(x)$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+  ytick={0,0.5,1}, yticklabels={$0$,$\tfrac{1}{2}$,$1$},
+  xtick={\a,(\a+\b)/2,\b},
+  xticklabels={$a$,$\tfrac{a+b}{2}$,$b$},
+  xmin=\a-1, xmax=\b+1,
+  ymin=0, ymax=1.15,
+  clip=false
+]
+  % tratto orizzontale a F(x)=0 fino a x=a
+  \addplot[gray!30,very thick] coordinates {(\a-0.95,0) (\a,0)};
+  % linea crescente da (a,0) a (b,1)
+  \addplot[gray!30,very thick] coordinates {(\a,0) (\b,1)};
+  % tratto orizzontale a F(x)=1 da x=b in poi
+  \addplot[gray!30,very thick] coordinates {(\b,1) (\b+0.85,1)};
+
+  % marcatori pieni / vuoti in corrispondenza degli angoli
+  % a: F(a)=0 (marcatore vuoto)
+  \addplot[white,draw=gray!30,very thick,
+           mark=*,mark options={scale=1.25,fill=white},
+           only marks] coordinates {(\a,0)};
+  % b: F(b)=1 (marcatore pieno)
+  \addplot[gray!30,only marks,mark=*] coordinates {(\b,1)};
+
+  \addplot[black,very thin,dashed] coordinates {(\a-1.05,1) (\b,1)};
+  \addplot[black,very thin,dashed] coordinates {(\b,0.05) (\b,1)};
+  \addplot[black,very thin,dashed] coordinates {(\a-1.05,0.5) ((\a+\b)/2,0.5)};
+  \addplot[black,very thin,dashed] coordinates {((\a+\b)/2,0.05) ((\a+\b)/2,0.5)};
+\end{axis}
+
+\end{tikzpicture}
+
+\vspace{-2mm}
+{\small
+  Funzioni di densità e di ripartizione della variabile aleatoria \(X \sim U(a,b)\).
+}
+\end{center}
+\vspace{2mm}
+```
+
+Il grafico della densità evidenzia il carattere uniforme della distribuzione su $[a,b]$: all'esterno di questo intervallo la funzione si annulla, mentre al suo interno rimane costante e uguale a $\frac{1}{b-a}$. La funzione di ripartizione, invece, cresce linearmente da 0 a 1 nell'intervallo $[a,b]$, e si mantiene costante al di fuori di questo intervallo.
+
+\newpage
+La probabilità che una variabile aleatoria $X \sim U(a,b)$ assuma un valore in un intervallo $[c,d]$ contenuto in $[a,b]$ è pari al rapporto tra le lunghezze dei due intervalli. Infatti, per $[c,d] \subseteq [a,b]$ si ha
+$$
+\mathbb{P}(c \le X \le d) = \int_c^d f_X(x) \, dx = \int_c^d \dfrac{1}{b-a} \, dx = \dfrac{1}{b-a} (d-c) = \dfrac{d-c}{b-a}
+$$
+
+\vspace{3mm}
+Il valore atteso è dato da
+\begin{align*}
+\mathbb{E}[X] & = \int_{-\infty}^{+\infty} x f_X(x) \, dx = \int_a^b x\, \dfrac{1}{b-a} \, dx
+    = \dfrac{1}{b-a} \int_a^b x \, dx = \dfrac{1}{b-a} \left[ \dfrac{x^2}{2} \right]_a^b \\[0.5em]
+& = \dfrac{1}{b-a} \left( \dfrac{b^2}{2} - \dfrac{a^2}{2} \right) = \dfrac{b^2 - a^2}{2(b-a)} = \dfrac{(b-a)(b+a)}{2(b-a)} = \dfrac{b+a}{2}
+\end{align*}
+
+La varianza è data da
+\begin{align*}
+\mathbb{E}[X^2] & = \int_{-\infty}^{+\infty} x^2 f_X(x) \, dx = \int_a^b x^2\, \dfrac{1}{b-a} \, dx
+    = \dfrac{1}{b-a} \int_a^b x^2 \, dx = \dfrac{1}{b-a} \left[ \dfrac{x^3}{3} \right]_a^b \\[0.5em]
+& = \dfrac{1}{b-a} \left( \dfrac{b^3}{3} - \dfrac{a^3}{3} \right) = \dfrac{1}{b-a} \cdot \dfrac{b^3 - a^3}{3} = \dfrac{(b-a)(b^2 + ab + a^2)}{3(b-a)} = \dfrac{b^2 + ab + a^2}{3}
+\end{align*}
+\begin{align*}
+\text{Var}(X) & = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \dfrac{b^2 + ab + a^2}{3} - \left( \dfrac{b+a}{2} \right)^2 \\[0.5em]
+& = \dfrac{b^2 + ab + a^2}{3} - \dfrac{b^2 + 2ab + a^2}{4} = \dfrac{4b^2 + 4ab + 4a^2 - 3b^2 - 6ab - 3a^2}{12} \\[0.5em]
+& = \dfrac{b^2 - 2ab + a^2}{12} = \dfrac{(b-a)^2}{12}
+\end{align*}
+
+
+\hfill
 ### Modello esponenziale
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello esponenziale}
 ```
+Si consideri un fenomeno aleatorio in cui si osserva il tempo di attesa prima che si verifichi un certo evento casuale. Una variabile aleatoria $X$ che codifica il tempo trascorso fino al primo evento si dice esponenziale con parametro $\lambda > 0$ e si indica con $X \sim E(\lambda)$.
 
+Per essere più precisi, si consideri un processo di Poisson omogeneo di intensità $\lambda$, per cui il numero di eventi che si verificano in un intervallo di tempo $[0,t]$ segue una distribuzione di Poisson con parametro $\lambda t$. La variabile aleatoria $X$ rappresenta il tempo di attesa tra due eventi successivi in questo processo.
+
+Questo modello trova applicazioni in diversi contesti, come ad esempio il tempo che trascorre fino al verificarsi di un terremoto o di un guasto in un sistema, oppure per descrivere il tempo di vita di dispositivi elettronici o di una particella radioattiva prima che decada.
+
+
+#### Funzione di densità e di ripartizione
+Il dominio di supporto è $D_X = [0,+\infty)$, in quanto il tempo di attesa non può essere negativo. La funzione di densità di probabilità è definita come
+$$
+f_X(x) = \lambda e^{-\lambda x} \, I_{[0,+\infty)}(x)
+$$
+
+È facile verificare che la funzione di densità di probabilità sia corretta, in quanto
+\begin{align*}
+\int_{-\infty}^{+\infty} f_X(x) \, dx = \int_0^{+\infty} \lambda e^{-\lambda x} \, dx
+    \overset{(1)}{=} \int_0^{+\infty} e^{-u} \, du
+    = \left[ -e^{-u} \right]_0^{+\infty} = 0 - (-e^0) = 1
+\end{align*}
+\begin{small}
+  \qquad\text{(1): ponendo} $u = \lambda x$, \text{quindi} $du = \lambda \, dx$.
+\end{small}
+\newpage
+La funzione di ripartizione di una variabile aleatoria esponenziale è definita come
+\begin{align*}
+F_X(x) & = \int_{-\infty}^{x} f_X(t) \, dt = \int_0^{x} \lambda e^{-\lambda t} \, dt
+    \overset{(1)}{=} \int_0^{\lambda x} e^{-u} \, du = \left[ -e^{-u} \right]_0^{\lambda x} \\[0.4em]
+& = -e^{-\lambda x} - (-e^0) = \left( 1 - e^{-\lambda x} \right) \, I_{[0,+\infty)}(x)
+\end{align*}
+\vspace{-7mm}
+\begin{small}
+  \qquad\text{(1): ponendo} $u = \lambda t$, \text{quindi} $du = \lambda \, dt$.
+\end{small}
+
+
+\hfill
+```{=latex}
+%------------------------------------------------
+%  STILI PER ESPONENZIALE
+%------------------------------------------------
+\pgfplotsset{
+  pdfaxis/.style={
+    width=7.3cm, height=5.1cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-0.015, xmax=3.2,
+    ymin=-0.00, ymax=11.5,   % λ=10 ⇒ max ≈10
+    tick style={black,thin}, clip=false,
+    ytick={0,1,4,10},
+    xtick={1,2,3},
+  },
+  cdfaxis/.style={
+    width=7.3cm, height=5.1cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-0.015, xmax=3.7,
+    ymin=-0.00, ymax=1.15,
+    tick style={black,thin}, clip=false,
+    ytick={0,1,4,10},
+    xtick={1,2,3},
+  }
+}
+
+\vspace{-2mm}
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+
+% ---------- PDF --------------------------------------------------
+\begin{axis}[pdfaxis,
+  ylabel={$f_{X}(x)$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+  legend style={
+      at={(0.72,0.98)}, anchor=north west,
+      draw=none, fill=none, font=\small
+  },
+  legend cell align=left
+]
+
+  % λ = 10  (nero)
+  \addplot[very thick,black,domain=0:2.98,samples=180]
+           {10*exp(-10*x)};
+  \addlegendentry{$E(10)$}
+
+  % λ = 4   (grigio medio)
+  \addplot[very thick,gray!70,domain=0:2.98,samples=180]
+           {4*exp(-4*x)};
+  \addlegendentry{$E(4)$}
+
+  % λ = 1   (grigio chiaro)
+  \addplot[very thick,gray!20,domain=0:2.98,samples=180]
+           {exp(-x)};
+  \addlegendentry{$E(1)$}
+
+\end{axis}
+
+% ---------- CDF --------------------------------------------------
+\begin{axis}[cdfaxis,
+  at={(current bounding box.east)}, anchor=west, xshift=1.4cm,
+  ylabel={$F_{X}(x)$},
+  ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+  xlabel={$x$},
+  xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt}
+]
+
+  % λ = 10  (nero)
+  \addplot[very thick,black,domain=0:3.4,samples=180]
+           {1 - exp(-10*x)};
+
+  % λ = 4   (grigio medio)
+  \addplot[very thick,gray!70,domain=0:3.4,samples=180]
+           {1 - exp(-4*x)};
+
+  % λ = 1   (grigio chiaro)
+  \addplot[very thick,gray!20,domain=0:3.4,samples=180]
+           {1 - exp(-x)};
+
+\end{axis}
+
+\end{tikzpicture}
+
+\vspace{-2mm}
+{\small
+    Funzione di densità e di ripartizione di tre variabili aleatorie esponenziali
+    \(X\sim E(\lambda)\).
+}
+\end{center}
+\vspace{1.0mm}
+```
+
+Nei grafici si nota che la densità assume il valore massimo $f_X(0) = \lambda$ in $x=0$ e poi descresce esponenzialmente verso 0. Il parametro $\lambda$ governa la rapidità di questo declino: al crescere di $\lambda$ la densità decresce più rapidamente, concentrando la probabilità in prossimità di 0 e abbassando di conseguenza il valore atteso; valori di $\lambda$ più piccoli producono un decadimento più lento, estendendo la distribuzione verso destra e aumentando il valore atteso. Analogamente, la funzione di ripartizione cresce da 0 a 1 con andamento concavo: curve con $\lambda$ elevato salgono più rapidamente, mentre con $\lambda$ ridotto la crescita è più graduale.
+
+
+\vspace{2mm}
+#### Valore atteso e varianza
+
+Il valore atteso è dato da
+\begin{align*}
+\mathbb{E}[X] & = \int_{-\infty}^{+\infty} x f_X(x) \, dx = \int_0^{+\infty} x\, \lambda e^{-\lambda x} \, dx
+    \overset{(1)}{=} \left[ -x e^{-\lambda \,x} \right]_0^{+\infty} + \int_0^{+\infty} e^{-\lambda x} \, dx \\[0.5em]
+    & = 0 - 0 + \dfrac{1}{\lambda}\, \int_0^{+\infty} \lambda\, e^{-\lambda x} \, dx \overset{(2)}{=} \dfrac{1}{\lambda}
+\end{align*}
+\begin{small}
+  \qquad\text{(1): per integrazione per parti } $\displaystyle \int_a^b f(x) g'(x) \, dx = \left[ f(x) g(x) \right]_a^b - \int_a^b f'(x) g(x) \,dx$. \text{ Nel nostro caso si ha}\\[1mm]
+  \hspace*{3.8em} $f(x) = x$, $g'(x) = \lambda e^{-\lambda x}$, quindi $g(x) = -e^{-\lambda x}$, $f'(x) = 1$.\\[2mm]
+  \hspace*{1.8em} \text{(2): l'integrale corrisponde all'integrale della densità di probabilità, che vale 1.}
+\end{small}
+
+\vspace{2mm}
+La varianza è data da
+\begin{align*}
+\mathbb{E}[X^2] & = \int_{-\infty}^{+\infty} x^2 f_X(x) \, dx = \int_0^{+\infty} x^2\, \lambda e^{-\lambda x} \, dx
+    \overset{(1)}{=} \left[ -x^2 \, e^{-\lambda x} \right]_0^{+\infty} + \int_0^{+\infty} 2x \, e^{-\lambda x} \, dx \\[0.2em]
+    & = 0 - 0 + \dfrac{2}{\lambda} \, \int_0^{+\infty} x\, \lambda e^{-\lambda x} \, dx \overset{(2)}{=} \dfrac{2}{\lambda} \, \dfrac{1}{\lambda} = \dfrac{2}{\lambda^2} \\[0.8em]
+\text{Var}(X) & = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \dfrac{2}{\lambda^2} - \dfrac{1}{\lambda^2} = \dfrac{1}{\lambda^2}
+\qquad \Rightarrow \quad \sigma_X = \dfrac{1}{\lambda}
+\end{align*}
+\vspace{-3.5mm}
+\begin{small}
+  \qquad\text{(1): per integrazione per parti. Nel nostro caso si ha $f(x) = x^2$, $g'(x) = \lambda e^{-\lambda x}$, quindi $g(x) = -e^{-\lambda x}$, $f'(x) = 2x$}.\\[1mm]
+  \hspace*{1.8em} \text{(2): l'integrale è il valore atteso di $X$, che abbiamo già calcolato.}
+\end{small}
+\newpage
+Si osservi che il valore atteso e la deviazione standard di una variabile aleatoria esponenziale sono entrambi inversamente proporzionali al parametro $\lambda$. Questo significa che al crescere di $\lambda$ il tempo di attesa medio diminuisce, e la variabilità del tempo di attesa si riduce, rendendo gli eventi meno incerti.
+
+
+#### Proprietà
+\vspace{-3mm}
+##### Assenza di memoria 
+La proprietà centrale della distribuzione esponenziale è l'assenza di memoria, ed è l'unica distribuzione continua con questa proprietà. Si consideri $X \sim E(\lambda)$ e si calcoli $\mathbb{P}(X > s + t \mid X > s)$ per qualsiasi $s, t \ge 0$, ovvero la probabilità condizionata di attendere ancora $t$ unità di tempo, dato che si è già atteso $s$ unità di tempo. Si ha
+\begin{gather*}
+\mathbb{P}(X > x) =  1 - \mathbb{P}(X \le x) = 1 - (1-e^{-\lambda x}) = e^{-\lambda x} \qquad \forall x \ge 0 \\[0.5em]
+\mathbb{P}(X > s + t \mid X > s)  = \dfrac{\mathbb{P}(X > s+t, X > s)}{\mathbb{P}(X > s)} = \dfrac{\mathbb{P}(X > s+t)}{\mathbb{P}(X > s)} = \dfrac{e^{-\lambda(s+t)}}{e^{-\lambda s}} = e^{-\lambda t} = \mathbb{P}(X > t)
+\end{gather*}
+
+Si ottiene quindi che $\mathbb{P}(X > s + t \mid X > s) = \mathbb{P}(X > t)$, ossia la probabilità di attendere ancora $t$ unità di tempo, sapendo che ne sono già trascorse $s$, è la stessa di quella di attendere $t$ unità di tempo senza alcuna informazione. Questo implica che il processo non ha memoria del passato, e quindi la distribuzione esponenziale è detta priva di memoria.
+
+\vspace{2mm}
+##### Proposizione
+Siano $X_1, \dots, X_n$ variabili aleatorie esponenziali e indipendenti di parametri $\lambda_1, \dots, \lambda_n$ rispettivamente. Allora la variabile aleatoria $Y = \min(X_1, \dots, X_n)$ è esponenziale con parametro $\displaystyle \lambda = \sum_{i=1}^n \lambda_i$.
+
+Dimostrazione:
+
+\qquad Bisogna dimostrare che $\mathbb{P}(Y \le x) = 1 - \exp\{-x \sum_{i=1}^n \lambda_i\}\,$[^6], ovvero che $\mathbb{P}(Y > x) = \exp\{-x \sum_{i=1}^n \lambda_i\}$.
+
+[^6]: La notazione $\exp\left\{-x \sum_{i=1}^n \lambda_i\right\}$ è equivalente a $e^{-x \sum_{i=1}^n \lambda_i}$.
+
+\hangindent=2em\qquad Siccome il minore di un insieme di numeri è più grande di $x$ se e solo se ciascuno dei numeri in questione è maggiore di $x$, si ha
+\begin{align*}
+\mathbb{P}(Y > x) & = \mathbb{P}(\min(X_1, \dots, X_n) > x) = \mathbb{P}(X_1 > x, \dots, X_n > x) \\[0.5em]
+    & \overset{(1)}{=} \prod_{i=1}^n \mathbb{P}(X_i > x) = \prod_{i=1}^n (1 - F_{X_i}(x)) = \prod_{i=1}^n e^{-\lambda_i x} = e^{-\sum_{i=1}^n \lambda_i x}
+\end{align*}
+\begin{small}
+  \vspace{-2mm}
+  \qquad\qquad\text{(1): per indipendenza delle variabili aleatorie.}
+\end{small}
+\vspace{1mm}
+Un sistema in serie è un dispositivo che richiede che tutti i suoi componenti funzionino correttamente per essere operativo. Si consideri un sistema di $n$ componenti in serie, tutti indipendenti e ciascuno con tempo di vita esponenziale, e si denotano con $\lambda_1, \dots, \lambda_n$ i rispettivi parametri. Il tempo di vita del sistema è dato dal minimo dei tempi di vita dei singoli componenti, ed è perciò esponenziale con parametro $\lambda = \sum_{i=1}^n \lambda_i$.
+
+\vspace{3mm}
+##### Proposizione
+Sia $X \sim E(\lambda)$ una variabile aleatoria esponenziale e si consideri un valore $c > 0$. Allora la variabile aleatoria $Y = c X$ è esponenziale con parametro $\lambda' = \dfrac{\lambda}{c}$.
+
+Dimostrazione:
+
+\qquad Per dimostrarlo è necessario scrivere la funzione di ripartizione di $Y$ in funzione di quella di $X$:
+\begin{align*}
+F_Y(x) & = \mathbb{P}(Y \le x) = \mathbb{P}(c X \le x) = \mathbb{P}(X \le \frac{x}{c}) = F_X\left(\frac{x}{c}\right) 
+ = 1 - e^{-\lambda \frac{x}{c}} = 1 - e^{-\frac{\lambda}{c} x}
+\end{align*}
+
+
+\newpage
 ### Modello normale
 ```{=latex}
 \addcontentsline{toc}{subsection}{\protect\hspace*{2.3em}\numberline{\thesubsubsection}\hspace{0.9em}Modello normale}
 ```
+Il modello normale è uno dei modelli più importanti in statistica e venne introdotto per approssimare le probabilità associate a variabili aleatorie binomiali quando il parametro $n$ è grande. Questo modello è poi incluso in un enunciato di teoria della probabilità noto come *teorema del limite centrale*. Quest'ultimo fornisce la giustificazione teorica di un fatto evidente dall'esperienza empirica, ovvero che molti fenomeni casuali seguono una legge approssimativamente normale.
 
+#### Funzione di densità
+Una variabile aleatoria $X$ si dice normale oppure gaussiana di parametri$\,$[^7] $\mu \in \mathbb{R}$ e $\sigma > 0$, e si indica con $X \sim N(\mu, \sigma)$, se la sua funzione di densità di probabilità è definita come$\,$[^8]
+$$
+f_X(x) = \dfrac{1}{\sigma \sqrt{2\pi}} \exp \left\{ -\frac{(x - \mu)^2}{2\sigma^2} \right\} \qquad \forall x \in \mathbb{R}
+$$
+Il supporto è $D_X = \mathbb{R}$. Il parametro $\mu$ definisce la centralità della distribuzione mentre $\sigma$ la dispersione.
+
+[^8]: La notazione $\exp\{\dots\}$ indica l'esponenziale di base $e$ elevato all'argomento tra parentesi graffe, ovvero $\exp\{x\} = e^x$.
+
+\vspace{3mm}
+Si effettua ora lo studio della funzione di densità:
+
+- Dominio: $\mathbb{R}$, codominio: $D_X = \mathbb{R}^{+}$.
+
+- Limiti: $\displaystyle \lim_{x \to -\infty} f_X(x) = \lim_{x \to +\infty} f_X(x) = 0$.
+
+- Asintoti: orizzontale in $y=0$.
+
+- Simmetrie: la funzione è simmetrica rispetto a $x = \mu$, in quanto $f_X(\mu + x) = f_X(\mu - x)$. Questo vuol dire che la funzione è pari.
+
+- Derivata prima: $\displaystyle f_X'(x) = \dfrac{1}{\sigma^3 \sqrt{2\pi}} \exp \left\{ - \dfrac{(x - \mu)^2}{2 \sigma^2} \right\} (\mu - x)$
+
+- Monotonia: la funzione è crescente per $x < \mu$ e decrescente per $x > \mu$. Ha un massimo in $x = \mu$, dove assume valore $f_X(\mu) = \dfrac{1}{\sigma \sqrt{2\pi}} \approx 0.399/\sigma$.
+
+- Derivata seconda: $\displaystyle f_X''(x) = \dfrac{1}{\sigma^3 \sqrt{2\pi}} \exp \left\{ - \dfrac{(x - \mu)^2}{2 \sigma^2} \right\} \left( \dfrac{(x - \mu)^2}{\sigma^2} - 1 \right)$
+
+- Concavità: la funzione è convessa per $x < \mu - \sigma \,\land\, x > \mu + \sigma$, mentre è concava verso il basso per $\mu - \sigma < x < \mu + \sigma$. Ha i punti di flesso in $x = \mu \pm \sigma$.
+
+
+[^7]: In queste dispense si utilizza la deviazione standard $\sigma$ come secondo parametro, mentre in altri testi si usa la varianza $\sigma^2$.
+
+\hfill
+La funzione di densità della distribuzione normale è valida in quanto assume valori maggiori di 0 e integra a 1:
+$$
+\int_{-\infty}^{+\infty} f_X(x) \, dx = \int_{-\infty}^{+\infty} \dfrac{1}{\sigma \sqrt{2\pi}} \exp \left\{ -\frac{(x - \mu)^2}{2\sigma^2} \right\} \, dx = 1
+$$
+
+\vspace{3mm}
+Il valore atteso di una variabile aleatoria normale è dato dal suo parametro $\mu$:
+$$
+\mathbb{E}[X] = \mu
+$$
+La varianza è data dal suo parametro $\sigma$ elevato al quadrato:
+$$
+\text{Var}(X) = \sigma^2
+\quad \Rightarrow \quad \sigma_X = \sigma
+$$
+
+\newpage
+Un risultato molto importante riguardo questo tipo di variabili aleatorie è che se $X$ è normale e $Y$ è una trasformazione lineare di $X$, allora $Y$ è a sua volta normale. L'enunciato seguente precisa quanto detto.
+
+##### Proposizione
+Sia $X \sim N(\mu, \sigma)$, e sia $Y = aX + b$, dove $a, b \in \mathbb{R}$ e $a > 0$. Allora $Y$ è una variabile normale
+
+\vspace{-1.5mm}
+con media $a \mu + b$ e varianza $a^2 \sigma^2$.
+
+\vspace{1mm}
+Dimostrazione:
+
+\qquad Si calcola la funzione di ripartizione di $Y$ in funzione di quella di $X$:
+\begin{align*}
+F_Y(x) &= \mathbb{P}(Y \le x) = \mathbb{P}(aX + b \le x) = \mathbb{P}\left( X \le \dfrac{x-b}{a} \right) = F_X\left(\dfrac{x-b}{a}\right)
+\end{align*}
+\qquad Si procede ora a calcolare la funzione di densità di $Y$:
+\begin{align*}
+f_Y(x) &= F_Y'(x) = \dfrac{d}{dx} F_X \left( \dfrac{x-b}{a} \right) = \dfrac{1}{a} \,f_X \left( \dfrac{x-b}{a} \right) = \dfrac{1}{a \sigma \sqrt{2\pi}} \, \exp \left\{ - \dfrac{\left( \frac{x-b}{a} - \mu \right)^2}{2\sigma^2} \right\} \\[0.5em]
+&= \dfrac{1}{a \sigma \sqrt{2\pi}} \, \exp \left\{ - \dfrac{\left( \frac{x-b -\mu a}{a} \right)^2}{2\sigma^2} \right\}
+  = \dfrac{1}{a \sigma \sqrt{2\pi}} \, \exp \left\{ - \dfrac{ [x - (a\mu + b)]^2 }{2 (a \sigma)^2} \right\}
+\end{align*}
+
+\hangindent=2em \qquad La variabile aleatoria $Y$ è quindi definita dalla funzione di densità sopra, che coincide con la forma convenzionale di una densità normale di parametri $a\mu+b$ e $a \sigma$. Dato che la funzione di densità identifica univocamente la distribuzione di una variabile aleatoria, si conclude che $Y \sim N(a\mu + b, a \sigma)$.
+
+\hangindent=2em \qquad Il valore atteso di $Y$ è quindi $a\mu +b$ mentre la varianza è $(a\sigma)^2$. Questo risultato può essere ottenuto anche applicando la trasformazione direttamente al valore atteso e alla varianza di $X$:
+$$
+\mathbb{E}[Y] = \mathbb{E}[aX + b] = a\, \mathbb{E}[X] + b = a\mu + b \\[0.5em]
+$$
+\vspace{-6mm}
+$$
+\text{Var}(Y) = \text{Var}(aX + b) = a^2\, \text{Var}(X) = a^2 \sigma^2
+\quad \Rightarrow \quad \sigma_Y = a \sigma \quad \text{(se } a > 0\text{)}
+$$
+
+
+\vspace{3mm}
+#### Normale standard
+Sia $X \sim N(\mu, \sigma)$, allora la variabile aleatoria ottenuta dalla standardizzazione di $X$
+$$
+Z = \dfrac{X - \mu}{\sigma}
+$$
+è una variabile normale $N(0,1)$ con 
+$$
+\mathbb{E}[Z] = 0, \quad \text{Var}(Z) = 1
+$$
+
+Una tale variabile aleatoria si dice *normale standard* e si indica con $Z \sim N(0, 1)$.
+
+\vspace{3mm}
+Dimostrazione:
+
+\hangindent=2em \qquad La standardizzazione di una variabile aleatoria consiste nel sottrarre il suo valore atteso e dividere per la sua deviazione standard. Di conseguenza, si applica una trasformazione lineare a $X$ del tipo $aX + b$, con $a = 1 / \sigma$ e $b = - \mu / \sigma$. Si ha quindi
+$$
+Z = \dfrac{1}{\sigma} X - \dfrac{\mu}{\sigma}
+$$
+
+\qquad Applicando la proposizione precedente, si può concludere che $Z$ è normale con media 
+$$
+\qquad \mu_Z = \dfrac{1}{\sigma} \mu - \dfrac{\mu}{\sigma} = 0
+$$ 
+\qquad e deviazione standard
+$$
+\qquad \sigma^2_Z = \left( \dfrac{1}{\sigma} \right)^2 \sigma^2 = 1 \quad \Rightarrow \quad \sigma_Z = \sqrt{1} = 1
+$$
+
+
+
+
+
+\vspace{2mm}
+\newpage
+Sostituendo i due parametri della normale standard nella funzione di densità della normale, si ottiene
+$$
+\phi(x) = \dfrac{1}{\sqrt{2\pi}} e^{-x^2/2} \qquad \forall x \in \mathbb{R}
+$$
+
+Si osserva che la normale standard assume valore massimo $\phi(0) = 1/\sqrt{2\pi} = 0.399$ in $x=0$. I punti di flesso sono in corrispondenza di $x = \pm 1$, dove la funzione cambia concavità.
+
+\vspace{3mm}
+Integrando la densità, si ottiene la funzione di ripartizione della normale standard, indicata con $\Phi(x)$:
+$$
+\Phi(x) = \int_{-\infty}^{x} \phi(t) \, dt = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-t^2/2} \, dt \qquad \forall x \in \mathbb{R}
+$$
+La funzione di ripartizione della normale standard non ha una forma analitica.
+
+\vspace{3mm}
+#### Funzione di ripartizione
+Il fatto che che $Z$ abbia distribuzione normale standard quando $X$ è una normale di valore atteso $\mu$ e varianza $\sigma^2$ permette di calcolare la funzione di ripartizione della normale in funzione di quella della normale standard:
+$$
+F_X(x) = \mathbb{P}(X \le x) = \mathbb{P}(\sigma Z + \mu) = \mathbb{P}(Z \le \dfrac{x - \mu}{\sigma}) = \Phi\left(\dfrac{x - \mu}{\sigma}\right)
+$$
+
+Derivando la funzione di ripartizione, si ottiene la funzione di densità della normale definita all'inizio:
+\begin{align*}
+f_X(x) &= F_X'(x) = \dfrac{d}{dx} \Phi\left(\dfrac{x - \mu}{\sigma}\right) = \Phi'\left(\dfrac{x - \mu}{\sigma}\right) \, \dfrac{d}{dx} \left(\dfrac{x - \mu}{\sigma} \right) = \phi\left(\dfrac{x - \mu}{\sigma}\right) \, \dfrac{1}{\sigma} \\[0.5em]
+    &= \dfrac{1}{\sqrt{2\pi}} \, \exp\left\{ - \dfrac{(x - \mu)^2}{2 \sigma^2} \right\} \, \dfrac{1}{\sigma} = \dfrac{1}{\sigma \sqrt{2\pi}} \, \exp\left\{ - \dfrac{(x - \mu)^2}{2 \sigma^2} \right\}
+\end{align*}
+
+Si è quindi estesa la forma analitica di $\phi$ per una variabile normale con parametri $\mu$ e $\sigma$ arbitrari.
+
+
+\vspace{3mm}
+##### Proposizione
+Ora che si conosce la funzione di ripartizione di una normale $X$ generica, si può calcolare la probabilità che $X$ assuma un valore compreso tra due estremi $a$ e $b$:
+$$
+\mathbb{P}(a < X < b) = F_X(b) - F_X(a) = \Phi\left(\dfrac{b - \mu}{\sigma}\right) - \Phi\left(\dfrac{a - \mu}{\sigma}\right)
+$$
+
+\vspace{1mm}
+##### Proposizione
+Sia $Z \sim N(0, 1)$, e si consideri $x > 0$. Allora $\Phi(-x) = 1 - \Phi(x)$.
+
+Dimostrazione:
+
+```{=latex}
+\vspace{3mm}
+\pgfplotsset{
+  normpdf/.style={
+    width=7cm,height=4cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-6, xmax=5, ymin=0, ymax=1.1,
+    xtick={-6,-4,-2,0,2,4},
+    tick style={black,thin}, clip=false
+  },
+  normcdf/.style={
+    width=7cm,height=4cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-6, xmax=5, ymin=0, ymax=1.15,
+    xtick={-6,-4,-2,0,2,4},
+    tick style={black,thin}, clip=false
+  }
+}
+
+\begin{minipage}{0.55\textwidth}
+\vspace{-8mm}
+\hangindent=2em \qquad Sfruttando la simmetria della distribuzione di $Z$ rispetto al valore atteso $\mu= 0$, si ottiene
+\begin{align*}
+\Phi(-x) & = \mathbb{P}(Z \le -x) = \mathbb{P}(Z \ge x) \\[0.5em]
+ & = 1 - \mathbb{P}(Z < x) = 1 - \Phi(x)
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.39\textwidth}
+    \begin{center}
+    \begin{tikzpicture}[line cap=round]
+      \begin{axis}[normpdf,
+        axis lines=none,          % tolgo le linee di default
+        xmin=-4.5, xmax=4.5,
+        ymin=0,   ymax=0.45,
+        clip=false
+      ]
+        % -------- parametri principali --------
+        \def\sigma{1}  % deviazione standard
+        \def\a{1.1}    % il tuo valore x (>0)
+
+        % -------- curva N(0,1) ----------------
+        \addplot[very thick,gray,domain=-4.5:4.5,samples=400,name path=PDF]
+          {1/(sqrt(2*pi*\sigma^2))*exp(-(x^2)/(2*\sigma^2))};
+
+        % -------- codice per riempire le code -----------------
+        % segmento di asse (baseline) a sinistra
+        \addplot[draw=none,name path=BASEleft]
+          coordinates {(-4.5,0) (-\a,0)};
+        % segmento di asse (baseline) a destra
+        \addplot[draw=none,name path=BASEright]
+          coordinates {(\a,0) (4.5,0)};
+
+        % area ombreggiata sinistra
+        \addplot[gray!20]
+          fill between[
+            of=PDF and BASEleft,
+            soft clip={domain=-4.5:-\a}
+          ];
+        % area ombreggiata destra
+        \addplot[gray!20]
+          fill between[
+            of=PDF and BASEright,
+            soft clip={domain=\a:4.5}
+          ];
+
+        % -------- assi e tacche manuali ------------
+        % asse x
+        \draw[->,thin] (axis cs:-4.5,0) -- (axis cs:4.7,0);
+        % asse y
+        \draw[->,thin] (axis cs:0,0) -- (axis cs:0,0.5);
+
+        % tacche -x, +x
+        \draw[thin] (axis cs:-\a,0) -- (axis cs:-\a,-0.02);
+        \draw[thin] (axis cs: \a,0) -- (axis cs: \a,-0.02);
+
+        % linea verticale al centro
+        \draw[very thin] (axis cs:0,0) -- (axis cs:0,{1/(sqrt(2*pi*\sigma^2))});
+
+        % -------- etichette -----------------------
+        % f_X al picco
+        \node[above] at (axis cs:-0.5,{1/(sqrt(2*pi*\sigma^2))}) {$\phi$};
+
+        % -x e +x
+        \node[below] at (axis cs:-\a,-0.02) {$-x$};
+        \node[below] at (axis cs:0,-0.02) {$0$};
+        \node[below] at (axis cs:\a,-0.02) {$x$};
+
+        % Φ(-x) in riquadro
+        \node[draw,rounded corners=2pt,fill=white,inner sep=4pt]
+              at (axis cs:-\a-1.3,0.09) {$\Phi(-x)$};
+        \node[draw,rounded corners=2pt,fill=white,inner sep=4pt]
+              at (axis cs:\a+1.3,0.09) {$\Phi(-x)$};
+      \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{minipage}
+```
+
+
+\newpage
+```{=latex}
+\tikzset{
+  declare function={
+    normcdf(\x,\m,\s)=1/(1 + exp(-0.07056*((\x-\m)/\s)^3 - 1.5976*((\x-\m)/\s)));
+  }
+}
+\pgfplotsset{
+  normpdf/.style={
+    width=7cm,height=5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-6, xmax=5, ymin=0, ymax=1.1,
+    xtick={-6,-4,-2,0,2,4},
+    tick style={black,thin}, clip=false
+  },
+  normcdf/.style={
+    width=7cm,height=5cm,
+    axis lines=left, axis line style={-stealth},
+    xmin=-6, xmax=5, ymin=0, ymax=1.15,
+    xtick={-6,-4,-2,0,2,4},
+    tick style={black,thin}, clip=false
+  }
+}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,line cap=round]
+  % --------- DENSITÀ (PDF) ---------
+  \begin{axis}[normpdf,
+    ylabel={$f_X(x)$},
+    ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+    xlabel={$x$},
+    xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt},
+    legend style={at={(0.035,0.98)},anchor=north west,draw=none,fill=none,font=\small},
+    legend cell align=left
+  ]
+    % N(0,0.2) – nero
+    \addplot[very thick,black,domain=-6:4,samples=200]
+       {1/(sqrt(2*pi*0.2))*exp(-((x-0)^2)/(2*0.2))};
+    \addlegendentry{$N(0,0.2)$}
+
+    % N(0,1) – grigio medio
+    \addplot[very thick,gray!70,domain=-6:4,samples=200]
+       {1/(sqrt(2*pi*1))*exp(-((x-0)^2)/(2*1))};
+    \addlegendentry{$N(0,1)$}
+
+    % N(-2,4) – grigio chiaro
+    \addplot[very thick,gray!20,domain=-6:4,samples=200]
+       {1/(sqrt(2*pi*4))*exp(-((x+2)^2)/(2*4))};
+    \addlegendentry{$N(-2,4)$}
+  \end{axis}
+
+  % --------- RIPARTIZIONE (CDF) ---------
+  \begin{axis}[normcdf,
+    at={(current bounding box.east)}, anchor=west, xshift=1.4cm,
+    ylabel={$F_X(x)$},
+    ylabel style={at={(axis description cs:-0.08,1)},anchor=south,rotate=-90},
+    xlabel={$x$},
+    xlabel style={at={(axis description cs:1,0)},anchor=north west,yshift=-2pt}
+  ]
+    % N(0,0.2) – nero
+    \addplot[very thick,black,domain=-6:4,samples=200]
+      {normcdf(x,0,sqrt(0.2))};
+    % N(0,1) – grigio medio
+    \addplot[very thick,gray!70,domain=-6:4,samples=200]
+      {normcdf(x,0,1)};
+    % N(-2,4) – grigio chiaro
+    \addplot[very thick,gray!20,domain=-6:4,samples=200]
+      {normcdf(x,-2,2)};
+  \end{axis}
+\end{tikzpicture}
+
+\vspace{-2mm}
+{\small
+  Funzioni di densità e di ripartizione di tre variabili aleatorie $N(\mu, \sigma)$}
+\end{center}
+```
+\vspace{2mm}
+La densità della normale è una campana perfettamente simmetrica centrata sulla media: restringendo la deviazione standard il profilo si assottiglia e diventa più alto, mentre un valore più grande di $\sigma$ lo rende largo e più basso, lasciando invariata l’area totale sotto la curva che deve essere pari a 1.
+
+La corrispondente funzione di ripartizione è una sigmoide che sale da 0 a 1; il punto di inflessione coincide con la media e la sua pendenza massima si fa tanto più ripida quanto più la distribuzione è concentrata. Cambiare la media sposta entrambe le curve lungo l’asse delle ascisse senza alterarne la forma intrinseca.
+
+\vspace{4mm}
+Regola normale
+: La regola normale riassume quanto "peso" della distribuzione cade vicino alla media quando le osservazioni seguono una curva gaussiana. In una qualunque normale $N(\mu, \sigma)$:
+
+    - il 68\% delle osservazioni cade entro un intervallo di $\mu \pm \sigma$
+
+    - il 95\% delle osservazioni cade entro un intervallo di $\mu \pm 2\sigma$
+
+    - il 99.7\% delle osservazioni cade entro un intervallo di $\mu \pm 3\sigma$
+
+    Queste soglie non dipendono dalla posizione $\mu$ né dalla scala $\sigma$: descrivono soltanto come l'area si accumula sotto la campana descritta dalla funzione di densità.
+
+
+\vspace{3mm}
+#### Riproducibilità
+Siano $X_1, \dots, X_n$ delle variabili aleatorie indipendenti tra loro e distribuite come $X_i \sim N(\mu_i, \sigma_i)$, allora
+$$
+S = \sum_{i=1}^n X_i \;\; \sim N\left(\;\sum_{i=1}^n \mu_i,\;\, \sqrt{\sum_{i=1}^n \sigma_i^2} \;\, \right)
+$$
+
+
+Siccome una variabile aleatoria binomiale non è altro che una somma di variabili di Bernoulli, allora per un numero $n$ abbastanza grande è possibile approssimare la suddetta variabile aleatoria a una normale di parametri $\mu = n p$ e $\sigma = \sqrt{n p (1-p)}$.
 
 
 
