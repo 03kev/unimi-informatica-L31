@@ -1,0 +1,122 @@
+\part{Cifrari simmetrici}
+
+\newpage
+
+\section{Advanced Encryption Standard}
+
+Nel 1997 il NIST indisse un concorso pubblico per selezionare un nuovo standard di cifratura simmetrica destinato a
+sostituire il DES, ormai ritenuto non più adeguato dal punto di vista della sicurezza. Il DES, sviluppato negli anni
+'70, utilizzava infatti una chiave di soli 56 bit, rivelatasi vulnerabile ad attacchi di brute force con l'aumento
+della potenza di calcolo disponibile.
+
+Il concorso si concluse nel 2000 con la selezione dell'algoritmo Rijndael, progettato dai crittografi belgi Joan Daemen
+e Vincent Rijmen, che venne successivamente adottato come Advanced Encryption Standard (AES).
+
+Le proposte candidate furono valutate principalmente sulla base di tre criteri: la sicurezza, considerata essenziale;
+l'efficienza computazionale, intesa in termini di velocità e requisiti di memoria in diversi contesti implementativi; e
+le caratteristiche algoritmiche e implementative, quali semplicità, flessibilità e facilità di adozione.
+
+AES fu scelto per la sua combinazione di sicurezza, efficienza, prestazioni e flessibilità. La sua struttura a blocchi,
+il supporto a chiavi di lunghezza diversa e la resistenza ai principali attacchi crittoanalitici lo resero il candidato
+ideale per il nuovo standard.
+
+\subsection{Struttura di AES}
+
+\subsubsection{Struttura generale}
+
+AES è un cifrario simmetrico che opera su blocchi di lunghezza fissa pari a 128 bit, cioè 16 byte. L'algoritmo ammette
+tre possibili lunghezze di chiave: 128 bit, 192 bit e 256 bit. In corrispondenza di tali lunghezze si parla
+rispettivamente di AES-128, AES-192 e AES-256. Dal punto di vista strutturale, AES è un \emph{cifrario iterato}: il
+blocco di input viene sottoposto a una sequenza di trasformazioni elementari che si ripetono round dopo round.
+Indicando con $N$ il numero di round, si ha $N = 10$, $N = 12$ oppure $N = 14$ a seconda che la chiave abbia lunghezza
+rispettivamente di 128, 192 o 256 bit.
+
+Tutte le operazioni agiscono su una rappresentazione interna del blocco, chiamata \emph{State}, costituita da una
+matrice quadrata $4 \times $4 di byte. In altre parole, i 16 byte del plaintext non vengono trattati come una semplice
+sequenza lineare, ma come una struttura matriciale che viene modificata progressivamente nel corso della cifratura.
+L'organizzazione dei dati in ingresso, della matrice di stato e dell'output è illustrata in
+\figsubref{fig:aes-data-structure}{a}
+
+L'ordinamento dei byte all'interno dello \emph{State} avviene per colonne. Ciò significa che i primi quattro byte del
+blocco occupano la prima colonna della matrice, i quattro byte successivi la seconda colonna, e così via. Questa
+convenzione è importante, perché tutte le trasformazioni interne di AES, in particolare quelle che agiscono sulle righe
+o sulle colonne della matrice, sono definite rispetto a tale disposizione.
+
+Anche la chiave iniziale viene organizzata in forma matriciale e successivamente sottoposta a un processo di espansione
+(\emph{key expansion} o \emph{key schedule}), mediante il quale si ottengono le \emph{round keys} utilizzate nei
+diversi round. In questo senso, la chiave non interviene sempre in modo identico durante l'esecuzione dell'algoritmo,
+ma viene preliminarmente trasformata in una sequenza di sottochiavi, una per ciascun round, più una sottochiave
+iniziale, come mostrato in \figsubref{fig:aes-data-structure}{b}.
+
+Ad alto livello, il funzionamento di AES può essere descritto come mostrato in
+\figsubref{fig:aes-encryption-process}{}. Dato un plaintext $x$, esso viene inizialmente copiato nello \emph{State}.
+Prima dell'inizio dei round veri e propri, si applica una trasformazione iniziale di \texttt{AddRoundKey}, che combina
+lo \emph{State} con la prima round key; questa trasformazione iniziale può essere considerata a tutti gli effetti come
+un round $0$. Seguono poi i successivi $N - 1$ round, ciascuno dei quali è composto da quattro trasformazioni:
+\texttt{SubBytes}, \texttt{ShiftRows}, \texttt{MixColumns} e \texttt{AddRoundKey}. L'ultimo round ha invece una
+struttura leggermente diversa, poiché non include la trasformazione \texttt{MixColumns}; esso è composto soltanto da
+\texttt{SubBytes}, \texttt{ShiftRows} e \texttt{AddRoundKey}. Tutte queste operazioni ricevono in input una matrice $4
+\times 4$ di byte e producono in output una nuova matrice della stessa forma. Dopo l'ultimo round, la matrice di stato
+viene copiata in una matrice di output, che costituisce il ciphertext.
+
+Questa organizzazione mostra che AES possiede una struttura regolare e fortemente modulare. Ogni round combina infatti
+una fase di sostituzione non lineare, una fase di permutazione delle posizioni, una trasformazione lineare sulle
+colonne e un'operazione di mescolamento con la sottochiave di round.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.66\linewidth]{2_aes_structure.jpg}
+  \vspace{-4mm}
+  \caption{AES Encryption Process} \label{fig:aes-encryption-process}
+\end{figure}
+
+\vspace{-4mm}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.975\linewidth]{2_aes_data_structure.jpg}
+  \vspace{-3mm}
+  \caption{AES Data Structure} \label{fig:aes-data-structure}
+\end{figure}
+
+\subsubsection{Struttura dettagliata}
+
+La \figsubref{fig:aes-encryption-decryption}{a} mostra il cifrario AES più in dettaglio, indicando la sequenza di
+trasformazioni in ciascun round e mostrando la corrispondente operazione di decryption.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{2_aes_encryption_decryption.jpg}
+  \vspace{-2mm}
+  \caption{AES Encryption and Decryption} \label{fig:aes-encryption-decryption}
+\end{figure}
+
+Una prima osservazione importante è che AES non appartiene alla famiglia dei cifrari di Feistel. In una struttura di
+Feistel, infatti, il blocco viene suddiviso in due metà, una delle quali viene usata per modificare l'altra, seguita
+poi da uno scambio delle due parti. In AES, invece, l'intero blocco viene trattato in ogni round come un'unica matrice
+di byte, sulla quale agiscono trasformazioni di sostituzione, permutazione e mescolamento lineare. Per questo motivo,
+AES può essere ricondotto al paradigma delle \emph{Substitution-Permutation Networks} (SPN), pur presentando una
+struttura specifica propria.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{2_aes_encryption_round.jpg}
+  \vspace{-2mm}
+  \caption{AES Encryption Round} \label{fig:aes-encryption-round}
+\end{figure}
+
+\subsection{Funzioni di trasformazione}
+
+\subsubsection{Substitute Bytes}
+
+\subsubsection{Shift Rows}
+
+\subsubsection{Mix Columns}
+
+\subsubsection{Add Round Key}
+
+\subsection{Key Expansion}
+
+\newpage
+\part{Matematica}
+

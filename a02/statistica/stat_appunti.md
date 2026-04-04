@@ -503,7 +503,7 @@ Supponiamo che i dati di un campione di cardinalità $n$ siano disposti in ordin
 $100p$-esimo percentile campionario bisogna determinare quale valore sia:
 
 - maggiore o uguale di almeno $np$ valori dei dati
-- minore o uguale di almeno $n(p-1)$ valori dei dati
+- minore o uguale di almeno $n(1-p)$ valori dei dati
 
 Se $np$ non è un intero, il solo valore dei dati che soddisfa questi requisiti è quello la cui posizione è il più piccolo intero maggiore di $np$.  
 Se invece $np$ è un intero, allora sia il valore in posizione $np$ che il valore in posizione $np+1$ soddisfano i due requisti, e quindi il $100p$-esimo percentile campionario è la media dei due valori.
@@ -3214,7 +3214,7 @@ Si osserva che non è possibile estendere l'indipendenza a più eventi richieden
 >	\noindent\hspace*{1em} $G = \{(x,y) \in \Omega \;|\; y = 3\} = \{ \text{3 sul secondo dado} \}$ \\[-1mm]
 >	
 >	Calcolando le probabilità di ciascun evento, si trova che \\[-2.5mm]
->	$$ \mathbb{P}(E) = \mathbb{P}(F) = \mathbb{P}(F) = 1/6 $$ \\[-4.5mm]
+>	$$ \mathbb{P}(E) = \mathbb{P}(F) = \mathbb{P}(G) = 1/6 $$ \\[-4.5mm]
 >	Osservando il grafico a lato si osserva, infatti, che ogni evento, rappresentato dalla propria retta, contiene 6 esiti. Dividendo questa quantità per $|\Omega| = 36$ si ottiene proprio $1/6$.
 >	
 >\end{minipage}
@@ -3925,7 +3925,7 @@ $$
 $$
 e quindi la funzione di ripartizione è la primitiva della densità.
 
-\hfill
+\vspace{3mm}
 ##### Proprietà
 La funzione di ripartizione, oltre alle proprietà già viste quando è stata introdotta, possiede delle proprietà aggiuntive per $X$ continua:
 
@@ -3933,7 +3933,9 @@ La funzione di ripartizione, oltre alle proprietà già viste quando è stata in
 
 - Essendo continua a destra e sinistra, la funzione di ripartizione è continua in ogni punto $x \in \mathbb{R}$. Non presenta quindi nessun salto o discontinuità.
 
-\hfill
+- Se la densità $f_X$ è continua soddisfa $f_X(x) > 0$ per ogni $x \in I$, con $I \subseteq \mathbb{R}$ intervallo aperto, allora la funzione di ripartizione $F_X$ è strettamente crescente su $I$, e pertanto iniettiva e invertibile sull’intervallo considerato.
+
+\vspace{1mm}
 >```{=latex}
 >%------------------------------------------------
 >% Parametri e stili
@@ -4052,7 +4054,7 @@ La funzione di ripartizione, oltre alle proprietà già viste quando è stata in
 
 ---
 
-\vspace{2mm}
+\vspace{1.5mm}
 #### Legge di distribuzione
 
 Quando si conosce la funzione di probabilità $p_X$, oppure la funzione di ripartizione $F_X$, di una variabile aleatoria $X$ qualsiasi, si hanno abbastanza informazioni per poter calcolare la probabilità di ogni evento che dipenda solo da tale variabile aleatoria. Si dice in questo caso che si conosce la *distribuzione* o *legge* della variabile aleatoria considerata.  
@@ -4721,9 +4723,9 @@ Variabili discrete
 : Se $X$ è discreta, non è garantito che esista un valore $x$ tale che $F_X(x)=\alpha$ per ogni $\alpha\in[0,1]$. Questo perché $F_X$ salta a gradini e può non assumere esattamente il valore $\alpha$.
 
 Variabili continue
-: Se $X$ è continua, la funzione di ripartizione è continua e strettamente crescente. In questo caso l’inversa
+: Se $X$ è continua e la sua funzione di densità $f_X$ è strettamente positiva, allora la funzione di ripartizione è continua e strettamente crescente. In questo caso l’inversa
 
-    \vspace{-7mm}
+    \vspace{-5mm}
     $$
     x_{\alpha} = F_X^{-1}(\alpha) \qquad \forall \alpha\in[0,1]
     $$
@@ -4734,6 +4736,7 @@ Variabili continue
     =F_X\bigl(F_X^{-1}(\alpha)\bigr)
     =\alpha
     $$
+
 
 \vspace{-4mm}
 #### Q-Q Plot
@@ -4758,12 +4761,12 @@ $$
 \mathbb{P}(X \ge a) \le \dfrac{\mathbb{E}[X]}{a} \quad \forall a > 0
 $$
 
-\vspace{-3mm}
+\vspace{-4.5mm}
 **Dimostrazione**:
 
 \hangindent=2em \qquad Si mostra la dimostrazione per il caso discreto, ma il ragionamento è analogo nel caso continuo. 
 \begin{align*}
-\mathbb{E}[X] & = \sum_{x \in D_X} x\, \mathbb{P}(X=x) = \sum_{x < a} x\, \mathbb{P}(X=x) + \sum_{x \ge a} x\, \mathbb{P}(X=x) \\[0.5em]
+\mathbb{E}[X] & = \sum_{x \in D_X} x\, \mathbb{P}(X=x) = \sum_{x < a} x\, \mathbb{P}(X=x) + \sum_{x \ge a} x\, \mathbb{P}(X=x) \\[0.3em]
 & \overset{(1)}{\ge} \sum_{x \ge a} x\, \mathbb{P}(X=x) \overset{(2)}{\ge} \sum_{x \ge a} a\, \mathbb{P}(X=x) = a\, \underbrace{\sum_{x \ge a} \mathbb{P}(X=x)}_{\text{eventi disgiunti}} \overset{K3}{=} a\, \mathbb{P}(X \ge a)
 \end{align*}
 \vspace{-8mm}
@@ -6418,7 +6421,7 @@ Dimostrazione:
 
 \qquad Per dimostrarlo è necessario scrivere la funzione di ripartizione di $Y$ in funzione di quella di $X$:
 \begin{align*}
-F_Y(x) & = \mathbb{P}(Y \le x) = \mathbb{P}(c X \le x) = \mathbb{P}(X \le \frac{x}{c}) = F_X\left(\frac{x}{c}\right) 
+F_Y(x) & = \mathbb{P}(Y \le x) = \mathbb{P}(c X \le x) = \mathbb{P}\left(X \le \frac{x}{c}\right) = F_X\left(\frac{x}{c}\right) 
  = 1 - e^{-\lambda \frac{x}{c}} = 1 - e^{-\frac{\lambda}{c} x}
 \end{align*}
 

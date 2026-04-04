@@ -17,6 +17,7 @@ unimi-informatica-L31
     ├─ intelligenza artificiale
     ├─ programmazione II
     ├─ sicurezza e privatezza
+    ├─ crittografia
     │
     └─ statistica
 ```

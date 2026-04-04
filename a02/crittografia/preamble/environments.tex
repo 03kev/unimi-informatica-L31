@@ -1,0 +1,30 @@
+\let\originAlParaGraph\paragraph
+\renewcommand{\paragraph}[1]{\originAlParaGraph{#1} \hfill}
+
+\definecolor{mygray}{HTML}{F7F7F7}
+
+\newenvironment{gray-quote}
+  {\begin{mdframed}[
+      backgroundcolor=mygray,
+      leftmargin=0.5cm,
+      rightmargin=0.5cm,
+      skipabove=\baselineskip,
+      linewidth=0pt,
+      innertopmargin=0.45cm,
+      innerbottommargin=0.45cm,
+      innerleftmargin=0.5cm,
+      innerrightmargin=0.5cm]}
+  {\end{mdframed}}
+
+\newenvironment{gray-quote-smaller}
+  {\begin{mdframed}[
+      backgroundcolor=mygray,
+      leftmargin=0.5cm,
+      rightmargin=0.5cm,
+      skipabove=\baselineskip,
+      linewidth=0pt,
+      innertopmargin=0.35cm,
+      innerbottommargin=0.35cm,
+      innerleftmargin=0.5cm,
+      innerrightmargin=0.5cm]}
+  {\end{mdframed}}
